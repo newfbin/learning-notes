@@ -28,10 +28,16 @@ Spliterator<Path> split = p.spliterator();
 
 ### 2.Files.walk()
 
-`Files.walk()`方法通过递归遍历以给定起始文件为根的文件树来返回由Path延迟填充的流，且文件树是基于深度优先遍历。该方法可用于千万级文件数量下高性能深度遍历。
+`Files.walk()`方法通过递归遍历**以给定起始文件为根的文件树**来返回由Path延迟填充的流，且文件树是基于深度优先遍历。
+该方法可用于千万级文件数量下高性能深度遍历。
 
-### 3.paths.filter().forEach()
+### 3.paths.filter().forEach()--streamAPI
 
+filter：筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中的操作。
+
+### 4.Files::isDirectory--方法引用
+
+方法引用就是把方法当做参数传到stream内部，使stream的每个元素都传入到该方法里面执行一下。
 
 
 ### 代码

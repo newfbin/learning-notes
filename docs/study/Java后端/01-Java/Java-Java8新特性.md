@@ -1,14 +1,12 @@
-## Java8新特性
-
-### Lambda表达式
+# Lambda表达式
 
 > 原文地址 ： https://objcoding.com/2019/03/04/lambda/
 
 本节将介绍如何使用Lambda表达式简化匿名内部类的书写，但Lambda表达式并不能取代所有的匿名内部类，只能用来取代**函数接口（Functional Interface）**的简写。先别在乎细节，看几个例子再说。
 
-#### 四大函数式接口
+## 四大函数式接口
 
-##### 1）Function 函数型接口
+### 1）Function 函数型接口
 
 ![image-20200812144105334](./assets/Java-Java8新特性/fde53f33a9e4909aaf6b129ccab5846a.png)
 
@@ -21,7 +19,7 @@ public class FunctionDemo {
 }
 ```
 
-##### 2）Predicate 断定型接口
+### 2）Predicate 断定型接口
 
 ![image-20200812144545558](./assets/Java-Java8新特性/e658ace0f5d5e3913dbac600e607819c.png)
 
@@ -37,7 +35,7 @@ public class PredicateDemo {
 }
 ```
 
-##### 3）Suppier 供给型接口
+### 3）Suppier 供给型接口
 
 ![image-20200812144653640](./assets/Java-Java8新特性/c663f32a07a8f0dde688adb3f8850abc.png)
 
@@ -53,7 +51,7 @@ public class Demo4 {
 }
 ```
 
-##### 4）Consummer 消费型接口
+### 4）Consummer 消费型接口
 
 ![image-20200812144803229](./assets/Java-Java8新特性/c5641402010af463e285685614c2a92a.png)
 
@@ -71,7 +69,7 @@ public class Demo3 {
 }
 ```
 
-#### 例子1：无参函数的简写
+## 例子1：无参函数的简写
 
 如果需要新建一个线程，一种常见的写法是这样：
 
@@ -106,7 +104,7 @@ new Thread(
 ).start();
 ```
 
-#### 例子2：带参函数的简写
+## 例子2：带参函数的简写
 
 如果要给一个字符串列表通过自定义比较器，按照字符串长度进行排序，Java 7的书写形式如下：
 
@@ -141,7 +139,7 @@ Collections.sort(list, (s1, s2) ->{// 省略参数表的类型
 
 上述代码跟匿名内部类的作用是一样的。除了省略了接口名和方法名，代码中把参数表的类型也省略了。这得益于`javac`的**类型推断**机制，编译器能够根据上下文信息推断出参数的类型，当然也有推断失败的时候，这时就需要手动指明参数类型了。注意，Java是强类型语言，每个变量和对象都必需有明确的类型。
 
-#### 简写的依据
+## 简写的依据
 
 也许你已经想到了，**能够使用Lambda的依据是必须有相应的函数接口**（函数接口，是指内部只有一个抽象方法的接口）。这一点跟Java是强类型语言吻合，也就是说你并不能在代码的任何地方任性的写Lambda表达式。实际上*Lambda的类型就是对应函数接口的类型*。**Lambda表达式另一个依据是类型推断机制**，在上下文信息足够的情况下，编译器可以推断出参数表的类型，而不需要显式指名。Lambda表达更多合法的书写形式如下：
 
@@ -159,7 +157,7 @@ BinaryOperator<Long> addImplicit = (x, y) -> x + y;// 5 类型推断
 
 上述代码中，1展示了无参函数的简写；2处展示了有参函数的简写，以及类型推断机制；3是代码块的写法；4和5再次展示了类型推断机制。
 
-#### 自定义函数接口
+## 自定义函数接口
 
 自定义函数接口很容易，只需要编写一个只有一个抽象方法的接口即可。
 
@@ -195,7 +193,7 @@ MyStream<String> stream = new MyStream<String>();
 stream.myForEach(str -> System.out.println(str));// 使用自定义函数接口书写Lambda表达式
 ```
 
-### 方法引用
+# 方法引用
 
 JDK8中有双冒号的用法，就是把方法当做参数传到stream内部，使stream的每个元素都传入到该方法里面执行一下。
 
@@ -228,7 +226,7 @@ HashMap::new
 
 方法引用主要用于简化 Lambda 表达式，特别是在以下几种场景中(from ChatGPT)：
 
-#### 1. 引用静态方法
+## 1. 引用静态方法
 
 - 如果可以直接使用类的静态方法作为行为，则可以通过方法引用简化 Lambda 表达式。
 
@@ -248,7 +246,7 @@ HashMap::new
 
 > ![image-20200812144105334](./assets/Java-Java8新特性/fde53f33a9e4909aaf6b129ccab5846a-1730033286735-5.png)
 
-#### 2. 引用实例方法（特定对象）
+## 2. 引用实例方法（特定对象）
 
 - 当 Lambda 表达式调用特定对象的实例方法时，可以使用实例方法引用。
 
@@ -269,7 +267,7 @@ HashMap::new
 
 
 
-#### 3. 引用实例方法（任意对象）
+## 3. 引用实例方法（任意对象）
 
 - 当 Lambda 表达式调用类的任意对象的实例方法时，可以使用这种方法引用。通常适用于集合中的对象操作。
 
@@ -284,7 +282,7 @@ HashMap::new
   names.forEach(String::toUpperCase);
   ```
 
-#### 4. 引用构造方法
+## 4. 引用构造方法
 
 - 当 Lambda 表达式创建新对象时，可以使用构造方法引用来简化代码。
 
@@ -303,11 +301,11 @@ HashMap::new
 
 > ![image-20200812144653640](./assets/Java-Java8新特性/c663f32a07a8f0dde688adb3f8850abc-1730034567857-9.png)
 
-### 默认方法
+# 默认方法
 
 
 
-### Stream API--菜鸟教程
+# Stream API--菜鸟教程
 
 Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。
 
@@ -338,7 +336,7 @@ widgets.stream()
 
 ------
 
-#### 什么是 Stream？
+## 什么是 Stream？
 
 Stream（流）是一个来自数据源的元素队列并支持聚合操作
 
@@ -353,7 +351,7 @@ Stream（流）是一个来自数据源的元素队列并支持聚合操作
 
 ------
 
-#### 生成流
+## 生成流
 
 在 Java 8 中, 集合接口有两个方法来生成流：
 
@@ -372,7 +370,7 @@ System.out.println("筛选后的列表: " + filtered);
 
 ------
 
-#### forEach
+## forEach
 
 Stream 提供了新的方法 'forEach' 来迭代流中的每个数据。以下代码片段使用 forEach 输出了10个随机数：
 
@@ -398,7 +396,7 @@ random.ints().limit(10).forEach(System.out::println);
 
 ------
 
-#### map
+## map
 
 map 方法用于映射每个元素到对应的结果，以下代码片段使用 map 输出了元素对应的平方数：
 
@@ -415,7 +413,7 @@ System.out.println("Squares List: " + squaresList);
 
 ------
 
-#### filter
+## filter
 
 filter 方法用于通过设置的条件过滤出元素。以下代码片段使用 filter 方法过滤出空字符串：
 
@@ -427,7 +425,7 @@ long count = strings.stream().filter(string -> string.isEmpty()).count();
 
 ------
 
-#### limit
+## limit
 
 limit 方法用于获取指定数量的流。 以下代码片段使用 limit 方法打印出 10 条数据：
 
@@ -453,7 +451,7 @@ random.ints().limit(10).forEach(System.out::println);
 
 ------
 
-#### sorted
+## sorted
 
 sorted 方法用于对流进行排序。以下代码片段使用 sorted 方法对输出的 10 个随机数进行排序：
 
@@ -479,7 +477,7 @@ random.ints().limit(10).sorted().forEach(System.out::println);
 
 ------
 
-#### 并行（parallel）程序
+## 并行（parallel）程序
 
 parallelStream 是流并行处理程序的代替方法。以下实例我们使用 parallelStream 来输出空字符串的数量：
 
@@ -498,7 +496,7 @@ System.out.println("空字符串的数量为: " + count);
 
 ------
 
-#### Collectors
+## Collectors
 
 Collectors 类实现了很多归约操作，例如将流转换成集合和聚合元素。Collectors 可用于返回列表或字符串：
 
@@ -518,7 +516,7 @@ System.out.println("合并字符串: " + mergedString);
 
 ------
 
-#### 统计
+## 统计
 
 另外，一些产生统计结果的收集器也非常有用。它们主要用于int、double、long等基本类型上，它们可以用来产生类似如下的统计结果。
 
@@ -540,9 +538,9 @@ System.out.println("平均数 : " + stats.getAverage());
 > 平均数 : 9.444444444444445
 > ```
 
-### StreamAPI--CSDN
+# StreamAPI--CSDN
 
-#### 1.前言
+## 1.前言
 
 Java 8的另一大亮点Stream，它与 java.io 包里的 InputStream 和 OutputStream 是完全不同的概念。
 
@@ -550,7 +548,7 @@ Java 8 中的 Stream 是对集合（Collection）对象功能的增强，它专�
 
 Stream API 借助于同样新出现的 [Lambda ](https://blog.csdn.net/yy339452689/article/details/110880969)表达式，极大的提高编程效率和程序可读性。同时它提供串行和并行两种模式进行汇聚操作，并发模式能够充分利用多核处理器的优势，使用 **fork/join** 并行方式来拆分任务和加速处理过程。
 
-##### 1.1 为什么要用Stream
+### 1.1 为什么要用Stream
 
 我个人总结有如下几个特点：
 
@@ -558,7 +556,7 @@ Stream API 借助于同样新出现的 [Lambda ](https://blog.csdn.net/yy3394526
 - 有多中功能性的聚合操作
 - 函数式编程，使代码更加简洁，提高编程效率
 
-##### 1.2 什么是聚合操作
+### 1.2 什么是聚合操作
 
 举个例子，例如我们现在有一个模块的列表需要做如下处理：
 
@@ -602,9 +600,9 @@ list.stream().filter().limit(10).foreach();
 
 ------
 
-#### 2.正文
+## 2.正文
 
-##### 2.1 Stream操作分类
+### 2.1 Stream操作分类
 
 **Stream的操作**可以分为两大类：**中间操作、终结操作**
 
@@ -626,11 +624,11 @@ Stream结合具体操作，大致可分为如下图所示：
 
 
 
-##### 2.2 Stream API使用
+### 2.2 Stream API使用
 
 接下来，我们将按各种类型的操作，对一些常用的功能API进行一一讲解：
 
-###### 2.2.1 Stream 构成与创建
+#### 2.2.1 Stream 构成与创建
 
 **2.2.1.1 流的构成**
 
@@ -642,7 +640,7 @@ Stream结合具体操作，大致可分为如下图所示：
 
 ![图 1. 流管道 (Stream Pipeline) 的构成](./assets/Java-Java8新特性/169559ffc855e0186eaabc463442c022.png)
 
-**2.2.1.2 流的创建**
+##### 2.2.1.2 流的创建
 
 - **通过 `java.util.Collection.stream()` 方法用集合创建流**
 
@@ -697,9 +695,11 @@ Optional<Integer> findFirst = list.stream().parallel().filter(x->x>4).findFirst(
 
 
 
-###### 2.2.2 **无状态（Stateless）操作**
+#### 2.2.2 **无状态（Stateless）操作**
 
--  **filter**：**筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中的操作。**
+##### 过滤（filter）
+
+-  filter：筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中的操作。
 
 ```java
 Stream<T> filter(Predicate<? super T> predicate);
@@ -727,13 +727,15 @@ public static void main(String[] args) {
 8
 ```
 
+##### 映射（map、flatMap、peek）
 
+- 映射(map、flatMap、peek)
 
-- **映射(map、flatMap、peek)**
+###### ①map
 
-**①map：一个元素类型为 T 的流转换成元素类型为 R 的流，这个方法传入一个Function的函数式接口，接收一个泛型T，返回泛型R，map函数的定义，返回的流，表示的泛型是R对象；**
+一个元素类型为 T 的流转换成元素类型为 R 的流，这个方法传入一个Function的函数式接口，接收一个泛型T，返回泛型R，map函数的定义，返回的流，表示的泛型是R对象；
 
-**简言之：将集合中的元素A转换成想要得到的B**
+简言之：将集合中的元素A转换成想要得到的B
 
 ```java
 <R> Stream<R> map(Function<? super T, ? extends R> mapper);
@@ -773,11 +775,11 @@ map(String::toUpperCase).
 collect(Collectors.toList());
 ```
 
+###### ②flatMap
 
+接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流。
 
-**②flatMap：接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流。**
-
-**简言之：与Map功能类似，区别在于将结合A的流转换成B流**
+简言之：与Map功能类似，区别在于将结合A的流转换成B流
 
 ```java
 <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
@@ -809,9 +811,9 @@ public static void main(String[] args) {
 处理后的集合：["m", "k", "l", "a", "1", "3", "5", "7"]
 ```
 
+###### ③peek
 
-
-**③peek：`peek` 操作接收的是一个 `Consumer<T>` 函数。顾名思义 peek 操作会按照 `Consumer<T>` 函数提供的逻辑去消费流中的每一个元素，同时有可能改变元素内部的一些属性。**
+`peek` 操作接收的是一个 `Consumer<T>` 函数。顾名思义 peek 操作会按照 `Consumer<T>` 函数提供的逻辑去消费流中的每一个元素，同时有可能改变元素内部的一些属性。
 
 ```java
 Stream<T> peek(Consumer<? super T> action);
@@ -864,7 +866,7 @@ felord.cn
 
 
 
-**④mapToInt、mapToLong、mapToDouble、flatMapToDouble、flatMapToInt、flatMapToLong**
+###### ④mapToInt、mapToLong、mapToDouble、flatMapToDouble、flatMapToInt、flatMapToLong
 
 以上这些操作是**map和flatMap的特例版**，也就是针对特定的数据类型进行映射处理。其对应的方法接口如下：
 
@@ -896,9 +898,9 @@ stream.mapToInt(s->s.length()).forEach(System.out::println);
 
 并且这些指定类型的流，还有另外一些常用的方法，也是很好用的，可以参考：[IntStream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/IntStream.html)、[LongStream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/LongStream.html)、[DoubleStream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/DoubleStream.html)
 
+##### 无序化（unordered）
 
-
-- **无序化（unordered）**
+- 无序化（unordered）
 
 **`unordered()`操作不会执行任何操作来显式地对流进行排序。它的作用是消除了流必须保持有序的约束**，从而允许后续操作使用不必考虑排序的优化。
 
@@ -944,9 +946,11 @@ public static void main(String[] args) {
 
 
 
-###### 2.2.3 **有状态（Stateful）操作**
+#### 2.2.3 有状态（Stateful）操作
 
-- **distinct：返回由该流的不同元素组成的流（根据 Object.equals(Object)）；distinct（）使用hashCode（）和equals（）方法来获取不同的元素。****因此，我们的类必须实现hashCode（）和equals（）方法。**
+##### distinct
+
+- distinct：返回由该流的不同元素组成的流（根据 Object.equals(Object)）；distinct（）使用hashCode（）和equals（）方法来获取不同的元素。因此，我们的类必须实现hashCode（）和equals（）方法。
 
 ```java
 Stream<T> distinct();
@@ -958,7 +962,7 @@ Stream<T> distinct();
 
 举个栗子：
 
-```
+```java
 Stream<String> stream = Stream.of("1", "3","4","10","4","6","23","3");
 stream.distinct().forEach(System.out::println);
 
@@ -976,9 +980,9 @@ stream.distinct().forEach(System.out::println);
 
 另外有一个细节可以看到，去重之后还是按照原流中的排序顺序输出的，所以是有序的！
 
+##### sorted
 
-
--  **sorted：返回由该流的元素组成的流，并根据自然顺序排序**
+-  sorted：返回由该流的元素组成的流，并根据自然顺序排序
 
 该接口有两种形式：无参和有参数，如：
 
@@ -988,7 +992,7 @@ Stream<T> sorted();
 Stream<T> sorted(Comparator<? super T> comparator);
 ```
 
-那区别其实就在于：**传入比较器的参数，可以自定义这个比较器，即自定义比较规则****。**
+那区别其实就在于：**传入比较器的参数，可以自定义这个比较器，即自定义比较规则**。
 
 举个栗子：
 
@@ -1007,7 +1011,7 @@ stream.sorted().forEach(System.out::println);
 16
 ```
 
-
+##### limit
 
 - **limit：获取流中n个元素返回的流**
 
@@ -1034,7 +1038,7 @@ stream.limit(3).forEach(System.out::println);
 10
 ```
 
-
+##### skip
 
 - **skip：在丢弃流的第一个`n`元素之后，返回由该流的其余元素组成的流。**
 
@@ -1064,7 +1068,9 @@ stream.skip(3).forEach(System.out::println);
 
 
 
-###### 2.2.4 **短路（Short-circuiting）操作**
+#### 2.2.4 短路（Short-circuiting）操作
+
+##### anyMatch
 
 - **anyMatch：Stream 中只要有一个元素符合传入的 predicate，返回 true;**
 
@@ -1082,7 +1088,7 @@ System.out.println("result="+stream.anyMatch(s->s==2));
 result=false
 ```
 
-
+##### allMatch
 
 - **allMatch：Stream 中全部元素符合传入的 predicate，返回 true;**
 
@@ -1101,7 +1107,7 @@ System.out.println("result="+stream.allMatch(s->s>=1));
 result=true
 ```
 
-
+##### noneMatch
 
 - **noneMatch：Stream 中没有一个元素符合传入的 predicate，返回 true.**
 
@@ -1120,7 +1126,7 @@ System.out.println("result="+stream.noneMatch(s -> s>=17 ));
 result=true
 ```
 
-
+##### findFirst
 
 - **findFirst：用于返回满足条件的第一个元素（但是该元素是封装在Optional类中）**
 
@@ -1147,7 +1153,7 @@ System.out.println("result="+stream.filter(s-> s > 3).findFirst().get());
 result=10
 ```
 
-
+##### findAny
 
 - **findAny：返回流中的任意元素（但是该元素也是封装在Optional类中）**
 
@@ -1187,7 +1193,9 @@ result = Julia
 
 
 
-###### 2.2.5 **非短路（Unshort-circuiting）操作**
+#### 2.2.5 **非短路（Unshort-circuiting）操作**
+
+##### forEach
 
 - **forEach：该方法接收一个Lambda表达式，然后在Stream的每一个元素上执行该表达式**
 
@@ -1225,7 +1233,7 @@ strAry.stream().forEach(s-> {
 
 因为lambda中，使用的外部变量必须是最终的，不可f变的，所以如果我们想要对其进行修改，那是不可能的！如果必须这么使用，可以将外部变量，移至表达式之中使用才行！
 
-
+##### forEachOrdered
 
 - **forEachOrdered：该方法接收一个Lambda表达式，然后按顺序在Stream的每一个元素上执行该表达式**
 
@@ -1255,7 +1263,7 @@ DDD,AAA,BBB,CCC
 
 可以看到，**在并行流时，由于是多线程处理，其实还是无法保证有序操作的！**
 
-
+##### toArray
 
 - **toArray：返回包含此流元素的数组；当有参数时，则使用提供的`generator`函数分配返回的数组，以及分区执行或调整大小可能需要的任何其他数组**
 
@@ -1274,7 +1282,7 @@ Object [] strAryNoArg = strList.stream().toArray();
 String [] strAry = strList.stream().toArray(String[]::new);
 ```
 
-
+##### reduce
 
 - **reduce：方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值**
 
@@ -1311,7 +1319,7 @@ public interface BiFunction<T, U, R> {
 
 下面举几个栗子，看看具体效果：
 
-**（一）.先以1个参数的接口为例**
+###### （一）.先以1个参数的接口为例
 
 为了方便理解，先看下内部的执行效果代码：
 
@@ -1380,7 +1388,7 @@ x:18
 resutl:25
 ```
 
-**（二）再以2个参数的接口为例**
+###### （二）再以2个参数的接口为例
 
 先看下内部的执行效果代码：
 
@@ -1430,7 +1438,7 @@ a=19
 resutl:26
 ```
 
-**（三）最后3个参数的接口为例**
+###### （三）最后3个参数的接口为例
 
 这个接口的内部执行效果，其实和2个参数的几乎一致。那么第三个参数是啥呢？这是一个combiner组合器；
 
@@ -1517,17 +1525,19 @@ num.parallelStream().reduce(other,
 
 **所以，对于并行流parallelStream操作，必须慎用！！**
 
-
+##### collect
 
 - **collect：称为收集器，是一个终端操作,它接收的参数是将流中的元素累积到汇总结果的各种方式**
 
 ```java
-<R, A> R collect(Collector<? super T, A, R> collector);
+<R, A> R collect(Collector<? super T, A, R> collector); //第一种方式
 
 <R> R collect(Supplier<R> supplier,
                   BiConsumer<R, ? super T> accumulator,
-                  BiConsumer<R, R> combiner);
+                  BiConsumer<R, R> combiner);  //第二种方式
 ```
+
+###### 第一种方式
 
 **第一种方式**会比较经常使用到，也比较方便使用，现在先看一看里面常用的一些方法：
 
@@ -1559,6 +1569,8 @@ num.parallelStream().reduce(other,
 | **示例:Map<Type,List<Menu>> menuType=Menu.getMenus.stream().collect(groupingby(Menu::getType));** |                      |                                                              |
 | **partitioningBy**                                           | Map<Boolean,List<T>> | 根据流中每个元素应用谓语的结果来对项目进行分区               |
 | **示例:Map<Boolean,List<Menu>> menuType=Menu.getMenus.stream().collect(partitioningBy(Menu::isType)** |                      |                                                              |
+
+###### 第二种方式
 
 **第二种方式**看起来跟reduce的三个入参的方法有点类似，也可以用来实现filter、map等操作！
 
@@ -1652,7 +1664,7 @@ a:[1] , b:[2,3]
 
 可以看到，根据流内的元素个数n，起了n个线程，同时分别执行了构造器、累加器、合并器内代码！与reduce的行为方式基本一致！
 
-
+##### max
 
 - **max：根据提供的Comparator返回此流的最大元素**
 
@@ -1670,7 +1682,7 @@ num.stream().max(Integer::compareTo).ifPresent(System.out::println);
 6
 ```
 
-
+##### min
 
 - **min：根据提供的Comparator返回此流的最小元素**
 
@@ -1688,7 +1700,7 @@ num.stream().min(Integer::compareTo).ifPresent(System.out::println);
 4
 ```
 
-
+##### count
 
 - **count：返回此流中的元素计数**
 
@@ -1710,7 +1722,7 @@ System.out.println(num.stream().count());
 
 ------
 
-#### 3.总结
+## 3.总结
 
 此处给正在学习的朋友两个小提示：
 
@@ -1720,9 +1732,9 @@ System.out.println(num.stream().count());
 
 2、对于并行流stream().parallel()、parallelStream()的使用，**须慎重使用**！使用前须考虑其不确定因素和无序性，考虑多线程所带来的复杂性！！
 
-### StreamAPI之收集器Collector
+# StreamAPI之收集器Collector
 
-#### 1.前言
+## 1.前言
 
 好久没有输出啦。今天接着前面说到的Java8系列，聊一聊最后的收集器：Collector ！
 
@@ -1730,11 +1742,11 @@ Collector作为收集器，简单来说就是将数据或元素收集到一起�
 
 ------
 
-#### 2.正文
+## 2.正文
 
 其实目前，我们主要用到Collector的地方，也就是与Stream（[【Java 8系列】Stream详解，看这一篇就够啦](https://blog.csdn.net/yy339452689/article/details/110956119)）来结合使用的。所以，接下来也主要围绕我们平时可能会用到的一些常用方式，展开讲解！
 
-##### 2.1 Collector的接口结构
+### 2.1 Collector的接口结构
 
 直接看源码：
 
@@ -1770,7 +1782,7 @@ public interface Collector<T, A, R> {
 
 文档的原文如下：
 
-> ##### Interface Collector<T,A,R>
+> ### Interface Collector<T,A,R>
 >
 > - Type Parameters:
 >
@@ -1798,7 +1810,7 @@ Collector中还定义了一个枚举类Characteristics，有三个枚举值，�
 - Characteristics.UNORDER：表示流中的元素无序。
 - Characteristics.IDENTITY_FINISH：表示中间结果容器类型与最终结果类型一致，此时finiser方法不会被调用。
 
-##### 2.2 Collector处理流程
+### 2.2 Collector处理流程
 
 个人比较喜欢用图做理解，因为比文字更明了易于理解。下面看下其实现流程图：
 
@@ -1806,7 +1818,7 @@ Collector中还定义了一个枚举类Characteristics，有三个枚举值，�
 
  
 
-##### 2.3 Collector常用方法
+### 2.3 Collector常用方法
 
 下面具体讲解一下一些常用的方法，这些方法主要由**工具类Collectors**提供。一般常用方法分类主要分为：**收集、求值、分组、连接、归约等**！
 
@@ -1818,7 +1830,7 @@ Collector中还定义了一个枚举类Characteristics，有三个枚举值，�
 | **归约** | **reducing()**                                               |
 | **其他** | **collectingAndThen()**                                      |
 
-###### 2.3.1 收集
+#### 2.3.1 收集
 
 主要方法有：
 
@@ -1859,7 +1871,7 @@ map = {"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9}
 
  
 
-###### 2.3.2 求值
+#### 2.3.2 求值
 
 主要方法：
 
@@ -1937,7 +1949,7 @@ averagingInt求平均值：5.0
 
  
 
-###### 2.3.3 分组
+#### 2.3.3 分组
 
 | Modifier and Type                                            | Method and Description                                       |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -2055,7 +2067,7 @@ System.out.println("法师为true，其他为false：\n"+JSON.toJSONString(parti
 
  
 
-###### 2.3.4 连接
+#### 2.3.4 连接
 
 | Modifier and Type                             | Method and Description                                       |
 | --------------------------------------------- | ------------------------------------------------------------ |
@@ -2084,7 +2096,7 @@ System.out.println("加首尾连接后："+s);
 
  
 
-###### 2.3.5 归约
+#### 2.3.5 归约
 
 | Modifier and Type                           | Method and Description                                       |
 | ------------------------------------------- | ------------------------------------------------------------ |
@@ -2111,7 +2123,7 @@ public final class Collectors {
 
  
 
-###### 2.3.6 collectingAndThen
+#### 2.3.6 collectingAndThen
 
 该方法是在归纳动作结束之后，对归纳的结果进行再处理。简言之：**将第一个参数的处理结果，再传给第二个参数处理，最后输出最终结果。**
 
@@ -2187,23 +2199,23 @@ public class CollectorDemo {
 
 ------
 
-#### 3.总结
+## 3.总结
 
 因为都是一些工具类常用操作，所以直接以代码演示的方式讲述了一遍。作用和效果都一目了然！
 
 另外在这里，个人有一点小的建议。**以前一些可能会在数据库层面用到的聚合操作，如果数据量较大时，需要优化sql的执行效率，可以考虑将此类的操作，通过JAVA8的这些新特性和功能区完成，减少数据库层面的压力！！！**
 
-### DateTime API
+# DateTime API
 
 
 
-### Optional类
+# Optional类
 
-####  什么是Optional类？
+##  什么是Optional类？
 
 Optional 类(java.util.Optional) 是一个容器类，代表一个值存在或不存在，原来用 null 表示一个值不存在，现在 Optional 可以更好的表达这个概念。并且可以避免空指针异常。
 
-##### 不使用Optional类判断空值
+### 不使用Optional类判断空值
 
 ```java
  private void getIsoCode( User user){
@@ -2222,7 +2234,7 @@ Optional 类(java.util.Optional) 是一个容器类，代表一个值存在或�
     }
 ```
 
-##### Optional类常用方法：
+### Optional类常用方法：
 
 - Optional.of(T t) : 创建一个 Optional 实例。
 - Optional.empty() : 创建一个空的 Optional 实例。
@@ -2233,9 +2245,9 @@ Optional 类(java.util.Optional) 是一个容器类，代表一个值存在或�
 - map(Function f): 如果有值对其处理，并返回处理后的Optional，否则返回 Optional.empty()。
 - flatMap(Function mapper):与 map 类似，要求返回值必须是Optional。
 
-#### Optional类示例
+## Optional类示例
 
-##### 1.创建Optional类
+### 1.创建Optional类
 
 （1）使用empty()方法创建一个空的Optional对象：
 
@@ -2267,7 +2279,7 @@ Optional<String> opt = Optional.ofNullable(name);
 
 使用ofNullable()方法，则当传递进去一个空值时，不会抛出异常，而只是返回一个空的Optional对象，如同我们用Optional.empty()方法一样。
 
-##### 2.isPresent
+### 2.isPresent
 
 我们可以使用这个isPresent()方法检查一个Optional对象中是否有值，只有值非空才返回true。
 
@@ -2294,7 +2306,7 @@ Optional<String> opt = Optional.of("binghe");
 opt.ifPresent(name -> System.out.println(name.length()));
 ```
 
-##### 3.orElse和orElseGet
+### 3.orElse和orElseGet
 
 （1）orElse
 
@@ -2375,7 +2387,7 @@ Getting default name...
 
 可以看到，当使用orElseGet()方法时，getDefaultName()方法并不执行，因为Optional中含有值，而使用orElse时则照常执行。所以可以看到，当值存在时，orElse相比于orElseGet，多创建了一个对象。如果创建对象时，存在网络交互，那系统资源的开销就比较大了，这是需要我们注意的一个地方。
 
-##### 4.orElseThrow
+### 4.orElseThrow
 
 orElseThrow()方法当遇到一个不存在的值的时候，并不返回一个默认值，而是抛出异常。
 
@@ -2384,7 +2396,7 @@ String nullName = null;
 String name = Optional.ofNullable(nullName).orElseThrow( IllegalArgumentException::new);
 ```
 
-##### 5.get
+### 5.get
 
 get()方法表示是Optional对象中获取值。
 
@@ -2401,7 +2413,7 @@ Optional<String> opt = Optional.ofNullable(null);
 String name = opt.get();
 ```
 
-##### 6.filter
+### 6.filter
 
 接收一个函数式接口，当符合接口时，则返回一个Optional对象，否则返回一个空的Optional对象。
 
@@ -2464,7 +2476,7 @@ public boolean filterPersonByOptional(Peron person){
 
 使用Optional看上去就清爽多了，这里，map()仅仅是将一个值转换为另一个值，并且这个操作并不会改变原来的值。
 
-##### 7.map
+### 7.map
 
 如果有值对其处理，并返回处理后的Optional，否则返回 Optional.empty()。
 
@@ -2508,7 +2520,7 @@ assertTrue(correctPassword);
 
 上述代码的含义就是对密码进行验证，查看密码是否为指定的值。
 
-##### 8.flatMap
+### 8.flatMap
 
 与 map 类似，要求返回值必须是Optional。
 
@@ -2554,9 +2566,9 @@ assertEquals("binghe", name);
 
 注意：方法getName返回的是一个Optional对象，如果使用map，我们还需要再调用一次get()方法，而使用flatMap()就不需要了。
 
-### 新工具
+# 新工具
 
 
 
-### Nashorn, JavaScript 引擎
+# Nashorn, JavaScript 引擎
 
