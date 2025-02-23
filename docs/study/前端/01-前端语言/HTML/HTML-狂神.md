@@ -663,3 +663,21 @@ target:表示窗口在哪里打开，默认是当前页面打开
 
 </body>
 ```
+
+
+
+## 拓展
+
+### 为网页添加 icon
+
+1，我们先准备一个小图标,用的ico格式
+
+2，然后在head标签内 用link标签引入，href 处填ico所在的文件路径
+
+```css
+    <link rel="shortcut icon" href="" type="image/x-icon">
+```
+
+3，然后就打开浏览器查看网页就能看见实现后的成功了
+![在这里插入图片描述](./assets/HTML-狂神/9bc97b4e130378f6ce50ccd6f10fba3c.png)
+
