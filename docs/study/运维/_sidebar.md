@@ -1,5 +1,5 @@
 * **目录**
-  * [🏠（起点）](/study/README)
+  * [🏠（起点）](/README)
   * [01-Git](/study/运维/01-Git/README)
   * [02-Maven](/study/运维/02-Maven/README)
   * [03-容器](/study/运维/03-容器/README)
