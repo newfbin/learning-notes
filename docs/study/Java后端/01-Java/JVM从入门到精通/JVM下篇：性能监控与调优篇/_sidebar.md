@@ -1,5 +1,5 @@
 * **目录**
-  * [🏠（起点）](/README)
+  * [🏠（起点）](/study/README)
   * [⬆️（返回）](/study/Java后端\01-Java\JVM从入门到精通/README)
   * [1.概述篇](/study/Java后端/01-Java/JVM从入门到精通/JVM下篇：性能监控与调优篇/1.概述篇)
   * [2.JVM监控及诊断工具-命令行篇](/study/Java后端/01-Java/JVM从入门到精通/JVM下篇：性能监控与调优篇/2.JVM监控及诊断工具-命令行篇)
