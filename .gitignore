@@ -1,0 +1,9 @@
+*.DS_Store
+/docs/study/Java后端/Java开发手册(黄山版).pdf
+/docs/study/Java后端/JAVA面试10万字总结.pdf
+/docs/study/Java后端/JDK_API_1.8_zh_CN.CHM
+/docs/study/Java后端/01-Java/JVM从入门到精通/深入理解Java虚拟机_JVM高级特性与最佳实践(第3版).pdf
+/docs/study/Java后端/01-Java/JVM从入门到精通/PPT&mmap/
+/docs/study/Java后端/01-Java/JVM从入门到精通/NOTE_JVM-main/
+/docs/study/Java后端/01-Java/JVM从入门到精通/JVM调优实战/
+/.idea/
