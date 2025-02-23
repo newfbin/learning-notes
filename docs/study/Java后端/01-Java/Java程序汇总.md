@@ -4,11 +4,35 @@
 
 ### 1.Paths.get()
 
+Paths类获取文件或文件目录路径可以使用采用多个字符串形式，也可以使用`Path.get(D:\\url1\\url2)`这种形式。
+返回的Path对象完全可以代替File类用于文件IO操作。
 
+**Path对象的常用处理方式如下**：
+
+```Java
+//以docs/study作为Path对象 (与Path p = Paths.get("docs", "study") 代码效果相同)
+Path p = Paths.get("docs/study"); 
+//对应的路径
+System.out.println("p对象的对应路径：" + p);  // p对象的对应路径：docs\study
+//路径数量是以路径名的数量作为标准
+System.out.println("p路径数量：" + p.getNameCount());  // p路径数量：2
+//获取绝对路径
+System.out.println("p绝对路径:"+p.toAbsolutePath());//p绝对路径:D:\学习文件\自学\项目\docsify-auto-generate\docs\study
+//获取父路径
+System.out.println("p父路径："  + p.getParent()); // p父路径：docs
+//获取p2对象的文件名或者文件目录名
+System.out.println(p.getFileName()); // study
+//通过Path对象返回一个分隔符对象
+Spliterator<Path> split = p.spliterator();
+```
 
 ### 2.Files.walk()
 
-#### 3.paths.filter().forEach()
+`Files.walk()`方法通过递归遍历以给定起始文件为根的文件树来返回由Path延迟填充的流，且文件树是基于深度优先遍历。该方法可用于千万级文件数量下高性能深度遍历。
+
+### 3.paths.filter().forEach()
+
+
 
 ### 代码
 
