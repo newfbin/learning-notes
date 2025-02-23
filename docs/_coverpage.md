@@ -10,5 +10,5 @@
 * 😶💻🕜🕝🕞🕟🕠🕡🕢🕣🕤🕥🕦🕧😪
 * 😪👀😎😟😤💪💪💪💻🌕🌗🌑🌞😪😴
 
-[开始阅读](README.md)
+[开始阅读](/study/README)
 [GitHub](https://github.com/newfbin)

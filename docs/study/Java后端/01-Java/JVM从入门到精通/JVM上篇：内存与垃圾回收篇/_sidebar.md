@@ -1,6 +1,5 @@
 * **目录**
-  * [🏠（起点）](/README)
-  * [⬆️（返回）](/study/Java后端\01-Java\JVM从入门到精通/README)
+  * [🏠（起点）](/study/README)
   * [01.JVM与Java体系结构](/study/Java后端/01-Java/JVM从入门到精通/JVM上篇：内存与垃圾回收篇/01.JVM与Java体系结构)
   * [02.类加载子系统](/study/Java后端/01-Java/JVM从入门到精通/JVM上篇：内存与垃圾回收篇/02.类加载子系统)
   * [03.运行时数据区及程序计数器](/study/Java后端/01-Java/JVM从入门到精通/JVM上篇：内存与垃圾回收篇/03.运行时数据区及程序计数器)

@@ -1,6 +1,5 @@
 * **目录**
-  * [🏠（起点）](/README)
-  * [⬆️（返回）](/study/Java后端/README)
+  * [🏠（起点）](/study/README)
   * [ElasticSearch-狂神](/study/Java后端/06-中间件/ElasticSearch-狂神)
   * [MyBatis-Plus-狂神](/study/Java后端/06-中间件/MyBatis-Plus-狂神)
   * [MyBatis-狂神](/study/Java后端/06-中间件/MyBatis-狂神)

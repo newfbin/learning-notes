@@ -1,6 +1,5 @@
 * **目录**
-  * [🏠（起点）](/README)
-  * [⬆️（返回）](/study/Java后端/README)
+  * [🏠（起点）](/study/README)
   * [AOP-AspectJ](/study/Java后端/04-Spring/AOP-AspectJ)
   * [AOP-SpringAOP](/study/Java后端/04-Spring/AOP-SpringAOP)
   * [Spring&SpringBoot常用注解总结](/study/Java后端/04-Spring/Spring&SpringBoot常用注解总结)
