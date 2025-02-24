@@ -298,3 +298,6 @@ Maven管理插件
 
 ![image-20241229203824651](./assets/Maven问题汇总/image-20241229203824651-1737124208926-10.png)
 
+## maven打包的jar包出现md-rename.jar中没有主清单属性
+
+![image-20250224164029161](./assets/Maven问题汇总/image-20250224164029161.png)

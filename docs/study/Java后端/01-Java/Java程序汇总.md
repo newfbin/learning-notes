@@ -1,6 +1,6 @@
 ## 文件读写
 
-### 向docsify项目中生成README.md与_sidebar.md
+### 按要求生成README.md与_sidebar.md
 
 #### 1.Paths.get()
 
@@ -636,9 +636,64 @@ public class DocsGenerator {
 }
 ```
 
+### 删除assets文件夹下.md文档
 
+#### 代码
 
-## 并发多线程
+```java
+package com.newfbin;
 
+import java.io.File;
 
+public class DeleteMarkdownInAssets {
+    public static void main(String[] args) {
+        File currentDir = new File("."); // 当前路径
+        findAndCleanAssets(currentDir);
+    }
+
+    public static void findAndCleanAssets(File dir) {
+        if (dir == null || !dir.isDirectory()) {
+            return;
+        }
+
+        File[] files = dir.listFiles();
+        if (files == null) {
+            return;
+        }
+
+        for (File file : files) {
+            if (file.isDirectory()) {
+                if (file.getName().equals("assets")) {
+                    deleteMarkdownFiles(file);
+                } else {
+                    findAndCleanAssets(file); // 递归查找子目录
+                }
+            }
+        }
+    }
+
+    public static void deleteMarkdownFiles(File assetsDir) {
+        File[] files = assetsDir.listFiles();
+        if (files == null) {
+            return;
+        }
+
+        for (File file : files) {
+            if (file.isDirectory()) {
+                deleteMarkdownFiles(file); // 递归删除子目录中的 .md 文件
+            } else if (file.getName().endsWith(".md")) {
+                System.out.println("Deleting: " + file.getAbsolutePath());
+                file.delete();
+            }
+        }
+    }
+}
+```
+
+### 为.md文档重命名
+
+#### 代码
+
+```java
+```
 
