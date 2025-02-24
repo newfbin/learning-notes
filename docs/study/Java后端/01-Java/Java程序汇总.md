@@ -101,6 +101,55 @@ public class Test {
 
 ![image-20250224120533976](./assets/Java程序汇总/image-20250224120533976.png)
 
+##### Files.write
+
+> **支持多种数据类型**：
+>
+> - **字节数组（`byte[]`）**：用于写入二进制数据或已编码的文本。
+> - **字符串集合（`List<String>`）**：用于按行写入文本文件。
+>
+> **可控制写入模式**：
+>
+> - **覆盖**（默认行为）
+> - **追加**（使用 `StandardOpenOption.APPEND`）
+> - **创建新文件**（使用 `StandardOpenOption.CREATE_NEW`）
+> - 查看`StandardOpenOption`了解更多写入模式...
+>
+> **自动管理资源**：不需要手动关闭流，简化代码。
+>
+> **适用场景**：
+>
+> - **快速写入小型文本或二进制文件**（例如配置文件、日志、简单数据）。
+> - **替代 `FileWriter` 和 `BufferedWriter`**，减少冗余代码。
+> - **写入二进制数据**（如图片、音频、视频文件）。
+>
+> 如果需要写入 **大文件**，建议使用 **流式写入**（如 `BufferedWriter`），以提高性能并减少内存占用。
+
+**`Files.write`重载方法**：
+
+```java
+//重载1（本文代码所使用的方式）
+public static Path write(Path path, byte[] bytes, OpenOption... options)
+    throws IOException
+//重载2
+public static Path write(Path path, Iterable<? extends CharSequence> lines,
+                             Charset cs, OpenOption... options)
+        throws IOException
+//重载3
+public static Path write(Path path,
+                             Iterable<? extends CharSequence> lines,
+                             OpenOption... options)
+        throws IOException
+```
+
+**重载1示例**：
+
+```java
+Path path = Paths.get("example.txt");
+byte[] data = "Hello, World!".getBytes(StandardCharsets.UTF_8);
+Files.write(path, data, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+```
+
 #### 3.streamAPI
 
 ##### filter
@@ -118,7 +167,7 @@ Stream<T> filter(Predicate<? super T> predicate);
 >
 > ![image-20250224100033942](./assets/Java程序汇总/image-20250224100033942.png)
 >
-> `Predicate<T>` 是一个**函数式接口**（**只包含一个抽象方法** `test(T t)`  ）
+> `Predicate<T>` 是一个**函数式接口中的断定型接口**（**只包含一个抽象方法** `test(T t)`  ）
 >
 > ![image-20200812144545558](./assets/Java程序汇总/e658ace0f5d5e3913dbac600e607819c.png)
 >
@@ -252,11 +301,96 @@ strAry.stream().forEach(s-> {
 
 ##### sorted
 
+- sorted：返回由该流的元素组成的流，并根据自然顺序排序
 
+该接口有两种形式：无参和有参数，如：
+
+```java
+Stream<T> sorted();
+
+Stream<T> sorted(Comparator<? super T> comparator);
+```
+
+区别其实就在于：**传入比较器的参数，可以自定义这个比较器，即自定义比较规则**。
+
+##### comparing
+
+**`comparing`方法源码**：
+
+```java
+public static <T, U extends Comparable<? super U>> Comparator<T> comparing(
+        Function<? super T, ? extends U> keyExtractor)
+{
+    Objects.requireNonNull(keyExtractor);
+    return (Comparator<T> & Serializable)
+        (c1, c2) -> keyExtractor.apply(c1).compareTo(keyExtractor.apply(c2));
+}
+```
+
+**`? super T, ? extends U` 的解释**：
+
+`? super T`（通配符超类限定 `super`）：意味着 `Function` 的输入类型可以是 `T` 或 `T` 的某个 **父类型**。
+
+`? extends U`（通配符子类限定 `extends`）：意味着 `Function` 的返回类型必须是 `U` 或 `U` 的某个 **子类型**。
+
+**源码分析**：
+
+`T = Path`（因为 调用`sorted`的变量`stream`为`Stream<Path>`类型，因此`sorted`的参数为`Comparator<Path>`类型，因此`comparing`方法的返回值也为`Comparator<Path>`类型。由此推断出`T = Path`）。
+
+![image-20250224132425164](./assets/Java程序汇总/image-20250224132425164.png)
+
+`U = String`（因为 `p.getFileName().toString()` 返回的是 `String`，而 `String` 实现了 `Comparable<String>`，符合 `U extends Comparable<? super U>` 的约束）。
+
+![image-20250224132914795](./assets/Java程序汇总/image-20250224132914795.png)
+
+因此`comparing` 需要一个 `Function<Path, String>`，即 `apply(Path path): String` 这样的方法。
+
+![image-20200812144105334](./assets/Java程序汇总/fde53f33a9e4909aaf6b129ccab5846a.png)
+
+lambda表达式 `p -> p.getFileName().toString()`正好符合`apply(Path path): String` 方法，即参数为Path，返回值类型为String。
 
 ##### collect
 
+- **collect：称为收集器，是一个终端操作,它接收的参数是将流中的元素累积到汇总结果的各种方式**。
 
+```java
+<R, A> R collect(Collector<? super T, A, R> collector); //第一种方式
+
+<R> R collect(Supplier<R> supplier,
+                  BiConsumer<R, ? super T> accumulator,
+                  BiConsumer<R, R> combiner);  //第二种方式
+```
+
+**第一种方式**会比较经常使用到，也比较方便使用，现在先看一看里面常用的一些方法：
+
+| 工厂方法                                                     | 返回类型           | 用于                                                         |
+| ------------------------------------------------------------ | ------------------ | ------------------------------------------------------------ |
+| **toList**                                                   | List               | 把流中所有元素收集到List中                                   |
+| **示例:List**                                                |                    |                                                              |
+| **toSet**                                                    | Set                | 把流中所有元素收集到Set中,删除重复项                         |
+| **示例:Set**                                                 |                    |                                                              |
+| **toCollection**                                             | Collection         | 把流中所有元素收集到给定的供应源创建的集合中                 |
+| **示例:ArrayList**                                           |                    |                                                              |
+| **Counting**                                                 | Long               | 计算流中元素个数                                             |
+| **示例:Long count=Menu.getMenus.stream().collect(counting);** |                    |                                                              |
+| **SummingInt**                                               | Integer            | 对流中元素的一个整数属性求和                                 |
+| **示例:Integer count=Menu.getMenus.stream().collect(summingInt(Menu::getCalories));** |                    |                                                              |
+| **averagingInt**                                             | Double             | 计算流中元素integer属性的平均值                              |
+| **示例:Double averaging=Menu.getMenus.stream().collect(averagingInt(Menu::getCalories));** |                    |                                                              |
+| **Joining**                                                  | String             | 连接流中每个元素的toString方法生成的字符串                   |
+| **示例:String name=Menu.getMenus.stream().map(Menu::getName).collect(joining(“, ”));** |                    |                                                              |
+| **maxBy**                                                    | Optional           | 一个包裹了流中按照给定比较器选出的最大元素的optional 如果为空返回的是Optional.empty() |
+| **示例:Optional**                                            |                    |                                                              |
+| **minBy**                                                    | Optional           | 一个包裹了流中按照给定比较器选出的最小元素的optional 如果为空返回的是Optional.empty() |
+| **示例: Optional**                                           |                    |                                                              |
+| **Reducing**                                                 | 归约操作产生的类型 | 从一个作为累加器的初始值开始,利用binaryOperator与流中的元素逐个结合,从而将流归约为单个值 |
+| **示例:int count=Menu.getMenus.stream().collect(reducing(0,Menu::getCalories,Integer::sum));** |                    |                                                              |
+| **collectingAndThen**                                        | 转换函数返回的类型 | 包裹另一个转换器,对其结果应用转换函数                        |
+| **示例:Int count=Menu.getMenus.stream().collect(collectingAndThen(toList(),List::size));** |                    |                                                              |
+| **groupingBy**                                               | Map<K,List>        | 根据流中元素的某个值对流中的元素进行分组,并将属性值做为结果map的键 |
+| **示例:Map<Type,List**                                       |                    |                                                              |
+| **partitioningBy**                                           | Map<Boolean,List>  | 根据流中每个元素应用谓语的结果来对项目进行分区               |
+| **示例:Map<Boolean,List**                                    |                    |                                                              |
 
 #### 4.Files::isDirectory--方法引用
 
@@ -282,6 +416,66 @@ HashMap::new
 
 因为`isDirectory`是Files类中的静态方法，所以可以从Lambda表达式简化为方法引用
 
+#### 5.Path类的方法
+
+##### relativize
+
+> `Path.relativize(Path other)` 方法用于计算 **当前路径** (`this`) 到 **目标路径** (`other`) 之间的相对路径。
+>
+> - **适用于同一根目录下的路径**。
+> - **如果路径层级不同，则会抛出异常**（例如，一个是绝对路径，一个是相对路径）。
+> - **不会检查文件是否实际存在**，只是纯粹的路径计算。
+
+**（1）计算相对路径**:
+
+```java
+import java.nio.file.*;
+
+public class RelativizeExample {
+    public static void main(String[] args) {
+        Path path1 = Paths.get("/home/user/docs");
+        Path path2 = Paths.get("/home/user/music");
+
+        Path relativePath = path1.relativize(path2);
+        System.out.println("相对路径: " + relativePath);
+    }
+}
+```
+
+🔹 **输出**：
+
+```bash
+相对路径: ../music
+```
+
+🔹 **解析**：
+
+- `path1 = /home/user/docs ` 
+- `path2 = /home/user/music` 
+- `relativize` 计算 `docs` 到 `music` 目录的相对路径为 `../music`。
+
+**（2）路径层级差异**
+
+```java
+Path path1 = Paths.get("/home/user/docs");
+Path path2 = Paths.get("/home/user/docs/reports/2024");
+
+Path relativePath = path1.relativize(path2);
+System.out.println(relativePath);
+```
+
+🔹 **输出**：
+
+```bash
+reports/2024
+```
+
+🔹 **解析**：
+
+- `path1 = /home/user/docs`
+- `path2 = /home/user/docs/reports/2024`
+- `relativize` 计算 `docs` 到 `reports/2024` 的相对路径，即 `reports/2024`。
+
 #### 代码
 
 ```java
@@ -306,9 +500,9 @@ public class DocsGenerator {
     }
 
     private static void generateStudyDocs() throws IOException {
-        // 1、2
+        // 1 Paths.get() 、2 Files.walk() 
         try (Stream<Path> paths = Files.walk(Paths.get(STUDY_ROOT))) {
-            // 3、4
+            // 3 filter 、4 Files::isDirectory 
             paths.filter(Files::isDirectory)
                     .forEach(dir -> {
                         try {
@@ -390,11 +584,12 @@ public class DocsGenerator {
     }
 
     private static List<Path> getStudyRootItems() throws IOException {
-        // 2
+        // 2 Files.list()
         try (Stream<Path> stream = Files.list(Paths.get(STUDY_ROOT))) {
             return stream.filter(path -> !isSpecialFile(path))
-                	//3
+                	//3 sorted、comparing
                     .sorted(Comparator.comparing(p -> p.getFileName().toString()))
+                	//3 collect
                     .collect(Collectors.toList());
         }
     }
@@ -409,6 +604,7 @@ public class DocsGenerator {
 
     private static String formatLink(Path dir, Path item) {
         String name = item.getFileName().toString().replace(".md", "");
+        //
         String relativePath = Paths.get(STUDY_ROOT).relativize(item).toString().replace("\\", "/");
         String link = Files.isDirectory(item) ? "/study/" + relativePath + "/README" : "/study/" + relativePath.replace(".md", "");
         return String.format("  * [%s](%s)", name, link);
@@ -434,6 +630,7 @@ public class DocsGenerator {
     }
 
     private static void writeFile(Path path, String content) throws IOException {
+        // 2 Files.write
         Files.write(path, content.getBytes(StandardCharsets.UTF_8));
     }
 }
