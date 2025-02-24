@@ -38,11 +38,72 @@ Spliterator<Path> split = p.spliterator();
 **filter**：筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中的操作。
 
 ```java
+//Predicate 断定型接口。传入一个参数T,返回值是boolean
 Stream<T> filter(Predicate<? super T> predicate);
-/*
-
-*/
 ```
+
+> **对filter方法的解释**：
+>
+> `filter`方法的参数是 `Predicate<T>`，由于`paths`的类型为`Stream<Path>`,所以`filter`方法的参数类型为`Predicate<Path>`。
+>
+> ![image-20250224100033942](./assets/Java程序汇总/image-20250224100033942.png)
+>
+> `Predicate<T>` 是一个**函数式接口**（**只包含一个抽象方法** `test(T t)`  ）
+>
+> ![image-20200812144545558](./assets/Java程序汇总/e658ace0f5d5e3913dbac600e607819c.png)
+>
+> 因此`filter` 需要一个 `Predicate<Path>`，即 `test(Path path): boolean` 这样的方法。
+>
+> `Files.isDirectory` 方法的定义如下：
+>
+> ```java
+> public static boolean isDirectory(Path path, LinkOption... options)
+> ```
+>
+> 它的参数 `Path path` **匹配** `Predicate<Path>` 的 `test(T t)` 方法的签名。
+> `Files::isDirectory` 符合 `Predicate<Path>`，可以作为 `filter` 方法的参数
+>
+> **可以将`Files::isDirectory` 替换为Lambda表达式**:
+>
+> ```java
+> paths.filter(path -> Files.isDirectory(path))
+> ```
+>
+> `path -> Files.isDirectory(path)`更直观地实现了`Predicate<Path>`中的 `test(Path path): boolean`方式，即参数为`Path`，返回值为`boolean`。
+> 这与 `Files::isDirectory` 等价，但更明确地展示了 `path` 作为参数传入。
+>
+> **`filter`方法中可以传入其它方法引用**：
+>
+> 假设你有一个自定义方法：
+>
+> ```java
+> public static boolean isLargeFile(Path path) {
+>     try {
+>         return Files.size(path) > 1024 * 1024; // 文件大于 1MB
+>     } catch (IOException e) {
+>         return false;
+>     }
+> }
+> ```
+>
+> 你可以传入 `YourClass::isLargeFile`：
+>
+> ```java
+> paths.filter(YourClass::isLargeFile)
+> ```
+>
+> 因为 `isLargeFile(Path path)` 返回 `boolean`，符合 `Predicate<Path>` 的要求。
+>
+> **`filter`方法中可以传入其它Lambda表达式**：
+>
+> 你可以传入任何符合 `Predicate<Path>` 的 Lambda 表达式，例如：
+>
+> ```java
+> // 过滤出所有 .txt 文件
+> paths.filter(path -> path.toString().endsWith(".txt"))
+> // 过滤掉隐藏文件
+> paths.filter(path -> !path.getFileName().toString().startsWith("."))
+> ```
 
 流程解析图如下：
 
@@ -71,6 +132,10 @@ public static void main(String[] args) {
 ```java
 void forEach(Consumer<? super T> action);
 ```
+
+> 对forEach方法的解释：
+>
+> 
 
 举个栗子：
 
