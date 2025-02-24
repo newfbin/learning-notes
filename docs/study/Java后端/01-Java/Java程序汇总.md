@@ -1,8 +1,8 @@
-# 文件读写
+## 文件读写
 
-## 向docsify项目中生成README.md与_sidebar.md
+### 向docsify项目中生成README.md与_sidebar.md
 
-### 1.Paths.get()
+#### 1.Paths.get()
 
 Paths类获取文件或文件目录路径可以使用采用多个字符串形式，也可以使用`Path.get(D:\\url1\\url2)`这种形式。
 返回的Path对象完全可以代替File类用于文件IO操作。
@@ -26,14 +26,14 @@ System.out.println(p.getFileName()); // study
 Spliterator<Path> split = p.spliterator();
 ```
 
-### 2.Files.walk()
+#### 2.Files.walk()
 
 `Files.walk()`方法通过递归遍历**以给定起始文件为根的文件树**来返回由Path延迟填充的流，且文件树是基于深度优先遍历。
 该方法可用于千万级文件数量下高性能深度遍历。
 
-### 3.paths.filter().forEach()--streamAPI
+#### 3.paths.filter().forEach()--streamAPI
 
-#### filter
+##### filter
 
 **filter**：筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中的操作。
 
@@ -62,7 +62,7 @@ public static void main(String[] args) {
 8
 ```
 
-#### forEach
+##### forEach
 
 **forEach**：该方法接收一个Lambda表达式，然后在Stream的每一个元素上执行该表达式
 
@@ -100,7 +100,7 @@ strAry.stream().forEach(s-> {
 
 因为lambda中，使用的外部变量必须是最终的，不可f变的，所以如果我们想要对其进行修改，那是不可能的！如果必须这么使用，可以将外部变量，移至表达式之中使用才行！
 
-### 4.Files::isDirectory--方法引用
+#### 4.Files::isDirectory--方法引用
 
 方法引用就是把方法当做参数传到stream内部，使stream的每个元素都传入到该方法里面执行一下。
 
@@ -124,7 +124,7 @@ HashMap::new
 
 因为`isDirectory`是Files类中的静态方法，所以可以从Lambda表达式简化为方法引用
 
-### 代码
+#### 代码
 
 ```java
 package com.newfbin;
@@ -281,7 +281,7 @@ public class DocsGenerator {
 
 
 
-# 并发多线程
+## 并发多线程
 
 
 
