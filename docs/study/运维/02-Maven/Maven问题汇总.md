@@ -298,6 +298,45 @@ Maven管理插件
 
 ![image-20241229203824651](./assets/Maven问题汇总/image-20241229203824651-1737124208926-10.png)
 
-## maven打包的jar包出现md-rename.jar中没有主清单属性
+## maven打包的jar包提示“没有主清单属性”
+
+使用maven的`package`命令打包得到的jar包，在运行时出现下面问题：
 
 ![image-20250224164029161](./assets/Maven问题汇总/image-20250224164029161.png)
+
+原因是没有为项目配置主类
+
+**解决办法**：
+
+在pom.xml中添加下面的配置
+
+```xml
+<build>
+    <finalName>DeleteMarkdownInAssets</finalName><!-- 导出jar的名字,可修改 -->
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.0</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <transformers>
+                            <transformer
+implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <!-- 修改为自己主类的位置： -->
+                                <mainClass>com.newfbin.DeleteMarkdownInAssets</mainClass>
+                            </transformer>
+                        </transformers>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+

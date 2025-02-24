@@ -638,7 +638,23 @@ public class DocsGenerator {
 
 ### 删除assets文件夹下.md文档
 
+#### 1.File类的方法
+
+##### listFiles
+
+##### getName
+
+##### isDirectory
+
+##### delete
+
+#### 2.Path类的方法
+
+
+
 #### 代码
+
+##### File类版本
 
 ```java
 package com.newfbin;
@@ -690,10 +706,66 @@ public class DeleteMarkdownInAssets {
 }
 ```
 
-### 为.md文档重命名
-
-#### 代码
+##### Path类版本
 
 ```java
+package com.newfbin;
+
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+
+public class DeleteMarkdownInAssets_Path {
+    public static void main(String[] args) {
+        // 使用 System.getProperty("user.dir") 获取当前工作目录
+        Path currentDir = Paths.get(System.getProperty("user.dir"));
+        findAndCleanAssets(currentDir);
+    }
+
+    // 查找并清理 assets 文件夹中的 .md 文件
+    public static void findAndCleanAssets(Path dir) {
+        if (dir == null || !Files.isDirectory(dir)) {
+            return;
+        }
+
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+            for (Path path : stream) {
+                if (Files.isDirectory(path)) {
+                    if (path.getFileName().toString().equals("assets")) {
+                        deleteMarkdownFiles(path); // 处理 assets 文件夹
+                    } else {
+                        findAndCleanAssets(path); // 递归查找子目录
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("无法访问目录: " + dir + " - " + e.getMessage());
+        }
+    }
+
+    // 删除 assets 文件夹及其子目录中的 .md 文件
+    public static void deleteMarkdownFiles(Path assetsDir) {
+        try {
+            Files.walkFileTree(assetsDir, new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                    if (file.getFileName().toString().endsWith(".md")) {
+                        System.out.println("Deleting: " + file.toAbsolutePath());
+                        Files.delete(file); // 删除 .md 文件
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+                    System.err.println("无法访问文件: " + file + " - " + exc.getMessage());
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            System.err.println("处理 assets 目录时出错: " + assetsDir + " - " + e.getMessage());
+        }
+    }
+}
 ```
 
