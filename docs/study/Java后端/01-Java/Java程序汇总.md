@@ -33,12 +33,96 @@ Spliterator<Path> split = p.spliterator();
 
 ### 3.paths.filter().forEach()--streamAPI
 
-filter：筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中的操作。
+#### filter
+
+**filter**：筛选，是按照一定的规则校验流中的元素，将符合条件的元素提取到新的流中的操作。
+
+```java
+Stream<T> filter(Predicate<? super T> predicate);
+/*
+
+*/
+```
+
+流程解析图如下：
+
+![20201109144706541](./assets/Java程序汇总/c953a98b1b755f9662f31309c5db9291.jpeg)
+
+举个栗子：
+
+```java
+public static void main(String[] args) {
+    List<Integer> list = Arrays.asList(6, 7, 3, 8, 1, 2);
+    Stream<Integer> stream = list.stream();
+    stream.filter(x -> x > 5).forEach(System.out::println);
+}
+//结果如下：
+6
+7
+8
+```
+
+#### forEach
+
+**forEach**：该方法接收一个Lambda表达式，然后在Stream的每一个元素上执行该表达式
+
+可以理解为我们平时使用的for循环，但是较于for循环，又略有不同！咱们待会再讲。
+
+```java
+void forEach(Consumer<? super T> action);
+```
+
+举个栗子：
+
+```java
+List<String> strAry = Arrays.asList( "Jhonny", "David", "Jack", "Duke", "Jill","Dany","Julia","Jenish","Divya");
+
+strAry.stream().forEach(s-> {
+            if("Jack".equalsIgnoreCase(s)) System.out.println(s);
+        });
+
+//输出
+Jack
+```
+
+那如果我们把 "Jack"用在循环外部用一个变量接收，如下操作：
+
+```java
+String name = "Jack";
+strAry.stream().forEach(s-> {
+    if(name.equalsIgnoreCase(s)) name = "Jackson";
+});
+```
+
+那么此时编辑器则会爆红，	
+
+![img](./assets/Java程序汇总/381160864389742801f204b28a6ccb26.png)
+
+因为lambda中，使用的外部变量必须是最终的，不可f变的，所以如果我们想要对其进行修改，那是不可能的！如果必须这么使用，可以将外部变量，移至表达式之中使用才行！
 
 ### 4.Files::isDirectory--方法引用
 
 方法引用就是把方法当做参数传到stream内部，使stream的每个元素都传入到该方法里面执行一下。
 
+使用方法：
+
+> 类名::方法名
+
+例如
+
+```java
+表达式:
+person -> person.getAge();
+可以替换成
+Person::getAge
+
+表达式:
+() -> new HashMap<>();
+可以替换成
+HashMap::new
+```
+
+因为`isDirectory`是Files类中的静态方法，所以可以从Lambda表达式简化为方法引用
 
 ### 代码
 
@@ -66,7 +150,7 @@ public class DocsGenerator {
     private static void generateStudyDocs() throws IOException {
         // 1、2
         try (Stream<Path> paths = Files.walk(Paths.get(STUDY_ROOT))) {
-            // 3
+            // 3、4
             paths.filter(Files::isDirectory)
                     .forEach(dir -> {
                         try {
