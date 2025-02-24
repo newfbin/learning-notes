@@ -26,10 +26,80 @@ System.out.println(p.getFileName()); // study
 Spliterator<Path> split = p.spliterator();
 ```
 
-#### 2.Files.walk()
+#### 2.Files类的方法
+
+##### Files.walk()
 
 `Files.walk()`方法通过递归遍历**以给定起始文件为根的文件树**来返回由Path延迟填充的流，且文件树是基于深度优先遍历。
 该方法可用于千万级文件数量下高性能深度遍历。
+
+通过以下代码查看`Files.walk()`返回的结果是什么：
+
+```java
+package com.newfbin;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
+public class Test {
+    private static final String ROOT = "docs";
+    private static final String STUDY_ROOT = ROOT + "/study";
+    public static void main(String[] args) throws IOException {
+ 		//通过遍历paths查看Files.walk返回的结果
+        try (Stream<Path> paths = Files.walk(Paths.get(STUDY_ROOT))){
+            paths.forEach(System.out::println);
+        }
+    }
+}
+```
+
+通过结果可以看到`Files.walk()`的输出结果为：
+
+以传入的`Path`对象引用的路径为根，通过在根后拼接遍历到的路径得到新路径，并返回一个引用了新路径的`Path`对象。
+
+![image-20250224111248867](./assets/Java程序汇总/image-20250224111248867.png)
+
+##### Files.list()
+
+`Files.list()`用于列出指定目录下的所有直接子项（文件和子目录、不递归），返回一个 `Stream<Path>`。
+
+**使用示例**：
+
+```java
+package com.newfbin;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
+public class Test {
+    private static final String ROOT = "docs";
+    private static final String STUDY_ROOT = ROOT + "/study";
+    public static void main(String[] args) throws IOException {
+        //获取docs/study目录下的所有直接子项，并打印
+        try (Stream<Path> paths = Files.list(Paths.get(STUDY_ROOT))){
+            paths.forEach(System.out::println);
+        }
+    }
+}
+```
+
+`docs/study`下的结构如下图所示：
+
+> 可以观察到直接子项有四个：运维、测试.md、_sidebar.md、README.md 
+
+![image-20250224120508076](./assets/Java程序汇总/image-20250224120508076.png)
+
+输出结果
+
+> 与上图所示的结构对应
+
+![image-20250224120533976](./assets/Java程序汇总/image-20250224120533976.png)
 
 #### 3.paths.filter().forEach()--streamAPI
 
@@ -105,11 +175,11 @@ Stream<T> filter(Predicate<? super T> predicate);
 > paths.filter(path -> !path.getFileName().toString().startsWith("."))
 > ```
 
-流程解析图如下：
+`filter`方法流程解析图如下：
 
 ![20201109144706541](./assets/Java程序汇总/c953a98b1b755f9662f31309c5db9291.jpeg)
 
-举个栗子：
+`filter`方法使用举例：
 
 ```java
 public static void main(String[] args) {
@@ -133,11 +203,26 @@ public static void main(String[] args) {
 void forEach(Consumer<? super T> action);
 ```
 
-> 对forEach方法的解释：
+> **对forEach方法的解释**：
 >
-> 
+> `forEach`方法的参数是 `Consumer<T>`，由于`paths`的类型为`Stream<Path>`,所以`forEach`方法的参数类型为`Consumer<Path>`。
+>
+> ![image-20250224103555899](./assets/Java程序汇总/image-20250224103555899.png)![image-20250224103422243](./assets/Java程序汇总/image-20250224103422243.png)
+>
+> `Consumer<T>` 是一个**函数式接口**（**只包含一个抽象方法** `accept(T t)`  ）
+>
+> ![image-20200812144803229](./assets/Java程序汇总/c5641402010af463e285685614c2a92a.png)
+>
+> 因此`forEach` 需要一个 `Consumer<Path>`，即 `accept(Path path): void` 这样的方法。
+>
+> `forEach`内的 lambda表达式符合 `Consumer<Path>`中的 `accept(Path path): void` ，即传入的参数为`Path`，没有返回值。
+> 因此该lambda表达式可以作为 `Consumer<Path>`中的 `accept(Path path): void` 的具体实现
 
-举个栗子：
+`filter`方法流程解析图如下：
+
+![20201109144706541](./assets/Java程序汇总/c953a98b1b755f9662f31309c5db9291-1740365851915-13.jpeg)
+
+`forEach`方法使用举例：
 
 ```java
 List<String> strAry = Arrays.asList( "Jhonny", "David", "Jack", "Duke", "Jill","Dany","Julia","Jenish","Divya");
@@ -297,6 +382,7 @@ public class DocsGenerator {
     }
 
     private static List<Path> getStudyRootItems() throws IOException {
+        // 2
         try (Stream<Path> stream = Files.list(Paths.get(STUDY_ROOT))) {
             return stream.filter(path -> !isSpecialFile(path))
                     .sorted(Comparator.comparing(p -> p.getFileName().toString()))

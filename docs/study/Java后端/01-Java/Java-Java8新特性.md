@@ -697,7 +697,7 @@ Optional<Integer> findFirst = list.stream().parallel().filter(x->x>4).findFirst(
 
 
 
-#### 2.2.2 **无状态（Stateless）操作**
+#### 2.2.2 无状态（Stateless）操作
 
 ##### 过滤（filter）
 
@@ -1195,7 +1195,7 @@ result = Julia
 
 
 
-#### 2.2.5 **非短路（Unshort-circuiting）操作**
+#### 2.2.5 非短路（Unshort-circuiting）操作
 
 ##### forEach
 
