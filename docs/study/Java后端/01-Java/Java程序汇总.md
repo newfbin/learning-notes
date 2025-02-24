@@ -101,7 +101,7 @@ public class Test {
 
 ![image-20250224120533976](./assets/Java程序汇总/image-20250224120533976.png)
 
-#### 3.paths.filter().forEach()--streamAPI
+#### 3.streamAPI
 
 ##### filter
 
@@ -250,6 +250,14 @@ strAry.stream().forEach(s-> {
 
 因为lambda中，使用的外部变量必须是最终的，不可f变的，所以如果我们想要对其进行修改，那是不可能的！如果必须这么使用，可以将外部变量，移至表达式之中使用才行！
 
+##### sorted
+
+
+
+##### collect
+
+
+
 #### 4.Files::isDirectory--方法引用
 
 方法引用就是把方法当做参数传到stream内部，使stream的每个元素都传入到该方法里面执行一下。
@@ -385,6 +393,7 @@ public class DocsGenerator {
         // 2
         try (Stream<Path> stream = Files.list(Paths.get(STUDY_ROOT))) {
             return stream.filter(path -> !isSpecialFile(path))
+                	//3
                     .sorted(Comparator.comparing(p -> p.getFileName().toString()))
                     .collect(Collectors.toList());
         }
