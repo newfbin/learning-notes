@@ -1,5 +1,3 @@
-## 文件读写
-
 ### 按要求生成README.md与_sidebar.md
 
 #### 1.Paths.get()
@@ -60,7 +58,7 @@ public class Test {
 
 以传入的`Path`对象引用的路径为根，通过在根后拼接遍历到的路径得到新路径，并返回一个引用了新路径的`Path`对象。
 
-![image-20250224111248867](./assets/Java程序汇总/image-20250224111248867.png)
+![image-20250224111248867](./assets/Java程序汇总--文件读写/image-20250224111248867.png)
 
 ##### Files.list()
 
@@ -93,13 +91,13 @@ public class Test {
 
 > 可以观察到直接子项有四个：运维、测试.md、_sidebar.md、README.md 
 
-![image-20250224120508076](./assets/Java程序汇总/image-20250224120508076.png)
+![image-20250224120508076](./assets/Java程序汇总--文件读写/image-20250224120508076.png)
 
 输出结果
 
 > 与上图所示的结构对应
 
-![image-20250224120533976](./assets/Java程序汇总/image-20250224120533976.png)
+![image-20250224120533976](./assets/Java程序汇总--文件读写/image-20250224120533976.png)
 
 ##### Files.write
 
@@ -165,11 +163,11 @@ Stream<T> filter(Predicate<? super T> predicate);
 >
 > `filter`方法的参数是 `Predicate<T>`，由于`paths`的类型为`Stream<Path>`,所以`filter`方法的参数类型为`Predicate<Path>`。
 >
-> ![image-20250224100033942](./assets/Java程序汇总/image-20250224100033942.png)
+> ![image-20250224100033942](./assets/Java程序汇总--文件读写/image-20250224100033942.png)
 >
 > `Predicate<T>` 是一个**函数式接口中的断定型接口**（**只包含一个抽象方法** `test(T t)`  ）
 >
-> ![image-20200812144545558](./assets/Java程序汇总/e658ace0f5d5e3913dbac600e607819c.png)
+> ![image-20200812144545558](./assets/Java程序汇总--文件读写/e658ace0f5d5e3913dbac600e607819c.png)
 >
 > 因此`filter` 需要一个 `Predicate<Path>`，即 `test(Path path): boolean` 这样的方法。
 >
@@ -226,7 +224,7 @@ Stream<T> filter(Predicate<? super T> predicate);
 
 `filter`方法流程解析图如下：
 
-![20201109144706541](./assets/Java程序汇总/c953a98b1b755f9662f31309c5db9291.jpeg)
+![20201109144706541](./assets/Java程序汇总--文件读写/c953a98b1b755f9662f31309c5db9291.jpeg)
 
 `filter`方法使用举例：
 
@@ -256,11 +254,11 @@ void forEach(Consumer<? super T> action);
 >
 > `forEach`方法的参数是 `Consumer<T>`，由于`paths`的类型为`Stream<Path>`,所以`forEach`方法的参数类型为`Consumer<Path>`。
 >
-> ![image-20250224103555899](./assets/Java程序汇总/image-20250224103555899.png)![image-20250224103422243](./assets/Java程序汇总/image-20250224103422243.png)
+> ![image-20250224103555899](./assets/Java程序汇总--文件读写/image-20250224103555899.png)![image-20250224103422243](./assets/Java程序汇总--文件读写/image-20250224103422243.png)
 >
 > `Consumer<T>` 是一个**函数式接口**（**只包含一个抽象方法** `accept(T t)`  ）
 >
-> ![image-20200812144803229](./assets/Java程序汇总/c5641402010af463e285685614c2a92a.png)
+> ![image-20200812144803229](./assets/Java程序汇总--文件读写/c5641402010af463e285685614c2a92a.png)
 >
 > 因此`forEach` 需要一个 `Consumer<Path>`，即 `accept(Path path): void` 这样的方法。
 >
@@ -269,7 +267,7 @@ void forEach(Consumer<? super T> action);
 
 `filter`方法流程解析图如下：
 
-![20201109144706541](./assets/Java程序汇总/c953a98b1b755f9662f31309c5db9291-1740365851915-13.jpeg)
+![20201109144706541](./assets/Java程序汇总--文件读写/c953a98b1b755f9662f31309c5db9291-1740365851915-13.jpeg)
 
 `forEach`方法使用举例：
 
@@ -295,7 +293,7 @@ strAry.stream().forEach(s-> {
 
 那么此时编辑器则会爆红，	
 
-![img](./assets/Java程序汇总/381160864389742801f204b28a6ccb26.png)
+![img](./assets/Java程序汇总--文件读写/381160864389742801f204b28a6ccb26.png)
 
 因为lambda中，使用的外部变量必须是最终的，不可f变的，所以如果我们想要对其进行修改，那是不可能的！如果必须这么使用，可以将外部变量，移至表达式之中使用才行！
 
@@ -337,15 +335,15 @@ public static <T, U extends Comparable<? super U>> Comparator<T> comparing(
 
 `T = Path`（因为 调用`sorted`的变量`stream`为`Stream<Path>`类型，因此`sorted`的参数为`Comparator<Path>`类型，因此`comparing`方法的返回值也为`Comparator<Path>`类型。由此推断出`T = Path`）。
 
-![image-20250224132425164](./assets/Java程序汇总/image-20250224132425164.png)
+![image-20250224132425164](./assets/Java程序汇总--文件读写/image-20250224132425164.png)
 
 `U = String`（因为 `p.getFileName().toString()` 返回的是 `String`，而 `String` 实现了 `Comparable<String>`，符合 `U extends Comparable<? super U>` 的约束）。
 
-![image-20250224132914795](./assets/Java程序汇总/image-20250224132914795.png)
+![image-20250224132914795](./assets/Java程序汇总--文件读写/image-20250224132914795.png)
 
 因此`comparing` 需要一个 `Function<Path, String>`，即 `apply(Path path): String` 这样的方法。
 
-![image-20200812144105334](./assets/Java程序汇总/fde53f33a9e4909aaf6b129ccab5846a.png)
+![image-20200812144105334](./assets/Java程序汇总--文件读写/fde53f33a9e4909aaf6b129ccab5846a.png)
 
 lambda表达式 `p -> p.getFileName().toString()`正好符合`apply(Path path): String` 方法，即参数为Path，返回值类型为String。
 
@@ -640,21 +638,110 @@ public class DocsGenerator {
 
 #### 1.File类的方法
 
-##### listFiles
+##### listFiles & list
+
+list()方法是返回某个目录下的所有文件和目录的文件名，返回的是String数组
+
+listFiles()方法是返回某个目录下所有文件和目录的绝对路径，返回的是File数组
+
+**测试：**
+
+```java
+public class FileTest {
+
+	public static void main(String[] args) {
+		
+		//创建File对象
+		File file = new File("D:\\Android");
+		//获取该目录下的所有文件
+		String[] files = file.list();
+		
+		for (String f : files){
+			System.out.println(f);
+		}
+		
+		//listFiles是获取该目录下所有文件和目录的绝对路径
+		File[] fs = file.listFiles();
+		for (File f : fs){
+			System.out.println(f);
+		}
+	}
+}
+```
+
+通过list()方法获取的结果：
+
+![img](./assets/Java程序汇总--文件读写/20140713155846393.jpeg)
+
+通过listFiles()方法获取的结果：
+
+![img](./assets/Java程序汇总--文件读写/20140713155615781.jpeg)
 
 ##### getName
 
-##### isDirectory
+`File.getName()` 用于提取路径中的纯文件名或末端目录名
+
+**示例1：基础用法**:
+
+```java
+File file1 = new File("/home/user/docs/report.pdf");
+System.out.println(file1.getName());  // 输出: report.pdf
+
+File file2 = new File("C:\\Program Files\\Java\\jdk17");
+System.out.println(file2.getName());  // 输出: jdk17
+```
+
+**示例2：目录和根目录**:
+
+```java
+File dir = new File("/tmp/logs/");
+System.out.println(dir.getName());    // 输出: logs（忽略结尾的/）
+
+File rootDir = new File("/");
+System.out.println(rootDir.getName()); // 输出: （空字符串）
+```
+
+**示例3：相对路径**:
+
+```java
+File relFile = new File("../src/main/App.java");
+System.out.println(relFile.getName());  // 输出: App.java
+```
+
+------
+
+**注意事项**：
+
+1. **跨平台路径构造**：
+
+   - **推荐方式**：使用`File.separator`或直接写`/`（Java自动转换）
+
+   ```java
+   File crossPlat = new File("data" + File.separator + "config.xml");
+   ```
+
+2. **避免的误区**：
+
+   - **获取全路径** → 误用`getName()`，应改用`getPath()`
+   - **检查存在性** → `getName()`不验证文件是否存在
 
 ##### delete
 
-#### 2.Path类的方法
+`File.delete()`方法用于删除文件或空目录
 
+使用示例：
 
+```java
+public class Test {
+    public static void main(String[] args) {
+        File file = new File("README.md");
+        //执行完成后本地README.md文件被删除
+        file.delete();
+    }
+}
+```
 
 #### 代码
-
-##### File类版本
 
 ```java
 package com.newfbin;
@@ -671,7 +758,8 @@ public class DeleteMarkdownInAssets {
         if (dir == null || !dir.isDirectory()) {
             return;
         }
-
+		
+        //1、listFiles & list
         File[] files = dir.listFiles();
         if (files == null) {
             return;
@@ -679,6 +767,7 @@ public class DeleteMarkdownInAssets {
 
         for (File file : files) {
             if (file.isDirectory()) {
+                //1、getName
                 if (file.getName().equals("assets")) {
                     deleteMarkdownFiles(file);
                 } else {
@@ -698,72 +787,11 @@ public class DeleteMarkdownInAssets {
             if (file.isDirectory()) {
                 deleteMarkdownFiles(file); // 递归删除子目录中的 .md 文件
             } else if (file.getName().endsWith(".md")) {
+                //1、getAbsolutePath
                 System.out.println("Deleting: " + file.getAbsolutePath());
+                //1、delete
                 file.delete();
             }
-        }
-    }
-}
-```
-
-##### Path类版本
-
-```java
-package com.newfbin;
-
-import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-
-public class DeleteMarkdownInAssets_Path {
-    public static void main(String[] args) {
-        // 使用 System.getProperty("user.dir") 获取当前工作目录
-        Path currentDir = Paths.get(System.getProperty("user.dir"));
-        findAndCleanAssets(currentDir);
-    }
-
-    // 查找并清理 assets 文件夹中的 .md 文件
-    public static void findAndCleanAssets(Path dir) {
-        if (dir == null || !Files.isDirectory(dir)) {
-            return;
-        }
-
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
-            for (Path path : stream) {
-                if (Files.isDirectory(path)) {
-                    if (path.getFileName().toString().equals("assets")) {
-                        deleteMarkdownFiles(path); // 处理 assets 文件夹
-                    } else {
-                        findAndCleanAssets(path); // 递归查找子目录
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("无法访问目录: " + dir + " - " + e.getMessage());
-        }
-    }
-
-    // 删除 assets 文件夹及其子目录中的 .md 文件
-    public static void deleteMarkdownFiles(Path assetsDir) {
-        try {
-            Files.walkFileTree(assetsDir, new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    if (file.getFileName().toString().endsWith(".md")) {
-                        System.out.println("Deleting: " + file.toAbsolutePath());
-                        Files.delete(file); // 删除 .md 文件
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-
-                @Override
-                public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                    System.err.println("无法访问文件: " + file + " - " + exc.getMessage());
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        } catch (IOException e) {
-            System.err.println("处理 assets 目录时出错: " + assetsDir + " - " + e.getMessage());
         }
     }
 }
