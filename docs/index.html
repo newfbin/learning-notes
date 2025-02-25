@@ -11,8 +11,6 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" title="vue">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css" title="buble" disabled>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css" title="dark" disabled>
-  <!-- ToC样式 -->
-  <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
   <!-- docsify-dark-switcher插件专用Style -->
   <style>
     :root {
@@ -46,12 +44,12 @@
       executeScript: true, /* 执行文档里的 script 标签里的脚本，只执行第一个 script */
       loadSidebar: true,/* 加载自定义的侧边栏，默认加载_sidebar.md，加载别的文件把true改成“xxx.md” */
       loadNavbar: true,/* 加载自定义的导航栏，默认加载_navbar.md，加载别的文件把true改成“xxx.md” */
-      // subMaxLevel: 6,/* 自定义侧边栏后默认不会再生成目录，通过设置生成目录的最大层级开启这个功能 */
+      subMaxLevel: 6,/* 自定义侧边栏后默认不会再生成目录，通过设置生成目录的最大层级开启这个功能 */
       // logo: 'assets/_coverpage/blog.ico', /* 侧边栏中出现的网站图标，你可以使用CSS来更改大小 */
       name: 'Link博客',/* 侧边栏显示的文档标题 */
       nameLink: '#/study/README', /* 侧边栏文档标题对应的链接 */
       // repo: 'newfbin/learning-notes',/* 配置仓库地址 */
-      maxLevel: 1,/* 可配置的最大支持渲染的标题层级 */
+      maxLevel: 6,/* 可配置的最大支持渲染的标题层级 */
       coverpage: true,/* 启用封面页，默认加载_coverpage.md文件，也可以自定义文件名 */
       mergeNavbar: true,/* 小屏设备下合并导航栏到侧边栏 */
       onlyCover: true,/* 首页只显示封面 */
@@ -77,13 +75,7 @@
           minute: ""
         },
         isExpected: true
-      },
-      //ToC 目录 
-      toc: {
-        scope: '.markdown-section',
-        headings: 'h1, h2, h3, h4, h5, h6',
-        title: '目录',
-      },
+      }
     }
   </script>
   <!-- <script src="//unpkg.com/docsify"></script> -->
@@ -97,8 +89,6 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   <!-- 黑夜白天模式切换 -->
   <script src="//cdn.jsdelivr.net/gh/LIGMATV/docsify-dark-switcher@latest/docsify-dark-switcher.js"></script>
-  <!-- ToC -->
-  <script src="https://unpkg.com/docsify-toc@1.0.0/dist/toc.js"></script>
   <!-- 添加常用代码高亮语法文件(按照语言首字母排序,如bash csharp docker) -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
@@ -106,7 +96,7 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-dockerfile.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>  
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-jsx.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
