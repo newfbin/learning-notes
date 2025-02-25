@@ -1,2 +1,2 @@
- * [导读](/study/README.md) 
+ * [导读](/study/README) 
  * [首页](/) 
