@@ -33,14 +33,15 @@
       mergeNavbar: true,/* 小屏设备下合并导航栏到侧边栏 */
       onlyCover: true,/* 首页只显示封面 */
       //全文搜索
+      // search:'auto',
       search: {
         // maxAge: 86400000, // 过期时间，单位毫秒，默认一天。（86400000也为1天）
-        maxAge: 3600000, // 过期时间，单位毫秒，默认一天
-        paths: 'auto',
+        maxAge: 3600000, // 过期时间，单位毫秒，默认一天(此处设置为10分钟)
+        // paths: 'auto',
         placeholder: '点击搜索',
         noData: '找不到结果',
         // 搜索标题的最大层级, 1 - 6
-        depth: 100,
+        // depth: 6,
       },
       //字数统计
       count:{
