@@ -31,8 +31,6 @@
   <a data-theme="vue">vue.css</a>
   <a data-theme="buble">buble.css</a>
   <a data-theme="dark">dark.css</a>
-  <a data-theme="pure">pure.css</a>
-  <a data-theme="dolphin">dolphin.css</a>
 </div>
 
 
@@ -52,6 +50,7 @@
   var themes = Docsify.dom.findAll('[rel="stylesheet"]');
 
   preview.onclick = function (e) {
+    console.log("成功监听到点击事件")
     var title = e.target.getAttribute('data-theme')
 
     themes.forEach(function (theme) {
