@@ -1779,7 +1779,7 @@ private void HandleThis(object sender, RoutedEventArgs e)
 
 ## ~~WPF 中的代码隐藏和 XAML~~
 
-```csharp
+```xml
 <Page
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
