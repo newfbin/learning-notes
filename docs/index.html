@@ -30,22 +30,12 @@
       name: 'Link博客',/* 文档标题 */
       nameLink: 'https://newfbin.github.io/learning-notes/#/study/README',
       repo: 'newfbin/learning-notes',/* 配置仓库地址 */
-      maxLevel: 4,/* 可配置的最大支持渲染的标题层级 */
-      subMaxLevel: 2,
+      maxLevel: 6,/* 可配置的最大支持渲染的标题层级 */
       coverpage: true,/* 启用封面页，默认加载_coverpage.md文件，也可以自定义文件名 */
       mergeNavbar: true,/* 小屏设备下合并导航栏到侧边栏 */
       onlyCover: true,/* 首页只显示封面 */
       //全文搜索
-      // search:'auto',
-      search: {
-        // maxAge: 86400000, // 过期时间，单位毫秒，默认一天。（86400000也为1天）
-        maxAge: 3600000, // 过期时间，单位毫秒，默认一天(此处设置为10分钟)
-        paths: 'auto',
-        placeholder: '点击搜索',
-        noData: '找不到结果',
-        // 搜索标题的最大层级, 1 - 6
-        depth: 6,
-      },
+      search:'auto',
       // 复制代码到剪贴板
       copyCode: {
         buttonText: '复制代码',
