@@ -1,3 +1,6 @@
+> 原文地址：https://juejin.cn/post/7108295598054309919
+> 视频地址：https://www.bilibili.com/video/BV1iY411w7zD
+
 ![image-20250225200245917](./assets/WPF入门/image-20250225200245917.png)
 
 #  WPF的概述：
