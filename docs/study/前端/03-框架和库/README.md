@@ -2,6 +2,6 @@
 
 ## 目录
 
-  * [Next.js 框架](/study/前端/03-框架和库/Next.js 框架/README)
-  * [React 库](/study/前端/03-框架和库/React 库/README)
-  * [Vue.js 框架](/study/前端/03-框架和库/Vue.js 框架/README)
+  * [Next框架](/study/前端/03-框架和库/Next框架/README)
+  * [React库](/study/前端/03-框架和库/React库/README)
+  * [Vue框架](/study/前端/03-框架和库/Vue框架/README)
