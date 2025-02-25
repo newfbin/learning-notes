@@ -11,4 +11,4 @@
 * 😪👀😎😟😤💪💪💪💻🌕🌗🌑🌞😪😴
 
 [开始阅读](/study/README)
-[GitHub](https://github.com/newfbin)
+[仓库地址](https://github.com/newfbin/learning-notes.git)
