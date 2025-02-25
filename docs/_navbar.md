@@ -1,13 +1,12 @@
  * [导读](/study/README.md) 
  * [首页](/) 
  * 主题
-   * <div class="demo-theme-preview">
-       <a data-theme="vue">vue.css</a>
-       <a data-theme="buble">buble.css</a>
-       <a data-theme="dark">dark.css</a>
-     </div>
 
-
+<div class="demo-theme-preview">
+<a data-theme="vue">vue.css</a>
+<a data-theme="buble">buble.css</a>
+<a data-theme="dark">dark.css</a>
+</div>
 
 <style>
   .demo-theme-preview a {
