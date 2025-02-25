@@ -3,7 +3,11 @@
 
 ![image-20250225200245917](./assets/WPF入门/image-20250225200245917.png)
 
-#  
+# 
+
+[视频相关链接:https://www.bilibili.com/video/BV1iY411w7zD](https://www.bilibili.com/video/BV1iY411w7zD)
+
+Windows Presentation Foundation (简称 WPF)
 
 # WPF的概述：
 
@@ -14,6 +18,8 @@ WPF 的核心是一个与分辨率无关且基于矢量的呈现引擎，旨在�
 ## 简介：
 
 Windows用户界面框架,统一的编程模型、语言和框架，做到了界面设计与后端开发分离。
+
+
 
 ## 特点：
 
@@ -34,7 +40,7 @@ Windows用户界面框架,统一的编程模型、语言和框架，做到了界
 
 开发工具： Visual Studio 2019
 
-（下载链接： [pan.baidu.com/s/1uMH8C2rg…](https://link.juejin.cn/?target=https%3A%2F%2Fpan.baidu.com%2Fs%2F1uMH8C2rg5T8pNXrObXddXw) 提取码: hatd ）
+（下载链接： [pan.baidu.com/s/1uMH8C2rg…](https://pan.baidu.com/s/1uMH8C2rg5T8pNXrObXddXw) 提取码: hatd ）
 
 框架环境: .net core 3.1 或者.net framework4.0+
 
@@ -42,19 +48,19 @@ Windows用户界面框架,统一的编程模型、语言和框架，做到了界
 
 ## 所有控件：
 
-| **System.Windows.Controls (程序集：\**PresentationFramework.dll\**)** |                                                              |                                                              |
+| System.Windows.Controls (程序集：PresentationFramework.dll)  |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 文档地址：[docs.microsoft.com/zh-cn/dotne…](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls%3Fview%3Dwindowsdesktop-6.0%26viewFallbackFrom%3Dnetcore-3.1) |                                                              |                                                              |
-| [Label](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.label%3Fview%3Dwindowsdesktop-6.0) （表示控件的文本标签，并提供访问密钥支持。） | [TextBox](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.textbox%3Fview%3Dwindowsdesktop-6.0)(显示或编辑无格式文本) | [TextBlock](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.textblock%3Fview%3Dwindowsdesktop-6.0)(一个轻型控件，用于显示少量流内容) |
-| [Border](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.border%3Fview%3Dwindowsdesktop-6.0) （边框控件 ，作用 在另一个元素四周绘制边框和/或背景） | [Button](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.button%3Fview%3Dwindowsdesktop-6.0)（按钮控件） | [Calendar](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.calendar%3Fview%3Dwindowsdesktop-6.0) （日历控件） |
-| [CheckBox](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.checkbox%3Fview%3Dwindowsdesktop-6.0)（选择框） | [ComboBox](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.combobox%3Fview%3Dwindowsdesktop-6.0) （下拉框） | [Image](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.image%3Fview%3Dwindowsdesktop-6.0) (图片控件) |
-| [Menu](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.menu%3Fview%3Dwindowsdesktop-6.0)（菜单） | [ContextMenu](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.contextmenu%3Fview%3Dwindowsdesktop-6.0)（内容菜单) | [RadioButton](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.radiobutton%3Fview%3Dwindowsdesktop-6.0)(表示可由用户选择但不能清除的按钮,代码能清除) |
-| [DataGrid](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.datagrid%3Fview%3Dwindowsdesktop-6.0)（数据网格--Table） | [ListBox](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.listbox%3Fview%3Dwindowsdesktop-6.0)（包含可选项列表） | [ListView](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.listview%3Fview%3Dwindowsdesktop-6.0)（表示用于显示数据项列表的控件） |
-| [DockPanel](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.dockpanel%3Fview%3Dwindowsdesktop-6.0)(定义一个区域，从中可以按相对位置水平或垂直排列各个子元素。)---码头;港区 | [Grid](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.grid%3Fview%3Dwindowsdesktop-6.0)(定义由列和行组成的灵活的网格区域。) | [GroupBox](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.groupbox%3Fview%3Dwindowsdesktop-6.0)(组控件--- 表示一个控件，该控件用于创建具有用户界面 (UI) 内容边框和标题的容器。) |
-| [PrintDialog](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.printdialog%3Fview%3Dwindowsdesktop-6.0)（调用标准的 Microsoft Windows 打印对话框） | [ProgressBar](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.progressbar%3Fview%3Dwindowsdesktop-6.0)(指示操作进度) | [Canvas](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.canvas%3Fview%3Dwindowsdesktop-6.0) （画布控件） |
-| [RichTextBox](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.richtextbox%3Fview%3Dwindowsdesktop-6.0)(表示对 FlowDocument 对象进行操作的丰富编辑控件) | [ToolBar](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.toolbar%3Fview%3Dwindowsdesktop-6.0)(一组命令或控件提供容器) | [Expander](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.expander%3Fview%3Dwindowsdesktop-6.0)（折叠控件） 表示一种控件，该控件显示具有可折叠内容显示窗口的标题。 |
-| [TabControl](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.tabcontrol%3Fview%3Dwindowsdesktop-6.0)(表示包含多个项的控件，这些项共享屏幕上的同一空间) | [Frame](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.frame%3Fview%3Dwindowsdesktop-6.0)（一种支持导航的内容控件） | [Rectangle](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.shapes.rectangle%3Fview%3Dwindowsdesktop-6.0)(矩形区域) |
-| [StackPanel](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.stackpanel%3Fview%3Dwindowsdesktop-6.0)(将子元素排列成水平或垂直的一行。) | [WrapPanel](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.wrappanel%3Fview%3Dwindowsdesktop-6.0) (按从左到右的顺序位置定位子元素，在包含框的边缘处将内容切换到下一行。) |                                                              |
+| 文档地址：[docs.microsoft.com/zh-cn/dotne…](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls?view=windowsdesktop-6.0&viewFallbackFrom=netcore-3.1) |                                                              |                                                              |
+| [Label](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.label?view=windowsdesktop-6.0) （表示控件的文本标签，并提供访问密钥支持。） | [TextBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.textbox?view=windowsdesktop-6.0)(显示或编辑无格式文本) | [TextBlock](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.textblock?view=windowsdesktop-6.0)(一个轻型控件，用于显示少量流内容) |
+| [Border](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.border?view=windowsdesktop-6.0) （边框控件 ，作用 在另一个元素四周绘制边框和/或背景） | [Button](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.button?view=windowsdesktop-6.0)（按钮控件） | [Calendar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.calendar?view=windowsdesktop-6.0) （日历控件） |
+| [CheckBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.checkbox?view=windowsdesktop-6.0)（选择框） | [ComboBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.combobox?view=windowsdesktop-6.0) （下拉框） | [Image](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.image?view=windowsdesktop-6.0) (图片控件) |
+| [Menu](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.menu?view=windowsdesktop-6.0)（菜单） | [ContextMenu](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.contextmenu?view=windowsdesktop-6.0)（内容菜单) | [RadioButton](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.radiobutton?view=windowsdesktop-6.0)(表示可由用户选择但不能清除的按钮,代码能清除) |
+| [DataGrid](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.datagrid?view=windowsdesktop-6.0)（数据网格--Table） | [ListBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.listbox?view=windowsdesktop-6.0)（包含可选项列表） | [ListView](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.listview?view=windowsdesktop-6.0)（表示用于显示数据项列表的控件） |
+| [DockPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.dockpanel?view=windowsdesktop-6.0)(定义一个区域，从中可以按相对位置水平或垂直排列各个子元素。)---码头;港区 | [Grid](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.grid?view=windowsdesktop-6.0)(定义由列和行组成的灵活的网格区域。) | [GroupBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.groupbox?view=windowsdesktop-6.0)(组控件--- 表示一个控件，该控件用于创建具有用户界面 (UI) 内容边框和标题的容器。) |
+| [PrintDialog](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.printdialog?view=windowsdesktop-6.0)（调用标准的 Microsoft Windows 打印对话框） | [ProgressBar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.progressbar?view=windowsdesktop-6.0)(指示操作进度) | [Canvas](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.canvas?view=windowsdesktop-6.0) （画布控件） |
+| [RichTextBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.richtextbox?view=windowsdesktop-6.0)(表示对 FlowDocument 对象进行操作的丰富编辑控件) | [ToolBar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.toolbar?view=windowsdesktop-6.0)(一组命令或控件提供容器) | [Expander](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.expander?view=windowsdesktop-6.0)（折叠控件） 表示一种控件，该控件显示具有可折叠内容显示窗口的标题。 |
+| [TabControl](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.tabcontrol?view=windowsdesktop-6.0)(表示包含多个项的控件，这些项共享屏幕上的同一空间) | [Frame](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.frame?view=windowsdesktop-6.0)（一种支持导航的内容控件） | [Rectangle](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.shapes.rectangle?view=windowsdesktop-6.0)(矩形区域) |
+| [StackPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.stackpanel?view=windowsdesktop-6.0)(将子元素排列成水平或垂直的一行。) | [WrapPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.wrappanel?view=windowsdesktop-6.0) (按从左到右的顺序位置定位子元素，在包含框的边缘处将内容切换到下一行。) |                                                              |
 
 
 
@@ -83,7 +89,7 @@ XAML 是一种声明性标记语言。 应用于 .NET Core 编程模型时，XAM
 
 ## XAML 根元素
 
-一个 XAML 文件只能有一个根元素，这样才能同时作为格式正确的 XML 文件和有效的 XAML 文件。 对于典型 WPF 方案，可使用在 WPF 应用模型中具有突出意义的根元素（例如，页面的 [Window](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.window) 或 [Page](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.page)）。
+一个 XAML 文件只能有一个根元素，这样才能同时作为格式正确的 XML 文件和有效的 XAML 文件。 对于典型 WPF 方案，可使用在 WPF 应用模型中具有突出意义的根元素（例如，页面的 [Window](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.window) 或 [Page](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.page)）。
 
 在根标签下面有且只能有一个二级标签。在二级标签里面我们可以写多个三级 四级标签。
 
@@ -112,10 +118,10 @@ XAML 是一种声明性标记语言。 应用于 .NET Core 编程模型时，XAM
 ## WPF 和 XAML 命名空间声明
 
 在许多 XAML 文件的根标记中的命名空间声明内，通常可看到两个 XML 命名空间声明。 第一个声明默认映射整个 WPF 客户端/框架 XAML 命名空间：
-xmlns="[schemas.microsoft.com/winfx/2006/…](https://link.juejin.cn/?target=http%3A%2F%2Fschemas.microsoft.com%2Fwinfx%2F2006%2Fxaml%2Fpresentation)"
+xmlns="[schemas.microsoft.com/winfx/2006/…](http://schemas.microsoft.com/winfx/2006/xaml/presentation)"
 
 第二个声明映射单独的 XAML 命名空间，（通常）将其映射到 x: 前缀。
-xmlns:x="[schemas.microsoft.com/winfx/2006/…](https://link.juejin.cn/?target=http%3A%2F%2Fschemas.microsoft.com%2Fwinfx%2F2006%2Fxaml)"
+xmlns:x="[schemas.microsoft.com/winfx/2006/…](http://schemas.microsoft.com/winfx/2006/xaml)"
 这些声明之间的关系是 x: 前缀映射支持作为 xaml 语言定义一部分的内部函数，而 WPF 是一种将 xaml 用作语言的实现，并为 xaml 定义了其对象的词汇。
 
 ```xml
@@ -274,7 +280,7 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](https://link.juejin.cn/?target=h
 
 ![file](./assets/WPF入门/3c90234f97614eb0b628321799f0c4ectplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
-| 对象：[System.Windows](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows%3Fview%3Dwindowsdesktop-6.0).[FrameworkElement](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.frameworkelement%3Fview%3Dwindowsdesktop-6.0) |                                                              |                                                              |
+| 对象：[System.Windows](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows?view=windowsdesktop-6.0).[FrameworkElement](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-6.0) |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **属性**                                                     |                                                              |                                                              |
 | 属性名                                                       | 对象类型                                                     | 作用                                                         |
@@ -290,7 +296,7 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](https://link.juejin.cn/?target=h
 | FocusVisualStyle                                             | Style                                                        | 获取或设置一个属性，该属性允许自定义此元素在捕获到键盘焦点时要应用于此元素的外观、效果或其他样式特征。 |
 | FlowDirection                                                | FlowDirection                                                | 获取或设置方向，文本和其他 用户界面 (UI) 元素在任何控制其布局的父元素中都按此方向流动。 |
 | DataContext                                                  | object                                                       | 获取或设置元素参与数据绑定时的数据上下文。                   |
-| Resources                                                    | [ResourceDictionary](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.frameworkelement.resources%3Fview%3Dwindowsdesktop-6.0%23system-windows-frameworkelement-resources) | 获取或设置本地定义的资源字典。                               |
+| Resources                                                    | [ResourceDictionary](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.frameworkelement.resources?view=windowsdesktop-6.0#system-windows-frameworkelement-resources) | 获取或设置本地定义的资源字典。                               |
 | **方法**                                                     |                                                              |                                                              |
 | 方法名                                                       | 参数                                                         | 作用                                                         |
 | BringIntoView                                                |                                                              | 尝试将此元素放入视图，它包含在任何可滚动区域内。             |
@@ -319,9 +325,9 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](https://link.juejin.cn/?target=h
 | **内容控件** **（System.Windows.Controls.ContentControl）** |      |                                                              |
 | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | System.Windows.Controls.Label                               |      |                                                              |
-| System.Windows.Controls.TextBlock                           |      | 继承自[FrameworkElement](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.frameworkelement%3Fview%3Dwindowsdesktop-6.0)类 |
+| System.Windows.Controls.TextBlock                           |      | 继承自[FrameworkElement](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-6.0)类 |
 | System.Windows.Controls.Button                              |      |                                                              |
-| System.Windows.Controls.Border                              |      | 继承自[Decorator](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.decorator%3Fview%3Dwindowsdesktop-6.0)类 |
+| System.Windows.Controls.Border                              |      | 继承自[Decorator](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.decorator?view=windowsdesktop-6.0)类 |
 | System.Windows.Controls.RadioButton                         |      |                                                              |
 | System.Windows.Controls.CheckBox                            |      |                                                              |
 | System.Windows.Controls.ToolTip                             |      |                                                              |
@@ -1603,7 +1609,7 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
 
 ### Canvas演示代码
 
-![image.png]([img-blog.csdnimg.cn/img_convert…](https://link.juejin.cn/?target=https%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2F91cc3372c046078312a8591b2c622129.png%23clientId%3Du8d18fe6b-f2a3-4%26crop%3D0%26crop%3D0%26crop%3D1%26crop%3D1%26from%3Dpaste%26height%3D311%26id%3Du66694834%26margin%3D%5Bobject) Object]&name=image.png&originHeight=311&originWidth=357&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2016&status=done&style=none&taskId=u3b918b94-129b-4fd3-9a86-add4d43f511&title=&width=357)
+![image.png]([img-blog.csdnimg.cn/img_convert…](https://img-blog.csdnimg.cn/img_convert/91cc3372c046078312a8591b2c622129.png#clientId=u8d18fe6b-f2a3-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=311&id=u66694834&margin=%5Bobject) Object]&name=image.png&originHeight=311&originWidth=357&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2016&status=done&style=none&taskId=u3b918b94-129b-4fd3-9a86-add4d43f511&title=&width=357)
 
 ```xml
 <Canvas Width="500" Height="500" >
@@ -1729,7 +1735,7 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
 
 # 其他
 
-WPF 还包括增强属性和事件的其他编程构造： [依赖项属性](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fadvanced%2Fdependency-properties-overview%3Fview%3Dnetframeworkdesktop-4.8) 和 [路由事件](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fadvanced%2Frouted-events-overview%3Fview%3Dnetframeworkdesktop-4.8)。
+WPF 还包括增强属性和事件的其他编程构造： [依赖项属性](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/dependency-properties-overview?view=netframeworkdesktop-4.8) 和 [路由事件](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/routed-events-overview?view=netframeworkdesktop-4.8)。
 
 依赖性示例:
 
@@ -1810,14 +1816,14 @@ private void HandleThis(object sender, RoutedEventArgs e)
 #### 语法说明
 
 在这些语法中， 和 []* 不是文本。 它们是表示法的一部分，用于指示可以使用零个或多个 *bindPropvalue*=, 对，并且它们与前面的 *bindPropvalue*= 对之间具有分隔符。
-可以改为使用对象元素的属性设置"可以使用绑定扩展设置的绑定属性"部分中列出的任何 [Binding](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding) 属性。 但是，这不是 真正的标记扩展用法 [Binding](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding)，它只是设置 CLR 类属性的属性的常规 XAML [Binding](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding) 处理。 换句话说，<Binding_bindProp1value1bindPropNvalueN_=""[=""]*/>[Binding](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding) 是对象元素用法的属性的等效语法，而不是表达式Binding用法。
+可以改为使用对象元素的属性设置"可以使用绑定扩展设置的绑定属性"部分中列出的任何 [Binding](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding) 属性。 但是，这不是 真正的标记扩展用法 [Binding](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding)，它只是设置 CLR 类属性的属性的常规 XAML [Binding](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding) 处理。 换句话说，<Binding_bindProp1value1bindPropNvalueN_=""[=""]*/>[Binding](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding) 是对象元素用法的属性的等效语法，而不是表达式Binding用法。
 
-- [Mode](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.mode)： *value* 是枚举中的常量 [BindingMode](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.bindingmode) 名称。 例如，{Binding Mode=OneWay}。
-- [Path](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.path)：一个字符串，用于描述数据对象或常规对象模型的路径。 格式提供了几种不同的约定，用于遍历本主题中无法充分描述的对象模型。 请参阅 [PropertyPath XAML 语法](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fadvanced%2Fpropertypath-xaml-syntax%3Fview%3Dnetframeworkdesktop-4.8)。
-- [RelativeSource](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.relativesource)：与 和 互斥[ElementName](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.elementname)[Source](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.source);其中每个绑定属性都表示特定的绑定方法。 请参阅 [数据绑定概述](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fdata%2Fdata-binding-overview%3Fview%3Dnetframeworkdesktop-4.8)。 需要嵌套 [的 RelativeSource MarkupExtension](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fadvanced%2Frelativesource-markupextension%3Fview%3Dnetframeworkdesktop-4.8) 用法来指定值。
-- [Source](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.source)：互斥与 [RelativeSource](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.relativesource) 和 [ElementName](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.elementname);其中每个绑定属性都表示特定的绑定方法。 请参阅 [数据绑定概述](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fdata%2Fdata-binding-overview%3Fview%3Dnetframeworkdesktop-4.8)。 需要使用嵌套扩展，通常是引用键键资源字典中的对象数据源的 [StaticResource](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fadvanced%2Fstaticresource-markup-extension%3Fview%3Dnetframeworkdesktop-4.8) 标记扩展。
-- [StringFormat](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.bindingbase.stringformat)：一个字符串，描述绑定数据的字符串格式约定。 这是一个相对高级的绑定概念;请参阅 的参考页 [StringFormat](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.bindingbase.stringformat)。
-- [XPath](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.xpath)：一个字符串，描述 XML 数据源的 XMLDOM 的路径。 请参阅 [使用 XMLDataProvider 和 XPath 查询绑定到 XML 数据](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fdata%2Fhow-to-bind-to-xml-data-using-an-xmldataprovider-and-xpath-queries%3Fview%3Dnetframeworkdesktop-4.8)。
+- [Mode](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.mode)： *value* 是枚举中的常量 [BindingMode](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.bindingmode) 名称。 例如，{Binding Mode=OneWay}。
+- [Path](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.path)：一个字符串，用于描述数据对象或常规对象模型的路径。 格式提供了几种不同的约定，用于遍历本主题中无法充分描述的对象模型。 请参阅 [PropertyPath XAML 语法](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/propertypath-xaml-syntax?view=netframeworkdesktop-4.8)。
+- [RelativeSource](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.relativesource)：与 和 互斥[ElementName](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.elementname)[Source](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.source);其中每个绑定属性都表示特定的绑定方法。 请参阅 [数据绑定概述](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/data/data-binding-overview?view=netframeworkdesktop-4.8)。 需要嵌套 [的 RelativeSource MarkupExtension](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/relativesource-markupextension?view=netframeworkdesktop-4.8) 用法来指定值。
+- [Source](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.source)：互斥与 [RelativeSource](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.relativesource) 和 [ElementName](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.elementname);其中每个绑定属性都表示特定的绑定方法。 请参阅 [数据绑定概述](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/data/data-binding-overview?view=netframeworkdesktop-4.8)。 需要使用嵌套扩展，通常是引用键键资源字典中的对象数据源的 [StaticResource](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/staticresource-markup-extension?view=netframeworkdesktop-4.8) 标记扩展。
+- [StringFormat](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.bindingbase.stringformat)：一个字符串，描述绑定数据的字符串格式约定。 这是一个相对高级的绑定概念;请参阅 的参考页 [StringFormat](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.bindingbase.stringformat)。
+- [XPath](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.xpath)：一个字符串，描述 XML 数据源的 XMLDOM 的路径。 请参阅 [使用 XMLDataProvider 和 XPath 查询绑定到 XML 数据](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/data/how-to-bind-to-xml-data-using-an-xmldataprovider-and-xpath-queries?view=netframeworkdesktop-4.8)。
 
 
 
@@ -1827,7 +1833,7 @@ private void HandleThis(object sender, RoutedEventArgs e)
 | ------------------------ | ------------------------------------------------------------ |
 | **StaticResource**       | 通过查找对已定义的资源的引用，为任何 XAML 属性属性提供值。   |
 | **DynamicResource**      | 通过将任何 XAML 属性属性的值延迟为对已定义资源的引用，为该属性提供值。 |
-| **RelativeSource**       | 指定绑定源的属性 [RelativeSource](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.relativesource) ，以便在 [绑定标记扩展](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fadvanced%2Fbinding-markup-extension%3Fview%3Dnetframeworkdesktop-4.8)中使用，或在设置 [RelativeSource](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding.relativesource) 在 XAML 中建立的元素的属性 [Binding](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding) 时使用。 |
+| **RelativeSource**       | 指定绑定源的属性 [RelativeSource](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.relativesource) ，以便在 [绑定标记扩展](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/binding-markup-extension?view=netframeworkdesktop-4.8)中使用，或在设置 [RelativeSource](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding.relativesource) 在 XAML 中建立的元素的属性 [Binding](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding) 时使用。 |
 | **TemplateBinding**      | 连接某一控件模板中的属性值，使之成为模板化控件上另一个属性的值。 |
 | **ThemeDictionary**      | 为集成第三方控件的自定义控件创作者或应用程序提供一种方法，用于加载要在设置控件样式时使用的特定于主题的资源字典。 |
 | **ColorConvertedBitmap** | 提供一种方法，用于指定没有嵌入的配置文件的位图源。 颜色上下文/配置文件由 URI 指定，与映像源 URI 相同。 |
@@ -1838,12 +1844,12 @@ private void HandleThis(object sender, RoutedEventArgs e)
 
 ## 数据绑定与自定义路由：
 
-官方文档：[docs.microsoft.com/zh-cn/dotne…](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fdata%2F%3Fview%3Dnetdesktop-6.0)
+官方文档：[docs.microsoft.com/zh-cn/dotne…](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/data/?view=netdesktop-6.0)
 
 ### 创建绑定
 
-前面部分中讨论的一些概念可以重申为：使用 [Binding](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.data.binding) 对象建立绑定，且每个绑定通常具有四个组件：绑定目标、目标属性、绑定源以及指向要使用的源值的路径。
-绑定源绑定到元素的活动 [DataContext](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.frameworkelement.datacontext)。 如果元素没有显式定义 DataContext，则会自动继承。
+前面部分中讨论的一些概念可以重申为：使用 [Binding](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding) 对象建立绑定，且每个绑定通常具有四个组件：绑定目标、目标属性、绑定源以及指向要使用的源值的路径。
+绑定源绑定到元素的活动 [DataContext](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.frameworkelement.datacontext)。 如果元素没有显式定义 DataContext，则会自动继承。
 请考虑以下示例，其中的绑定源对象是一个名为 *MyData* 的类，该类在** Ken.Wpf.Entity**命名空间中定义。 出于演示目的，*MyData* 具有名为 *ColorName* 的字符串属性，其值设置为“Red”。 因此，此示例生成一个具有红色背景的按钮。
 
 ```xml
@@ -1876,11 +1882,11 @@ private void HandleThis(object sender, RoutedEventArgs e)
 
 ### 创建自定义路由
 
-以下示例在自定义控件 CustomButton 库中实现 类。 派生 CustomButton 自 的 类 [Button](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.button)：
+以下示例在自定义控件 CustomButton 库中实现 类。 派生 CustomButton 自 的 类 [Button](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.button)：
 
-1. 使用 方法 [RoutedEvent](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.routedevent) 注册 ConditionalClick 名为 [RegisterRoutedEvent](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.eventmanager.registerroutedevent) 的 ，并指定 [注册期间冒泡](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.routingstrategy%23system-windows-routingstrategy-bubble) 策略。
+1. 使用 方法 [RoutedEvent](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.routedevent) 注册 ConditionalClick 名为 [RegisterRoutedEvent](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.eventmanager.registerroutedevent) 的 ，并指定 [注册期间冒泡](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.routingstrategy#system-windows-routingstrategy-bubble) 策略。
 2. 将注册 RoutedEvent 调用返回的实例分配给名为 的静态只读字段 ConditionalClickEvent。
-3. 定义 CLR [添加](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.uielement.addhandler)[和删除](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.uielement.removehandler)事件访问器。
+3. 定义 CLR [添加](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.uielement.addhandler)[和删除](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.uielement.removehandler)事件访问器。
 4. 添加自定义逻辑，以在单击 并 CustomButton 应用外部条件时引发自定义路由事件。 尽管示例代码从重写 ConditionalClick 的虚拟方法 OnClick 中引发路由事件，但你可以以任何选择的方式引发事件。
 
 ```xml
@@ -1922,7 +1928,7 @@ public class CustomButton : Button
 }
 ```
 
-该示例包括一个单独的 WPF 应用程序，该应用程序使用 XAML CustomButton[StackPanel](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.controls.stackpanel)标记将 的实例添加到 ，Handler_ConditionalClickConditionalClick并将 方法分配为 和 元素StackPanel1的事件CustomButton处理程序。
+该示例包括一个单独的 WPF 应用程序，该应用程序使用 XAML CustomButton[StackPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.stackpanel)标记将 的实例添加到 ，Handler_ConditionalClickConditionalClick并将 方法分配为 和 元素StackPanel1的事件CustomButton处理程序。
 
 ```xml
 <Window x:Class="CodeSample.MainWindow"
@@ -1972,9 +1978,9 @@ private void Handler_ConditionalClick(object sender, RoutedEventArgs e)
 
 事件 Handler_ConditionalClick 处理程序获取有关触发它的事件的以下信息：
 
-- [发送方](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.routedeventhandler)对象，它是事件处理程序附加到的元素。 将 sender 第一 CustomButton 次运行处理程序，第二 StackPanel1 次运行。
-- 对象 [RoutedEventArgs.Source](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.routedeventargs.source%23system-windows-routedeventargs-source) ，它是最初引发事件的元素。 此示例中， 始终 Source 为 CustomButton。
+- [发送方](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.routedeventhandler)对象，它是事件处理程序附加到的元素。 将 sender 第一 CustomButton 次运行处理程序，第二 StackPanel1 次运行。
+- 对象 [RoutedEventArgs.Source](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.routedeventargs.source#system-windows-routedeventargs-source) ，它是最初引发事件的元素。 此示例中， 始终 Source 为 CustomButton。
 
 **备注**
 路由事件和 CLR 事件之间的主要区别在于路由事件遍历元素树，查找处理程序，而 CLR 事件不遍历元素树，处理程序只能附加到引发事件的源对象。 因此，路由事件 sender 可以是元素树中任何遍历的元素。
-可以像冒泡事件一样创建隧道事件，只不过你将在事件注册调用中将路由策略设置为 [Tunnel](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fapi%2Fsystem.windows.routingstrategy%23system-windows-routingstrategy-tunnel)。 有关隧道事件详细信息，请参阅 [WPF 输入事件](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.microsoft.com%2Fzh-cn%2Fdotnet%2Fdesktop%2Fwpf%2Fadvanced%2Frouted-events-overview%3Fview%3Dnetframeworkdesktop-4.8%26preserve-view%3Dtrue%23wpf-input-events)。
+可以像冒泡事件一样创建隧道事件，只不过你将在事件注册调用中将路由策略设置为 [Tunnel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.routingstrategy#system-windows-routingstrategy-tunnel)。 有关隧道事件详细信息，请参阅 [WPF 输入事件](https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/advanced/routed-events-overview?view=netframeworkdesktop-4.8&preserve-view=true#wpf-input-events)。

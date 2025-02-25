@@ -199,3 +199,19 @@ Ctrl + Shift + R 全局替换
 搜索想要进行配置快捷键的功能
 
 ![image-20250102170959084](./assets/IDE配置/image-20250102170959084.png)
+
+## VisualStudio
+
+### VisualStudio2022设置快捷键
+
+点击工具->选项，
+
+![在这里插入图片描述](./assets/IDE配置/cb8c1b2af61376bff7cc19b467b0c487.png)
+
+选择环境->键盘即进入到设置快捷键的界面，
+
+![在这里插入图片描述](./assets/IDE配置/86f30599e597b5a1500f0e1e39ff6edb.png)
+
+应用 VSCode 的键盘方案，VisualStudio和VSCode有了相同的快捷键
+
+![image-20250225212710349](./assets/IDE配置/image-20250225212710349.png)
