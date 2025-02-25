@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Link博客</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport"
@@ -45,13 +45,13 @@
       loadSidebar: true,/* 加载自定义的侧边栏，默认加载_sidebar.md，加载别的文件把true改成“xxx.md” */
       loadNavbar: true,/* 加载自定义的导航栏，默认加载_navbar.md，加载别的文件把true改成“xxx.md” */
       subMaxLevel: 6,/* 自定义侧边栏后默认不会再生成目录，通过设置生成目录的最大层级开启这个功能 */
-      name: 'Link博客',/* 文档标题 */
+      logo: './assets/_coverpage/blog.ico', /* 侧边栏中出现的网站图标，你可以使用CSS来更改大小 */
+      // name: 'Link博客',/* 文档标题 */
       nameLink: '#/study/README',
       // repo: 'newfbin/learning-notes',/* 配置仓库地址 */
       maxLevel: 6,/* 可配置的最大支持渲染的标题层级 */
       coverpage: true,/* 启用封面页，默认加载_coverpage.md文件，也可以自定义文件名 */
       mergeNavbar: true,/* 小屏设备下合并导航栏到侧边栏 */
-      logo: './assets/_coverpage/blog.ico', /* 侧边栏中出现的网站图标，你可以使用CSS来更改大小 */
       onlyCover: true,/* 首页只显示封面 */
       //全文搜索
       search: 'auto',
@@ -89,13 +89,37 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   <!-- 黑夜白天模式切换 -->
   <script src="//cdn.jsdelivr.net/gh/LIGMATV/docsify-dark-switcher@latest/docsify-dark-switcher.js"></script>
-  <!-- 添加代码高亮语法文件 -->
+  <!-- 添加常用代码高亮语法文件(按照语言首字母排序,如bash csharp docker) -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-dockerfile.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>  
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-jsx.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-kotlin.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-latex.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-less.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-lua.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-matlab.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-nginx.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-perl.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-properties.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-react.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ruby.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-scss.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-scala.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-tsx.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yml.min.js"></script>
 </body>
 
 </html>
