@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" title="vue">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css" title="buble" disabled>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css" title="dark" disabled>
+  <!-- 文章内导航 -->
+  <link rel="stylesheet" href="https://raw.githack.com/qjln/qiu_doc/main/lib/themes/light.css">
   <!-- docsify-dark-switcher插件专用Style -->
   <style>
     :root {
@@ -75,7 +77,13 @@
           minute: ""
         },
         isExpected: true
-      }
+      },
+      //文章内Toc目录
+      toc: {
+        tocMaxLevel: 5,
+        target: 'h2, h3, h4, h5, h6',
+        ignoreHeader: ['<!-- {docsify-ignore} -->', '<!-- {docsify-ignore-all} -->']
+      },
     }
   </script>
   <!-- <script src="//unpkg.com/docsify"></script> -->
@@ -89,6 +97,8 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   <!-- 黑夜白天模式切换 -->
   <script src="//cdn.jsdelivr.net/gh/LIGMATV/docsify-dark-switcher@latest/docsify-dark-switcher.js"></script>
+  <!-- 支持文章内Toc目录 -->
+  <script src="https://raw.githack.com/qjln/qiu_doc/main/lib/plugins/docsify-plugin-toc.min.js"></script>
   <!-- 添加常用代码高亮语法文件(按照语言首字母排序,如bash csharp docker) -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
@@ -96,7 +106,7 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-dockerfile.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>  
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-jsx.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
