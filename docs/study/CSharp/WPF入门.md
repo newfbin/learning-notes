@@ -438,7 +438,7 @@ namespace Ken.Wpf.Utils
 
 ![image-20250226144037682](./assets/WPF入门/image-20250226144037682.png)
 
-
+![image-20250226144402815](./assets/WPF入门/image-20250226144402815.png)
 
 ### Label的演示代码
 
