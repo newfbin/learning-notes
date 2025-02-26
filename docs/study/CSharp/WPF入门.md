@@ -434,6 +434,12 @@ namespace Ken.Wpf.Utils
 
 
 
+### 自定义启动窗口
+
+![image-20250226144037682](./assets/WPF入门/image-20250226144037682.png)
+
+
+
 ### Label的演示代码
 
 ```xml
@@ -475,15 +481,36 @@ namespace Ken.Wpf.Utils
 
 ### Button的演示代码
 
+WindowButton.xaml
+
 ```xml
 <Button Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
         Content="我是个按钮" Margin="20,20,0,0" Background="Teal"
         BorderThickness="5,0,10,0" BorderBrush="Transparent" Foreground="White"
         Click="Button_Click_1"  MouseMove="Button_MouseMove"
           >
+</Button>
 ```
 
+WindowButton.xaml.cs
 
+```csharp
+private void Button_Click_1(object sender, RoutedEventArgs e)
+{
+    MessageBox.Show("按钮被点击了");
+}
+
+private void Button_MouseMove(object sender, MouseEventArgs e)
+{
+    MessageBox.Show("鼠标移动到这个按钮上");
+}
+```
+
+鼠标放到事件的名称上，按F12进入事件的定义
+
+![image-20250226142658302](./assets/WPF入门/image-20250226142658302.png)
+
+![image-20250226143151535](./assets/WPF入门/image-20250226143151535.png)
 
 ### Border的演示效果
 
