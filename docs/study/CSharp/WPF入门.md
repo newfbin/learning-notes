@@ -1908,21 +1908,29 @@ private void HandleThis(object sender, RoutedEventArgs e)
 请考虑以下示例，其中的绑定源对象是一个名为 *MyData* 的类，该类在** Ken.Wpf.Entity**命名空间中定义。 出于演示目的，*MyData* 具有名为 *ColorName* 的字符串属性，其值设置为“Red”。 因此，此示例生成一个具有红色背景的按钮。
 
 ```xml
-<Window x:Class="Ken.Wpf.MainWindow"
+<Window x:Class="newfbin.Wpf.数据绑定.WindowDataBinding"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ken.Wpf"
-        xmlns:c="clr-namespace:Ken.Wpf.Entity"
+        xmlns:local="clr-namespace:newfbin.Wpf.数据绑定"
+        xmlns:c="clr-namespace:newfbin.Wpf.Entity"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    
+
     <Grid >
         <Grid.Resources>
+            <!--
+				这个是资源字典
+				key为myDataSource、value为MyData类
+			-->
             <c:MyData x:Key="myDataSource"/>
         </Grid.Resources>
         <Grid.DataContext>
+            <!--
+				获取或设置元素参与数据绑定时的数据上下文。
+				（在本文的 控件篇->继承关系 内的表格中提到了Grid.Resources和Grid.DataConte）
+			-->
             <Binding Source="{StaticResource myDataSource}"/>
         </Grid.DataContext>
         <Button Background="{Binding Path=ColorName}"
@@ -1931,6 +1939,7 @@ private void HandleThis(object sender, RoutedEventArgs e)
         </Button>
     </Grid>
 </Window>
+
 ```
 
 
@@ -1944,7 +1953,7 @@ private void HandleThis(object sender, RoutedEventArgs e)
 3. 定义 CLR [添加](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.uielement.addhandler)[和删除](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.uielement.removehandler)事件访问器。
 4. 添加自定义逻辑，以在单击 并 CustomButton 应用外部条件时引发自定义路由事件。 尽管示例代码从重写 ConditionalClick 的虚拟方法 OnClick 中引发路由事件，但你可以以任何选择的方式引发事件。
 
-```xml
+```csharp
 public class CustomButton : Button
 {
     // Register a custom routed event using the Bubble routing strategy.
