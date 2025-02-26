@@ -78,7 +78,6 @@
       },
       //最后更新时间
       timeUpdater: {
-        // text: "```\n 最后更新时间: {docsify-updated}\n```",
         text: "`最后更新时间: {docsify-updated}`",
         formatUpdated: "{YYYY}/{MM}/{DD} {HH}:{mm}:{ss}",
         whereToPlace: "top",  // "top" or "bottom", default to "bottom"
@@ -96,8 +95,19 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   <!-- 黑夜白天模式切换 -->
   <script src="//cdn.jsdelivr.net/gh/LIGMATV/docsify-dark-switcher@latest/docsify-dark-switcher.js"></script>
-  <!-- 文章最后更新时间 -->
+  <!-- 最后更新时间 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-updated/src/time-updater.min.js"></script>
+  <!-- 回到顶部 -->
+  <script src="js/docsify-backTop.min.js"></script>
+  <script>
+    docsifyBackTop = {
+        size: 32,           	// 数值，组件大小，默认值32。
+        bottom: 15,         	// 数值，组件底部偏移距离，默认值15。
+        right: 15,          	// 数值，组件右侧偏移距离，默认值15。
+        logo: '🔝',				// logo:字符串或svg矢量图代码，默认为svg代码图标。
+        bgColor: '\#2096ff'    	// 背景颜色，#fff、pink等，logo为svg图标时，不填。
+    };
+</script>
   <!-- 添加常用代码高亮语法文件(按照语言首字母排序,如bash csharp docker) -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
