@@ -522,6 +522,10 @@ private void Button_MouseMove(object sender, MouseEventArgs e)
              BorderThickness 有四个参数时 分别代表左边 上边 右边 下边
             我们设置边框颜色加上边框宽度 才能准确显示边框的效果
             如果我们需要设置角的弧度 需要使用CornerRadius属性
+
+            一个Border标签只能包裹一个标签
+            如果想用Border包裹多个标签，需要用Border标签包裹住Grid标签，再用Grid标签包裹其它多个标签
+            （准确的说，如果想用Border包裹多个标签，需要用Border标签包裹住Panel标签，再用Panel标签包裹其它多个标签，由于               Grid标签继承了Panel标签，所以可以用Grid标签包裹其他标签）
         -->
         <Border Width="200" Height="80" Background="LightBlue"
             BorderBrush="Red"  BorderThickness="1,1,2,1" CornerRadius="15">
@@ -543,7 +547,8 @@ private void Button_MouseMove(object sender, MouseEventArgs e)
         </Border>
 ```
 
-**RadioButton的演示效果**
+### RadioButton的演示效果
+
 ![file](./assets/WPF入门/0e94ddaa50d34b709e2570e3bf645cdatplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 ```xml
