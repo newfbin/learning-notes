@@ -445,6 +445,8 @@ namespace Ken.Wpf.Utils
             垂直方向排列设置 需要用到VerticalAlignment
             外边距 使用Margin 四个数字 对应方向分别为 左上右下,一个数字 代表所有方向的外边距 
             两个数字 分别代表 左右  上下
+
+            FontSize 字体大小、Foregrount 字体颜色
         -->
         <Label  Width="180" Height="30" Content="我是个label控件" 
                 HorizontalAlignment="Right" 
