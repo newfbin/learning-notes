@@ -202,6 +202,8 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](http://schemas.microsoft.com/win
         <Border Name="b9" Background="Transparent" Grid.Row="2" Grid.Column="2"></Border>
     </Grid>
 </Window>
+```
+```csharp
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
             //首先判断按键的方位 比如上下左右
@@ -567,9 +569,11 @@ private void Button_MouseMove(object sender, MouseEventArgs e)
         <RadioButton Content="外语"  GroupName="course" Margin="210,0"  FontSize="20" Foreground="Blue" VerticalAlignment="Top" HorizontalAlignment="Left" ></RadioButton>
 ```
 
-**CheckBox演示效果**
+### CheckBox演示效果
 
 ![file](./assets/WPF入门/637e9292ff494e46bb11e6a8e9915aaatplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+
+WindowCheckBox.xaml
 
 ```xml
 <Grid Name="gridMain">
@@ -590,12 +594,21 @@ private void Button_MouseMove(object sender, MouseEventArgs e)
                 HorizontalAlignment="Left" Margin="331,182,0,0" VerticalAlignment="Top"/>
 
     </Grid>
+```
+
+WindowCheckBox.xaml.cs
+
+```csharp
 private void Button_Click(object sender, RoutedEventArgs e)
 {
     UIElementCollection children = gridMain.Children;
     StringBuilder sbf = new StringBuilder("我的选课为:");
     foreach (UIElement item in children)
     {
+        //item as CheckBox).IsChecked.Value 解释：
+        //IsChecked 是 CheckBox 的一个 可空布尔类型（bool?） 属性，表示复选框的状态，有true（选中）、false（未选中）、null（不确定状态，通常用于三态复选框）三种状态
+        //由于 IsChecked 是 bool?（可空布尔），不能直接当作 bool 使用。
+        //Value 属性将 bool? 转换为 bool，但前提是 IsChecked 不是 null，否则会抛出 InvalidOperationException。
         if(item is CheckBox && (item as CheckBox).IsChecked.Value)
         {
             sbf.Append((item as CheckBox).Content+",");
@@ -813,6 +826,8 @@ private void Button_Click(object sender, RoutedEventArgs e)
         <Frame Name="myFrame" Source="https://fanyi.baidu.com/"
                VerticalAlignment="Top" HorizontalAlignment="Center"
                Width="700" Height="300" Margin="30,80" NavigationUIVisibility="Visible" LoadCompleted="myFrame_LoadCompleted"></Frame>
+```
+```csharp
 private void Button_Click(object sender, RoutedEventArgs e)
 {
     //1.使用source
@@ -1198,6 +1213,8 @@ myCmd}"/>
 
     </Grid>
 </Window>
+```
+```csharp
  private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             MessageBox.Show("Command!!!");
@@ -1334,6 +1351,8 @@ namespace Ken.Wpf.Commands
             
             
         </Label>
+```
+```csharp
 private void Window_Loaded(object sender, RoutedEventArgs e)
 {
     //设置数据上下文
@@ -1798,6 +1817,8 @@ WPF 还包括增强属性和事件的其他编程构造： [依赖项属性](htt
                 Raise event, handle it, use handled=true handler to get it anyway.
             </Button>
         </StackPanel>
+```
+```csharp
 private void SetColor(object sender, RoutedEventArgs e)
 {
     MessageBox.Show("点击了按钮:"+(e.OriginalSource is Button));
