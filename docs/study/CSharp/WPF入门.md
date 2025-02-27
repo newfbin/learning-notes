@@ -862,7 +862,7 @@ private void Button_Click(object sender, RoutedEventArgs e)
 ![file](./assets/WPF入门/5acc588a6ea540d0982400e52696bb1ctplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 ```xml
-        <Button Click="Button_Click" Content="tiao'wang" HorizontalAlignment="Left" Margin="230,27,0,0" VerticalAlignment="Top"/>
+        <Button Click="Button_Click" Content="跳往哔哩哔哩" HorizontalAlignment="Left" Margin="230,27,0,0" VerticalAlignment="Top"/>
 
         <Frame Name="myFrame" Source="https://fanyi.baidu.com/"
                VerticalAlignment="Top" HorizontalAlignment="Center"
@@ -903,8 +903,8 @@ private void myFrame_LoadCompleted(object sender, System.Windows.Navigation.Navi
 <TextBox Name="myTextBox"  FontSize="30" VerticalAlignment="Top" 
                  HorizontalAlignment="Left" BorderBrush="Orange" SelectionBrush="Teal">
            我是个文本控件
-        </TextBox>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="142,118,0,0" VerticalAlignment="Top" Height="51" Width="116" Click="Button_Click"/>
+</TextBox>
+<Button Content="Button" HorizontalAlignment="Left" Margin="142,118,0,0" VerticalAlignment="Top" Height="51" Width="116" Click="Button_Click"/>
 ```
 
 
@@ -949,7 +949,11 @@ private void myFrame_LoadCompleted(object sender, System.Windows.Navigation.Navi
                     <Run>=</Run>
                     <Run>99</Run>
                 </Paragraph>
-
+				
+                <!--  跳转链接 -->
+                <Paragraph FontSize="50">
+                    <Hyperlink NavigateUri="https://www.baidu.com">百度一下</Hyperlink>
+                </Paragraph>
             </FlowDocument>
         </RichTextBox>
 ```
@@ -957,6 +961,8 @@ private void myFrame_LoadCompleted(object sender, System.Windows.Navigation.Navi
 
 
 ### ComboBox的演示代码
+
+`Ken.Wpf.Controls.WindowComboBox.cs`
 
 ```csharp
 using Ken.Wpf.Entity;
@@ -974,87 +980,99 @@ using System.Windows.Shapes;
 
 namespace Ken.Wpf.Controls
 {
-/// <summary>
-/// WindowComboBox.xaml 的交互逻辑
-/// </summary>
-public partial class WindowComboBox : Window
-{
-public WindowComboBox()
-{
-InitializeComponent();
+    /// <summary>
+    /// WindowComboBox.xaml 的交互逻辑
+    /// </summary>
+    public partial class WindowComboBox : Window
+    {
+        public WindowComboBox()
+        {
+            InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //1.使用items
+            /*this.comboBox1.Items.Add("C#");
+            this.comboBox1.Items.Add("Java");
+            this.comboBox1.Items.Add("Python");*/
+
+            //2.使用DataContext 进行绑定
+            List<ClassInfo> list = new List<ClassInfo>();
+            list.Add(new ClassInfo() { ClassName = "高三一班", Code = "301" });
+            list.Add(new ClassInfo() { ClassName = "高三二班", Code = "302" });
+            list.Add(new ClassInfo() { ClassName = "高三三班", Code = "303" });
+
+            /*this.comboBox1.DataContext = list;
+
+            this.comboBox1.DisplayMemberPath = "ClassName";
+            this.comboBox1.SelectedValuePath = "Code";*/
+
+
+            //3.使用ItemsSource 进行绑定
+            this.comboBox1.ItemsSource = list;
+            this.comboBox1.DisplayMemberPath = "ClassName";
+            this.comboBox1.SelectedValuePath = "Code";
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            List<ClassInfo> lists = this.comboBox1.ItemsSource as List<ClassInfo>;
+
+            lists.RemoveAt(0);
+            this.comboBox1.ItemsSource = null;
+            this.comboBox1.ItemsSource = lists;
+        }
+    }
 }
 
-private void Window_Loaded(object sender, RoutedEventArgs e)
-{
-//1.使用items
-/*this.comboBox1.Items.Add("C#");
-this.comboBox1.Items.Add("Java");
-this.comboBox1.Items.Add("Python");*/
 
-//2.使用DataContext 进行绑定
-List<ClassInfo> list = new List<ClassInfo>();
-list.Add(new ClassInfo() { ClassName = "高三一班", Code = "301" });
-list.Add(new ClassInfo() { ClassName = "高三二班", Code = "302" });
-list.Add(new ClassInfo() { ClassName = "高三三班", Code = "303" });
+```
 
-/*this.comboBox1.DataContext = list;
+`Ken.Wpf.Entity.VacationSpots`
 
-this.comboBox1.DisplayMemberPath = "ClassName";
-this.comboBox1.SelectedValuePath = "Code";*/
-
-
-//3.使用ItemsSource 进行绑定
-this.comboBox1.ItemsSource = list;
-this.comboBox1.DisplayMemberPath = "ClassName";
-this.comboBox1.SelectedValuePath = "Code";
-
-}
-
-private void Button_Click(object sender, RoutedEventArgs e)
-{
-List<ClassInfo> lists = this.comboBox1.ItemsSource as List<ClassInfo>;
-
-lists.RemoveAt(0);
-this.comboBox1.ItemsSource = null;
-this.comboBox1.ItemsSource = lists;
-}
-}
-}
-
-------
+```csharp
 namespace Ken.Wpf.Entity
 {
-class VacationSpots : ObservableCollection<string>
-{
-public VacationSpots()
-{
+    class VacationSpots : ObservableCollection<string>
+    {
+        public VacationSpots()
+        {
+            Add("Spain");
+            Add("France");
+            Add("Peru");
+            Add("Mexico");
+            Add("Italy");
+        }
+    }
+}
+```
 
-Add("Spain");
-Add("France");
-Add("Peru");
-Add("Mexico");
-Add("Italy");
-}
-}
-}
+`Ken.Wpf.Entity.ClassInfo.cs`
 
-------
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Ken.Wpf.Entity
 {
-public class ClassInfo
-{
-    public string ClassName { get; set; }
-    
-    public string Code { get; set; }
-    
-}
-}
+    public class ClassInfo
+    {
+        public string ClassName { get; set; }
 
-              
+        public string Code { get; set; }
+
+    }
+}
+```
+
+
+
+`Ken.Wpf.Controls.WindowComboBox.xaml`
+
+```xml
        <!--1.使用静态资源-->
         <!--<StackPanel  Grid.Column="0"
              Grid.Row="6">
