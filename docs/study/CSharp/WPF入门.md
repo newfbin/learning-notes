@@ -1607,52 +1607,55 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
 private void Window_Loaded(object sender, RoutedEventArgs e)
 {
     //设置treeView1的数据上下文
-    this.treeView1.DataContext = MenuHelper.CreateMenus();
-    
-        }
-        <!--硬代码 写死 树-->
-        <!--<TreeView FontSize="30" >
+    this.treeView1.DataContext = MenuHelper.CreateMenus();    
+}
+        
+```
 
-            <TreeViewItem Header="部门" IsExpanded="True">
-               
-                <TreeViewItem Header="销售部" >
-                    <TreeViewItem Header="销售1部">
-                    </TreeViewItem>
-                    <TreeViewItem Header="销售2部">
+```xml
+<!--硬代码 写死 树-->
+<!--<TreeView FontSize="30" >
 
-                    </TreeViewItem>
-                </TreeViewItem>
-                <TreeViewItem Header="财务部">
+    <TreeViewItem Header="部门" IsExpanded="True">
 
-                </TreeViewItem>
-                <TreeViewItem Header="技术部">
-
-                </TreeViewItem>
-                <TreeViewItem Header="人事部">
-
-                </TreeViewItem>
+        <TreeViewItem Header="销售部" >
+            <TreeViewItem Header="销售1部">
+            </TreeViewItem>
+            <TreeViewItem Header="销售2部">
 
             </TreeViewItem>
-        </TreeView>-->
+        </TreeViewItem>
+        <TreeViewItem Header="财务部">
 
+        </TreeViewItem>
+        <TreeViewItem Header="技术部">
 
-        <TreeView FontSize="30" Name="treeView1" ItemsSource="{Binding}" 
-                  >
-            <!--<TreeView.ItemContainerStyle>
-                <Style TargetType="{x:Type MenuItem}">
-                    <Setter Property="Command" Value="{Binding ICommand}"></Setter>
-                </Style>
-            </TreeView.ItemContainerStyle>-->
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate  DataType="{x:Type et:MenuInfo}" ItemsSource="{Binding SubMenus}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="../Images/touxiang.jpg" Width="50" Height="50"></Image>
-                        <TextBlock   Text="{Binding MenuName}"></TextBlock>
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
+        </TreeViewItem>
+        <TreeViewItem Header="人事部">
 
-        </TreeView>
+        </TreeViewItem>
+
+    </TreeViewItem>
+</TreeView>-->
+
+<!-- 数据绑定  -->
+<TreeView FontSize="30" Name="treeView1" ItemsSource="{Binding}" 
+          >
+    <!--<TreeView.ItemContainerStyle>
+        <Style TargetType="{x:Type MenuItem}">
+            <Setter Property="Command" Value="{Binding ICommand}"></Setter>
+        </Style>
+    </TreeView.ItemContainerStyle>-->
+    <TreeView.ItemTemplate>
+        <HierarchicalDataTemplate  DataType="{x:Type et:MenuInfo}" ItemsSource="{Binding SubMenus}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="../Images/touxiang.jpg" Width="50" Height="50"></Image>
+                <TextBlock   Text="{Binding MenuName}"></TextBlock>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </TreeView.ItemTemplate>
+
+</TreeView>
 ```
 
 
@@ -1697,20 +1700,20 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
 
 ```xml
 <StackPanel Orientation="Horizontal" Opacity="0.5">
-  <Label  Width="180" Height="30" Content="我是个label控件" 
-         VerticalAlignment="Top" Margin="0,10" FontSize="18" Foreground="Blue"/>
-  <Label  Width="180" Height="30" Content="我是个label控件" 
-         VerticalAlignment="Top" Margin="0,10" FontSize="18" Foreground="Blue"/>
+      <Label  Width="180" Height="30" Content="我是个label控件" 
+             VerticalAlignment="Top" Margin="0,10" FontSize="18" Foreground="Blue"/>
+      <Label  Width="180" Height="30" Content="我是个label控件" 
+             VerticalAlignment="Top" Margin="0,10" FontSize="18" Foreground="Blue"/>
+
+      <TextBlock>我是个TextBlock</TextBlock>
   
-  <TextBlock>我是个TextBlock</TextBlock>
-  
-  <TabControl Grid.Row="1" Grid.Column="1">
-    <TabItem Header="tab1"></TabItem>
-    <TabItem Header="tab2"></TabItem>
-    <TabItem Header="tab3"></TabItem>
-    
-  </TabControl>
-        </StackPanel>
+      <TabControl Grid.Row="1" Grid.Column="1">
+        <TabItem Header="tab1"></TabItem>
+        <TabItem Header="tab2"></TabItem>
+        <TabItem Header="tab3"></TabItem>
+
+      </TabControl>
+</StackPanel>
 ```
 
 
@@ -1718,56 +1721,64 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
 ### DockPanel演示代码
 
 ```xml
-        <DockPanel Background="Beige" LastChildFill="True">
+<DockPanel Background="Beige" LastChildFill="True">
 
-            <!--<DockPanel DockPanel.Dock="Left" Background="Red" Width="50"></DockPanel>
-            <DockPanel DockPanel.Dock="Left" Background="Red" Width="50"></DockPanel>
-            <DockPanel DockPanel.Dock="Left" Background="Red" Width="50"></DockPanel>
-            <DockPanel DockPanel.Dock="Left" Background="Green" Width="200"></DockPanel>-->
+    <!--<DockPanel DockPanel.Dock="Left" Background="Red" Width="50"></DockPanel>
+    <DockPanel DockPanel.Dock="Left" Background="Red" Width="50"></DockPanel>
+    <DockPanel DockPanel.Dock="Left" Background="Red" Width="50"></DockPanel>
+    <DockPanel DockPanel.Dock="Left" Background="Green" Width="200"></DockPanel>-->
 
-            <StackPanel DockPanel.Dock="Left" Background="Red" Width="50"></StackPanel>
-            <StackPanel DockPanel.Dock="Top" Background="Black" Height="100"></StackPanel>
-            <StackPanel DockPanel.Dock="Bottom" Background="Green" Height="100"></StackPanel>
-            <StackPanel DockPanel.Dock="Right" Background="White" Width="100"></StackPanel>
+    <StackPanel DockPanel.Dock="Left" Background="Red" Width="50"></StackPanel>
+    <StackPanel DockPanel.Dock="Top" Background="Black" Height="100"></StackPanel>
+    <StackPanel DockPanel.Dock="Bottom" Background="Green" Height="100"></StackPanel>
+    <StackPanel DockPanel.Dock="Right" Background="White" Width="100"></StackPanel>
 
-            <DockPanel DockPanel.Dock="Right" Background="Purple" LastChildFill="False" >
-                <!--<DockPanel DockPanel.Dock="Right" Background="Teal" Width="30">
+    <DockPanel DockPanel.Dock="Right" Background="Purple" LastChildFill="False" >
+        <!--<DockPanel DockPanel.Dock="Right" Background="Teal" Width="30">
 
-                </DockPanel>-->
-            </DockPanel>
-        </DockPanel>
+        </DockPanel>-->
+    </DockPanel>
+</DockPanel>
 ```
 
 
 
 ### WrapPanel演示代码
 
+
+
 ```xml
  <!--
-        WrapPanel重点掌握
-        1.它是对控件进行（超出宽度或高度时）换行，并不是真的控件的内容进行换行
-        2.Orientation 默认是水平排列的 
-        -->
-        <WrapPanel Width="700" Orientation="Vertical">
-            <!--<Label FontSize="20">按从左到右的顺序位置定位子元素</Label>
-            <Label FontSize="20">，在包含框的边缘处将内容切换到下一行。</Label>-->
-            <StackPanel Width="300" Height="100" Background="Teal"></StackPanel>
-            <StackPanel Width="300" Height="100" Background="Teal" Orientation="Vertical">
-                <Label FontSize="20">按从左到右的顺序位置定位子元素</Label>
-                <Label FontSize="20">，在包含框的边缘处将内容切换到下一行。</Label>
-            </StackPanel>
-            <StackPanel Width="300" Height="100" Background="Red">
-                
-            </StackPanel>
-            
-        </WrapPanel>
+    WrapPanel重点掌握
+    1.它是对控件进行（超出宽度或高度时）换行，并不是真的控件的内容进行换行
+    2.Orientation 默认是水平排列的 
+  -->
+<WrapPanel Width="700" Orientation="Vertical">
+    <!--<Label FontSize="20">按从左到右的顺序位置定位子元素</Label>
+    <Label FontSize="20">，在包含框的边缘处将内容切换到下一行。</Label>-->
+    <StackPanel Width="300" Height="100" Background="Teal"></StackPanel>
+    <StackPanel Width="300" Height="100" Background="Teal" Orientation="Vertical">
+        <Label FontSize="20">按从左到右的顺序位置定位子元素</Label>
+        <Label FontSize="20">，在包含框的边缘处将内容切换到下一行。</Label>
+    </StackPanel>
+    <StackPanel Width="300" Height="100" Background="Red">
+
+    </StackPanel>
+
+</WrapPanel>
 ```
 
+![image-20250227210651944](./assets/WPF入门/image-20250227210651944.png)
 
+![image-20250227210720956](./assets/WPF入门/image-20250227210720956.png)
+
+![image-20250227210646037](./assets/WPF入门/image-20250227210646037.png)
+
+![image-20250227210704467](./assets/WPF入门/image-20250227210704467.png)
 
 ### Canvas演示代码
 
-![image.png]([img-blog.csdnimg.cn/img_convert…](https://img-blog.csdnimg.cn/img_convert/91cc3372c046078312a8591b2c622129.png#clientId=u8d18fe6b-f2a3-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=311&id=u66694834&margin=%5Bobject) Object]&name=image.png&originHeight=311&originWidth=357&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2016&status=done&style=none&taskId=u3b918b94-129b-4fd3-9a86-add4d43f511&title=&width=357)
+
 
 ```xml
 <Canvas Width="500" Height="500" >
@@ -1778,7 +1789,7 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
             <WrapPanel Width="100" Height="100" Background="Black" Canvas.Top="150" Canvas.Left="305"></WrapPanel>
 
             <WrapPanel Width="100" Height="100" Background="Purple"   Canvas.Bottom="80" Canvas.Right="80"></WrapPanel>
-        </Canvas>
+</Canvas>
 ```
 
 
