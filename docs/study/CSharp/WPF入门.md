@@ -41,30 +41,6 @@ Windows用户界面框架,统一的编程模型、语言和框架，做到了界
 
 框架环境: .net core 3.1 或者.net framework4.0+
 
-
-
-## 所有控件：
-
-| System.Windows.Controls (程序集：PresentationFramework.dll)  |                                                              |                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 文档地址：[docs.microsoft.com/zh-cn/dotne…](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls?view=windowsdesktop-6.0&viewFallbackFrom=netcore-3.1) |                                                              |                                                              |
-| [Label](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.label?view=windowsdesktop-6.0) （表示控件的文本标签，并提供访问密钥支持。） | [TextBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.textbox?view=windowsdesktop-6.0)(显示或编辑无格式文本) | [TextBlock](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.textblock?view=windowsdesktop-6.0)(一个轻型控件，用于显示少量流内容) |
-| [Border](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.border?view=windowsdesktop-6.0) （边框控件 ，作用 在另一个元素四周绘制边框和/或背景） | [Button](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.button?view=windowsdesktop-6.0)（按钮控件） | [Calendar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.calendar?view=windowsdesktop-6.0) （日历控件） |
-| [CheckBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.checkbox?view=windowsdesktop-6.0)（选择框） | [ComboBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.combobox?view=windowsdesktop-6.0) （下拉框） | [Image](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.image?view=windowsdesktop-6.0) (图片控件) |
-| [Menu](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.menu?view=windowsdesktop-6.0)（菜单） | [ContextMenu](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.contextmenu?view=windowsdesktop-6.0)（内容菜单) | [RadioButton](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.radiobutton?view=windowsdesktop-6.0)(表示可由用户选择但不能清除的按钮,代码能清除) |
-| [DataGrid](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.datagrid?view=windowsdesktop-6.0)（数据网格--Table） | [ListBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.listbox?view=windowsdesktop-6.0)（包含可选项列表） | [ListView](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.listview?view=windowsdesktop-6.0)（表示用于显示数据项列表的控件） |
-| [DockPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.dockpanel?view=windowsdesktop-6.0)(定义一个区域，从中可以按相对位置水平或垂直排列各个子元素。)---码头;港区 | [Grid](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.grid?view=windowsdesktop-6.0)(定义由列和行组成的灵活的网格区域。) | [GroupBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.groupbox?view=windowsdesktop-6.0)(组控件--- 表示一个控件，该控件用于创建具有用户界面 (UI) 内容边框和标题的容器。) |
-| [PrintDialog](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.printdialog?view=windowsdesktop-6.0)（调用标准的 Microsoft Windows 打印对话框） | [ProgressBar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.progressbar?view=windowsdesktop-6.0)(指示操作进度) | [Canvas](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.canvas?view=windowsdesktop-6.0) （画布控件） |
-| [RichTextBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.richtextbox?view=windowsdesktop-6.0)(表示对 FlowDocument 对象进行操作的丰富编辑控件) | [ToolBar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.toolbar?view=windowsdesktop-6.0)(一组命令或控件提供容器) | [Expander](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.expander?view=windowsdesktop-6.0)（折叠控件） 表示一种控件，该控件显示具有可折叠内容显示窗口的标题。 |
-| [TabControl](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.tabcontrol?view=windowsdesktop-6.0)(表示包含多个项的控件，这些项共享屏幕上的同一空间) | [Frame](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.frame?view=windowsdesktop-6.0)（一种支持导航的内容控件） | [Rectangle](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.shapes.rectangle?view=windowsdesktop-6.0)(矩形区域) |
-| [StackPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.stackpanel?view=windowsdesktop-6.0)(将子元素排列成水平或垂直的一行。) | [WrapPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.wrappanel?view=windowsdesktop-6.0) (按从左到右的顺序位置定位子元素，在包含框的边缘处将内容切换到下一行。) |                                                              |
-
-
-
-![file](./assets/WPF入门/cf55617b73fc4859b2c1d540d888f7a5tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
-
-
-
 # 什么是 XAML
 
 XAML 是一种声明性标记语言。 应用于 .NET Core 编程模型时，XAML 简化了为 .NET Core 应用创建 UI 的过程。 XAML 文件是通常具有 .xaml 扩展名的 XML 文件。 可通过任何 XML 编码对文件进行编码，但通常以 UTF-8 编码。
@@ -306,6 +282,26 @@ namespace newfbin.Wpf.移动方块
 
 
 # 控件篇：
+
+## 所有控件：
+
+| System.Windows.Controls (程序集：PresentationFramework.dll)  |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 文档地址：[docs.microsoft.com/zh-cn/dotne…](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls?view=windowsdesktop-6.0&viewFallbackFrom=netcore-3.1) |                                                              |                                                              |
+| [Label](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.label?view=windowsdesktop-6.0) （表示控件的文本标签，并提供访问密钥支持。） | [TextBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.textbox?view=windowsdesktop-6.0)(显示或编辑无格式文本) | [TextBlock](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.textblock?view=windowsdesktop-6.0)(一个轻型控件，用于显示少量流内容) |
+| [Border](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.border?view=windowsdesktop-6.0) （边框控件 ，作用 在另一个元素四周绘制边框和/或背景） | [Button](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.button?view=windowsdesktop-6.0)（按钮控件） | [Calendar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.calendar?view=windowsdesktop-6.0) （日历控件） |
+| [CheckBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.checkbox?view=windowsdesktop-6.0)（选择框） | [ComboBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.combobox?view=windowsdesktop-6.0) （下拉框） | [Image](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.image?view=windowsdesktop-6.0) (图片控件) |
+| [Menu](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.menu?view=windowsdesktop-6.0)（菜单） | [ContextMenu](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.contextmenu?view=windowsdesktop-6.0)（内容菜单) | [RadioButton](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.radiobutton?view=windowsdesktop-6.0)(表示可由用户选择但不能清除的按钮,代码能清除) |
+| [DataGrid](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.datagrid?view=windowsdesktop-6.0)（数据网格--Table） | [ListBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.listbox?view=windowsdesktop-6.0)（包含可选项列表） | [ListView](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.listview?view=windowsdesktop-6.0)（表示用于显示数据项列表的控件） |
+| [DockPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.dockpanel?view=windowsdesktop-6.0)(定义一个区域，从中可以按相对位置水平或垂直排列各个子元素。)---码头;港区 | [Grid](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.grid?view=windowsdesktop-6.0)(定义由列和行组成的灵活的网格区域。) | [GroupBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.groupbox?view=windowsdesktop-6.0)(组控件--- 表示一个控件，该控件用于创建具有用户界面 (UI) 内容边框和标题的容器。) |
+| [PrintDialog](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.printdialog?view=windowsdesktop-6.0)（调用标准的 Microsoft Windows 打印对话框） | [ProgressBar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.progressbar?view=windowsdesktop-6.0)(指示操作进度) | [Canvas](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.canvas?view=windowsdesktop-6.0) （画布控件） |
+| [RichTextBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.richtextbox?view=windowsdesktop-6.0)(表示对 FlowDocument 对象进行操作的丰富编辑控件) | [ToolBar](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.toolbar?view=windowsdesktop-6.0)(一组命令或控件提供容器) | [Expander](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.expander?view=windowsdesktop-6.0)（折叠控件） 表示一种控件，该控件显示具有可折叠内容显示窗口的标题。 |
+| [TabControl](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.tabcontrol?view=windowsdesktop-6.0)(表示包含多个项的控件，这些项共享屏幕上的同一空间) | [Frame](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.frame?view=windowsdesktop-6.0)（一种支持导航的内容控件） | [Rectangle](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.shapes.rectangle?view=windowsdesktop-6.0)(矩形区域) |
+| [StackPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.stackpanel?view=windowsdesktop-6.0)(将子元素排列成水平或垂直的一行。) | [WrapPanel](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.wrappanel?view=windowsdesktop-6.0) (按从左到右的顺序位置定位子元素，在包含框的边缘处将内容切换到下一行。) |                                                              |
+
+
+
+![file](./assets/WPF入门/cf55617b73fc4859b2c1d540d888f7a5tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 
 
