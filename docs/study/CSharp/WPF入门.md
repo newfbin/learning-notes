@@ -1543,18 +1543,21 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
     list.Add("1004");
     
     this.listbox1.DataContext = list;
-        }
-     <!--
-            使用动态绑定 渲染出ListBoxItem
-        -->
-        <ListBox Name="listbox1" FontSize="30" SelectionMode="Extended"
-                 ItemsSource="{Binding}">
-            <ListBox.ItemTemplate>
-                <DataTemplate >
-                    <TextBlock Text="{Binding}"></TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+}
+```
+
+```xml
+<!--
+    使用动态绑定 渲染出ListBoxItem
+-->
+<ListBox Name="listbox1" FontSize="30" SelectionMode="Extended"
+         ItemsSource="{Binding}">
+    <ListBox.ItemTemplate>
+        <DataTemplate >
+            <TextBlock Text="{Binding}"></TextBlock>
+        </DataTemplate>
+    </ListBox.ItemTemplate>
+</ListBox>
 ```
 
 
@@ -1587,10 +1590,16 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
     </DataGridTemplateColumn>
   </DataGrid.Columns>
   
-        </DataGrid>
+</DataGrid>
 ```
 
+![image-20250227185145595](./assets/WPF入门/image-20250227185145595.png)
 
+`DataGridTemplateColumn` 降序排列演示
+
+![image-20250227185850533](./assets/WPF入门/image-20250227185850533.png)
+
+![image-20250227190014723](./assets/WPF入门/image-20250227190014723.png)
 
 ### TreeView演示代码
 
