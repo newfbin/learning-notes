@@ -158,6 +158,8 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](http://schemas.microsoft.com/win
 实现一个可移动的方块盒子:
 ![移动方块.gif](./assets/WPF入门/9674bf17fd674648a59688d3605651fctplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
+`newfbin.Wpf.移动方块.WindowMoveBox.xaml`
+
 ```xml
 <Window x:Class="Ken.Wpf.移动方块.WindowMoveBox"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -203,7 +205,35 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](http://schemas.microsoft.com/win
     </Grid>
 </Window>
 ```
+`newfbin.Wpf.移动方块.WindowMoveBox.xaml.cs`
+
 ```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace newfbin.Wpf.移动方块
+{
+    /// <summary>
+    /// WindowMoveBox.xaml 的交互逻辑
+    /// </summary>
+    public partial class WindowMoveBox : Window
+    {
+        public WindowMoveBox()
+        {
+            InitializeComponent();
+        }
+
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
             //首先判断按键的方位 比如上下左右
@@ -215,13 +245,13 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](http://schemas.microsoft.com/win
 
             UIElementCollection children = gridContent.Children;
 
-            Border curBorder =null;
+            Border curBorder = null;
             for (int i = 0; i < children.Count; i++)
             {
-               
-                if (children[i] is Border )
+
+                if (children[i] is Border)
                 {
-                    if(((children[i] as Border).Background as SolidColorBrush).Color.Equals(Colors.White))
+                    if (((children[i] as Border).Background as SolidColorBrush).Color.Equals(Colors.White))
                     {
                         curBorder = children[i] as Border;
                     }
@@ -240,13 +270,13 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](http://schemas.microsoft.com/win
             {
                 index = index + 3 <= 9 ? index + 3 : index;
             }
-            else if(e.Key.Equals(Key.Left))//左
+            else if (e.Key.Equals(Key.Left))//左
             {
                 index = index - 1 >= 1 ? index - 1 : index;
             }
             else if (e.Key.Equals(Key.Right))//右
             {
-                index = index +1 <=9 ? index +1 : index;
+                index = index + 1 <= 9 ? index + 1 : index;
             }
 
             object control = gridContent.FindName("b" + index);
@@ -256,6 +286,10 @@ xmlns:x="[schemas.microsoft.com/winfx/2006/…](http://schemas.microsoft.com/win
                 (control as Border).Background = new SolidColorBrush(Colors.White);
             }
         }
+
+    }
+}
+
 ```
 
 
