@@ -962,6 +962,48 @@ private void myFrame_LoadCompleted(object sender, System.Windows.Navigation.Navi
 
 ### ComboBox的演示代码
 
+`Ken.Wpf.Controls.WindowComboBox.xaml`
+
+```xml
+<!--1.使用静态资源-->
+<!--<StackPanel  Grid.Column="0"
+     Grid.Row="6">
+    <StackPanel.Resources>
+        <src:VacationSpots x:Key="myVacations"/>
+    </StackPanel.Resources>
+    <ComboBox Name="comboBox1"
+    ItemsSource="{StaticResource myVacations}"
+    Text="My Cities"
+    IsEditable="True"
+    IsReadOnly="False"/>
+
+    <TextBlock Text="{Binding ElementName=comboBox1, Path=SelectedItem}"/>
+</StackPanel>-->
+
+
+<!--2.使用硬编码编写-->
+<!--<ComboBox Name="comboBox1"
+    Text="My Cities"
+    IsEditable="True"
+    IsReadOnly="False" Width="120" Height="30" VerticalAlignment="Top">
+    <ComboBoxItem>选项1</ComboBoxItem>
+    <ComboBoxItem>选项2</ComboBoxItem>
+    <ComboBoxItem>选项3</ComboBoxItem>
+    <Label>选项4</Label>
+    <CheckBox>年级</CheckBox>
+    <CheckBox>性别</CheckBox>
+</ComboBox>-->
+
+<!--3.使用代码动态编写-->
+<ComboBox Name="comboBox1"
+    Text="My Cities"
+    IsEditable="True" ItemsSource="{Binding}"
+    IsReadOnly="False" Width="120" Height="30" VerticalAlignment="Top">
+</ComboBox>
+
+<Button Click="Button_Click" Content="移除一项" HorizontalAlignment="Left" Margin="362,52,0,0" VerticalAlignment="Top"/>
+```
+
 `Ken.Wpf.Controls.WindowComboBox.cs`
 
 ```csharp
@@ -1021,6 +1063,8 @@ namespace Ken.Wpf.Controls
             List<ClassInfo> lists = this.comboBox1.ItemsSource as List<ClassInfo>;
 
             lists.RemoveAt(0);
+            //需要先把comboBox1.ItemsSource设置为null,再重新设置数据源。这样会让页面重新渲染一遍
+            //否则会出现移除或添加一项之后，不能接着移除
             this.comboBox1.ItemsSource = null;
             this.comboBox1.ItemsSource = lists;
         }
@@ -1067,52 +1111,6 @@ namespace Ken.Wpf.Entity
     }
 }
 ```
-
-
-
-`Ken.Wpf.Controls.WindowComboBox.xaml`
-
-```xml
-       <!--1.使用静态资源-->
-        <!--<StackPanel  Grid.Column="0"
-             Grid.Row="6">
-            <StackPanel.Resources>
-                <src:VacationSpots x:Key="myVacations"/>
-            </StackPanel.Resources>
-            <ComboBox Name="comboBox1"
-            ItemsSource="{StaticResource myVacations}"
-            Text="My Cities"
-            IsEditable="True"
-            IsReadOnly="False"/>
-
-            <TextBlock Text="{Binding ElementName=comboBox1, Path=SelectedItem}"/>
-        </StackPanel>-->
-
-
-        <!--2.使用硬编码编写-->
-        <!--<ComboBox Name="comboBox1"
-            Text="My Cities"
-            IsEditable="True"
-            IsReadOnly="False" Width="120" Height="30" VerticalAlignment="Top">
-            <ComboBoxItem>选项1</ComboBoxItem>
-            <ComboBoxItem>选项2</ComboBoxItem>
-            <ComboBoxItem>选项3</ComboBoxItem>
-            <Label>选项4</Label>
-            <CheckBox>年级</CheckBox>
-            <CheckBox>性别</CheckBox>
-        </ComboBox>-->
-
-        <!--3.使用代码动态编写-->
-        <ComboBox Name="comboBox1"
-            Text="My Cities"
-            IsEditable="True" ItemsSource="{Binding}"
-            IsReadOnly="False" Width="120" Height="30" VerticalAlignment="Top">
-        </ComboBox>
-        
-        <Button Click="Button_Click" Content="移除一项" HorizontalAlignment="Left" Margin="362,52,0,0" VerticalAlignment="Top"/>
-```
-
-
 
 ### Menu的演示代码
 
