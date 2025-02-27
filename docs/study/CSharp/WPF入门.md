@@ -1064,7 +1064,7 @@ namespace Ken.Wpf.Controls
 
             lists.RemoveAt(0);
             //需要先把comboBox1.ItemsSource设置为null,再重新设置数据源。这样会让页面重新渲染一遍
-            //否则会出现移除或添加一项之后，不能接着移除
+            //否则会出现移除或添加一项之后，不能接着移除或添加的情况
             this.comboBox1.ItemsSource = null;
             this.comboBox1.ItemsSource = lists;
         }
@@ -1114,7 +1114,9 @@ namespace Ken.Wpf.Entity
 
 ### Menu的演示代码
 
-```csharp
+#### 硬编码菜单
+
+```xml
 <Window x:Class="Ken.Wpf.Controls.WindowMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -1256,15 +1258,12 @@ namespace Ken.Wpf.Entity
 
     <Grid>
         <Menu Height="25"  VerticalAlignment="Top" >
-            <MenuItem Header="出入库管理" Foreground="White" FontFamily="华文行楷" Height="21" Command="{StaticResource 
-
-myCmd}"/>
+            <MenuItem Header="出入库管理" Foreground="White" FontFamily="华文行楷" Height="21" Command="{StaticResource myCmd}"/>
             <MenuItem Header="请假管理" Foreground="White" FontFamily="华文行楷" Height="21"/>
             <MenuItem Header="考勤管理" Foreground="White" FontFamily="华文行楷" Height="21"/>
             <MenuItem Header="商品管理" Foreground="White" FontFamily="华文行楷" Height="21">
                 <MenuItem Header="单位管理" Foreground="Black" FontFamily="华文行楷" Height="21"></MenuItem>
-                <MenuItem Header="类别管理" Foreground="Black" FontFamily="华文行楷" Height="21" InputGestureText="Ctrl
-+8"></MenuItem>
+                <MenuItem Header="类别管理" Foreground="Black" FontFamily="华文行楷" Height="21" InputGestureText="Ctrl + 8"></MenuItem>
             </MenuItem>
         </Menu>
 
@@ -1272,10 +1271,15 @@ myCmd}"/>
 </Window>
 ```
 ```csharp
- private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            MessageBox.Show("Command!!!");
-        }
+private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+{
+    MessageBox.Show("Command!!!");
+}
+```
+
+#### 动态加载菜单
+
+```xml
 <Menu Name="menu1" VerticalAlignment="Top" Height="30" Background="Teal"
       ItemsSource="{Binding}">
   
@@ -1291,7 +1295,9 @@ myCmd}"/>
   </Menu.ItemTemplate>
 </Menu>
 </Grid>
-    
+```
+
+```csharp
 using Ken.Wpf.Commands;
 using System;
 using System.Collections.Generic;
@@ -1338,8 +1344,48 @@ namespace Ken.Wpf.Entity
         }
     }
 }
+```
 
--------------------------------------------------------------------------
+```csharp
+using newfbin.Wpf.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace newfbin.Wpf.Utils
+{
+    class MenuHelper
+    {
+        public static List<MenuInfo> CreateMenus()
+        {
+            List<MenuInfo> menus = new List<MenuInfo>();
+
+            MenuInfo m1 =  new MenuInfo();
+            MenuInfo m2 =  new MenuInfo();
+            MenuInfo m3 =  new MenuInfo();
+            
+            MenuInfo m3_1 = new MenuInfo();
+            MenuInfo m3_2 = new MenuInfo();
+
+            MenuInfo m4 = new MenuInfo();
+            MenuInfo m4_1 = new MenuInfo();
+            MenuInfo m4_2 = new MenuInfo();
+
+            menus.Add(m1);
+            menus.Add(m2);
+            menus.Add(m3);
+            menus.Add(m4);
+
+            return menus;
+        }
+    }
+}
+
+```
+
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Text;
