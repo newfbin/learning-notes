@@ -305,6 +305,261 @@ C# 中变量定义的语法：
     10 = 20;    ❌
 ```
 
+## C# 数据类型转换
+
+###  1：数据类型的隐式转换，相对安全，不会导致数据丢失
+
+**无关键字与变量类型修饰的转换称作隐式转换。（不是所有的隐式转换都是可以的）**
+
+实例：
+
+```ini
+short a = 1212;
+int b;
+b = a; // 隐式转换
+//Console.WriteLine(b);
+  
+int aa = 12;
+short bb;
+bb = aa;  // 这样的隐式转换会报错，因为int包含short。
+Console.WriteLine(bb);
+```
+
+**任何整数类型，都可以隐式的转化为任何浮点数类型。**
+
+```ini
+int aaa = 12;
+double bbb = 10.02;
+bbb = aaa;  // 整形隐式转换成浮点型
+Console.WriteLine(aaa);
+```
+
+### **2：数据类型的显式转换强制类型转换，而且强制转换会造成数据丢失。**
+
+**Int类型是可以转换为short类型的，只要其值在short取值范围内。一定要估计好数据类型的取值范围。**
+
+```ini
+// int az = 12345;   //输出值为123456
+int az = 123456;     //输出值为-7616
+short h;
+h = (short)az;
+Console.WriteLine(h);
+```
+
+**显示转换需要注意精度问题（不是很安全）**
+
+```ini
+double pai = 3.14;
+int asd;
+asd = (int)pai; // 3,不是四舍五入，是直接截取
+Console.WriteLine(asd);
+```
+
+**使用check关键字：提示运行错误**
+
+```ini
+int az = 123456;    
+short h;
+h = checked((short)az);
+Console.WriteLine(h);
+```
+
+**输出结果：**
+
+```markdown
+	未经处理的异常:  System.OverflowException: 算术运算导致溢出。
+```
+
+### **3：使用Convert类进行类型转换。**
+
+![在这里插入图片描述](./assets/CSharp-Ⅰ基础/20b3995770094b7c9b02d655731908fatplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+
+**长类型（int、long）转换成短类型（byte、short）需要考虑容量的问题 转换为int型数据后进行了四舍五入的计算。 用convert类转换时注意数据表达方式的有效性，并不是任意类型之间都可以转换。比如string类型转int类型，string只能是数字。**
+
+```ini
+// 字符串转换双精度浮点
+string p = "3.14";
+double pp = Convert.ToDouble(p);         
+int d = 10;
+double f = Convert.ToDouble(d);
+Console.WriteLine(f); //10
+ 
+int a = 1234;
+string asd = Convert.ToString(a);
+Console.WriteLine(asd);  // 1234
+Console.WriteLine(asd.GetType()); // System.string
+   
+char qwe = Convert.ToChar(a);
+Console.WriteLine(qwe);  // ?  字符只能是一位
+Console.WriteLine(qwe.GetType());  // System.Char
+   
+string dc = "4125";
+int ws = Convert.ToInt32(dc);
+Console.WriteLine(ws);  // 4125
+Console.WriteLine(ws.GetType());  // System.Int32
+   
+string dates = "2019-05-31"; // 必须是字符串才能转换成datetime
+DateTime qa = Convert.ToDateTime(dates);
+Console.WriteLine(qa);  // 2019/5/31 0:00:00
+Console.WriteLine(qa.GetType()); // System.DateTime
+   
+string zxc = "5.32";
+double po = Convert.ToDouble(zxc);
+Console.WriteLine(po);  // 5.32
+Console.WriteLine(po.GetType());// System.Double
+   
+float rf = Convert.ToSingle(zxc);
+Console.WriteLine(rf);  // 5.32
+Console.WriteLine(rf.GetType());// System.single
+```
+
+![1554794743264563.png](./assets/CSharp-Ⅰ基础/f5918893ea014f22aa183ce318369755tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+
+### **4：as运算符**
+
+**as 运算符必须与引用类型或者可以为null类型的变量一起使用，否则会报编译错误**
+
+使用as运算符进行类型转换效率相对高一些。
+
+示例：
+
+```ini
+int aaaa = 10;
+object strs = aaaa as object;
+```
+
+下面两种情况不能使用as运算符进行类型转换。
+
+1、不用在类型之间进行类型转化，即如下编写就会出现编译错误。
+
+```ini
+NewType newValue = new NewType（）;
+NewTYpe1 newValue = newValue as NewTYpe1;
+```
+
+这个可以直接进行显示转换
+
+```ini
+NewType newValue = new NewType（）;
+NewTYpe1 newValue = (newValue)NewTYpe1;
+```
+
+2、不能应用在值类型数据，即不能如下写（也会出现编译错误）
+
+```ini
+Object obj1 = 11;
+int nValue = obj1 as int;
+```
+
+这个首先需要使用 is 运算符进行判断 再进行显示转换
+
+```dart
+Object obj1 = 11；
+if（objTest is int ）
+{
+    int nValue = （int）obj1；
+}
+```
+
+### **5：装箱和拆箱（比较慢）**
+
+**装箱** 是值类型到 object 类型或到此值类型所实现的任何接口类型的隐式转换。对值类型装箱会在堆中分配一个对象实例，并将该值复制到新的对象中。**（隐式转换）**
+
+**拆箱** 是从 object 类型到值类型或从接口类型到实现该接口的值类型的显式转换。**（显示转换）**
+
+```ini
+ int i = 13;
+ object ob = i; // 这是装箱
+int i = 13;
+object ob = i;
+int j = (int)ob;  // 这是拆箱
+```
+
+**在C#中提供的很好的类型转换方式总结为： Object => 已知引用类型——使用as操作符完成； Object => 已知值类型——先使用is操作符来进行判断，再用类型强转换方式进行转换； 已知引用类型之间转换——首先需要相应类型提供转换函数，再用类型强转换方式进行转换； 已知值类型之间转换——最好使用系统提供的Conver类所涉及的静态方法。**
+
+测试完整代码：我这里使用的是控制台应用
+
+```ini
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+  
+namespace gc
+{
+    class Program
+    {
+        /* C#主要的运行函数，就是main函数 */
+        static void Main(string[] args)
+        {
+            short a = 1212;
+            int b;
+            b = a; // 隐式转换
+            //Console.WriteLine(b);
+  
+            int aa = 12;
+            short bb;
+            //bb = aa;  // 这样的隐式转换会报错，因为int包含short。
+            //Console.WriteLine(bb);
+  
+            int aaa = 12;
+            double bbb = 10.02;
+            bbb = aaa;  // 整形隐式转换成浮点型
+            //Console.WriteLine(aaa);
+  
+            // int az = 12345;   //输出值为123456
+            int az = 123456;     //输出值为-7616
+            short h;
+            //h = checked((short)az);
+            // Console.WriteLine(h);
+  
+            double pai = 3.14;
+            int asd;
+            asd = (int)pai; // 3,不是四舍五入，是直接截取
+            //Console.WriteLine(asd);
+  
+            // 字符串转换双精度浮点
+            string p = "3.14";
+            double pp = Convert.ToDouble(p);
+             
+            int d = 10;
+                        double f = Convert.ToDouble(d);
+                        Console.WriteLine(f); //10
+             
+            // 使用Convert类转换的一些实例
+            int a = 1234;
+            string asd = Convert.ToString(a);
+            Console.WriteLine(asd);  // 1234
+            Console.WriteLine(asd.GetType()); // System.string
+                           
+            char qwe = Convert.ToChar(a);
+            Console.WriteLine(qwe);  // ?  字符只能是一位
+            Console.WriteLine(qwe.GetType());  // System.Char
+                           
+            string dc = "4125";
+            int ws = Convert.ToInt32(dc);
+            Console.WriteLine(ws);  // 4125
+            Console.WriteLine(ws.GetType());  // System.Int32
+                           
+            string dates = "2019-05-31"; // 必须是字符串才能转换成datetime
+            DateTime qa = Convert.ToDateTime(dates);
+            Console.WriteLine(qa);  // 2019/5/31 0:00:00
+            Console.WriteLine(qa.GetType()); // System.DateTime
+                           
+            string zxc = "5.32";
+            double po = Convert.ToDouble(zxc);
+            Console.WriteLine(po);  // 5.32
+            Console.WriteLine(po.GetType());// System.Double
+                           
+            float rf = Convert.ToSingle(zxc);
+            Console.WriteLine(rf);  // 5.32
+            Console.WriteLine(rf.GetType());// System.single
+        }
+    }
+}
+```
+
 ## C# 运算符
 
 运算符是一种告诉编译器执行特定的数学或逻辑操作的符号。C# 有丰富的内置运算符，分类如下：
