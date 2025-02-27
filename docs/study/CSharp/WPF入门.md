@@ -1796,7 +1796,7 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
 <Calendar SelectionMode="MultipleRange" DisplayDate="2022-01-01" SelectedDate="2022-01-01"
                   DisplayDateStart="2022-01-01" DisplayDateEnd="2022-03-01">
             
-        </Calendar>
+</Calendar>
 ```
 
 
@@ -1804,7 +1804,7 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
 ### Image演示代码
 
 ```xml
- <!--
+	<!--
         Source的写法
         1.相对路径 例如：../Images/avatar.png 【图片是嵌入资源或生成到内容 都可以获取到】
         2.pack://application:,,,    (这个代表获取应用下的路径)【图片是嵌入资源或生成到内容 都可以获取到】
@@ -1813,22 +1813,22 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
         <!--<Image Source="../Images/avatar.png" Stretch="Uniform"/>-->
         <!--<Image Source="pack://application:,,,/Images/avatar.png" Stretch="Uniform"/>-->
         <!--<Image Source="pack://siteoforigin:,,,/Images/avatar.png" Stretch="Uniform"/>-->
-        
-        
-        <!--
-            2.实现特定的文字背景（图片）
-        -->
 
-        <TextBlock Background="Orange" Width="300" Height="80" FontSize="60pt" 
-            FontFamily="华文行楷" TextAlignment="Center" VerticalAlignment="Center">
 
-            <TextBlock.Foreground>
-                <ImageBrush ImageSource="../Images/avatar.png" TileMode="FlipX" Viewport="0,0,30,30" ViewportUnits="Absolute">
-                    
-                </ImageBrush>
-            </TextBlock.Foreground>
-            Text
-        </TextBlock>
+    <!--
+        2.实现特定的文字背景（图片）
+    -->
+
+    <TextBlock Background="Orange" Width="300" Height="80" FontSize="60pt" 
+        FontFamily="华文行楷" TextAlignment="Center" VerticalAlignment="Center">
+
+        <TextBlock.Foreground>
+            <ImageBrush ImageSource="../Images/avatar.png" TileMode="FlipX" Viewport="0,0,30,30" ViewportUnits="Absolute">
+
+            </ImageBrush>
+        </TextBlock.Foreground>
+        Text
+    </TextBlock>
 ```
 
 
@@ -1836,30 +1836,30 @@ private void Window_Loaded(object sender, RoutedEventArgs e)
 ### ProgressBar演示代码
 
 ```xml
-        <!--<ProgressBar Name="pro" Foreground="Blue" Background="AliceBlue" Width="300" 
-                     Minimum="10" Maximum="100" 
-                  IsIndeterminate="False" Orientation="Vertical" Margin="250,182,250,83"  />-->
+    <!--<ProgressBar Name="pro" Foreground="Blue" Background="AliceBlue" Width="300" 
+                 Minimum="10" Maximum="100" 
+              IsIndeterminate="False" Orientation="Vertical" Margin="250,182,250,83"  />-->
 
-        <ProgressBar Width="300" Height="50" 
-                 Name="progressBar1">
-            <!--
-            使用了触发器 （Triggers）
-               事件触发器（EventTrigger） 使用了路由事件（绑定了该控件的加载事件）
-                使用了动画效果（DoubleAnimation）
-            -->
-            <ProgressBar.Triggers>
-                <EventTrigger RoutedEvent="ProgressBar.Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation
-                Storyboard.TargetName="progressBar1" 
-                Storyboard.TargetProperty="Value"
-                From="0" To="100" Duration="1:1:5"  />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </ProgressBar.Triggers>
-        </ProgressBar>
+    <ProgressBar Width="300" Height="50" 
+             Name="progressBar1">
+        <!--
+        使用了触发器 （Triggers）
+           事件触发器（EventTrigger） 使用了路由事件（绑定了该控件的加载事件）
+            使用了动画效果（DoubleAnimation）
+        -->
+        <ProgressBar.Triggers>
+            <EventTrigger RoutedEvent="ProgressBar.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation
+            Storyboard.TargetName="progressBar1" 
+            Storyboard.TargetProperty="Value"
+            From="0" To="100" Duration="1:1:5"  />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </ProgressBar.Triggers>
+    </ProgressBar>
 ```
 
 
