@@ -215,3 +215,17 @@ Ctrl + Shift + R 全局替换
 应用 VSCode 的键盘方案，VisualStudio和VSCode有了相同的快捷键
 
 ![image-20250225212710349](./assets/IDE配置/image-20250225212710349.png)
+
+### VisualStudio2022快捷键总结
+
+#### 快速生成属性 -- Ctrl R, Ctrl E
+
+将鼠标光标放在要生成属性这一行，按下快捷键生成该字段的属性。
+
+![image-20250227083536889](./assets/IDE配置/image-20250227083536889.png)
+
+选中多个字段并按快捷键
+
+![image-20250227083601455](./assets/IDE配置/image-20250227083601455.png)
+
+![image-20250227083719146](./assets/IDE配置/image-20250227083719146.png)

@@ -1905,7 +1905,9 @@ private void HandleThis(object sender, RoutedEventArgs e)
 
 前面部分中讨论的一些概念可以重申为：使用 [Binding](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.data.binding) 对象建立绑定，且每个绑定通常具有四个组件：绑定目标、目标属性、绑定源以及指向要使用的源值的路径。
 绑定源绑定到元素的活动 [DataContext](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.frameworkelement.datacontext)。 如果元素没有显式定义 DataContext，则会自动继承。
-请考虑以下示例，其中的绑定源对象是一个名为 *MyData* 的类，该类在** Ken.Wpf.Entity**命名空间中定义。 出于演示目的，*MyData* 具有名为 *ColorName* 的字符串属性，其值设置为“Red”。 因此，此示例生成一个具有红色背景的按钮。
+请考虑以下示例，其中的绑定源对象是一个名为 *MyData* 的类，该类在**Ken.Wpf.Entity**命名空间中定义。 出于演示目的，*MyData* 具有名为 *ColorName* 的字符串属性，其值设置为“Red”。 因此，此示例生成一个具有红色背景的按钮。
+
+`newfbin.Wpf.数据绑定.WindowDataBinding.xaml`
 
 ```xml
 <Window x:Class="newfbin.Wpf.数据绑定.WindowDataBinding"
@@ -1916,7 +1918,7 @@ private void HandleThis(object sender, RoutedEventArgs e)
         xmlns:local="clr-namespace:newfbin.Wpf.数据绑定"
         xmlns:c="clr-namespace:newfbin.Wpf.Entity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
 
     <Grid >
         <Grid.Resources>
@@ -1929,20 +1931,98 @@ private void HandleThis(object sender, RoutedEventArgs e)
         <Grid.DataContext>
             <!--
 				获取或设置元素参与数据绑定时的数据上下文。
-				（在本文的 控件篇->继承关系 内的表格中提到了Grid.Resources和Grid.DataConte）
+				（在本文的 控件篇->继承关系 内的表格中提到了Grid.Resources和Grid.DataContext）
 			-->
             <Binding Source="{StaticResource myDataSource}"/>
         </Grid.DataContext>
+        <!--第一种绑定方式-->
+        <!--在上面的标签中可以看到，数据上下文被绑定到了Grid上。
+        因为Button是Grid的子元素，所有Grid绑定的数据源，都可以分享给下面的子元素-->
         <Button Background="{Binding Path=ColorName}"
           Width="150" Height="30">
             I am bound to be RED!
         </Button>
+        <!--第二种 直接在后台数据绑定（控件）-->
+		<Label Name="myLable" Content="{Binding Path=Titel}" FontSize="50" FontWeight="Bold"></Label>
     </Grid>
 </Window>
 
 ```
 
+`newfbin.Wpf.Entity.MyData.cs`
 
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace newfbin.Wpf.Entity
+{
+    class MyData
+    {
+        //第一种绑定方式用到的字段
+        private string colorName = "Red";
+
+        //第二种绑定方式用到的字段
+        private string titel;
+
+        public string ColorName
+        {
+            get => colorName; set => colorName = value;
+        }
+        public string Titel { get => titel; set => titel = value; }
+    }
+}
+
+```
+
+`newfbin.Wpf.数据绑定.WindowDataBinding.xaml.cs`
+
+```csharp
+using newfbin.Wpf.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace newfbin.Wpf.数据绑定
+{
+    /// <summary>
+    /// WindowDataBinding.xaml 的交互逻辑
+    /// </summary>
+    public partial class WindowDataBinding : Window
+    {
+        public WindowDataBinding()
+        {
+            InitializeComponent();
+        }
+
+        // 需在WindowDataBinding.xaml 的 Window 标签中添加 Loaded="Window_Loaded"属性。并在该属性上按F12
+        // Loaded="Window_Loaded"表示在程序运行起来后，窗口被加载的时候该方法才会被触发
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //第二种数据绑定方式
+            myLable.DataContext = new MyData() { Titel = "我是个标题" };
+        }
+    }
+}
+
+```
+
+**两种绑定方式的效果如下**：
+
+![image-20250227090151343](./assets/WPF入门/image-20250227090151343.png)
 
 ### 创建自定义路由
 
