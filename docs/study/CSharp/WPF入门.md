@@ -658,12 +658,15 @@ private void Button_Click(object sender, RoutedEventArgs e)
 
 ```xml
    <!--
-            1.只有控件继承了FrameworkElement 都有ToolTip属性
+            1.只要控件继承了FrameworkElement 都有ToolTip属性
             2. 如果ToolTip标签单独使用 需要嵌入元素的ToolTip属性内
         -->
         <Label HorizontalAlignment="Left" FontSize="20">我是个label
             <Label.ToolTip>
+                <!-- 这里对应了上面注释中的的第二点：ToolTip标签单独使用 需要嵌入元素的ToolTip属性内 -->
                 <ToolTip >
+                    <!-- 如果要在ToolTip中添加多个标签，需要在这多个标签外包裹一个布局空间
+ 					这里包裹的布局空间是 Grid，其它布局控件也是可以的-->
                     <Grid>
                         <TextBlock>1000000001.</TextBlock>
                         <TextBlock>1000000002.</TextBlock>
@@ -830,22 +833,26 @@ private void Button_Click(object sender, RoutedEventArgs e)
 
 ```xml
 <!--
-         1.如果内容需要跟Expander宽高保持一致 我们需要设置水平和垂直方向的排列 需要设置为非拉伸的状态
-        
-         2.若要使控件Expander正常工作，
-         ExpandDirection设置为Down或Up时，我们不能设置它的高度。
-         ExpandDirection设置为Left或Right时，我们不能设置它的宽度。
-        -->
-        
-        <Expander Header="折叠框" FontSize="18" Foreground="Blue" IsExpanded="True" 
-                  BorderThickness="1" BorderBrush="Green"  ExpandDirection="Down" 
-                 VerticalAlignment="Top" HorizontalAlignment="Center" Height="100">
-            <StackPanel Orientation="Vertical">
-                <CheckBox FontSize="18">C#</CheckBox>
-                <CheckBox FontSize="18">JAVA</CheckBox>
-                <CheckBox FontSize="18">C++</CheckBox>
-            </StackPanel>
-        </Expander>
+ 1.如果内容需要跟Expander宽高保持一致 我们需要设置水平和垂直方向的排列 需要设置为非拉伸的状态
+
+ 2.若要使控件Expander正常工作，
+ ExpandDirection设置为Down或Up时，我们不能设置它的高度。（否则当框收缩展开时，Expander标签大小都不会改变）
+ ExpandDirection设置为Left或Right时，我们不能设置它的宽度。
+
+3.HorizontalAlignment 和 VerticalAlignment 这两个属性默认为拉伸（Stretch）状态，即水平方向和垂直方向都会拉到最大
+这两个属性为Stretch时，框展开折叠都不会影响 Expander 标签的大小
+将这两个属性改为Stretch外的任意属性都能让 Expander 标签的大小随搜索框展开折叠变化
+-->
+
+<Expander Header="折叠框" FontSize="18" Foreground="Blue" IsExpanded="True" 
+          BorderThickness="1" BorderBrush="Green"  ExpandDirection="Down" 
+         VerticalAlignment="Top" HorizontalAlignment="Center" Height="100">
+    <StackPanel Orientation="Vertical">
+        <CheckBox FontSize="18">C#</CheckBox>
+        <CheckBox FontSize="18">JAVA</CheckBox>
+        <CheckBox FontSize="18">C++</CheckBox>
+    </StackPanel>
+</Expander>
 ```
 
 
@@ -855,7 +862,7 @@ private void Button_Click(object sender, RoutedEventArgs e)
 ![file](./assets/WPF入门/5acc588a6ea540d0982400e52696bb1ctplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 ```xml
-        <Button Click="Button_Click" Content="调往百度" HorizontalAlignment="Left" Margin="230,27,0,0" VerticalAlignment="Top"/>
+        <Button Click="Button_Click" Content="tiao'wang" HorizontalAlignment="Left" Margin="230,27,0,0" VerticalAlignment="Top"/>
 
         <Frame Name="myFrame" Source="https://fanyi.baidu.com/"
                VerticalAlignment="Top" HorizontalAlignment="Center"
