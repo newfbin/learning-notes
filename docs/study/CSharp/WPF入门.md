@@ -1,15 +1,12 @@
 > 原文地址：https://juejin.cn/post/7108295598054309919
+>
 > 视频地址：https://www.bilibili.com/video/BV1iY411w7zD
 
 ![image-20250225200245917](./assets/WPF入门/image-20250225200245917.png)
 
 # 
 
-[视频相关链接:https://www.bilibili.com/video/BV1iY411w7zD](https://www.bilibili.com/video/BV1iY411w7zD)
-
-Windows Presentation Foundation (简称 WPF)
-
-# WPF的概述：
+### WPF的概述：
 
 WPF 的核心是一个与分辨率无关且基于矢量的呈现引擎，旨在充分利用现代图形硬件。 WPF 通过一套完善的应用程序开发功能对该核心进行了扩展，这些功能包括可扩展应用程序标记语言 (XAML)、控件、数据绑定、布局、二维和三维图形、动画、样式、模板、文档、媒体、文本和版式。 WPF 属于 .NET，因此可以生成整合 .NET API 其他元素的应用程序。
 
@@ -1431,29 +1428,25 @@ namespace Ken.Wpf.Commands
 ### ContextMenu的演示代码
 
 ```xml
-        <Label VerticalAlignment="Center" HorizontalAlignment="Center"
-              Content="我是Label" FontSize="30">
+    <Label VerticalAlignment="Center" HorizontalAlignment="Center"
+          Content="我是Label" FontSize="30">
 
-            <Label.ContextMenu>
+        <Label.ContextMenu>
+            <ContextMenu Name="cm1" ItemsSource="{Binding}">
+                <ContextMenu.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Command" Value="{Binding ICommand}"></Setter>
+                    </Style>
+                </ContextMenu.ItemContainerStyle>
+                <ContextMenu.ItemTemplate>
+                    <HierarchicalDataTemplate  DataType="{x:Type et:MenuInfo}" ItemsSource="{Binding SubMenus}">
+                        <TextBlock   Text="{Binding MenuName}"></TextBlock>
+                    </HierarchicalDataTemplate>
+                </ContextMenu.ItemTemplate>
+            </ContextMenu>
 
-                <ContextMenu Name="cm1" ItemsSource="{Binding}">
-
-                    <ContextMenu.ItemContainerStyle>
-                        <Style TargetType="{x:Type MenuItem}">
-                            <Setter Property="Command" Value="{Binding ICommand}"></Setter>
-                        </Style>
-                    </ContextMenu.ItemContainerStyle>
-                    <ContextMenu.ItemTemplate>
-                        <HierarchicalDataTemplate  DataType="{x:Type et:MenuInfo}" ItemsSource="{Binding SubMenus}">
-                            <TextBlock   Text="{Binding MenuName}"></TextBlock>
-                        </HierarchicalDataTemplate>
-                    </ContextMenu.ItemTemplate>
-                </ContextMenu>
-                
-            </Label.ContextMenu>
-            
-            
-        </Label>
+        </Label.ContextMenu>  
+    </Label>
 ```
 ```csharp
 private void Window_Loaded(object sender, RoutedEventArgs e)
