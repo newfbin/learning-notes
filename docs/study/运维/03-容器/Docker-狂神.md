@@ -2989,14 +2989,14 @@ go`指针`
 ## docker配置代理
 
 > docker可以配置镜像源，docker镜像源的弊端是不能使用docker search，docker pull命令也不能拉取不常见的镜像，比如awvs。
-> 因此想要解决上述弊端，只能配置镜像源。
+> 因此想要解决上述弊端，只能配置代理。
 
 docker 的代理设置是一件比较麻烦的事情，很容易出问题，但是弄懂了也还是比较清楚。
 
 首先， docker pull / docker push 和 docker build /docker run 使用代理的方式不一样！
 docker pull /push 的代理被 systemd 接管，所以需要设置 systemd…
 
-### docker pull 拉取 push 推送镜像时设置代理
+### docker pull  push 镜像设置代理
 
 如果没有设置过docker的镜像源，可以忽略这一步。如果设置过镜像源，在/etc/docker/daemon.json中加上官方默认镜像源：
 
