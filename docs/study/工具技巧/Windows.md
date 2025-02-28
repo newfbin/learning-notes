@@ -10,7 +10,7 @@ java -jar .\user-center-backend-0.0.1-SNAPSHOT.jar --server.port=8081
 
 要查找8080端口的pid号，那么在终端中输入netstat -ano | findstr 8080,找到LISTENING那一行，即可看到8080端口号的pid号为28808
 
-![image.png](./assets/Window/142eed77e01d4b3c9e3e790208b417edtplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![image.png](./assets/Windows/142eed77e01d4b3c9e3e790208b417edtplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 步骤3：通过pid号，杀死指定端口号的进程，释放端口
 
@@ -18,11 +18,11 @@ java -jar .\user-center-backend-0.0.1-SNAPSHOT.jar --server.port=8081
 
 终端中输入taskkill /f /pid 28808，按下回车，即可杀死进程，释放端口。
 
-![image.png](./assets/Window/9578f2bddad446458d01208af16a3d2atplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![image.png](./assets/Windows/9578f2bddad446458d01208af16a3d2atplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 除了通过taskkill /f /pid 28808命令杀死进程，我们还可以打开任务管理器，点击详细信息,找到指定pid的进程，点击结束任务，即可即可杀死进程，释放端口。
 
-![image.png](./assets/Window/36bb83579ac946c08805ce75e751580ftplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![image.png](./assets/Windows/36bb83579ac946c08805ce75e751580ftplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 > TCP    0.0.0.0:1099           0.0.0.0:0              LISTENING       5852  
 > TCP    [::]:1099              [::]:0                 LISTENING       5852 
@@ -49,16 +49,16 @@ Typora字数过多的时候造成卡顿现象如何解决？
 
 **方法1：在NVIDIA控制面板中配置typora，可以加速它渲染，这样他的字体就可以加速渲染，不至于太卡。**
 
-![image-20240328054116346.png](./assets/Window/f28a6789b3d28209327bffcd570576cb.png)
-![8ad3b79e61803914f82b2cc9f34b9279.png](./assets/Window/8fc8aa97db22294227f1dcd566e32786.png)
+![image-20240328054116346.png](./assets/Windows/f28a6789b3d28209327bffcd570576cb.png)
+![8ad3b79e61803914f82b2cc9f34b9279.png](./assets/Windows/8fc8aa97db22294227f1dcd566e32786.png)
 
 **2、方法二：禁用GPU，直接不给它渲染**
 
 typora --> 文件 --> 偏好设置 --> 通用 --> 打开高级设置
 
-![image-20240328055402331.png](./assets/Window/7d59a6bcd869c422e75563b2c3d0e842.png)
+![image-20240328055402331.png](./assets/Windows/7d59a6bcd869c422e75563b2c3d0e842.png)
 
-![903d542fa6c280b1937dde16bc3683a8.png](./assets/Window/3e9b2f6c92ccb9b0505636c1f9827075.png)
+![903d542fa6c280b1937dde16bc3683a8.png](./assets/Windows/3e9b2f6c92ccb9b0505636c1f9827075.png)
 
 打开该json文件，有个"flags"健，原来值为空
 
@@ -90,25 +90,25 @@ typora --> 文件 --> 偏好设置 --> 通用 --> 打开高级设置
 
 > 1.在bat文件所在目录运行cmd
 
-![image-20240919135311234](./assets/Window/image-20240919135311234.png)
+![image-20240919135311234](./assets/Windows/image-20240919135311234.png)
 
 > 输入bat文件的名字，运行bat文件。此时便不会闪退，并能够看到完整的错误信息
 
-![image-20240919135518305](./assets/Window/image-20240919135518305.png)
+![image-20240919135518305](./assets/Windows/image-20240919135518305.png)
 
 ### 控制台使用java命令运行程序，输出乱码
 
 使用java命令执行Main.class
 
-![image-20241224221932507](./assets/Window/image-20241224221932507.png)
+![image-20241224221932507](./assets/Windows/image-20241224221932507.png)
 
 出现中文乱码
 
-![image-20241224222534006](./assets/Window/image-20241224222534006.png)
+![image-20241224222534006](./assets/Windows/image-20241224222534006.png)
 
 加上-Dfile.encoding=UTF-8之后，乱码问题解决
 
-![image-20241224222621786](./assets/Window/image-20241224222621786.png)
+![image-20241224222621786](./assets/Windows/image-20241224222621786.png)
 
 在命令行中运行Java程序，可以通过指定`-Dfile.encoding=UTF-8`参数来设置文件编码。例如：
 
@@ -138,7 +138,7 @@ java -Dfile.encoding=UTF-8 -cp . Main
 npm config get registry
 ```
 
-![img](./assets/Window/798214-20190422224337416-1338236088.png)
+![img](./assets/Windows/798214-20190422224337416-1338236088.png)
 
 或
 
@@ -146,7 +146,7 @@ npm config get registry
 npm config list
 ```
 
-![img](./assets/Window/798214-20190422224315882-669715731.png)
+![img](./assets/Windows/798214-20190422224315882-669715731.png)
 
 https://registry.npmjs.org/国外的节点
 
@@ -162,7 +162,7 @@ https://registry.npmjs.org/国外的节点
 npm --registry https://registry.npmmirror.com info underscore 
 ```
 
-![img](./assets/Window/798214-20190422225149617-936430460.png)
+![img](./assets/Windows/798214-20190422225149617-936430460.png)
 
 说明：
 
@@ -182,13 +182,13 @@ npm config set registry https://registry.npmmirror.com
 
 查看
 
-![image-20240919160349168](./assets/Window/image-20240919160349168.png)
+![image-20240919160349168](./assets/Windows/image-20240919160349168.png)
 
 ```
 npm info underscore
 ```
 
-![img](./assets/Window/798214-20190422225233914-371345377.png)
+![img](./assets/Windows/798214-20190422225233914-371345377.png)
 
 3.通过cnpm使用
 
@@ -204,7 +204,7 @@ npm install -g cnpm --registry=https://registry.npmmirror.com
 npm info underscore
 ```
 
- ![img](./assets/Window/798214-20190422225736328-2054337309.png)
+ ![img](./assets/Windows/798214-20190422225736328-2054337309.png)
 
 ```
 cnpm install xxx
@@ -214,7 +214,7 @@ eg:
 
 　　cnpm install express
 
-![img](./assets/Window/798214-20190422225930842-1026590741.png)
+![img](./assets/Windows/798214-20190422225930842-1026590741.png)
 
  修改了镜像源，安装就非常快了
 
@@ -228,7 +228,7 @@ vue create [projectName]
 ```
 
 首次创建的时候，会让你选择创建工具，yarn和npm其中一个
-![在这里插入图片描述](./assets/Window/cfb90726341e77ac78f862eb63480647.png)
+![在这里插入图片描述](./assets/Windows/cfb90726341e77ac78f862eb63480647.png)
 如果你选择了 Use Yarn，那么会保存一个配置文件在C盘的用户目录下，比如我的C:\Users\Administrator\下会有一个文件.vuerc
 你选择创建工具后，会将选择的参数保存在.vuerc中。如果我们想更改创建工具，那就修改.vuerc文件。
 
@@ -260,7 +260,7 @@ $  yarn config  set global-folder"D:\tools\yarn\Data\global"
 
 然后你会在你的用户目录找到 `.yarnrc` 的文件，打开它，找到 `global-folder` ，改为 `--global-folder`
 
-![image-20241224002256268](./assets/Window/image-20241224002256268.png)
+![image-20241224002256268](./assets/Windows/image-20241224002256268.png)
 
 **2.改变 yarn 缓存位置**
 
@@ -299,7 +299,7 @@ $ yarn cache dir
 
 已下载IDEA，但是右键打开之前保存的项目文件，无法显示以IDEA方式打开。
 
-![img](./assets/Window/be3a8be947372c29de379dedf11df73b.png)
+![img](./assets/Windows/be3a8be947372c29de379dedf11df73b.png)
 
 **二、解决步骤**
 
@@ -307,28 +307,28 @@ $ yarn cache dir
 
 win+R键输入**regedit**
 
-![img](./assets/Window/473888dc930e40586e5e96a64c4bc3fd.png)
+![img](./assets/Windows/473888dc930e40586e5e96a64c4bc3fd.png)
 
  2、查找路径为**计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell**
 
 （我找了半天没看到Classes,建议直接粘贴粗体路径，回车就能定位到该路径下了）
 
-![img](./assets/Window/7a3fe4eef2db9db36af4257d01415034.png)
+![img](./assets/Windows/7a3fe4eef2db9db36af4257d01415034.png)
 
 3、 右键shell，新建-项(K)，将新建的项文件名改为**JB_IDEA**
 
 > JB全家桶的项文件名 建议都命名为 JB_xxx 的格式，这样JB全家桶的右键菜单选项都会集中在一起.
 > 如果不按照JB_xxx的格式命名，各个软件的命名将不统一，右键菜单选项将会过于分散。
 >
-> ![image-20250108121832419](./assets/Window/image-20250108121832419.png)
+> ![image-20250108121832419](./assets/Windows/image-20250108121832419.png)
 
-![image-20250108122004597](./assets/Window/image-20250108122004597.png)
+![image-20250108122004597](./assets/Windows/image-20250108122004597.png)
 
 4、选中上一步新建的项IDEA，右键-新建-字符串值（S)，并改名为Icon
 
-![image-20250108122031581](./assets/Window/image-20250108122031581.png)
+![image-20250108122031581](./assets/Windows/image-20250108122031581.png)
 
-![image-20250108122119750](./assets/Window/image-20250108122119750.png)
+![image-20250108122119750](./assets/Windows/image-20250108122119750.png)
 
  5、修改“(默认)”的数据和“Icon”的数据
 
@@ -336,13 +336,13 @@ win+R键输入**regedit**
 
 第二行“Icon”的数据是安装idea64.exe的路径,可以右键桌面的IDEA查询属性，在“目标”处查到该安装路径，如下图，将该路径粘贴到Icon的数值数据处
 
-![img](./assets/Window/41e28e070bebd1a10e4c359858561b45.png)
+![img](./assets/Windows/41e28e070bebd1a10e4c359858561b45.png)
 
-![image-20250108122210560](./assets/Window/image-20250108122210560.png)
+![image-20250108122210560](./assets/Windows/image-20250108122210560.png)
 
  6、添加 command 项,并添加值，数据为**"第5步的idea64.exe的路径""%1"**
 
-![image-20250108122246493](./assets/Window/image-20250108122246493.png)
+![image-20250108122246493](./assets/Windows/image-20250108122246493.png)
 
 **设置右键文件夹背景空白处打开 IDEA**
 
@@ -354,7 +354,7 @@ win+R键输入**regedit**
 
 ### win11 选择一个应用以打开此xxx文件 里面有许多已经卸载的程序(如qt)
 
-![image-20241104211536843](./assets/Window/image-20241104211536843.png)
+![image-20241104211536843](./assets/Windows/image-20241104211536843.png)
 
 原因是程序没有卸载干净
 打开注册表编辑器，之前我是qt没有卸载干净，打开方式里有很多xxx/xxx/qtcreator
@@ -362,7 +362,7 @@ ctrl+f，搜索，把包含qtcreator的项和文件夹全部删掉
 
 删除之后问题解决：
 
-![image-20241104212259022](./assets/Window/image-20241104212259022.png)
+![image-20241104212259022](./assets/Windows/image-20241104212259022.png)
 
 ### win更改磁盘大小，重新分配磁盘空间
 
@@ -372,7 +372,7 @@ ctrl+f，搜索，把包含qtcreator的项和文件夹全部删掉
 
 按Win + X键，选择磁盘管理
 
-![image-20250220162952021](./assets/Window/image-20250220162952021.png)
+![image-20250220162952021](./assets/Windows/image-20250220162952021.png)
 
 #### 使用第三方工具
 
@@ -384,17 +384,17 @@ ctrl+f，搜索，把包含qtcreator的项和文件夹全部删掉
 
 **目录窗口视图**
 
-![img](./assets/Window/1506816-20190626103856364-576972672.png)
+![img](./assets/Windows/1506816-20190626103856364-576972672.png)
 
 ##### 1. 查看目录结构（文件夹）
 
 在当前要操作的文件夹目录下输入命令tree. 此时得到目录下树形的目录结构。默认情况下只显示“文件夹”而不显示文件。
-![img](./assets/Window/1506816-20190626102940619-826840517.png)
+![img](./assets/Windows/1506816-20190626102940619-826840517.png)
 
 ##### 2. 查看目录结构（包括文件）
 
 在tree命令后面加入参数 /f 将以层次的结构显示所有文件夹及文件的名称。
-![img](./assets/Window/1506816-20190626103027559-1968296111.png)
+![img](./assets/Windows/1506816-20190626103027559-1968296111.png)
 
 #### 二、导出目录结构
 
@@ -415,7 +415,7 @@ tree /f >darknetf.txt
 
 3.使用第三方工具：使用第三方工具如 Notepad++ 等编辑器打开 BAT 脚本，在其中添加中文输出，然后保存为 UTF-8 编码格式并运行。
 
-通过以上方法，您可以在 Windows 中正确输出中文，避免乱码问题。
+通过以上方法，您可以在 Windowss 中正确输出中文，避免乱码问题。
 
 示例内容：
 
@@ -441,9 +441,9 @@ echo 大小不等
 
 由于贝瑞蒲公英免费版每个账号只有三个组网名额，因此在组网人数小于等于3时可以参考此教程，实现免费组网。
 
-![image-20250103174009241](./assets/Window/image-20250103174009241-1735897603056-1.png)
+![image-20250103174009241](./assets/Windows/image-20250103174009241-1735897603056-1.png)
 
-![image-20250103174056772](./assets/Window/image-20250103174056772-1735897603056-2.png)
+![image-20250103174056772](./assets/Windows/image-20250103174056772-1735897603056-2.png)
 
 ##### 如何分辨p2p游戏
 
@@ -453,89 +453,89 @@ echo 大小不等
 
 在需要组网的人中，**"组网发起者"**在贝锐蒲公英官网（https://pgy.oray.com/）注册一个账号。注册完成后将自动进入**管理平台**界面：
 
-![image-20250103170115120](./assets/Window/image-20250103170115120-1735897603056-3.png)
+![image-20250103170115120](./assets/Windows/image-20250103170115120-1735897603056-3.png)
 
 每次注册或登录后都会自动进入**管理平台**界面。
 若不想通过注册和登录的方式进入**管理平台**界面，需要在贝锐蒲公英官网（https://pgy.oray.com/）网页的头部，找到“管理平台”并进入。如下图：
 
-![image-20250103170743188](./assets/Window/image-20250103170743188-1735897603056-4.png)
+![image-20250103170743188](./assets/Windows/image-20250103170743188-1735897603056-4.png)
 
 #### 2.下载客户端：蒲公英游戏版
 
 在贝锐蒲公英官网（https://pgy.oray.com/）首页的顶部，点击“个人”，再点击“联机游戏”，如下图：
-![image-20250103170912590](./assets/Window/image-20250103170912590-1735897603056-5.png)
+![image-20250103170912590](./assets/Windows/image-20250103170912590-1735897603056-5.png)
 
 随后在跳转到的页面中，选择对应的版本下载即可：
-![image-20240711204634871](./assets/Window/image-20240711204634871-1735897603056-6.png)
+![image-20240711204634871](./assets/Windows/image-20240711204634871-1735897603056-6.png)
 
 #### 3.组网发起者修改密码
 
 **"组网发起者"**（即注册者）进入**贝锐官网（https://www.oray.com/）**（注意：与贝锐蒲公英官网网址不同），点击右上角头像，点击“账号管理”：
 
-![image-20250103171116001](./assets/Window/image-20250103171116001-1735897603056-7.png)
+![image-20250103171116001](./assets/Windows/image-20250103171116001-1735897603056-7.png)
 
 在新页面中，点击“账号密码”旁边的“设置”：
 
-![image-20250103171433976](./assets/Window/image-20250103171433976-1735897603056-8.png)
+![image-20250103171433976](./assets/Windows/image-20250103171433976-1735897603056-8.png)
 
 在新页面中进行验证码验证：
 
-![image-20250103171346227](./assets/Window/image-20250103171346227-1735897603056-9.png)
+![image-20250103171346227](./assets/Windows/image-20250103171346227-1735897603056-9.png)
 
 在新页面中设置密码：
 
 > 在下文中将此处设置的密码称为**公共密码**，后面会将公共密码分享给所有要组网的人。
 > **"组网发起者"切记不要将该密码设置为自己常用的密码**。
 
-![image-20240711205755738](./assets/Window/image-20240711205755738-1735897603057-10.png)
+![image-20240711205755738](./assets/Windows/image-20240711205755738-1735897603057-10.png)
 
 #### 4.组网参与者登录"组网发起者"的账号：
 
 首先**"组网发起者"**进入**贝瑞蒲公英管理平台**中，自己的账号复制下来
 
-![image-20250103171957546](./assets/Window/image-20250103171957546-1735897603057-11.png)
+![image-20250103171957546](./assets/Windows/image-20250103171957546-1735897603057-11.png)
 
 将这个**账号**和**公共密码**发送给所有要参与组网的人，然后**每个人都在蒲公英游戏版中输入"组网发起者"的账号和公共密码** ：
 
-![image-20240711210501205](./assets/Window/image-20240711210501205-1735897603057-12.png)
+![image-20240711210501205](./assets/Windows/image-20240711210501205-1735897603057-12.png)
 
 登陆成功后，每个人都可以看到与自己组网的成员。
 
-![image-20240711210717190](./assets/Window/image-20240711210717190-1735897603057-13.png)
+![image-20240711210717190](./assets/Windows/image-20240711210717190-1735897603057-13.png)
 
 双击自己之外的成员，可以ping这个成员。但是此时是ping不通的，会出现如下结果：
 
-![image-20240711211118779](./assets/Window/image-20240711211118779-1735897603057-14.png)
+![image-20240711211118779](./assets/Windows/image-20240711211118779-1735897603057-14.png)
 
 #### 5.解决成员之间不能ping通的方法：关闭防火墙
 
 接下来需要关闭**所有组网成员**的防火墙，首先点击下图所示位置：
 
-![image-20250103172253201](./assets/Window/image-20250103172253201-1735897603057-15.png)
+![image-20250103172253201](./assets/Windows/image-20250103172253201-1735897603057-15.png)
 
-在展开的任务中，点击**Windows安全中心**图标：
+在展开的任务中，点击**Windowss安全中心**图标：
 
-![image-20250103172347565](./assets/Window/image-20250103172347565-1735897603057-16.png)
+![image-20250103172347565](./assets/Windows/image-20250103172347565-1735897603057-16.png)
 
-在Windows安全中心中，点击**防火墙和网络保护**
+在Windowss安全中心中，点击**防火墙和网络保护**
 
-![image-20250103172432104](./assets/Window/image-20250103172432104-1735897603057-17.png)
+![image-20250103172432104](./assets/Windows/image-20250103172432104-1735897603057-17.png)
 
 点击**公用网络**
 
-![image-20250103172459543](./assets/Window/image-20250103172459543-1735897603057-18.png)
+![image-20250103172459543](./assets/Windows/image-20250103172459543-1735897603057-18.png)
 
 关闭防火墙（所有组网成员都要关闭）：
 
-![image-20250103172617249](./assets/Window/image-20250103172617249-1735897603057-19.png)
+![image-20250103172617249](./assets/Windows/image-20250103172617249-1735897603057-19.png)
 
 所有人都关闭防火墙之后，再尝试在蒲公英游戏版中ping其他成员：
 
-![IMG_20240711_213324](./assets/Window/IMG_20240711_213324-1735897603057-20.png)
+![IMG_20240711_213324](./assets/Windows/IMG_20240711_213324-1735897603057-20.png)
 
 得到该成员的回复，说明ping通了。当所有成员之间都能ping通时，就可以进行p2p游戏、局域网游戏、或者访问成员的电脑上的内容：
 
-![image-20240711213424183](./assets/Window/image-20240711213424183.png)
+![image-20240711213424183](./assets/Windows/image-20240711213424183.png)
 
 ### 将网页制作为chm文件
 
@@ -549,53 +549,53 @@ echo 大小不等
 
 由于上面的网页需要外网才能访问，所以需要现在Teleport Ultra中配置代理。
 
-![image-20250120220558703](./assets/Window/image-20250120220558703.png)
+![image-20250120220558703](./assets/Windows/image-20250120220558703.png)
 
-![image-20250120220621578](./assets/Window/image-20250120220621578.png)
+![image-20250120220621578](./assets/Windows/image-20250120220621578.png)
 
 先利用第一个软件将网页全部现在下来。步骤如下：
 
 首先选择新建项目向导
 
-![image-20250120170050689](./assets/Window/image-20250120170050689.png)
+![image-20250120170050689](./assets/Windows/image-20250120170050689.png)
 
 然后，弹出对话框，我们选择第二项"复制一个网站，包含该网站的目录结构"，然后单击"下一步"。
 
-![image-20250120170134656](./assets/Window/image-20250120170134656.png)
+![image-20250120170134656](./assets/Windows/image-20250120170134656.png)
 
 然后，我们输入地址:http://www.w3school.com.cn，链接层数默认3层即可，单击"下一步"。
 
-![image-20250120170217663](./assets/Window/image-20250120170217663.png)
+![image-20250120170217663](./assets/Windows/image-20250120170217663.png)
 
 然后选择第四项"所有文件"，因为这个网站不用注册用户，所以下面的用户名和密码留空即可，单击"下一步"。
 
-![image-20250120170230650](./assets/Window/image-20250120170230650.png)
+![image-20250120170230650](./assets/Windows/image-20250120170230650.png)
 
 此时，向导对话框提示恭喜！，项目就已经创建好了，单击"完成"按钮，左边栏里面会出现我们建好的项目。
 
-![image-20250120170247364](./assets/Window/image-20250120170247364.png)
+![image-20250120170247364](./assets/Windows/image-20250120170247364.png)
 
 这时候，系统会弹出对话框询问我们项目保存在哪里，此时自己新建一个文件夹用于保存要下载的网页文件和项目即可。项目格式为.tpu和这个文件同目录下会建立一个和项目同名的文件夹，具体文件会保存在这个文件夹内。
 
-![image-20250120170302606](./assets/Window/image-20250120170302606.png)
+![image-20250120170302606](./assets/Windows/image-20250120170302606.png)
 
 好了，现在我们单击工具栏中蓝色三角符号的运行按钮，项目就开始下载了，这个时候会从我们指定的网站下载所有的页面到本地。
 
-![image-20250120165931176](./assets/Window/image-20250120165931176.png)
+![image-20250120165931176](./assets/Windows/image-20250120165931176.png)
 
 这时候我们需要耐心等待下载完毕即可，如果我们下载了一部分不想继续下载了，我们可以单击工具栏的方框，方框背景为白色，这个是"停止"按钮。
 
-![image-20250120165914641](./assets/Window/image-20250120165914641.png)
+![image-20250120165914641](./assets/Windows/image-20250120165914641.png)
 
 停止后，系统弹出提示，一共下载了多少文件，这些文件已经保存到我们本地，我们单击"确定"。
 
-![image-20250120165856016](./assets/Window/image-20250120165856016.png)
+![image-20250120165856016](./assets/Windows/image-20250120165856016.png)
 
 这个时候我们打开相应的文件夹，会找到很多网页文件，可以用浏览器打开index.htm看一下首页，如下图所示:
 
-![image-20250120170547916](./assets/Window/image-20250120170547916.png)
+![image-20250120170547916](./assets/Windows/image-20250120170547916.png)
 
-![image-20250120170601829](./assets/Window/image-20250120170601829.png)
+![image-20250120170601829](./assets/Windows/image-20250120170601829.png)
 
 #### 2. EasyCHM编译.CHM文件（暂未成功，有中文乱码、脚本不能执行、样式和网页样式不一样的问题）
 
@@ -603,42 +603,42 @@ echo 大小不等
 
 下载好Easy CHM后，我们安装好双击打开，打开主界面后单击工具栏的新建按钮，新建一个项目。
 
-![image-20250120170907554](./assets/Window/image-20250120170907554.png)
+![image-20250120170907554](./assets/Windows/image-20250120170907554.png)
 
 这时候弹出窗口，询问我们要编译的文件位置，我们选好刚才下载下来的项目文件夹下的 `qufei1993` 文件夹即可，单击"确定"按钮。
 
-![image-20250120171756363](./assets/Window/image-20250120171756363.png)
+![image-20250120171756363](./assets/Windows/image-20250120171756363.png)
 
  这时候会让我们指定新工程目录，根据需要自己选择就行了，然后文件类型下拉菜单要选择 `*.*` 意思是所有格式的文件，然后包括所有的子目录前面打上勾，单击"确定"按钮。
 
-![image-20250120171939667](./assets/Window/image-20250120171939667.png)
+![image-20250120171939667](./assets/Windows/image-20250120171939667.png)
 
  然后会搜索文件，搜索完毕后，可以查看源文件和预览，也可以看到网站结构，确认无误后，我们单击"编译"按钮。
 
-![img](./assets/Window/Center-1737361773278-71.png)
+![img](./assets/Windows/Center-1737361773278-71.png)
 
 然后弹出对话框，我们设置好CHM的标题，其他默认就可以，如果需要我们首先单击"CHM设置"，设置完毕后单击"应用"按钮，都确认好了，单击"生成CHM"按钮即可开始生成。看下图:
 
-![img](./assets/Window/Center-1737361773278-72.png)
+![img](./assets/Windows/Center-1737361773278-72.png)
 
 我们耐心等待文件输出完毕，然后保存项目并关闭Easy CHM后打开我们刚才编译好的CHM文件目录，双击打开www.w3school.com.cn.CHM文件，就可以查看啦。
 
-![img](./assets/Window/Center-1737361773278-73.png)
+![img](./assets/Windows/Center-1737361773278-73.png)
 
-![img](./assets/Window/Center-1737361773278-74.png)
+![img](./assets/Windows/Center-1737361773278-74.png)
 
 到这里我们的.CHM文件就制作完毕了，过程虽然有点长，但实际很简单，可以如果有好的网站教程想要离线查看可以试一试。
 
 ### 浏览器中在线代码编辑器光标错位
 
-![image-20250219103931590](./assets/Window/image-20250219103931590.png)
+![image-20250219103931590](./assets/Windows/image-20250219103931590.png)
 
 关闭所有浏览器插件后，再逐个打开浏览器插件。最终排查到该现象产生是因为这个浏览器插件。
 将该插件关闭后问题解决。
 
-![image-20250219104030810](./assets/Window/image-20250219104030810.png)
+![image-20250219104030810](./assets/Windows/image-20250219104030810.png)
 
-![image-20250219105504963](./assets/Window/image-20250219105504963.png)
+![image-20250219105504963](./assets/Windows/image-20250219105504963.png)
 
 ### 浏览器快捷翻译
 
