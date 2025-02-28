@@ -38,6 +38,22 @@ shift+F3可快速实现大小写切换
 
 4，被治愈了。
 
+## 为Word中的公式添加编号
+
+1、word中发现公式插入后，在**公式框**右侧后边输入**编号（#编号 或者 #(编号)）**，点击回车键。
+
+![img](./assets/Office/1a5dff47240032fdff6b448c6112f2dafd11abb7.png@884w_362h.webp)
+
+![image-20250228103346545](./assets/Office/image-20250228103346545.png)
+
+
+
+2、公式编号添加成功，编号自动在**右侧对齐**，后续添加时依次重复上面操作。
+
+![img](./assets/Office/c2d0e4888a1639e64f2ae8b062c37a998a276e44.png@1192w.webp)
+
+![image-20250228103420182](./assets/Office/image-20250228103420182.png)
+
 # Excel
 
 
