@@ -1,12 +1,14 @@
 
 
-### 控制台运行jar包
+## 系统问题
+
+### win 控制台运行jar包
 
 ```shell
 java -jar .\user-center-backend-0.0.1-SNAPSHOT.jar --server.port=8081
 ```
 
-### 查找端口号并删除进程
+### win 查找端口号并删除进程
 
 要查找8080端口的pid号，那么在终端中输入netstat -ano | findstr 8080,找到LISTENING那一行，即可看到8080端口号的pid号为28808
 
@@ -36,6 +38,182 @@ java -jar .\user-center-backend-0.0.1-SNAPSHOT.jar --server.port=8081
 
 
 ---
+
+### win11 选择一个应用以打开此xxx文件 里面有许多已经卸载的程序(如qt)
+
+![image-20241104211536843](./assets/Windows/image-20241104211536843.png)
+
+原因是程序没有卸载干净
+打开注册表编辑器，之前我是qt没有卸载干净，打开方式里有很多xxx/xxx/qtcreator
+ctrl+f，搜索，把包含qtcreator的项和文件夹全部删掉
+
+删除之后问题解决：
+
+![image-20241104212259022](./assets/Windows/image-20241104212259022.png)
+
+### win更改磁盘大小，重新分配磁盘空间
+
+#### 系统自带磁盘管理
+
+> 缺点：功能单一
+
+按Win + X键，选择磁盘管理
+
+![image-20250220162952021](./assets/Windows/image-20250220162952021.png)
+
+#### 使用第三方工具
+
+可使用的工具有 “傲梅分区助手” “DiskGenius（未使用）”，均为免费强大的磁盘管理工具
+
+### win 查看及导出目录结构
+
+#### 一、查看目录结构
+
+**目录窗口视图**
+
+![img](./assets/Windows/1506816-20190626103856364-576972672.png)
+
+##### 1. 查看目录结构（文件夹）
+
+在当前要操作的文件夹目录下输入命令tree. 此时得到目录下树形的目录结构。默认情况下只显示“文件夹”而不显示文件。
+![img](./assets/Windows/1506816-20190626102940619-826840517.png)
+
+##### 2. 查看目录结构（包括文件）
+
+在tree命令后面加入参数 /f 将以层次的结构显示所有文件夹及文件的名称。
+![img](./assets/Windows/1506816-20190626103027559-1968296111.png)
+
+#### 二、导出目录结构
+
+将当前文件夹树形结构写入xxx.txt中
+
+```powershell
+tree /f >darknet.txt
+保存的树形结构，只含有文件夹
+tree /f >darknetf.txt
+保存的树形结构，包含文件夹和文件
+```
+
+### win bat文本echo显示中文乱码处理方法
+
+1.使用 UTF-8 编码：将 BAT 脚本保存为 UTF-8 编码格式，然后在命令行窗口中运行该脚本。
+
+2.设置代码页：在 BAT 脚本开头添加代码页设置命令，例如：chcp 65001，其中 65001 是 UTF-8 的代码页。
+
+3.使用第三方工具：使用第三方工具如 Notepad++ 等编辑器打开 BAT 脚本，在其中添加中文输出，然后保存为 UTF-8 编码格式并运行。
+
+通过以上方法，您可以在 Windowss 中正确输出中文，避免乱码问题。
+
+示例内容：
+
+```shell
+chcp 65001
+@echo off
+if “abc”==“ABC” (
+echo 大小相等
+) else (
+echo 大小不等
+)
+```
+
+### 右键文件夹打开IDEA
+
+**一、问题描述**
+
+已下载IDEA，但是右键打开之前保存的项目文件，无法显示以IDEA方式打开。
+
+![img](./assets/Windows/be3a8be947372c29de379dedf11df73b.png)
+
+**二、解决步骤**
+
+1. 打开注册表
+
+win+R键输入**regedit**
+
+![img](./assets/Windows/473888dc930e40586e5e96a64c4bc3fd.png)
+
+ 2、查找路径为**计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell**
+
+（我找了半天没看到Classes,建议直接粘贴粗体路径，回车就能定位到该路径下了）
+
+![img](./assets/Windows/7a3fe4eef2db9db36af4257d01415034.png)
+
+3、 右键shell，新建-项(K)，将新建的项文件名改为**JB_IDEA**
+
+> JB全家桶的项文件名 建议都命名为 JB_xxx 的格式，这样JB全家桶的右键菜单选项都会集中在一起.
+> 如果不按照JB_xxx的格式命名，各个软件的命名将不统一，右键菜单选项将会过于分散。
+>
+> ![image-20250108121832419](./assets/Windows/image-20250108121832419.png)
+
+![image-20250108122004597](./assets/Windows/image-20250108122004597.png)
+
+4、选中上一步新建的项IDEA，右键-新建-字符串值（S)，并改名为Icon
+
+![image-20250108122031581](./assets/Windows/image-20250108122031581.png)
+
+![image-20250108122119750](./assets/Windows/image-20250108122119750.png)
+
+ 5、修改“(默认)”的数据和“Icon”的数据
+
+第一行“（默认）”的数据可以写**Open Folder as IDEA Project**
+
+第二行“Icon”的数据是安装idea64.exe的路径,可以右键桌面的IDEA查询属性，在“目标”处查到该安装路径，如下图，将该路径粘贴到Icon的数值数据处
+
+![img](./assets/Windows/41e28e070bebd1a10e4c359858561b45.png)
+
+![image-20250108122210560](./assets/Windows/image-20250108122210560.png)
+
+ 6、添加 command 项,并添加值，数据为**"第5步的idea64.exe的路径""%1"**
+
+![image-20250108122246493](./assets/Windows/image-20250108122246493.png)
+
+**设置右键文件夹背景空白处打开 IDEA**
+
+设置和前面类似, 但注册表位置改为 :
+
+```bash
+计算机\HKEY_CLASSES_ROOT\Directory\Background\shell\
+```
+
+### 运行bat文件闪退解决方法
+
+> 1.在bat文件所在目录运行cmd
+
+![image-20240919135311234](./assets/Windows/image-20240919135311234.png)
+
+> 输入bat文件的名字，运行bat文件。此时便不会闪退，并能够看到完整的错误信息
+
+![image-20240919135518305](./assets/Windows/image-20240919135518305.png)
+
+### 控制台使用java命令运行程序，输出乱码
+
+使用java命令执行Main.class
+
+![image-20241224221932507](./assets/Windows/image-20241224221932507.png)
+
+出现中文乱码
+
+![image-20241224222534006](./assets/Windows/image-20241224222534006.png)
+
+加上-Dfile.encoding=UTF-8之后，乱码问题解决
+
+![image-20241224222621786](./assets/Windows/image-20241224222621786.png)
+
+在命令行中运行Java程序，可以通过指定`-Dfile.encoding=UTF-8`参数来设置文件编码。例如：
+
+```bash
+java -Dfile.encoding=UTF-8 -cp . Main
+```
+
+确保使用命令行运行时，控制台也支持UTF-8编码。
+
+> 出现乱码的原因是，命令行终端的编码是 GBK，和 java 代码文件本身的编码 UTF-8 不一致，导致乱码。
+>
+> 也可以通过 `chcp` 命令查看命令行终端编码，GBK 是 936，UTF-8 是 65001。
+>
+> 但是 **不建议** 大家改变终端编码来解决编译乱码，因为其他运行你代码的人也要改变环境，兼容性很差。
+
+## 软件问题
 
 ### Typora 无法打印中文字符
 
@@ -86,45 +264,7 @@ typora --> 文件 --> 偏好设置 --> 通用 --> 打开高级设置
 
 
 
-### 运行bat文件闪退解决方法
-
-> 1.在bat文件所在目录运行cmd
-
-![image-20240919135311234](./assets/Windows/image-20240919135311234.png)
-
-> 输入bat文件的名字，运行bat文件。此时便不会闪退，并能够看到完整的错误信息
-
-![image-20240919135518305](./assets/Windows/image-20240919135518305.png)
-
-### 控制台使用java命令运行程序，输出乱码
-
-使用java命令执行Main.class
-
-![image-20241224221932507](./assets/Windows/image-20241224221932507.png)
-
-出现中文乱码
-
-![image-20241224222534006](./assets/Windows/image-20241224222534006.png)
-
-加上-Dfile.encoding=UTF-8之后，乱码问题解决
-
-![image-20241224222621786](./assets/Windows/image-20241224222621786.png)
-
-在命令行中运行Java程序，可以通过指定`-Dfile.encoding=UTF-8`参数来设置文件编码。例如：
-
-```bash
-java -Dfile.encoding=UTF-8 -cp . Main
-```
-
-确保使用命令行运行时，控制台也支持UTF-8编码。
-
-> 出现乱码的原因是，命令行终端的编码是 GBK，和 java 代码文件本身的编码 UTF-8 不一致，导致乱码。
->
-> 也可以通过 `chcp` 命令查看命令行终端编码，GBK 是 936，UTF-8 是 65001。
->
-> 但是 **不建议** 大家改变终端编码来解决编译乱码，因为其他运行你代码的人也要改变环境，兼容性很差。
-
-### [ npm换源](https://www.cnblogs.com/baby123/p/10753728.html)
+### npm换源
 
 >--淘宝原镜像域名registry.npm.taobao.org于2024年1 月 22 日过期，新域名更换为https://registry.npmmirror.com
 >
@@ -292,142 +432,6 @@ $ yarn cache dir
 ```
 
 
-
-### 右键文件夹打开IDEA
-
-**一、问题描述**
-
-已下载IDEA，但是右键打开之前保存的项目文件，无法显示以IDEA方式打开。
-
-![img](./assets/Windows/be3a8be947372c29de379dedf11df73b.png)
-
-**二、解决步骤**
-
-1. 打开注册表
-
-win+R键输入**regedit**
-
-![img](./assets/Windows/473888dc930e40586e5e96a64c4bc3fd.png)
-
- 2、查找路径为**计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell**
-
-（我找了半天没看到Classes,建议直接粘贴粗体路径，回车就能定位到该路径下了）
-
-![img](./assets/Windows/7a3fe4eef2db9db36af4257d01415034.png)
-
-3、 右键shell，新建-项(K)，将新建的项文件名改为**JB_IDEA**
-
-> JB全家桶的项文件名 建议都命名为 JB_xxx 的格式，这样JB全家桶的右键菜单选项都会集中在一起.
-> 如果不按照JB_xxx的格式命名，各个软件的命名将不统一，右键菜单选项将会过于分散。
->
-> ![image-20250108121832419](./assets/Windows/image-20250108121832419.png)
-
-![image-20250108122004597](./assets/Windows/image-20250108122004597.png)
-
-4、选中上一步新建的项IDEA，右键-新建-字符串值（S)，并改名为Icon
-
-![image-20250108122031581](./assets/Windows/image-20250108122031581.png)
-
-![image-20250108122119750](./assets/Windows/image-20250108122119750.png)
-
- 5、修改“(默认)”的数据和“Icon”的数据
-
-第一行“（默认）”的数据可以写**Open Folder as IDEA Project**
-
-第二行“Icon”的数据是安装idea64.exe的路径,可以右键桌面的IDEA查询属性，在“目标”处查到该安装路径，如下图，将该路径粘贴到Icon的数值数据处
-
-![img](./assets/Windows/41e28e070bebd1a10e4c359858561b45.png)
-
-![image-20250108122210560](./assets/Windows/image-20250108122210560.png)
-
- 6、添加 command 项,并添加值，数据为**"第5步的idea64.exe的路径""%1"**
-
-![image-20250108122246493](./assets/Windows/image-20250108122246493.png)
-
-**设置右键文件夹背景空白处打开 IDEA**
-
-设置和前面类似, 但注册表位置改为 :
-
-```bash
-计算机\HKEY_CLASSES_ROOT\Directory\Background\shell\
-```
-
-### win11 选择一个应用以打开此xxx文件 里面有许多已经卸载的程序(如qt)
-
-![image-20241104211536843](./assets/Windows/image-20241104211536843.png)
-
-原因是程序没有卸载干净
-打开注册表编辑器，之前我是qt没有卸载干净，打开方式里有很多xxx/xxx/qtcreator
-ctrl+f，搜索，把包含qtcreator的项和文件夹全部删掉
-
-删除之后问题解决：
-
-![image-20241104212259022](./assets/Windows/image-20241104212259022.png)
-
-### win更改磁盘大小，重新分配磁盘空间
-
-#### 系统自带磁盘管理
-
-> 缺点：功能单一
-
-按Win + X键，选择磁盘管理
-
-![image-20250220162952021](./assets/Windows/image-20250220162952021.png)
-
-#### 使用第三方工具
-
-可使用的工具有 “傲梅分区助手” “DiskGenius（未使用）”，均为免费强大的磁盘管理工具
-
-### win 查看及导出目录结构
-
-#### 一、查看目录结构
-
-**目录窗口视图**
-
-![img](./assets/Windows/1506816-20190626103856364-576972672.png)
-
-##### 1. 查看目录结构（文件夹）
-
-在当前要操作的文件夹目录下输入命令tree. 此时得到目录下树形的目录结构。默认情况下只显示“文件夹”而不显示文件。
-![img](./assets/Windows/1506816-20190626102940619-826840517.png)
-
-##### 2. 查看目录结构（包括文件）
-
-在tree命令后面加入参数 /f 将以层次的结构显示所有文件夹及文件的名称。
-![img](./assets/Windows/1506816-20190626103027559-1968296111.png)
-
-#### 二、导出目录结构
-
-将当前文件夹树形结构写入xxx.txt中
-
-```powershell
-tree /f >darknet.txt
-保存的树形结构，只含有文件夹
-tree /f >darknetf.txt
-保存的树形结构，包含文件夹和文件
-```
-
-### win bat文本echo显示中文乱码处理方法
-
-1.使用 UTF-8 编码：将 BAT 脚本保存为 UTF-8 编码格式，然后在命令行窗口中运行该脚本。
-
-2.设置代码页：在 BAT 脚本开头添加代码页设置命令，例如：chcp 65001，其中 65001 是 UTF-8 的代码页。
-
-3.使用第三方工具：使用第三方工具如 Notepad++ 等编辑器打开 BAT 脚本，在其中添加中文输出，然后保存为 UTF-8 编码格式并运行。
-
-通过以上方法，您可以在 Windowss 中正确输出中文，避免乱码问题。
-
-示例内容：
-
-```shell
-chcp 65001
-@echo off
-if “abc”==“ABC” (
-echo 大小相等
-) else (
-echo 大小不等
-)
-```
 
 ### 判断游戏是否为p2p联机
 
