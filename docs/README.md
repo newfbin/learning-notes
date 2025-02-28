@@ -8,9 +8,15 @@ https://newfbin.github.io/learning-notes
 
 首先将该项目Fork到自己的仓库、再在本地使用`git clone` 将自己仓库的项目克隆到本地。
 
+## 项目部署方式
+
+免域名部署：GitHubPage 或 Vercel
+
+具体部署方式请查找网络上的资料
+
 ## 文件夹和文件存放位置
 
-所有md文档，文件夹都存放再study目录中
+所有md文档，文件夹都存放在study目录中
 
 ## 文件夹与文件命名规则
 
@@ -60,7 +66,7 @@ generator.jar的功能为在每个需要的文件夹中自动生成README.md和_
 
 之后再将本地所有的md文档引用的图片的位置按下面的示例更改
 
-在md文档所在文件夹新建一个assets目录，再在assets目录中依次建立与文档名称相同的文件夹
+在md文档所在文件夹新建一个assets目录，再在assets目录中依次建立与文档名称相同的文件夹（忽略README.md和_sidebar.md）
 
 ![image-20250228093349734](./assets/README/image-20250228093349734.png)
 
