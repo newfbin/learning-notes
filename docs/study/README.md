@@ -1,6 +1,6 @@
 #  导读
 
-> [newfbin的学习笔记](https://newfbin.github.io/learning-notes/) ==> https://newfbin.github.io/learning-notes/
+> [newfbin的学习笔记](/study/README)
 
 该项目用于记录个人学习笔记，有部分内容来自图书、博客、论坛等。
 
