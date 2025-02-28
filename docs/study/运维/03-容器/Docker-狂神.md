@@ -3015,6 +3015,8 @@ sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
 
 执行完上述命令后会进入 http-proxy.conf 文件中，接下来在 http-proxy.conf 文件中加入以下配置
 
+> 注意：需要将7890改为自己所使用的代理工具的端口
+
 ```properties
 [Service]
 Environment="HTTP_PROXY=http://127.0.0.1:7890"
