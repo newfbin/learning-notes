@@ -43,9 +43,11 @@ https://newfbin.github.io/learning-notes
 
 bat脚本的功能如下，脚本中依次执行：
 
-1. 从GitHub中拉取
-2. 通过执行generator.jar文件自动生成README.md和_sidebar.md
-3. 4. 5.  将本地文件提交到GitHub仓库中
+1.从GitHub中拉取
+
+2.通过执行generator.jar文件自动生成README.md和_sidebar.md
+
+3.4.5.将本地文件提交到GitHub仓库中
 
 >  脚本内容如下：
 >
