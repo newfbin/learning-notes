@@ -799,7 +799,25 @@ public class DeleteMarkdownInAssets {
 
 ### 按照正则表达式匹配并重命名文件名称
 
+#### `File` 类关键方法
 
+|         方法          |              作用               |         示例代码         |
+| :-------------------: | :-----------------------------: | :----------------------: |
+|      `exists()`       |      验证文件/目录是否存在      |    `rootDir.exists()`    |
+|    `isDirectory()`    |         判断是否为目录          | `rootDir.isDirectory()`  |
+|     `listFiles()`     |   获取目录下所有文件对象数组    | `directory.listFiles()`  |
+|      `getName()`      |     获取文件名（含扩展名）      |     `file.getName()`     |
+|     `getParent()`     |         获取父目录路径          |    `file.getParent()`    |
+| `renameTo(File dest)` | 重命名/移动文件（返回操作状态） | `file.renameTo(newFile)` |
+
+#### 正则表达式类（`Pattern` & `Matcher`）
+
+|             类/方法             |            作用            |             示例代码              |
+| :-----------------------------: | :------------------------: | :-------------------------------: |
+| `Pattern.compile(String regex)` | 编译正则表达式为可重用模式 | `Pattern.compile("^water.*#...")` |
+|  `matcher(CharSequence input)`  |       创建匹配器对象       |    `pattern.matcher(filename)`    |
+|           `matches()`           |        全量匹配检测        |        `matcher.matches()`        |
+|       `group(int group)`        |       获取捕获组内容       |        `matcher.group(1)`         |
 
 #### 代码
 
@@ -875,6 +893,18 @@ public class ImageRenamer {
 ```
 
 ### 查找所有名称中含有某个字符的文件或文件夹
+
+#### File类核心方法详解
+
+|        方法         |             作用              |         代码示例          |
+| :-----------------: | :---------------------------: | :-----------------------: |
+| `File(String path)` |       创建文件/目录对象       | `new File("docs/study")`  |
+|     `exists()`      |       验证路径是否存在        |   `directory.exists()`    |
+|   `isDirectory()`   |        判断是否为目录         | `directory.isDirectory()` |
+|    `listFiles()`    |  获取目录下所有文件和子目录   |     `dir.listFiles()`     |
+|     `getName()`     | 获取文件/目录名称（不含路径） |     `file.getName()`      |
+| `getAbsolutePath()` |       获取完整绝对路径        | `file.getAbsolutePath()`  |
+|   `isDirectory()`   |  判断是否为目录（递归条件）   |   `file.isDirectory()`    |
 
 #### 代码
 
