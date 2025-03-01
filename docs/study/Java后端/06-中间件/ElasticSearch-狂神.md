@@ -2,21 +2,21 @@
 
 ![在这里插入图片描述](./assets/ElasticSearch-狂神/2020090917111970.png)
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center.png)
 
 ## 2. ES与Solr的差别
 
 ### 2.1. Solr简介
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163912-1.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163912-1.png)
 
 ### 2.2. Lucene简介
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163912-2.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163912-2.png)
 
 ### 2.3. ES VS Solr
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163912-3.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163912-3.png)
 
 ## 3. ElasticSearch 安装
 
@@ -28,7 +28,7 @@ kibana: https://mirrors.huaweicloud.com/kibana/?C=N&O=D
 
 - 认识目录
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163913-4.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163913-4.png)
 
 启动elasticsearch:
 
@@ -60,7 +60,7 @@ kibana: https://mirrors.huaweicloud.com/kibana/?C=N&O=D
 
 ### es head安装
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163913-6.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163913-6.png)
 
 上图第3步配置es时，在config/elasticsearch.yml目录下添加配置
 
@@ -109,21 +109,21 @@ kaban版本要和elasticsearch版本相对应。
 
 关系型数据库和elasticsraech的客观对比
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163913-8.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163913-8.png)
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163913-9.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163913-9.png)
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163913-10.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163913-10.png)
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163913-11.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163913-11.png)
 
 在上图中，p0 p1 p2 p3 p4是主分片，r0 r1 r2 r3 r4是副本（复制分片）
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163913-12.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163913-12.png)
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163913-13.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163913-13.png)
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163914-14.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163914-14.png)
 
 ## 6. IK分词器
 
@@ -156,11 +156,11 @@ kaban版本要和elasticsearch版本相对应。
 
   - ik_smart: 最少切分
 
-  ![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163914-16.png)
+  ![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163914-16.png)
 
   - ik_max_word为最细粒度划分！穷尽词库的可能， 字典！
 
-  ![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163914-17.png)
+  ![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163914-17.png)
 
 - ik分词器增加自己的配置！
 
@@ -176,11 +176,11 @@ kaban版本要和elasticsearch版本相对应。
 
 ![image-20240919233555752](./assets/ElasticSearch-狂神/image-20240919233555752.png)
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163914-20.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163914-20.png)
 
 ## 7. Restful风格说明
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163914-21.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163914-21.png)
 
 ElasticSearch新版本Rest命令
 
@@ -229,11 +229,11 @@ PUT test1/type1/1
 }
 ```
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163914-22.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163914-22.png)
 
 - 指定字段的类型（创建规则）
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163914-23.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163914-23.png)
 
 - 获取具体的索引规则
 
@@ -319,7 +319,7 @@ PUT /test3/_doc/1
 }
 ```
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163914-24.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163914-24.png)
 
 - 修改索引 POST
 
@@ -503,7 +503,7 @@ ElasticSearch数据下标从0开始，和我们学的数据结构一样
 
 #### 精确查询
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163915-27.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163915-27.png)
 
 term不会做分词
 
@@ -832,7 +832,7 @@ class EsApiApplicationTests {
 
 - 整体效果
 
-![在这里插入图片描述](./assets/ElasticSearch-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZhbmppYW5oYWk=,size_16,color_FFFFFF,t_70#pic_center-1719652163915-28.png)
+![在这里插入图片描述](./assets/ElasticSearch-狂神/pic_center-1719652163915-28.png)
 
 ## EX1.实战：智能面试刷题平台--鱼皮
 
