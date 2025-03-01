@@ -19,7 +19,7 @@ SSM： SpringMvc + Spring + Mybatis!
 
 Github：[spring-projects/spring-framework: Spring Framework (github.com)](https://github.com/spring-projects/spring-framework)
 
-![在这里插入图片描述](./assets/Spring5-狂神/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBALUJsdWUu,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center.png)
+![在这里插入图片描述](./assets/Spring5-狂神/pic_center.png)
 ![请添加图片描述](./assets/Spring5-狂神/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBALUJsdWUu,size_20,color_FFFFFF,t_70,g_se,x_16-1721047329179-7.png)![请添加图片描述](./assets/Spring5-狂神/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBALUJsdWUu,size_20,color_FFFFFF,t_70,g_se,x_16-1721047329179-8.png)
 
 导包：

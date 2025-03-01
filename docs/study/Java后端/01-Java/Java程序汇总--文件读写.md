@@ -804,5 +804,135 @@ public class DeleteMarkdownInAssets {
 #### 代码
 
 ```java
+package com.newfbin;
+
+import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class ImageRenamer {
+    // 正则表达式模式（可调整）
+    private static final String REGEX = "^water.*?#(pic.*\\.png)$";
+    // 目标目录路径（需修改）
+    private static final String TARGET_DIR = "D:\\学习文件\\learning-notes\\docs\\study";
+
+    // 统计计数器
+    private static int totalFiles = 0;
+    private static int renamedCount = 0;
+
+    public static void main(String[] args) {
+        File rootDir = new File(TARGET_DIR);
+
+        if (!rootDir.exists() || !rootDir.isDirectory()) {
+            System.err.println("无效目录: " + TARGET_DIR);
+            return;
+        }
+
+        // 开始递归处理
+        processDirectory(rootDir);
+
+        System.out.printf("\n处理完成: 共扫描 %d 个文件，成功重命名 %d 个文件", totalFiles, renamedCount);
+    }
+
+    private static void processDirectory(File directory) {
+        File[] files = directory.listFiles();
+        if (files == null) return;
+
+        Pattern pattern = Pattern.compile(REGEX);
+
+        for (File file : files) {
+            if (file.isDirectory()) {
+                // 递归处理子目录
+                processDirectory(file);
+            } else {
+                // 处理文件
+                totalFiles++;
+                renameFile(file, pattern);
+            }
+        }
+    }
+
+    private static void renameFile(File file, Pattern pattern) {
+        String oldName = file.getName();
+        Matcher matcher = pattern.matcher(oldName);
+
+        if (matcher.matches()) {
+            String newName = matcher.group(1);
+            File newFile = new File(file.getParent(), newName); // 保持原目录
+
+            if (file.renameTo(newFile)) {
+                System.out.printf("重命名成功: [%s] -> [%s]\n",
+                        file.getAbsolutePath(),
+                        newFile.getAbsolutePath());
+                renamedCount++;
+            } else {
+                System.err.printf("重命名失败: %s (可能权限不足或文件名冲突)\n",
+                        file.getAbsolutePath());
+            }
+        }
+    }
+}
+```
+
+### 查找所有名称中含有某个字符的文件或文件夹
+
+#### 代码
+
+```java
+package com.newfbin;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SpecialCharacterFiles {
+    // 存储包含特殊字符的路径
+    private static List<String> specialFiles = new ArrayList<>();
+
+    public static void main(String[] args) {
+        String directoryPath = "docs/study";
+        File directory = new File(directoryPath);
+
+        if (directory.exists() && directory.isDirectory()) {
+            traverseDirectory(directory);
+
+            if (specialFiles.isEmpty()) {
+                System.out.println("恭喜你，你的项目中不存在任何特殊字符");
+            } else {
+                System.out.println("补豪，下面这些文件或文件夹名称中含有特殊字符，请检查其中是否包含 #  ？ %   /   <   >   \"   '");
+                specialFiles.forEach(System.out::println);
+            }
+        } else {
+            System.out.println("被检查的目录不存在，请将脚本移动到docs/study文件夹下");
+        }
+    }
+
+    private static void traverseDirectory(File directory) {
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                // 检查当前文件/文件夹名称
+                String fileName = file.getName();
+                if (containsSpecialCharacters(fileName)) {
+                    specialFiles.add(file.getAbsolutePath());
+                }
+                // 递归遍历子目录
+                if (file.isDirectory()) {
+                    traverseDirectory(file);
+                }
+            }
+        }
+    }
+
+    private static boolean containsSpecialCharacters(String name) {
+        String specialCharacters = "#?%/<>\"'"; // 包含英文?和转义后的"'
+        for (int i = 0; i < name.length(); i++) {
+            if (specialCharacters.indexOf(name.charAt(i)) != -1) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
 ```
 

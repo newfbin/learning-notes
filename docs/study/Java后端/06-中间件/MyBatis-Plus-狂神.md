@@ -12,9 +12,9 @@ JPA, tk-mapper ,MyBatisPlus
 
 官网:https://baomidou.com/
 
-![在这里插入图片描述](./assets/MyBatis-Plus-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjQ5MjIz,size_16,color_FFFFFF,t_70#pic_center.png)
+![在这里插入图片描述](./assets/MyBatis-Plus-狂神/pic_center.png)
 
-![在这里插入图片描述](./assets/MyBatis-Plus-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjQ5MjIz,size_16,color_FFFFFF,t_70#pic_center-1726190684974-1.png)
+![在这里插入图片描述](./assets/MyBatis-Plus-狂神/pic_center-1726190684974-1.png)
 
 > ## 2.特性
 
@@ -188,7 +188,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 ```
 
-![在这里插入图片描述](./assets/MyBatis-Plus-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjQ5MjIz,size_16,color_FFFFFF,t_70#pic_center-1726190684975-3.png)
+![在这里插入图片描述](./assets/MyBatis-Plus-狂神/pic_center-1726190684975-3.png)
 
 配置完日志之后你会喜欢上mybatis-plus!
 
@@ -211,7 +211,7 @@ public void testInsert(){
 
 ```
 
-![在这里插入图片描述](./assets/MyBatis-Plus-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjQ5MjIz,size_16,color_FFFFFF,t_70#pic_center-1726190684975-4.png)
+![在这里插入图片描述](./assets/MyBatis-Plus-狂神/pic_center-1726190684975-4.png)
 
 > 注意点:在刚刚插入数据时，并没有指定主键，而在插入时自动生成了一个主键，这是由雪花算法自动生成的
 
@@ -237,7 +237,7 @@ snowflake是Twitter开源的分布式ID生成算法，结果是一个long型的I
 
    ![在这里插入图片描述](./assets/MyBatis-Plus-狂神/20200930150449191.png)
 
-   ![在这里插入图片描述](./assets/MyBatis-Plus-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjQ5MjIz,size_16,color_FFFFFF,t_70#pic_center-1726190684975-5.png)
+   ![在这里插入图片描述](./assets/MyBatis-Plus-狂神/pic_center-1726190684975-5.png)
 
 ![在这里插入图片描述](./assets/MyBatis-Plus-狂神/20200930150508407.png)
 
@@ -293,7 +293,7 @@ public void testUpdate(){
 
 1.在表中新增字段 create_time , update_time
 
-![在这里插入图片描述](./assets/MyBatis-Plus-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjQ5MjIz,size_16,color_FFFFFF,t_70#pic_center-1726190684976-6.png)
+![在这里插入图片描述](./assets/MyBatis-Plus-狂神/pic_center-1726190684976-6.png)
 
 2.再次测试插入方法,我们需要先把实体类同步
 
@@ -496,7 +496,7 @@ spring.profiles.active=dev
     }
 ```
 
-![在这里插入图片描述](./assets/MyBatis-Plus-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjQ5MjIz,size_16,color_FFFFFF,t_70#pic_center-1726190684976-7.png)
+![在这里插入图片描述](./assets/MyBatis-Plus-狂神/pic_center-1726190684976-7.png)
 
 ## 5.QueryWrapper条件构造器
 

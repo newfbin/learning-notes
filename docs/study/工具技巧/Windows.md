@@ -189,27 +189,85 @@ win+R键输入**regedit**
 计算机\HKEY_CLASSES_ROOT\Directory\Background\shell\
 ```
 
-### 运行bat文件闪退解决方法
+### 解决bat文件运行结束后自动关闭窗口问题
 
-> 1.在bat文件所在目录运行cmd
+#### 方法一：在cmd窗口运行脚本
+
+1.在bat文件所在目录运行cmd
 
 ![image-20240919135311234](./assets/Windows/image-20240919135311234.png)
 
-> 输入bat文件的名字，运行bat文件。此时便不会闪退，并能够看到完整的错误信息
+2.输入bat文件的名字，运行bat文件。脚本执行结束后，cmd窗口不会关闭，能够看到完整的信息
 
-![image-20240919135518305](./assets/Windows/image-20240919135518305.png)
+![image-20250301112746640](./assets/Windows/image-20250301112746640.png)
 
-### 控制台使用java命令运行程序，输出乱码
+#### 方法二：在bat文件结尾加上 pause
 
-使用java命令执行Main.class
+1.在bat文件结尾加上pause
 
-![image-20241224221932507](./assets/Windows/image-20241224221932507.png)
+![image-20250301112340386](./assets/Windows/image-20250301112340386.png)
+
+2.脚本执行结束后不会立即退出，而是需要按下一个按键才会退出
+
+![image-20250301112518023](./assets/Windows/image-20250301112518023.png)
+
+### 使用bat脚本或程序运行java程序中文乱码问题
+
+#### bat脚本运行java程序
+
+##### 问题描述：
+
+在cmd窗口内运行jar包，不会出现中文乱码问题。
+
+![image-20250301125343090](./assets/Windows/image-20250301125343090.png)
+
+在bat脚本中写入java -jar命令并执行脚本。发现出现了中文乱码问题
+
+![image-20250301130127602](./assets/Windows/image-20250301130127602.png)
+
+![image-20250301130040578](./assets/Windows/image-20250301130040578.png)
+
+##### 解决办法：
+
+**统一终端、脚本、JVM 三者的编码环境**。
+
+> 将三者的编码环境都统一为UTF-8或者其它编码格式，就不会出现乱码问题了。
+
+###### 终端编码环境：
+
+通过在脚本开头加上`chcp 65001` 将运行该脚本时的终端编码改为 UTF-8
+
+![image-20250301131729068](./assets/Windows/image-20250301131729068.png)
+
+###### 脚本编码环境：
+
+保存脚本时要将脚本环境设置为 UTF-8
+
+![image-20250301131832482](./assets/Windows/image-20250301131832482.png)
+
+![image-20250301131908045](./assets/Windows/image-20250301131908045.png)
+
+###### JVM编码环境：
+
+通过在`java -jar` 命令中加上 `-Dfile.encoding=UTF-8` ，将JVM的编码换环境设置为 UTF-8。
+
+![image-20250301132020534](./assets/Windows/image-20250301132020534.png)
+
+#### 程序内运行java程序
+
+##### 问题描述：
+
+使用`Runtime.getRuntime.exec()`执行`java -cp <classpath> <main_class>` 命令时，
+
+![image-20250301135214096](./assets/Windows/image-20250301135214096.png)
 
 出现中文乱码
 
 ![image-20241224222534006](./assets/Windows/image-20241224222534006.png)
 
-加上-Dfile.encoding=UTF-8之后，乱码问题解决
+##### 解决办法：
+
+加上`-Dfile.encoding=UTF-8`，乱码问题解决
 
 ![image-20241224222621786](./assets/Windows/image-20241224222621786.png)
 
@@ -224,6 +282,8 @@ java -Dfile.encoding=UTF-8 -cp . Main
 > 出现乱码的原因是，命令行终端的编码是 GBK，和 java 代码文件本身的编码 UTF-8 不一致，导致乱码。
 >
 > 也可以通过 `chcp` 命令查看命令行终端编码，GBK 是 936，UTF-8 是 65001。
+>
+> ![image-20250301113226885](./assets/Windows/image-20250301113226885.png)
 >
 > 但是 **不建议** 大家改变终端编码来解决编译乱码，因为其他运行你代码的人也要改变环境，兼容性很差。
 

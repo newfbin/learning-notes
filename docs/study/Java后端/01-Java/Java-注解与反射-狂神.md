@@ -303,7 +303,7 @@ class User{
 }
 ```
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center.png)
 
 ### 2.理解Class类并获取Class实例
 
@@ -313,7 +313,7 @@ class User{
   - public final Class getclass()
 - 以上的方法返回值的类型是一个 Class类，此类是Java反射的源头，实际上所谓反射从程序的运行结果来看也很好理解，即：可以通过对象反射求出类的名称。
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580744-21.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580744-21.png)
 
 - 对象照镜子后可以得到的信息：某个类的属性、方法和构造器、某个类到底实现了哪些接口对于每个类而言，JVM 都为其保留一个不变的Cass类型的对象。一个Class对象包含了特定某个结构（ class/interface/enum/annotation/ primitive type/void/[]）的有关信息。
   - Class本身也是一个类；
@@ -415,7 +415,7 @@ class Teacher extends Person{
 }
 ```
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580744-22.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580744-22.png)
 
 #### 3. 哪些类型可以有Class对象
 
@@ -478,15 +478,15 @@ public class Test04 {
 
 #### 1. Java内存分析
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpYW93ZW54aW9uZw==,size_16,color_FFFFFF,t_70#pic_center.jpeg)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center.jpeg)
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580744-24.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580744-24.png)
 
 #### 2. 类的加载
 
 - 当程序主动使用某个类时，如果该类还未被加载到内存中，则系统会通过如下三个步骤来对该类进行初始化。
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580744-25.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580744-25.png)
 
 - 加载：将 class文件字节码內容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构，然后生成一个代表这个类的 java. lang.Class对象。
 - 链接：将Java类的二进制代码合并到JVM的运行状态之中的过程。
@@ -533,7 +533,7 @@ class A{
 }
 ```
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580744-26.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580744-26.png)
 
 #### 3. 什么时候会发生类初始化
 
@@ -592,18 +592,18 @@ class Son extends Father{
 }
 ```
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580744-27.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580744-27.png)
 
 #### 4. 类加载器的作用
 
 - 类加载的作用：将 class文件字节码内容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构，然后在堆中生成一个代表这个类的 java. lang Class对象，作为方法区中类数据的访问入口。
 - 类缓存：标准的 JavaSe类加载器可以按要求查找类，但一旦某个类被加载到类加载器中，它将维持加载（缓存）一段时间。不过丿M垃圾回收机制可以回收这些 Classi对象
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580745-28.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580745-28.png)
 
 - 类加载器作用是用来把类（αlass）装载进内存的。丿VM规范定义了如下类型的类的加载器。
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580745-29.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580745-29.png)
 
 - ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();//获取系统类的加载器
 - ClassLoader parent = systemClassLoader.getParent();//获取系统类加载器的父类加载器–>扩展类加载器 jre1.8.0_91\lib\ext
@@ -969,7 +969,7 @@ public class Test11 {
 - getAnnotations
 - getAnnotation
 
-![在这里插入图片描述](./assets/Java-注解与反射-狂神/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center-1717939580745-31.png)
+![在这里插入图片描述](./assets/Java-注解与反射-狂神/pic_center-1717939580745-31.png)
 
 ```java
 package github.Annotation.Demo03;
