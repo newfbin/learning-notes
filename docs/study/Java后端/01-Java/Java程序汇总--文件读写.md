@@ -799,25 +799,26 @@ public class DeleteMarkdownInAssets {
 
 ### 按照正则表达式匹配并重命名文件名称
 
-#### `File` 类关键方法
+#### 代码中使用的`File` 类方法
 
-|         方法          |              作用               |         示例代码         |
-| :-------------------: | :-----------------------------: | :----------------------: |
-|      `exists()`       |      验证文件/目录是否存在      |    `rootDir.exists()`    |
-|    `isDirectory()`    |         判断是否为目录          | `rootDir.isDirectory()`  |
-|     `listFiles()`     |   获取目录下所有文件对象数组    | `directory.listFiles()`  |
-|      `getName()`      |     获取文件名（含扩展名）      |     `file.getName()`     |
-|     `getParent()`     |         获取父目录路径          |    `file.getParent()`    |
-| `renameTo(File dest)` | 重命名/移动文件（返回操作状态） | `file.renameTo(newFile)` |
+|                  方法                   |                             作用                             |                       示例代码                       |
+| :-------------------------------------: | :----------------------------------------------------------: | :--------------------------------------------------: |
+| `new File(String parent, String child)` | 将 **父路径**（`parent`）和 **子路径**（`child`）<br />组合成一个完整的文件或目录路径。<br />并创建对应的 `File` 对象。 | `File file = new File(String parent, Strirng child)` |
+|               `exists()`                |                    验证文件/目录是否存在                     |         `boolean result = rootDir.exists()`          |
+|             `isDirectory()`             |                        判断是否为目录                        |       `boolean result = rootDir.isDirectory()`       |
+|              `listFiles()`              |                  获取目录下所有文件对象数组                  |        `File[] files = directory.listFiles()`        |
+|               `getName()`               |                    获取文件名（含扩展名）                    |          `String fileName = file.getName()`          |
+|              `getParent()`              |                        获取父目录路径                        |           `String Path = file.getParent()`           |
+|          `renameTo(File dest)`          |               重命名/移动文件（返回操作状态）                |     `boolean isSuccess = file.renameTo(newFile)`     |
 
-#### 正则表达式类（`Pattern` & `Matcher`）
+#### 代码中使用的正则表达式类方法（`Pattern` & `Matcher`）
 
-|             类/方法             |            作用            |             示例代码              |
-| :-----------------------------: | :------------------------: | :-------------------------------: |
-| `Pattern.compile(String regex)` | 编译正则表达式为可重用模式 | `Pattern.compile("^water.*#...")` |
-|  `matcher(CharSequence input)`  |       创建匹配器对象       |    `pattern.matcher(filename)`    |
-|           `matches()`           |        全量匹配检测        |        `matcher.matches()`        |
-|       `group(int group)`        |       获取捕获组内容       |        `matcher.group(1)`         |
+|             类/方法             |                作用                |                      示例代码                       |
+| :-----------------------------: | :--------------------------------: | :-------------------------------------------------: |
+| `Pattern.compile(String regex)` |     编译正则表达式为可重用模式     | `Pattern pattern = Pattern.compile("^water.*#...")` |
+|  `matcher(CharSequence input)`  |           创建匹配器对象           |    `Matcher matcher = pattern.matcher(filename)`    |
+|           `matches()`           |            全量匹配检测            |        `boolean result = matcher.matches()`         |
+|       `group(int group)`        | 获取捕获组内容 ( 相当于替换为 $1 ) |          `String name = matcher.group(1)`           |
 
 #### 代码
 
@@ -894,17 +895,21 @@ public class ImageRenamer {
 
 ### 查找所有名称中含有某个字符的文件或文件夹
 
-#### File类核心方法详解
+#### 代码中使用的File类方法
 
-|        方法         |             作用              |         代码示例          |
-| :-----------------: | :---------------------------: | :-----------------------: |
-| `File(String path)` |       创建文件/目录对象       | `new File("docs/study")`  |
-|     `exists()`      |       验证路径是否存在        |   `directory.exists()`    |
-|   `isDirectory()`   |        判断是否为目录         | `directory.isDirectory()` |
-|    `listFiles()`    |  获取目录下所有文件和子目录   |     `dir.listFiles()`     |
-|     `getName()`     | 获取文件/目录名称（不含路径） |     `file.getName()`      |
-| `getAbsolutePath()` |       获取完整绝对路径        | `file.getAbsolutePath()`  |
-|   `isDirectory()`   |  判断是否为目录（递归条件）   |   `file.isDirectory()`    |
+|        方法         |             作用              |                  示例代码                  |
+| :-----------------: | :---------------------------: | :----------------------------------------: |
+|     `exists()`      |       验证路径是否存在        |   `boolean result = directory.exists()`    |
+|   `isDirectory()`   |        判断是否为目录         | `boolean result = directory.isDirectory()` |
+|    `listFiles()`    |  获取目录下所有文件和子目录   |      `File[] files = dir.listFiles()`      |
+|     `getName()`     | 获取文件/目录名称（不含路径） |       `String name = file.getName()`       |
+| `getAbsolutePath()` |       获取完整绝对路径        |          `file.getAbsolutePath()`          |
+
+#### 代码中用到的String类方法
+
+| 方法                               | 作用 | 示例代码                                                     |
+| ---------------------------------- | ---- | ------------------------------------------------------------ |
+| `indexOf(char)`<br />`charAt(int)` | ---  | `name1.indexOf(name2.charAt(i)) != -1`<br />判断name2第i个位置的字符是否出现在name1中 |
 
 #### 代码
 
