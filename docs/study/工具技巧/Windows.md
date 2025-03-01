@@ -6,7 +6,15 @@
 
 > 仅记录不常见、不常用的快捷键
 
+`Ctrl + Win + D`  创建虚拟桌面
 
+`Ctrl + Win + F4` 删除当前虚拟桌面
+
+`Ctrl + Win + 左方向键` `Ctrl + Win + 右方向键` 快捷切换桌面
+
+`Win + D` 回到桌面
+
+`Alt + Tab` 切换应用
 
 ### win 控制台运行jar包
 
