@@ -1,5 +1,5 @@
 * 导读
-  * [**CSharp**](/study/CSharp/README)
+  * [**C#**](/study/C#/README)
   * [**Java后端**](/study/Java后端/README)
   * [**前端**](/study/前端/README)
   * [**工具技巧**](/study/工具技巧/README)
