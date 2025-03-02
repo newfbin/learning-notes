@@ -595,7 +595,7 @@ git rm -rf --cached .
 
   Git回滚命令有如下三个使用方式，请因地制宜，切换到指定分支后，根据自己的情况选择合适的那个：
 
-```git
+```bash
 git reset --hard HEAD^ 回退到上个版本。
 git reset --hard HEAD~n 回退到前n次提交之前，若n=3，则可以回退到3次提交之前。
 git reset --hard commit_sha 回滚到指定commit的sha码，推荐使用这种方式。
@@ -603,7 +603,7 @@ git reset --hard commit_sha 回滚到指定commit的sha码，推荐使用这种�
 
   **示例** 在终端切换到项目所在目录之后，基于下图中的commit SHA进行代码回滚：
 
-```git
+```bash
 git reset --hard 05ac0bfb2929d9cbwiener75e52ecb011950fb
 ```
 
@@ -613,7 +613,7 @@ git reset --hard 05ac0bfb2929d9cbwiener75e52ecb011950fb
 
   hard是强制执行的意思，执行上述某条命令后，本地文件就会被修改，回滚到指定commit SHA。如果再执行如下命令，则会强推到远程仓库，进而修改远程仓库的文件：
 
-```git
+```bash
 git push origin HEAD --force
 ```
 
@@ -832,3 +832,83 @@ Date:   Tue Jan 3 19:48:54 2023 +0800
 ![image-20241219101747148](./assets/Git-狂神/image-20241219101747148.png)
 
 执行完上述操作后箭头消失
+
+## 解决main has no tracked branch
+
+![image-20250302210123010](./assets/Git-狂神/image-20250302210123010.png)
+
+解决办法：执行下面的命令
+
+```bash
+bashgit branch --set-upstream-to=origin/分支名
+```
+
+## 解决 refusing to merge unrelated histories
+
+### 问题
+
+1、本地初始化了git仓库，放了一些文件进去并进行了add操作和commit提交操作；
+
+```bash
+$git add -A
+$git commit -m "start 2018-06-06"
+```
+
+2、github创建了git仓库并建立了README文件；
+
+![Github创建远程仓库](./assets/Git-狂神/d326dfb572a01ab1da5cb7add03bbe49.jpeg)
+
+3、本地仓库添加了github上的git仓库作为远程仓库，起名origin；
+
+```bash
+$git remote add origin https://github.com/tielemao/TielemaoMarkdown
+```
+
+![/GitAddRemote](./assets/Git-狂神/ef5092a71e620bdb375b85a36a3aac73.jpeg)
+
+4、问题来了，本地仓库在想做同步远程仓库到本地为之后本地仓库推送到远程仓库做准备时报错了，错误如下：
+
+`fatal: refusing to merge unrelated histories`
+（拒绝合并不相关的历史）
+
+### 解决
+
+出现这个问题的最主要原因还是在于本地仓库和远程仓库实际上是独立的两个仓库。假如我之前是直接clone的方式在本地建立起远程github仓库的克隆本地仓库就不会有这问题了。
+
+查阅了一下资料，发现可以在pull命令后紧接着使用`--allow-unrelated-history`选项来解决问题（该选项可以合并两个独立启动仓库的历史）。
+
+命令：
+
+```bash
+$git pull origin master --allow-unrelated-histories
+```
+
+以上是将远程仓库的文件拉取到本地仓库了。
+紧接着将本地仓库的提交推送到远程github仓库上，使用的命令是：
+
+```bash
+$ git push <远程主机名> <本地分支名>:<远程分支名>
+也就是
+$git push origin master:master
+提交成功。
+```
+
+![GitPushRemote](./assets/Git-狂神/848fc9fbc91ce3ce1fb1faf87e8c44fb.jpeg)
+
+### pull
+
+`git pull` 命令基本上就是 `git fetch` 和 `git merge` 命令的组合体，Git 从指定的远程仓库中抓取内容，然后马上尝试将其合并进你所在的分支中。
+
+从远程仓库中获得数据，可以执行：
+
+```console
+$ git fetch [remote-name]
+```
+
+这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。
+
+但是注意的是 `git fetch` 并不会自动合并或修改你当前的工作。 当准备好时你必须手动将其合并入你的工作。
+
+如果你使用 `clone` 命令克隆了一个仓库，命令会自动将其添加为远程仓库并默认以 “origin” 为简写。 所以，`git fetch origin` 会抓取克隆（或上一次抓取）后新推送的所有工作。
+
+由于fetch命令后还要再做一步merge命令的操作，所以使用 `git pull` 命令来自动的抓取然后合并远程分支到当前分支。 （相当于一次执行fetch加merge命令）这可能会是一个更简单或更舒服的工作流程。
