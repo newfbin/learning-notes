@@ -775,3 +775,25 @@ cmd(args) 执行命令的简单格式
 ps -eo pid,stat,pri,uid –sort uid
 查看当前系统进程的user,pid,stat,rss,args, 以rss排序.
 ps -eo user,pid,stat,rss,args –sort rss
+
+## 腾讯云查看修改宝塔面板用户名密码
+
+1.登录命令（可以得到外部链接、用户名、密码）
+
+```bash
+bt default
+```
+
+![image-20250303092252939](./assets/Linux-拓展/image-20250303092252939.png)
+
+2.输入bt（获取命令提示）,按照提示选择要进行的操作
+
+![image-20250303091213050](./assets/Linux-拓展/image-20250303091213050.png)
+
+3.修改完用户名密码之后，再次输入`bt default`，可以看到修改后的用户名，但密码始终只显示初始密码
+
+![image-20250303092534538](./assets/Linux-拓展/image-20250303092534538.png)
+
+4.修改完账号密码后，执行 `bt 1`重启面板才能登录
+
+![image-20250303092626018](./assets/Linux-拓展/image-20250303092626018.png)
