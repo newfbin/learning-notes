@@ -737,3 +737,43 @@ $ yarn cache dir
 ### 为微信设置快捷键
 
 ![image-20250302110833349](./assets/Windows/image-20250302110833349.png)
+
+### Windows系统下应用多开
+
+#### 1.复制Chrome快捷方式
+
+> 以Chrome浏览器为例，其它应用同理
+
+首先我们需要在电脑上找到我们的Chrome的快捷方式，右键鼠标选择复制
+
+![img](./assets/Windows/a86d8464acc20f8c7696bf5f067d4742.png)
+
+#### 2.粘贴Chrome快捷方式
+
+在空白处点击粘贴后重新命名为Chrome Sub1
+
+![image-20250303195412763](./assets/Windows/image-20250303195412763.png)
+
+#### 3.右键Chrome快捷方式属性
+
+选中多开1后点击右键选择属性
+
+![img](./assets/Windows/f43757dac9faeb98bcb63c2cb6e7aa28.png)
+
+#### 4.更改目标地址添加命令
+
+在弹出的属性框中找到目标（T），在后面加入以下代码：	
+
+```bash
+ --user-data-dir=E:\ProgramData\MultiChrome\Sub1
+```
+
+![image-20250303195646558](./assets/Windows/image-20250303195646558.png)
+
+这样我们就将一个多开的属性Chrom快捷方式给设置好了，若想再多开一两个，则将Sub1复制粘贴，在属性面板中将代码的尾号1改成2即可.如下：
+
+![image-20250303195856120](./assets/Windows/image-20250303195856120.png)
+
+#### 5.使用快捷方式多开
+
+这样我们就可以分别独立运行多个谷歌Chrome浏览器了~
