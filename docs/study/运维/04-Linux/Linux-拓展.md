@@ -797,3 +797,10 @@ bt default
 4.修改完账号密码后，执行 `bt 1`重启面板才能登录
 
 ![image-20250303092626018](./assets/Linux-拓展/image-20250303092626018.png)
+
+5.如果提示多次登录失败，暂时禁止登录 请输入以下命令 清除登录限制:
+
+```bash
+rm -f /www/server/panel/data/*.login
+```
+
