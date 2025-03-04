@@ -478,7 +478,7 @@ git clone git@github.com:FBing/design-patterns.git
 
 ##### A、查看本地分支
 
-使用 git branch命令，如下：
+使用 `git branch`命令，如下：
 
 ```bashit branch
 * master
@@ -490,10 +490,10 @@ git clone git@github.com:FBing/design-patterns.git
 
 命令如下：
 
-<!-- ```bash -->
+ ```bash 
 git branch -r
+ ```
 
-```
 ##### C、查看所有分支
 
 命令如下：
@@ -526,8 +526,8 @@ git checkout [branch name]
 
 例如：
 
-```bashit checkout gh-dev
-Switched to branch 'gh-dev'
+```bash
+git checkout gh-dev
 ```
 
 #### 4、创建+切换分支
@@ -600,8 +600,8 @@ git checkout [branch name]
 
 例如：
 
-```bashit checkout gh-dev
-Switched to branch 'gh-dev'
+```bash
+git checkout gh-dev
 ```
 
 #### 2、添加本地需要提交代码
