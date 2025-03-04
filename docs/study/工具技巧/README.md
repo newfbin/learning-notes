@@ -4,7 +4,6 @@
 
   * [IDE配置](/study/工具技巧/IDE配置)
   * [Java类库插件](/study/工具技巧/Java类库插件)
-  * [Linux](/study/工具技巧/Linux)
   * [Office](/study/工具技巧/Office)
   * [Windows](/study/工具技巧/Windows)
   * [前端工具](/study/工具技巧/前端工具)
