@@ -776,4 +776,3 @@ ps -eo pid,stat,pri,uid –sort uid
 查看当前系统进程的user,pid,stat,rss,args, 以rss排序.
 ps -eo user,pid,stat,rss,args –sort rss
 
-## 
