@@ -1435,7 +1435,7 @@ CMD echo "---end---"
 CMD /bin/bash
 
 # 2. 通过这个文件构建镜像
-# 命令 docker build -f dockerfile文件路径 -t 镜像名:[tag] .
+# 命令 docker build -f dockerfile文件路径 -t 镜像名:[tag] .   （ .表示当前目录 ）
 
 [root@iZ2zeg4ytp0whqtmxbsqiiZ dockerfile]# docker build -f mydockerfile-centos -t mycentos:0.1 .
 
