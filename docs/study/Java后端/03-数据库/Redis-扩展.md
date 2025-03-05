@@ -126,4 +126,34 @@ SADD users {id}
 
 ​    问题：使用默认的JDK序列化方式，在RDM工具中查看k-v值时会出现“乱码”，不方便查看。
 
-​    ****解决：自定义系列化方式，使用Jackson2JsonRedisSerializer****
+​    **解决：自定义系列化方式，使用Jackson2JsonRedisSerializer**
+
+## Docker的redis容器报错：MISCONF Redis is configured to save RDB snapshots...
+
+**报错原因**:
+
+从Redis层面来分析错误的直接原因是： Redis被配置为保存[数据库](https://cloud.tencent.com/product/tencentdb-catalog?from_column=20065&from=20065)快照，但它目前不能持久化到硬盘。用来修改集合数据的命令不能用。请查看Redis日志的详细错误信息。 
+
+也就是说，Redis无法将缓存中的数据写入本地磁盘。
+
+**解决办法**：
+
+```bash
+#docker 进入redis容器中,其中"f0dd"为redis容器的id开始四位
+[root@iZ2zeca7jric8sx4f3n7spZ ~]# docker exec -it f0dd /bin/bash
+
+#进入客户端(redis client)
+root@f0dd1681b64f:/data# redis-cli
+
+#写入一个键值
+127.0.0.1:6379> set name newfbin
+#报错信息
+(error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.
+#解决命令
+127.0.0.1:6379> config set stop-writes-on-bgsave-error no
+OK
+#验证错误是否解决
+127.0.0.1:6379> set name newfbin
+OK
+```
+
