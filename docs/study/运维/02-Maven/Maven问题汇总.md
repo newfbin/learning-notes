@@ -308,7 +308,27 @@ Maven管理插件
 
 **解决办法**：
 
-在pom.xml中添加下面的配置
+在pom.xml中添加下面两个配置中的一个
+
+简洁，推荐
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
 
 ```xml
 <build>

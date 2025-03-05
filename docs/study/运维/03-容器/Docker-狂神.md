@@ -1,3 +1,7 @@
+ 
+
+
+
 #  一、Docker入门
 
 ## 1. Docker 为什么会出现
@@ -1109,7 +1113,7 @@ hello-world           latest              bf756fb1ae65        4 months ago      
 
 # 五、容器数据卷
 
-### 1. docker的理解回顾
+## 1. docker的理解回顾
 
 将应用和环境打包成一个镜像！
 
@@ -1123,7 +1127,7 @@ MySQL，容器删了，删库跑路！==需求：MySQL数据可以存储在本�
 
 **总结： **容器的持久化和同步操作！容器间数据也是可以共享的！
 
-### 2. 使用数据卷
+## 2. 使用数据卷
 
 > 方式一：直接使用命令来挂载 -v
 
@@ -1147,7 +1151,7 @@ docker run -it -v 主机目录：容器目录
 3. 启动容器
 4. 容器内的数据依旧是同步的！
 
-### 3. 实战：安装MySQL
+## 3. 实战：安装MySQL
 
 思考：MySQL的数据持久化的问题！
 
@@ -1183,7 +1187,7 @@ docker run -it -v 主机目录：容器目录
 
 ![image-20241028010119466](./assets/Docker-狂神/image-20241028010119466.png)
 
-### 4. 匿名和具名挂载
+## 4. 匿名和具名挂载
 
 ```shell
 # 匿名挂载
@@ -1263,7 +1267,7 @@ docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:rw nginx
 # rw 默认权限是rw
 ```
 
-### 5.数据卷容器
+## 5.数据卷容器
 
 多个mysql同步数据！
 
@@ -1299,7 +1303,7 @@ docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:rw nginx
 
 # 六、DockerFile
 
-### 初识DockerFile
+## 初识DockerFile
 
 DockerFile就是用来构建docker镜像的构建文件！命令脚本！先体验一下！
 
@@ -1343,7 +1347,7 @@ docker inspect 容器id
 
 假设构建镜像时候没有挂载卷，要手动镜像挂载 -v 卷名:容器内路径！
 
-### DockerFile
+## DockerFile
 
 dockerFile是用来构建docker镜像的文件！命令参数脚本！
 
@@ -1363,7 +1367,7 @@ dockerFile是用来构建docker镜像的文件！命令参数脚本！
 
 官方既然可以制作镜像，能我们一样可以！
 
-### DockerFile的构建过程
+## DockerFile的构建过程
 
 **基础知识：**
 
@@ -1386,7 +1390,7 @@ Docker镜像逐渐成为企业的交互标准，必须要掌握！
 
 **Docker容器**：容器就是镜像运行起来提供服务器
 
-### DockerFile指令说明
+## DockerFile指令说明
 
 ![](./assets/Docker-狂神/f34d33f60d820615a1fce410b9080e2d.png)
 
@@ -1405,7 +1409,7 @@ COPY            # 类似ADD, 将我们文件拷贝到镜像中
 ENV             # 构建的时候设置环境变量！
 ```
 
-### 创建一个自己的centos
+## 创建一个自己的centos
 
 ```dockerfile
 # 1. 编写Dockerfile的文件
@@ -1447,14 +1451,14 @@ Successfully tagged mycentos:0.1
 
 ![](./assets/Docker-狂神/33e7ac22c6051c08d445754ed23a4cb7.png)
 
-### CMD 和ENTRYPOINT区别
+## CMD 和ENTRYPOINT区别
 
 ```dockerfile
 CMD         # 指定这个容器启动的时候要运行的命令，只有最后一个会生效可被替代
 ENTRYPOINT      # 指定这个容器启动的时候要运行的命令， 可以追加命令
 ```
 
-#### 测试CMD
+### 测试CMD
 
 ```dockerfile
 # 1. 编写dockerfile文件
@@ -1485,7 +1489,7 @@ docker: Error response from daemon: OCI runtime create failed: container_linux.g
 # cmd的情况下 -l替换了CMD["ls", "-a"]命令， -l不是命令，所以报错了
 ```
 
-#### 测试ENTRYPOINT
+### 测试ENTRYPOINT
 
 ```dockerfile
 # 1. 编写dockerfile文件
@@ -1526,7 +1530,7 @@ drwx------  2 root root 4096 Aug  9 21:40 lost+found
 
 # 七、Dockerfile制作tomcat镜像
 
-### Dockerfile制作tomcat镜像
+## Dockerfile制作tomcat镜像
 
 1. 准备镜像文件 tomcat压缩包，jdk的压缩包！
 
@@ -1632,7 +1636,7 @@ System.out.println("-----my test web logs------");
 
 ![image-20241029144803853](./assets/Docker-狂神/image-20241029144803853.png)
 
-### 发布自己的镜像到Docker Hub
+## 发布自己的镜像到Docker Hub
 
 > Docker Hub
 
@@ -1671,7 +1675,7 @@ docker tag diytomcat newfbin/diytomcat:1.0
 
 ![image-20241228012545143](./assets/Docker-狂神/image-20241228012545143.png)
 
-### 发布到阿里云镜像服务上
+## 发布到阿里云镜像服务上
 
 1. 登录阿里云
 2. 找到容器镜像服务
@@ -1695,7 +1699,7 @@ docker tag diytomcat newfbin/diytomcat:1.0
 
 ![image-20241029161449329](./assets/Docker-狂神/image-20241029161449329.png)
 
-### 总结
+## 总结
 
 ![](./assets/Docker-狂神/cc6561fc8b4de802b65b4140a5228335.png)
 
@@ -1705,7 +1709,7 @@ docker tag diytomcat newfbin/diytomcat:1.0
 
 > 相关命令： docker network
 
-### 理解Docker0
+## 理解Docker0
 
 > 测试
 
@@ -1784,7 +1788,7 @@ Docker中的所有的网络接口都是虚拟的，虚拟的转发效率高！�
 
 ![](./assets/Docker-狂神/8c067607241c64adde4c507572d0c3e9.png)
 
-### -- link
+## -- link
 
 > 思考一个场景，我们编写了一个微服务，database url =ip； 项目不重启，数据库ip换掉了，我们希望可以处理这个问题，可以按名字来进行访问容器
 >
@@ -1841,7 +1845,7 @@ ff02::2 ip6-allrouters
 
 Docker0的问题：它不支持容器名链接访问！
 
-### 自定义网络
+## 自定义网络
 
 > 查看所有的docker网络
 
@@ -1963,7 +1967,7 @@ redis - 不同的集群使用不同的网络，保证集群时安全和健康的
 
 mysql - 不同的集群使用不同的网络，保证集群时安全和健康的
 
-### 网络连通
+## 网络连通
 
 ![](./assets/Docker-狂神/6849ec4b1fe64fdd7b5b0b93f4ffd359.png)
 
@@ -2006,7 +2010,7 @@ ping: tomcat-net-01: Name or service not known
 
 结论：假设要跨网络 操作别人，就要使用docker network connect连通.....!
 
-### 实战：部署redis
+## 实战：部署redis
 
 ![](./assets/Docker-狂神/907af86f80f1aaf2f6f8e1a6cb7431d4.png)
 
@@ -2123,7 +2127,7 @@ docker搭建redis集群完成！
 
 ![](./assets/Docker-狂神/e11793945c494e8c9a220f2588ae73e6.png)
 
-### SpringBoot微服务打包Docker镜像
+## SpringBoot微服务打包Docker镜像
 
 1. 构建springboot项目
 
@@ -2217,7 +2221,7 @@ hello, xiaofan
 
 # 九、Docker Compose
 
-### 简介
+## 简介
 
 过去使用Docker，都是通过docker run 命令启动容器，
 
@@ -2308,7 +2312,7 @@ Compose：重要概念
 - 服务services， 容器、应用（web、redis、mysql...）
 - 项目project。 一组关联的容器
 
-### 安装
+## 安装
 
 1. 下载
 
@@ -2328,7 +2332,7 @@ chmod +x /usr/local/bin/docker-compose
 
 ![](./assets/Docker-狂神/51990a4015182393d392805709710a06.png)
 
-### Compose初体验(快速回顾Compose流程)
+## Compose初体验(快速回顾Compose流程)
 
 地址：https://docs.docker.com/compose/gettingstarted/
 
@@ -2407,7 +2411,7 @@ host = ’redis' 这个写法说明代码是通过服务名来访问服务的，
 
 
 
-### yaml规则
+## yaml规则
 
 docker-compose.yaml 核心！
 
@@ -2438,11 +2442,11 @@ configs:
 	
 ```
 
-##### 第一层：Version
+### 第一层：Version
 
 ...
 
-##### 第二层：Services
+### 第二层：Services
 
 ![image-20241030105945797](./assets/Docker-狂神/image-20241030105945797.png)
 
@@ -2461,13 +2465,13 @@ configs:
 
 ![image-20241030110742412](./assets/Docker-狂神/image-20241030110742412.png)
 
-##### 第三层：其它配置
+### 第三层：其它配置
 
 看官网文档来理解学习
 
 ...
 
-### 开源项目：博客
+## 开源项目：博客
 
 https://docs.docker.com/compose/wordpress/
 
@@ -2485,7 +2489,7 @@ compose应用 => 一键启动
 
 ![image-20241030150048408](./assets/Docker-狂神/image-20241030150048408.png)
 
-### 实战：自己编写微服务上线
+## 实战：自己编写微服务上线
 
 1. 编写项目微服务
 
@@ -2549,7 +2553,7 @@ docker compose up --build   # 重新构建
 
 集群
 
-### 购买服务器
+## 购买服务器
 
 1. 登录阿里云账号，进入控制台，创建实例
 
@@ -2571,7 +2575,7 @@ docker compose up --build   # 重新构建
 
 到此，我们的服务器购买成功！
 
-### 四台机器安装docker
+## 四台机器安装docker
 
 和我们单机安装一样
 
@@ -2579,7 +2583,7 @@ docker compose up --build   # 重新构建
 
 - [Docker的安装](https://blog.csdn.net/fanjianhai/article/details/107860159)
 
-### Swarm集群搭建
+## Swarm集群搭建
 
 > 当前服务器集群情况：
 >
@@ -2671,7 +2675,7 @@ This node joined a swarm as a worker.
 1. 生成主节点init
 2. 加入（管理者，worker）
 
-### 测试Raft协议
+## 测试Raft协议
 
 Raft协议：保证大多数结点存活才可以使用，只要>1, 集群至少大于3台！
 
@@ -2699,7 +2703,7 @@ Raft协议：保证大多数结点存活，才可以使用，高可用！
 
 举例： 至少要保证3个主节点。 >= 2台管理结点存活！
 
-### 体验：创建服务、动态扩容服务、动态更新服务
+## 体验：创建服务、动态扩容服务、动态更新服务
 
 弹性、扩缩容！集群！     
 
@@ -2788,7 +2792,7 @@ docker swarm其实并不难
 
 只要会搭建集群、会启动服务、动态管理容器就可以了！
 
-### Docker Swarm概念的总结
+## Docker Swarm概念的总结
 
 **swarm**
 
@@ -2913,7 +2917,7 @@ dmddfc14n7r3        ingress             overlay             swarm
 ]
 ```
 
-### 其他命令学习方式
+## 其他命令学习方式
 
 - Docker Stack
 
@@ -2962,7 +2966,7 @@ Commands:
   rm          Remove one or more configs
 ```
 
-### 拓展到k8s
+## 拓展到k8s
 
 **云原生时代**
 
@@ -2996,7 +3000,7 @@ docker 的代理设置是一件比较麻烦的事情，很容易出问题，但�
 首先， docker pull / docker push 和 docker build /docker run 使用代理的方式不一样！
 docker pull /push 的代理被 systemd 接管，所以需要设置 systemd…
 
-### docker pull  push 镜像设置代理
+## docker pull  push 镜像设置代理
 
 如果没有设置过docker的镜像源，可以忽略这一步。如果设置过镜像源，在/etc/docker/daemon.json中加上官方默认镜像源：
 
@@ -3033,7 +3037,7 @@ sudo systemctl restart docker
 可以通过sudo systemctl show --property=Environment docker看到设置的环境变量。
 然后docker pull 和 docker push 就会使用代理啦
 
-### build 镜像时使用代理（暂时没用该方法也能build）
+## build 镜像时使用代理（暂时没用该方法也能build）
 
 在 build 时添加 --build-arg 参数来设置生成镜像时使用的环境变量
 
@@ -3044,7 +3048,7 @@ docker build --build-arg http_proxy=http://172.17.0.1:7890 --build-arg https_pro
 这里需要注意的是 `ip` 地址用了默认虚拟网卡`docker0 `的地址`172.17.0.1`，因为build的时候network参数默认为bridge，即docker内部会使用这个网段，因为要访问到宿主机的代理只能这样访问；
 另外，也可以设置参数`--network=host `来直接和宿主机共用网络，就能直接使用`127.0.0.1`来访问到宿主机了
 
-### 设置 docker 全局代理（暂未尝试）
+## 设置 docker 全局代理（暂未尝试）
 
 设置方法参考官方文档： https://docs.docker.com/network/proxy/
 
@@ -3083,7 +3087,7 @@ vim ~/.docker/config.json
 
   > 比如 有个镜像叫 `imageA`, 现在设置`~/.docker/config.json`也就是有代理， 然后`docker run`创建容器 `A`, 然后再重命名`config.json`， 创建容器`B`， 然后会发现无论现在怎么修改`config.json`， 容器`A B`都会使用它被创建时的代理设置，即容器`A`使用代理， 容器`B`不使用代理
 
-### 容器使用宿主机的代理的几种方法总结（暂未尝试）
+## 容器使用宿主机的代理的几种方法总结（暂未尝试）
 
 和 `build` 时类似，只需要在 生成容器时（`run -e http_proxy=...`） 或者 容器中 设置环境变量`http_proxy`和`https_proxy`变量即可，同样需要注意容易使用的网络类型是`bridge`还是`host`，根据类别设置正确的代理 `ip` 地址
 
