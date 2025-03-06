@@ -765,15 +765,16 @@ $ yarn cache dir
 在弹出的属性框中找到目标（T），在后面加入以下代码：	
 
 ```bash
- --user-data-dir=E:\ProgramData\MultiChrome\Sub1
+ --user-data-dir=E:\ProgramData\ChromeClone\Sub1
 ```
 
-![image-20250303195646558](./assets/Windows/image-20250303195646558.png)
+![image-20250306224424953](./assets/Windows/image-20250306224424953.png)
 
 这样我们就将一个多开的属性Chrom快捷方式给设置好了，若想再多开一两个，则将Sub1复制粘贴，在属性面板中将代码的尾号1改成2即可.如下：
 
-![image-20250303195856120](./assets/Windows/image-20250303195856120.png)
+![image-20250306224430781](./assets/Windows/image-20250306224430781.png)
 
 #### 5.使用快捷方式多开
 
 这样我们就可以分别独立运行多个谷歌Chrome浏览器了~
+
