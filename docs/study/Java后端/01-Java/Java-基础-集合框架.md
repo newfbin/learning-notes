@@ -1573,7 +1573,7 @@ Tips：ArrayDeque同样具备关于链表、双向队列、栈等相关的方法
 
 ### 3.7 Queue / Deque实现类--LinkedList
 
-见[LinkedList](###-5.4linkedlist集合)
+见[LinkedList](###5.4linkedlist集合)
 
 ### 3.8  Queue 和 Deque 出队和入队方法比较
 
