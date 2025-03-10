@@ -13,4 +13,5 @@
 *  [前端](/study/前端/README)
 *  [工作](/study/工作/README)
 *  [工具技巧](/study/工具技巧/README)
+*  [计算机基础](/study/计算机基础/README)
 *  [运维](/study/运维/README)
