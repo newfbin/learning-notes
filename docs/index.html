@@ -1,151 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <title>Link博客</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>这是个模板</title>
   <meta name="description" content="Description">
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" title="vue" >
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css" title="buble" disabled>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css" title="dark" disabled>
-  <link rel="stylesheet" href="static/themes/prism.css" >
-  <!-- docsify-dark-switcher插件专用Style -->
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <!-- 可定制主题 -->
+  <link rel="stylesheet" href="static/docsify/themes/buble.css" title="buble" >
+  <link rel="stylesheet" href="static/docsify/themes/vue.css" title="vue" disabled>
+  <link rel="stylesheet" href="static/docsify/themes/dark.css" title="dark" disabled>
+  <link rel="stylesheet" href="static/docsify/themes/theme-simple.css" title="theme-simple" disabled>
+  <link rel="stylesheet" href="static/docsify/themes/theme-defaults.css" title="theme-defaults" disabled>
+  <!--支持mermaid-->
+  <!-- <link rel="stylesheet" href="static/mermaid/dist/mermaid.min.css"> -->
   <style>
+    /*列宽度自适应不换行*/
+    table td { width: 10%; white-space:nowrap; }
+    /*表头颜色*/  
+    table thead{background-color:rgb(58, 140, 201);}
+    /*斑马线 */
+    table tr:nth-of-type(2n){background-color:rgb(246, 249, 252);}
+    table td:nth-of-type(2n){color:rgb(34, 151, 214);}
+    #myTitle{
+      text-align:center;
+    }
     :root {
-      --dark-base-background: #222;
-      --dark-base-color: #bbc0c4;
-      --dark-theme-color: var(--theme-color, #42983);
-      --dark-code-color: var(--dark-color);
-      --dark-heading-color: var(--dark-theme-color);
-      --dark-cover-background: #000000a8;
-      --dark-code-background: #303030;
-      --dark-tip-background: #2c0000;
-      --dark-warn-background: #005842;
-      --dark-icon-size: 25px;
-      --dark-icon-transition: .1s ease-in-out .1s;
-      --dark-moon-color: #000000;
-      --dark-sun-color: #ffffff;
+      --base-font-size: 13px;
     }
-    /* 减小代码框间距 */
-    .markdown-section pre>code{
-      padding: 1.2em 5px;
-    }
-  </style>
-  <!-- <link rel="stylesheet" href="./style.css"> -->
-  <link rel="shortcut icon" href="./assets/_coverpage/blog.ico" type="image/x-icon">
+</style>
 </head>
-
 <body>
+  <!-- 可以定制导航栏，也可以 load from _navbar.md 或者自定义文件-->
+  <!-- <nav>
+    <ul>
+      <li>
+        <p id="nav_d">👘主题切换</p>
+        <ul class="demo-theme-preview">
+          <li><a target="_blank" data-theme="vue">vue</a></li>
+          <li><a target="_blank" data-theme="dark">dark</a></li>
+          <li><a target="_blank" data-theme="buble">buble</a></li>
+          <li><a target="_blank" data-theme="theme-simple">simple</a></li>
+          <li><a target="_blank" data-theme="theme-defaults">defaults</a></li>        
+        </ul>
+      </li>
+    </ul>
+  </nav> -->
   <div id="app">加载中...</div>
+
   <!-- 本文所用的lib均是截止至2019年6月6日的最新版本，如需使用在线或最新版本，请在//unpkg.com/ 对应目录下获取 -->
-  <script src="static/js/docsify.min.js"></script>
-  <script>
-    window.$docsify = {
-      el: '#app',/* docsify初始化的挂载元素，默认#app,不存在则挂载在body上 */
-      executeScript: true, /* 执行文档里的 script 标签里的脚本，只执行第一个 script */
-      loadSidebar: true,/* 加载自定义的侧边栏，默认加载_sidebar.md，加载别的文件把true改成“xxx.md” */
-      loadNavbar: true,/* 加载自定义的导航栏，默认加载_navbar.md，加载别的文件把true改成“xxx.md” */
-      subMaxLevel: 6,/* 自定义侧边栏后默认不会再生成目录，通过设置生成目录的最大层级开启这个功能 */
-      // logo: 'assets/_coverpage/blog.ico', /* 侧边栏中出现的网站图标，你可以使用CSS来更改大小 */
-      name: 'Link博客',/* 侧边栏显示的文档标题 */
-      nameLink: '#/study/README', /* 侧边栏文档标题对应的链接 */
-      // repo: 'newfbin/learning-notes',/* 配置仓库地址 */
-      maxLevel: 6,/* 可配置的最大支持渲染的标题层级 */
-      coverpage: true,/* 启用封面页，默认加载_coverpage.md文件，也可以自定义文件名 */
-      mergeNavbar: true,/* 小屏设备下合并导航栏到侧边栏 */
-      onlyCover: true,/* 首页只显示封面 */
-      //全文搜索
-      search: 'auto',
-      // 复制代码到剪贴板
-      copyCode: {
-        buttonText: '复制代码',
-        errorText: '错误',
-        successText: '复制成功',
-      },
-      //字数统计
-      count: {
-        countable: true,
-        position: 'top',
-        margin: '10px',
-        float: 'top',
-        fontsize: '0.9em',
-        color: 'rgb(90,90,90)',
-        language: 'chinese',
-        localization: {
-          words: "",
-          minute: ""
-        },
-        isExpected: true
-      },
-      //最后更新时间
-      timeUpdater: {
-        text: "`最后更新时间: {docsify-updated}`",
-        formatUpdated: "{YYYY}/{MM}/{DD} {HH}:{mm}:{ss}",
-        whereToPlace: "top",  // "top" or "bottom", default to "bottom"
-      },
-    }
-  </script>
+  <script src="static/docsify/lib/docsify.min.js"></script>
+  <!-- 支持mermaid -->
+  <!-- <script src="static/mermaid/dist/mermaid.min.js"></script> -->
+
+  <script>  
+      var preview = Docsify.dom.find('.demo-theme-preview');
+      var themes = Docsify.dom.findAll('[rel="stylesheet"]');
+
+      preview.onclick = function (e) {
+        var title = e.target.getAttribute('data-theme')
+
+        themes.forEach(function (theme) {
+          theme.disabled = theme.title !== title
+        });
+      };
+      // mermaid.initialize({ startOnLoad: false });
   
-  <!-- 全文搜索 -->
-  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
-  <!-- 图片缩放 -->
-  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
-  <!-- 复制代码到剪贴板 -->
-  <script src="//unpkg.com/docsify-copy-code"></script>
-  <!-- 字数统计 -->
-  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
-  <!-- 黑夜白天模式切换 -->
-  <script src="//cdn.jsdelivr.net/gh/LIGMATV/docsify-dark-switcher@latest/docsify-dark-switcher.js"></script>
-  <!-- 最后更新时间 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-updated/src/time-updater.min.js"></script>
-  <!-- 回到顶部 -->
-  <script src="static/js/docsify-backTop.min.js"></script>
-  <script>
-    docsifyBackTop = {
-      size: 30,           	// 数值，组件大小，默认值32。
-      bottom: 15,         	// 数值，组件底部偏移距离，默认值15。
-      right: 13,          	// 数值，组件右侧偏移距离，默认值15。
-      // logo:字符串或svg矢量图代码，默认为svg代码图标。
-      logo: '<svg t="1740532440732" class="icon" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2022" width="200" height="200"><path d="M512.71932 73.09934c241.717266 0 439.476629 197.211553 439.476629 438.247896 0 241.036343-197.790082 438.206939-439.476629 438.206939-241.717266 0-439.476629-197.170596-439.476628-438.212059 0-241.036343 197.759363-438.247896 439.476628-438.247896m0-73.037903C227.039033 0.056317 0 233.786822 0 511.342116c0 277.524576 227.039033 511.255081 512.71932 511.255081 285.680288 0 512.688602-226.393948 512.688603-511.255081C1025.413042 226.450265 798.404728 0.056317 512.72444 0.056317z m51.233023 803.416932v-394.423107l175.81113 175.334997 65.911255-73.037903-292.950288-292.166971L219.738314 511.342116l65.941974 73.037903 175.739454-175.329877v394.423107h102.532601z" p-id="2023" fill="#42b983"></path></svg>',
-      // bgColor: '\#gray'    	// 背景颜色，#fff、pink等，logo为svg图标时，不填。
-    };
-  </script>
-  <script src="static/js/prism.js"></script>
-  <!-- 添加常用代码高亮语法文件(按照语言首字母排序,如bash csharp docker) -->
-  <!-- <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-jsx.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-kotlin.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-latex.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-less.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-lua.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-matlab.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-nginx.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-perl.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-properties.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ruby.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-scss.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-scala.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-tsx.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script> -->
+      window.$docsify = {
+        // 标题
+        name: '这是主标题',
+        //你的logo
+        // logo: 'static/img/logo.png',
+        //配置仓库地址或者 username/repo 的字符串，会在页面右上角渲染一个 GitHub Corner 挂件
+        repo: 'missfoxw/docsify-template',
+        coverpage: true, // 封面
+        // 默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级
+        maxLevel: 3,
+        // 自定义侧边栏后默认不会再生成目录，你也可以通过设置生成目录的最大层级开启这个功能
+        subMaxLevel: 4,
+        // 加载侧边栏
+        loadSidebar: true,
+        // 启用导航栏load from _navbar.md ,也可以在此页面自定义导航栏
+        loadNavbar: false,
+        // 自动为每个页面添加标题
+        autoHeader: true,
+        // 切换页面后是否自动跳转到页面顶部
+        auto2top: true,
+        // 小屏设备下合并导航栏到侧边栏
+        mergeNavbar: true,
+        // 你的主题色
+        themeColor: 'rgb(34, 151, 214)',
+        // 文档编辑日期格式
+        formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}',
+        //加载自定义404页面
+        notFoundPage: 'my404.md',
+        // 配置 alias 避免不必要的回退过程
+        alias: {
+          '/.*/_navbar.md': '/_navbar.md',
+          '/.*/_sidebar.md': '/_sidebar.md'
+        },
+        // 分页
+        pagination: {
+          previousText: '上一篇',
+          nextText: '下一篇',
+          crossChapter: true
+        },
+        // markdown 配置，支持 mermaid
+        // markdown: {
+        //   renderer: {
+        //     code: function(code, lang) {
+        //       if (lang === "mermaid") {
+        //         return (
+        //           '<div class="mermaid">' + mermaid.render(lang, code) + "</div>"
+        //         );
+        //       }
+        //       return this.origin.code.apply(this, arguments);
+        //     }
+        //   }
+        // },
+        // 搜索配置
+        search: {
+          noData: {
+            '/de-de/': 'Keine Ergebnisse!',
+            '/zh-cn/': '没有结果!',
+            '/': 'No results!'
+          },
+          paths: 'auto',
+          placeholder: {
+            '/de-de/': 'Suche',
+            '/zh-cn/': '搜索',
+            '/': '🔍搜索关键字...'
+          },
+          // 搜索标题的最大程级, 1 - 6
+          depth: 2
+        },
+        // docsify 提供了一套插件机制，其中提供的钩子（hook）支持处理异步逻辑，可以很方便的扩展功能
+        plugins: [
+          function (hook, vm) {
+            // 每次开始解析 Markdown 内容时调用
+            hook.beforeEach(function (html) {
+  
+              url = 'https://github.com/missfoxw/docsify-template/tree/master/docs/' + vm.route.file
+              
+              var editHtml = '[📝 edit](' + url + ')\n\n'
+  
+              return editHtml
+                + html
+                + '\n\n----\n\n'
+                + '<a href="https://github.com/missfoxw" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">by 狐狸小姐 ✈ {docsify-updated}'
+                + '</a>'
+            })
+  
+            // hook.init(function() {
+            //   // 初始化时调用，只调用一次，没有参数。
+            // })
+  
+            // hook.afterEach(function(html, next) {
+            //   // 解析成 html 后调用。beforeEach 和 afterEach 支持处理异步逻辑
+            //   // ...
+            //   // 异步处理完成后调用 next(html) 返回结果
+            //   next(html)
+            // })
+  
+            // hook.doneEach(function() {
+            //   // 每次路由切换时数据全部加载完成后调用，没有参数。
+            //   // ...
+            // })
+  
+            // hook.mounted(function() {
+            //   // 初始化完成后调用 ，只调用一次，没有参数。
+            // })
+  
+            // hook.ready(function() {
+            //   // 初始化并第一次加完成数据后调用，没有参数。
+            // })
+          },
+        ]
+      }
+    </script>
 
-
+    <!-- 搜索 -->
+    <script src="static/docsify/lib/plugins/search.min.js"></script>
+    <!-- 代码高亮  static/prismjs/components 目录下按需引入-->
+    <script src="static/prismjs/components/prism-bash.min.js"></script>
+    <script src="static/prismjs/components/prism-sql.min.js"></script>
+    <script src="static/prismjs/components/prism-c.min.js"></script>
+    <script src="static/prismjs/components/prism-css.min.js"></script>
+    <script src="static/prismjs/components/prism-java.min.js"></script>
+    <script src="static/prismjs/components/prism-javascript.min.js"></script>
+    <script src="static/prismjs/components/prism-yaml.min.js"></script>
+    <!-- 分页 -->
+    <script src="static/docsify-pagination/dist/docsify-pagination.min.js"></script>
 </body>
-
 </html>
