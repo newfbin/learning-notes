@@ -70,8 +70,6 @@
         name: '这是主标题',
         //你的logo
         // logo: 'static/img/logo.png',
-        //配置仓库地址或者 username/repo 的字符串，会在页面右上角渲染一个 GitHub Corner 挂件
-        repo: 'missfoxw/docsify-template',
         coverpage: true, // 封面
         // 默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级
         maxLevel: 3,
@@ -93,11 +91,11 @@
         formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}',
         //加载自定义404页面
         notFoundPage: 'my404.md',
-        // 配置 alias 避免不必要的回退过程
-        alias: {
-          '/.*/_navbar.md': '/_navbar.md',
-          '/.*/_sidebar.md': '/_sidebar.md'
-        },
+        // // 配置 alias 避免不必要的回退过程
+        // alias: {
+        //   '/.*/_navbar.md': '/_navbar.md',
+        //   '/.*/_sidebar.md': '/_sidebar.md'
+        // },
         // 分页
         pagination: {
           previousText: '上一篇',
@@ -139,40 +137,17 @@
             // 每次开始解析 Markdown 内容时调用
             hook.beforeEach(function (html) {
   
-              url = 'https://github.com/missfoxw/docsify-template/tree/master/docs/' + vm.route.file
+              url = 'https://github.com/newfbin/learning-notes/tree/main/docs/study/' + vm.route.file
               
               var editHtml = '[📝 edit](' + url + ')\n\n'
   
               return editHtml
                 + html
                 + '\n\n----\n\n'
-                + '<a href="https://github.com/missfoxw" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">by 狐狸小姐 ✈ {docsify-updated}'
+                + '<a href="https://github.com/newfbin/learning-notes" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">by newfbin ✈ {docsify-updated}'
                 + '</a>'
             })
   
-            // hook.init(function() {
-            //   // 初始化时调用，只调用一次，没有参数。
-            // })
-  
-            // hook.afterEach(function(html, next) {
-            //   // 解析成 html 后调用。beforeEach 和 afterEach 支持处理异步逻辑
-            //   // ...
-            //   // 异步处理完成后调用 next(html) 返回结果
-            //   next(html)
-            // })
-  
-            // hook.doneEach(function() {
-            //   // 每次路由切换时数据全部加载完成后调用，没有参数。
-            //   // ...
-            // })
-  
-            // hook.mounted(function() {
-            //   // 初始化完成后调用 ，只调用一次，没有参数。
-            // })
-  
-            // hook.ready(function() {
-            //   // 初始化并第一次加完成数据后调用，没有参数。
-            // })
           },
         ]
       }
