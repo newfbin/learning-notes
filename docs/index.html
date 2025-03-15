@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Link博客</title>
   <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <!-- 可定制主题 -->
   <link rel="stylesheet" href="static/docsify/themes/buble.css" title="buble" disabled>
-  <link rel="stylesheet" href="static/docsify/themes/vue.css" title="vue" >
+  <link rel="stylesheet" href="static/docsify/themes/vue.css" title="vue">
   <link rel="stylesheet" href="static/docsify/themes/dark.css" title="dark" disabled>
   <link rel="stylesheet" href="static/docsify/themes/theme-simple.css" title="theme-simple" disabled>
   <link rel="stylesheet" href="static/docsify/themes/theme-defaults.css" title="theme-defaults" disabled>
+  <!-- 代码高亮样式 -->
+  <link rel="stylesheet" href="static/prismjs/themes/prism.css">
   <!--支持mermaid-->
   <!-- <link rel="stylesheet" href="static/mermaid/dist/mermaid.min.css"> -->
   <style>
     /*列宽度自适应不换行*/
-    table td { width: 10%; white-space:nowrap; }
-    /*表头颜色*/  
-    table thead{background-color:rgb(58, 140, 201);}
-    /*斑马线 */
-    table tr:nth-of-type(2n){background-color:rgb(246, 249, 252);}
-    table td:nth-of-type(2n){color:rgb(34, 151, 214);}
-    #myTitle{
-      text-align:center;
+    table td {
+      width: 10%;
+      white-space: nowrap;
     }
+
+    /*表头颜色*/
+    table thead {
+      background-color: rgb(58, 140, 201);
+    }
+
+    /*斑马线 */
+    table tr:nth-of-type(2n) {
+      background-color: rgb(246, 249, 252);
+    }
+
+    table td:nth-of-type(2n) {
+      color: rgb(34, 151, 214);
+    }
+
+    #myTitle {
+      text-align: center;
+    }
+
     :root {
       --base-font-size: 13px;
     }
-</style>
+  </style>
 </head>
+
 <body>
   <!-- 可以定制导航栏，也可以 load from _navbar.md 或者自定义文件-->
   <!-- <nav>
@@ -99,17 +118,20 @@
     }
   </script>
 
-    <!-- 搜索 -->
-    <script src="static/docsify/lib/plugins/search.min.js"></script>
-    <!-- 代码高亮  static/prismjs/components 目录下按需引入-->
-    <script src="static/prismjs/components/prism-bash.min.js"></script>
-    <script src="static/prismjs/components/prism-sql.min.js"></script>
-    <script src="static/prismjs/components/prism-c.min.js"></script>
-    <script src="static/prismjs/components/prism-css.min.js"></script>
-    <script src="static/prismjs/components/prism-java.min.js"></script>
-    <script src="static/prismjs/components/prism-javascript.min.js"></script>
-    <script src="static/prismjs/components/prism-yaml.min.js"></script>
-    <!-- 分页 -->
-    <script src="static/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!-- 搜索 -->
+  <script src="static/docsify/lib/plugins/search.min.js"></script>
+  <!-- 代码高亮 -->
+  <script src="static/prismjs/js/prism.js"></script>
+  <!-- 代码高亮  static/prismjs/components 目录下按需引入-->
+  <!-- <script src="static/prismjs/components/prism-bash.min.js"></script>
+  <script src="static/prismjs/components/prism-sql.min.js"></script>
+  <script src="static/prismjs/components/prism-c.min.js"></script>
+  <script src="static/prismjs/components/prism-css.min.js"></script>
+  <script src="static/prismjs/components/prism-java.min.js"></script>
+  <script src="static/prismjs/components/prism-javascript.min.js"></script>
+  <script src="static/prismjs/components/prism-yaml.min.js"></script> -->
+  <!-- 分页 -->
+  <script src="static/docsify-pagination/dist/docsify-pagination.min.js"></script>
 </body>
+
 </html>
