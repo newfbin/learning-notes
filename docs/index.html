@@ -52,106 +52,52 @@
   <!-- 支持mermaid -->
   <!-- <script src="static/mermaid/dist/mermaid.min.js"></script> -->
 
-  <script>  
-      var preview = Docsify.dom.find('.demo-theme-preview');
-      var themes = Docsify.dom.findAll('[rel="stylesheet"]');
-
-      preview.onclick = function (e) {
-        var title = e.target.getAttribute('data-theme')
-
-        themes.forEach(function (theme) {
-          theme.disabled = theme.title !== title
-        });
-      };
-      // mermaid.initialize({ startOnLoad: false });
-  
-      window.$docsify = {
-        // 标题
-        name: 'Link博客',
-        //你的logo
-        // logo: 'static/img/logo.png',
-        coverpage: true, // 封面
-        // 默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级
-        maxLevel: 3,
-        // 自定义侧边栏后默认不会再生成目录，你也可以通过设置生成目录的最大层级开启这个功能
-        subMaxLevel: 4,
-        // 加载侧边栏
-        loadSidebar: true,
-        // 启用导航栏load from _navbar.md ,也可以在此页面自定义导航栏
-        loadNavbar: false,
-        // 自动为每个页面添加标题
-        autoHeader: true,
-        // 切换页面后是否自动跳转到页面顶部
-        auto2top: true,
-        // 小屏设备下合并导航栏到侧边栏
-        mergeNavbar: true,
-        // 你的主题色
-        themeColor: 'rgb(34, 151, 214)',
-        // 文档编辑日期格式
-        formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}',
-        //加载自定义404页面
-        notFoundPage: 'my404.md',
-        // // 配置 alias 避免不必要的回退过程
-        // alias: {
-        //   '/.*/_navbar.md': '/_navbar.md',
-        //   '/.*/_sidebar.md': '/_sidebar.md'
-        // },
-        // 分页
-        pagination: {
-          previousText: '上一篇',
-          nextText: '下一篇',
-          crossChapter: true
+  <script>
+    window.$docsify = {
+      el: '#app',/* docsify初始化的挂载元素，默认#app,不存在则挂载在body上 */
+      executeScript: true, /* 执行文档里的 script 标签里的脚本，只执行第一个 script */
+      loadSidebar: true,/* 加载自定义的侧边栏，默认加载_sidebar.md，加载别的文件把true改成“xxx.md” */
+      loadNavbar: true,/* 加载自定义的导航栏，默认加载_navbar.md，加载别的文件把true改成“xxx.md” */
+      subMaxLevel: 6,/* 自定义侧边栏后默认不会再生成目录，通过设置生成目录的最大层级开启这个功能 */
+      // logo: 'assets/_coverpage/blog.ico', /* 侧边栏中出现的网站图标，你可以使用CSS来更改大小 */
+      name: 'Link博客',/* 侧边栏显示的文档标题 */
+      nameLink: '#/study/README', /* 侧边栏文档标题对应的链接 */
+      // repo: 'newfbin/learning-notes',/* 配置仓库地址 */
+      maxLevel: 6,/* 可配置的最大支持渲染的标题层级 */
+      coverpage: true,/* 启用封面页，默认加载_coverpage.md文件，也可以自定义文件名 */
+      mergeNavbar: true,/* 小屏设备下合并导航栏到侧边栏 */
+      onlyCover: true,/* 首页只显示封面 */
+      //全文搜索
+      search: 'auto',
+      // 复制代码到剪贴板
+      copyCode: {
+        buttonText: '复制代码',
+        errorText: '错误',
+        successText: '复制成功',
+      },
+      //字数统计
+      count: {
+        countable: true,
+        position: 'top',
+        margin: '10px',
+        float: 'top',
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese',
+        localization: {
+          words: "",
+          minute: ""
         },
-        // markdown 配置，支持 mermaid
-        // markdown: {
-        //   renderer: {
-        //     code: function(code, lang) {
-        //       if (lang === "mermaid") {
-        //         return (
-        //           '<div class="mermaid">' + mermaid.render(lang, code) + "</div>"
-        //         );
-        //       }
-        //       return this.origin.code.apply(this, arguments);
-        //     }
-        //   }
-        // },
-        // 搜索配置
-        search: {
-          noData: {
-            '/de-de/': 'Keine Ergebnisse!',
-            '/zh-cn/': '没有结果!',
-            '/': 'No results!'
-          },
-          paths: 'auto',
-          placeholder: {
-            '/de-de/': 'Suche',
-            '/zh-cn/': '搜索',
-            '/': '🔍搜索关键字...'
-          },
-          // 搜索标题的最大程级, 1 - 6
-          depth: 2
-        },
-        // docsify 提供了一套插件机制，其中提供的钩子（hook）支持处理异步逻辑，可以很方便的扩展功能
-        plugins: [
-          function (hook, vm) {
-            // 每次开始解析 Markdown 内容时调用
-            hook.beforeEach(function (html) {
-  
-              url = 'https://github.com/newfbin/learning-notes/tree/main/docs/study/' + vm.route.file
-              
-              var editHtml = '[📝 edit](' + url + ')\n\n'
-  
-              return editHtml
-                + html
-                + '\n\n----\n\n'
-                + '<a href="https://github.com/newfbin/learning-notes" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">by newfbin ✈ {docsify-updated}'
-                + '</a>'
-            })
-  
-          },
-        ]
-      }
-    </script>
+        isExpected: true
+      },
+      //最后更新时间
+      timeUpdater: {
+        text: "`最后更新时间: {docsify-updated}`",
+        formatUpdated: "{YYYY}/{MM}/{DD} {HH}:{mm}:{ss}",
+        whereToPlace: "top",  // "top" or "bottom", default to "bottom"
+      },
+    }
+  </script>
 
     <!-- 搜索 -->
     <script src="static/docsify/lib/plugins/search.min.js"></script>
