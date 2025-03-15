@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" title="vue" >
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css" title="buble" disabled>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css" title="dark" disabled>
+  <link rel="stylesheet" href="themes/prism.css" >
   <!-- docsify-dark-switcher插件专用Style -->
   <style>
     :root {
@@ -27,6 +28,10 @@
       --dark-icon-transition: .1s ease-in-out .1s;
       --dark-moon-color: #000000;
       --dark-sun-color: #ffffff;
+    }
+    /* 减小代码框间距 */
+    .markdown-section pre>code{
+      padding: 1.2em 5px;
     }
   </style>
   <!-- <link rel="stylesheet" href="./style.css"> -->
@@ -106,6 +111,7 @@
       // bgColor: '\#gray'    	// 背景颜色，#fff、pink等，logo为svg图标时，不填。
     };
   </script>
+  <script src="js/prism.js"></script>
   <!-- 添加常用代码高亮语法文件(按照语言首字母排序,如bash csharp docker) -->
   <!-- <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
@@ -137,35 +143,6 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script> -->
 
-  <script src="./js/prism-bash.min.js"></script>
-  <script src="./js/prism-csharp.min.js"></script>
-  <script src="./js/prism-docker.min.js"></script>
-  <script src="./js/prism-go.min.js"></script>
-  <script src="./js/prism-ini.min.js"></script>
-  <script src="./js/prism-java.min.js"></script>
-  <script src="./js/prism-json.min.js"></script>
-  <script src="./js/prism-jsx.min.js"></script>
-  <script src="./js/prism-json.min.js"></script>
-  <script src="./js/prism-javascript.min.js"></script>
-  <script src="./js/prism-kotlin.min.js"></script>
-  <script src="./js/prism-latex.min.js"></script>
-  <script src="./js/prism-less.min.js"></script>
-  <script src="./js/prism-lua.min.js"></script>
-  <script src="./js/prism-markdown.min.js"></script>
-  <script src="./js/prism-matlab.min.js"></script>
-  <script src="./js/prism-nginx.min.js"></script>
-  <script src="./js/prism-perl.min.js"></script>
-  <script src="./js/prism-php.min.js"></script>
-  <script src="./js/prism-powershell.min.js"></script>
-  <script src="./js/prism-properties.min.js"></script>
-  <script src="./js/prism-python.min.js"></script>
-  <script src="./js/prism-ruby.min.js"></script>
-  <script src="./js/prism-scss.min.js"></script>
-  <script src="./js/prism-scala.min.js"></script>
-  <script src="./js/prism-sql.min.js"></script>
-  <script src="./js/prism-tsx.min.js"></script>
-  <script src="./js/prism-typescript.min.js"></script>
-  <script src="./js/prism-yaml.min.js"></script>
 
 </body>
 
