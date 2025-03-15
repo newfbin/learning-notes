@@ -13,9 +13,25 @@
   <link rel="stylesheet" href="static/docsify/themes/dark.css" title="dark" disabled>
   <link rel="stylesheet" href="static/docsify/themes/theme-simple.css" title="theme-simple" disabled>
   <link rel="stylesheet" href="static/docsify/themes/theme-defaults.css" title="theme-defaults" disabled>
-  <!--支持mermaid-->
-  <!-- <link rel="stylesheet" href="static/mermaid/dist/mermaid.min.css"> -->
+  <link rel="shortcut icon" href="./assets/_coverpage/blog.ico" type="image/x-icon">
   <style>
+    /* docsify-dark-switcher插件样式 */
+    :root {
+      --dark-base-background: #222;
+      --dark-base-color: #bbc0c4;
+      --dark-theme-color: var(--theme-color, #42983);
+      --dark-code-color: var(--dark-color);
+      --dark-heading-color: var(--dark-theme-color);
+      --dark-cover-background: #000000a8;
+      --dark-code-background: #303030;
+      --dark-tip-background: #2c0000;
+      --dark-warn-background: #005842;
+      --dark-icon-size: 25px;
+      --dark-icon-transition: .1s ease-in-out .1s;
+      --dark-moon-color: #000000;
+      --dark-sun-color: #ffffff;
+    }
+
     /*列宽度自适应不换行*/
     table td {
       width: 10%;
@@ -36,38 +52,19 @@
       color: rgb(34, 151, 214);
     }
 
-    #myTitle {
-      text-align: center;
-    }
 
-    :root {
-      --base-font-size: 13px;
+    /* 减小代码框间距 */
+    .markdown-section pre>code {
+      padding: 1.2em 5px;
     }
   </style>
 </head>
 
 <body>
-  <!-- 可以定制导航栏，也可以 load from _navbar.md 或者自定义文件-->
-  <!-- <nav>
-    <ul>
-      <li>
-        <p id="nav_d">👘主题切换</p>
-        <ul class="demo-theme-preview">
-          <li><a target="_blank" data-theme="vue">vue</a></li>
-          <li><a target="_blank" data-theme="dark">dark</a></li>
-          <li><a target="_blank" data-theme="buble">buble</a></li>
-          <li><a target="_blank" data-theme="theme-simple">simple</a></li>
-          <li><a target="_blank" data-theme="theme-defaults">defaults</a></li>        
-        </ul>
-      </li>
-    </ul>
-  </nav> -->
   <div id="app">加载中...</div>
 
-  <!-- 本文所用的lib均是截止至2019年6月6日的最新版本，如需使用在线或最新版本，请在//unpkg.com/ 对应目录下获取 -->
+  <!-- 如需使用在线或最新版本js，请在//unpkg.com/ 对应目录下获取 -->
   <script src="static/docsify/lib/docsify.min.js"></script>
-  <!-- 支持mermaid -->
-  <!-- <script src="static/mermaid/dist/mermaid.min.js"></script> -->
 
   <script>
     window.$docsify = {
@@ -124,6 +121,8 @@
   <script src="static/docsify/lib/plugins/time-updater.min.js"></script>
   <!-- 黑夜白天模式切换 -->
   <script src="static/docsify/lib/plugins/docsify-dark-switcher.js"></script>
+  <!-- 字数统计 -->
+  <script src="static/docsify/lib/plugins/countable.min.js"></script>
   <script>
     docsifyBackTop = {
       size: 30,           	// 数值，组件大小，默认值32。
