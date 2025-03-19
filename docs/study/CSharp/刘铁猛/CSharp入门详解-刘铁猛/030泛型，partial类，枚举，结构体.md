@@ -127,6 +127,7 @@ class Box<TCargo>
 ```
 
 泛型类特化后，都是强类型：
+
 ![1546590209948-b310cbc5-c994-45a1-979c-d44601ea2b89.png](./assets/030泛型，partial类，枚举，结构体/1546590209948-b310cbc5-c994-45a1-979c-d44601ea2b89-564905.png)
 
 
@@ -358,11 +359,13 @@ static void Main(string[] args)
 
 partial 类还允许一个类的不同部分，使用不同的编程语言来编写。
 **WinForm **的 Designer 部分和后台代码部分都是用 C# 编写的：
+
 ![1546825575265-268abc2c-5fb4-4ff2-9452-f79c97557e4f.png](./assets/030泛型，partial类，枚举，结构体/1546825575265-268abc2c-5fb4-4ff2-9452-f79c97557e4f-383197.png)
 
 ![1546825603098-7a11c971-3a28-4ef7-883a-7ea0b5e5af31.png](./assets/030泛型，partial类，枚举，结构体/1546825603098-7a11c971-3a28-4ef7-883a-7ea0b5e5af31-182707.png)
 
 **WPF** 的界面使用 XAML（最终会被编译成 C#），后台依然是 C#：
+
 ![1546825779342-b7fcd787-25a0-47dd-9270-65b5e6c907df.png](./assets/030泛型，partial类，枚举，结构体/1546825779342-b7fcd787-25a0-47dd-9270-65b5e6c907df-172639.png)
 
 ![1546825803163-594ecb7e-c171-489f-abe8-d6b6a8ce0b92.png](./assets/030泛型，partial类，枚举，结构体/1546825803163-594ecb7e-c171-489f-abe8-d6b6a8ce0b92-109244.png)
