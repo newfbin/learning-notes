@@ -169,7 +169,7 @@ Spring Cloud Gateway支持丰富的路由匹配逻辑，以应对各种类型的
 
 - **全局过滤器GlobalFilter**：作用在所有路由上，不需要在配置文件中配置，实现GlobalFilter接口即可
 - **网关过滤器GatewayFilter**：作用在单一路由或某个路由分组上，通过spring.cloud.gateway.routes.filters配置在具体的路由上，也可以通过配置spring.cloud.gateway.default-filters让它作用于全局路由上。
-- **自定义过滤器**：
+- **自定义过滤器**： 见 4.4.3
 
 #### 4.4.1 全局过滤器
 
@@ -512,3 +512,177 @@ spring:
 >
 > - http://localhost:9527/pay/get/1?custom=1✅
 > - http://localhost:9527/pay/get/1✖️
+
+### 4.5 自定义断言
+
+**问题**：Spring Cloud Gateway自带的断言（Predicate）不满足业务怎么办？可以自定义断言！
+
+先看Spring Cloud Gateway是如何实现断言的
+
+Gateway中断言的整体架构如下：
+
+![img](./assets/SpringCloudGateway/9a9d42acbd13c3af0238d04f688eb075.png)
+
+```java
+public abstract class AbstractRoutePredicateFactory<C> extends AbstractConfigurable<C>
+		implements RoutePredicateFactory<C> {
+
+	public AbstractRoutePredicateFactory(Class<C> configClass) {
+		super(configClass);
+	}
+}
+```
+
+可以看到Gateway的断言都是继承了`AbstractRoutePredicateFactory`抽象类。
+
+自定义路由断言规则的步骤如下：
+
+1. 新建类名`CustomRoutePredicateFactory`（类名需要以以RoutePredicateFactory结尾），并继承`AbstractRoutePredicateFactory`抽象类。
+2. 重写apply()方法
+3. 新建apply()方法所需的静态内部类`CustomRoutePredicateFactory.Config`，这个Config就是我们的断言规则
+4. 空参构造方法，内部调用super()方法
+5. 在Config类中配置自定义参数
+6. apply()中编写自定义的逻辑
+
+```java
+import jakarta.validation.constraints.NotNull;
+import org.springframework.cloud.gateway.handler.predicate.AbstractRoutePredicateFactory;
+import org.springframework.cloud.gateway.handler.predicate.GatewayPredicate;
+import org.springframework.web.server.ServerWebExchange;
+
+import java.util.function.Predicate;
+
+/**
+ * 自定义路由断言工厂，指定的用户类型才能访问
+ *
+ * @author gengduc@qq.com
+ * @since 2024-03-08
+ */
+@Component
+public class CustomRoutePredicateFactory extends AbstractRoutePredicateFactory<CustomRoutePredicateFactory.Config> {
+    public CustomRoutePredicateFactory() {
+        super(CustomRoutePredicateFactory.Config.class);
+    }
+
+    @Override
+    public Predicate<ServerWebExchange> apply(CustomRoutePredicateFactory.Config config) {
+        return new GatewayPredicate() {
+            @Override
+            public boolean test(ServerWebExchange serverWebExchange) {
+                // 这里可以编写自定义的逻辑
+                // 获取请求中的信息，判断是否符合条件
+                String userType = serverWebExchange.getRequest().getQueryParams().getFirst("userType");
+                if (userType == null) {
+                    return false;
+                }
+                // 判断用户类型是否符合
+                return userType.equalsIgnoreCase(config.getUserType());
+            }
+        };
+    }
+
+    public static class Config {
+        // 这里可以配置一些参数
+        @NotNull
+        private String userType;
+
+        public String getUserType() {
+            return userType;
+        }
+
+        public void setUserType(String userType) {
+            this.userType = userType;
+        }
+    }
+}
+```
+
+这个时候已经可以使用我们自定义的断言了。
+
+> http://localhost:9527/order/gateway/get/1?userType=admin
+
+在yml文件中配置：
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: custom_route
+        uri: https://example.org
+        predicates:
+        - name: Custom
+          args:
+            userType: admin # 当用户类型是admin的时候进行路由转发
+```
+
+可以看到我们使用的配置方式是完全展开的参数配置方式（Fully Expanded Arguments），这个时候还是不支持快捷配置的。
+
+为了让自定义的断言支持快捷配置（Shortcut Configuration），还需要实现`shortcutFieldOrder()`方法。
+
+![image-20240308195902106](./assets/SpringCloudGateway/7b28b60df463f793ead533eec876e6cf.png)
+
+完整的代码如下：
+
+```java
+import jakarta.validation.constraints.NotNull;
+import org.springframework.cloud.gateway.handler.predicate.AbstractRoutePredicateFactory;
+import org.springframework.cloud.gateway.handler.predicate.GatewayPredicate;
+import org.springframework.web.server.ServerWebExchange;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
+
+/**
+ * 自定义路由断言工厂，指定的用户类型才能访问
+ *
+ * @author gengduc@qq.com
+ * @since 2024-03-08
+ */
+@Component
+public class CustomRoutePredicateFactory extends AbstractRoutePredicateFactory<CustomRoutePredicateFactory.Config> {
+    public CustomRoutePredicateFactory() {
+        super(CustomRoutePredicateFactory.Config.class);
+    }
+	
+    // 快捷配置支持
+    @Override
+    public List<String> shortcutFieldOrder() {
+        return Collections.singletonList("userType");
+    }
+
+    @Override
+    public Predicate<ServerWebExchange> apply(CustomRoutePredicateFactory.Config config) {
+        return new GatewayPredicate() {
+            @Override
+            public boolean test(ServerWebExchange serverWebExchange) {
+                // 这里可以编写自定义的逻辑
+                // 获取请求中的信息，判断是否符合条件
+                String userType = serverWebExchange.getRequest().getQueryParams().getFirst("userType");
+                if (userType == null) {
+                    return false;
+                }
+                // 判断用户类型是否符合
+                return userType.equalsIgnoreCase(config.getUserType());
+            }
+        };
+    }
+
+
+
+    public static class Config {
+        // 这里可以配置一些参数
+        @NotNull
+        private String userType;
+
+        public String getUserType() {
+            return userType;
+        }
+
+        public void setUserType(String userType) {
+            this.userType = userType;
+        }
+    }
+}
+```
