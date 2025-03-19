@@ -271,3 +271,16 @@ Ctrl + Shift + R 全局替换
 ![image-20250227083601455](./assets/IDE配置/image-20250227083601455.png)
 
 ![image-20250227083719146](./assets/IDE配置/image-20250227083719146.png)
+
+### VisualStudio2022安装ReSharper插件破解版
+
+首先打开JetBrains的[ReShaper官网](https://www.jetbrains.com.cn/resharper/download/other.html)，下载2022.x版本的ReSharper。
+
+![image-20250319153259196](./assets/IDE配置/image-20250319153259196.png)
+
+下载并安装后，右键以管理员身份运行[破解工具](https://pan.baidu.com/s/1BZQaN9nfXmGt0f4GTDpb1w?pwd=5wjb)
+
+![image-20250319153420812](./assets/IDE配置/image-20250319153420812.png)
+
+运行后将有30天免费试用，每次到期后运行依次即可。
+
