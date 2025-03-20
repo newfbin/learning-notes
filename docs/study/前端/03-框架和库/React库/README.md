@@ -4,7 +4,7 @@
 
   * [React全家桶-尚硅谷-part01](/study/前端/03-框架和库/React库/React全家桶-尚硅谷-part01)
   * [React全家桶-尚硅谷-part02](/study/前端/03-框架和库/React库/React全家桶-尚硅谷-part02)
-  * [第1章 React简介](/study/前端/03-框架和库/React库/第1章 React简介)
+  * [第1章React简介](/study/前端/03-框架和库/React库/第1章React简介)
   * [第2章 React面向组件编程](/study/前端/03-框架和库/React库/第2章 React面向组件编程)
   * [第3章 react应用（基于react脚手架）](/study/前端/03-框架和库/React库/第3章 react应用（基于react脚手架）)
   * [第4章 React ajax](/study/前端/03-框架和库/React库/第4章 React ajax)
