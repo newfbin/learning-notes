@@ -664,3 +664,47 @@ git push origin [branch name]
 git push origin gh-dev
 ```
 
+
+
+## 解决git add时的“Filename too long“
+
+为了尽快知道问题的原因，我google了一番，从网上找到了一个不错的解释：
+
+> This error does not come for the UNIX or mac users. So they can push the long length file names to git but the issues occur only for the windows users. Because this capability is disabled by default in the Windows operating system.
+
+从上面的解释可清楚知道，这个错误时其实并不是来自于UNIX 或mac系统，而是只来自于windows系统，因为在windows操作系统中，允许比较长的文件名称这个设置项默认是关闭(false)的。
+
+
+好的，既然都知道原因了，那么接下来就可以对症下药，解决问题了。具体步骤如下:
+
+首先我们可以看在git的命令行界面（git bash）中输入
+
+```bash 
+git config --get core.longpaths
+```
+
+> `core.longpaths` 配置项用于控制是否开启对长路径的支持。
+>
+> - 当 `core.longpaths` 设为 `true` 时，Git 会突破 Windows 系统默认的路径长度限制，支持更长的文件路径。
+> - 若 `core.longpaths` 设为 `false` 或者未设置，Git 就遵循 Windows 系统默认的路径长度限制。
+
+如果看到没有返回任何值或者返回false，说明没有开启对长路径的支持。
+
+此时可以输入
+
+```bash
+git config core.longpaths true
+```
+
+--global是该参数的使用范围，如果想全局性设置该参数，只要在上述命令中加上--global即可，即
+
+```bash
+git config --global core.longpaths true
+```
+
+只想对本版本库设置该参数的话直接按照上面的就行。
+
+这个解决方法也许并不是万能的。有个网站说得比较详细，需要的同学可以看下。
+[修复 Windows 中 Git Clone “文件名太长” 错误的 3 种方法-已修复](https://www.javaprogramto.com/2020/04/git-filename-too-long.html)
+
+
