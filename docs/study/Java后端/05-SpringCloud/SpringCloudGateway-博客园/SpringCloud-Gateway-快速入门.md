@@ -8,7 +8,7 @@
 
 ## 1 微服务网关概述
 
-![image-20250315101904764](./assets/SpringCloudGateway/image-20250315101904764.png)
+![image-20250315101904764](./assets/SpringCloud-Gateway-快速入门/image-20250315101904764.png)
 
 Spring Cloud Gateway是在 Spring 生态系统之上构建的API网关服务，旨在为微服务架构应用提供一种简单有效的统一的API路由管理方式。
 
@@ -28,7 +28,7 @@ Spring Cloud Gateway主要功能：
 
 ## 3 Spring Cloud Gateway工作流程
 
-![image-20250315101929048](./assets/SpringCloudGateway/image-20250315101929048.png)
+![image-20250315101929048](./assets/SpringCloud-Gateway-快速入门/image-20250315101929048.png)
 
 客户端向 Spring Cloud Gateway 发出请求。然后在 Gateway Handler Mapping 中找到与请求相匹配的路由，将其发送到 Gateway Web Handler。Handler 再通过指定的过滤器链来将请求发送到我们实际的服务执行业务逻辑，然后返回。
 
@@ -96,13 +96,13 @@ public class Gateway9527 {
 
 > 服务注册使用了 Consul，如果要使用 Nacos 进行服务注册，修改 pom 文件中的依赖和 yml 文件中的配置！
 
-![image-20240308150657584](./assets/SpringCloudGateway/117921b667c05310ba1fd2bcb3ca4c2c.png)
+![image-20240308150657584](./assets/SpringCloud-Gateway-快速入门/117921b667c05310ba1fd2bcb3ca4c2c.png)
 
 ### 4.3 路由配置
 
 假设场景，商城系统用户下单支付。
 
-![image-20250315102035795](./assets/SpringCloudGateway/image-20250315102035795.png)
+![image-20250315102035795](./assets/SpringCloud-Gateway-快速入门/image-20250315102035795.png)
 
 网关微服务yml配置：
 
@@ -122,7 +122,7 @@ spring:
 
 如果要使用OpenFeign，订单微服务8001调用支付微服务8002，
 
-![image-20250315102058445](./assets/SpringCloudGateway/image-20250315102058445.png)
+![image-20250315102058445](./assets/SpringCloud-Gateway-快速入门/image-20250315102058445.png)
 
 服务调用链：
 
@@ -165,7 +165,7 @@ Spring Cloud Gateway支持丰富的路由匹配逻辑，以应对各种类型的
 
 ### 4.4 过滤器配置
 
-![image-20250315102116389](./assets/SpringCloudGateway/image-20250315102116389.png)
+![image-20250315102116389](./assets/SpringCloud-Gateway-快速入门/image-20250315102116389.png)
 
 - **全局过滤器GlobalFilter**：作用在所有路由上，不需要在配置文件中配置，实现GlobalFilter接口即可
 - **网关过滤器GatewayFilter**：作用在单一路由或某个路由分组上，通过spring.cloud.gateway.routes.filters配置在具体的路由上，也可以通过配置spring.cloud.gateway.default-filters让它作用于全局路由上。
@@ -521,7 +521,7 @@ spring:
 
 Gateway中断言的整体架构如下：
 
-![img](./assets/SpringCloudGateway/9a9d42acbd13c3af0238d04f688eb075.png)
+![img](./assets/SpringCloud-Gateway-快速入门/9a9d42acbd13c3af0238d04f688eb075.png)
 
 ```java
 public abstract class AbstractRoutePredicateFactory<C> extends AbstractConfigurable<C>
@@ -620,7 +620,7 @@ spring:
 
 为了让自定义的断言支持快捷配置（Shortcut Configuration），还需要实现`shortcutFieldOrder()`方法。
 
-![image-20240308195902106](./assets/SpringCloudGateway/7b28b60df463f793ead533eec876e6cf.png)
+![image-20240308195902106](./assets/SpringCloud-Gateway-快速入门/7b28b60df463f793ead533eec876e6cf.png)
 
 完整的代码如下：
 
