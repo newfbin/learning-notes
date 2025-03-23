@@ -12,4 +12,3 @@
   * [08.Docker网络](/study/运维/03-容器/Docker-狂神/08.Docker网络)
   * [09.DockerCompose](/study/运维/03-容器/Docker-狂神/09.DockerCompose)
   * [10.DockerSwarm](/study/运维/03-容器/Docker-狂神/10.DockerSwarm)
-  * [Docker-狂神](/study/运维/03-容器/Docker-狂神/Docker-狂神)
