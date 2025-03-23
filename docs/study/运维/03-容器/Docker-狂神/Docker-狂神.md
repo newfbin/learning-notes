@@ -1,6 +1,4 @@
-#  
-
-#  一、Docker入门
+#  Docker入门
 
 ## 1. Docker 为什么会出现
 
@@ -247,7 +245,7 @@ sudo systemctl restart docker
 
   ![image-20240923140331628](./assets/Docker-狂神/image-20240923140331628.png)
 
-# 二、Docker基本命令
+# Docker基本命令
 
 
 
@@ -755,7 +753,7 @@ docker cp 容器id：容器内路径 目的地主机路径
 [root@iZ2zeg4ytp0whqtmxbsqiiZ /]# docker cp 7af535f807e0:/home/Test.java /home
 ```
 
-# 三、Docker部署软件实战
+# Docker部署软件实战
 
 ## 1.Docker部署软件实战
 
@@ -880,7 +878,7 @@ docker run -d -p 8088:9000 --restart=always -v /var/run/docker.sock:/var/run/doc
 
   > Rancher也是docker的可视化工具，在未来做CI/CD (持 续集成/持续部署的时候会用)
 
-# 四、Docker原理
+# Docker原理
 
 ## 镜像原理之联合文件系统
 
@@ -1118,7 +1116,7 @@ hello-world           latest              bf756fb1ae65        4 months ago      
 
  
 
-# 五、容器数据卷
+# 容器数据卷
 
 ## 1. docker的理解回顾
 
@@ -1308,7 +1306,7 @@ docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx:rw nginx
 
 但是一旦你持久化到了本地，这个时候，本地的数据是不会删除的！
 
-# 六、DockerFile
+# DockerFile
 
 ## 初识DockerFile
 
@@ -1535,7 +1533,7 @@ drwx------  2 root root 4096 Aug  9 21:40 lost+found
 
 ![image-20241029102807513](./assets/Docker-狂神/image-20241029102807513.png)
 
-# 七、Dockerfile制作tomcat镜像
+# Dockerfile制作tomcat镜像
 
 ## Dockerfile制作tomcat镜像
 
@@ -1712,7 +1710,7 @@ docker tag diytomcat newfbin/diytomcat:1.0
 
 ![](./assets/Docker-狂神/fa8a5f4aa8aa798c3d90abd9322f6da7.png)
 
-# 八，Docker网络
+# Docker网络
 
 > 相关命令： docker network
 
@@ -2226,7 +2224,7 @@ hello, xiaofan
 
 以后我们使用了Docker之后，给别人交互的就是一个镜像即可！
 
-# 九、Docker Compose
+# Docker Compose
 
 ## 简介
 
@@ -2556,7 +2554,7 @@ docker compose up --build   # 重新构建
 - 服务
 - 容器 运行实例！ docker k8s 容器
 
-# 十、Docker Swarm
+# Docker Swarm
 
 集群
 
