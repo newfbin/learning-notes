@@ -1,8 +1,8 @@
-# Runtime类详细总结 	
+## Runtime类详细总结 	
 
-> 原文地址：https://www.cnblogs.com/summerday152/p/14146809.html#runtime%E7%B1%BB%E7%AE%80%E4%BB%8B
+> 原文地址：https://www.cnblogs.com/summerday152/p/14146809.html##runtime%E7%B1%BB%E7%AE%80%E4%BB%8B
 
-##  Runtime类简介
+###  Runtime类简介
 
 Java中，Runtime类提供了许多的API 来与`java runtime environment`进行交互，如：
 
@@ -12,7 +12,7 @@ Java中，Runtime类提供了许多的API 来与`java runtime environment`进行
 
 Runtime是单例的，可以通过`Runtime.getRuntime()`得到这个单例。
 
-## API列表
+### API列表
 
 | public static Runtime getRuntime()                    | 返回单例的Runtime实例                           |
 | :---------------------------------------------------- | :---------------------------------------------- |
@@ -26,9 +26,9 @@ Runtime是单例的，可以通过`Runtime.getRuntime()`得到这个单例。
 
 注：以上为列举的比较常见的一些方法，不完全。
 
-## 经典案例
+### 经典案例
 
-### exec
+##### exec
 
 ```java
     @Test
@@ -48,7 +48,7 @@ Runtime是单例的，可以通过`Runtime.getRuntime()`得到这个单例。
     }
 ```
 
-### 获取信息
+##### 获取信息
 
 ```java
     @Test
@@ -85,7 +85,7 @@ Runtime是单例的，可以通过`Runtime.getRuntime()`得到这个单例。
 gc之后, 剩余内存: 252594608
 ```
 
-### 注册钩子线程
+##### 注册钩子线程
 
 ```java
     @Test
@@ -99,7 +99,7 @@ gc之后, 剩余内存: 252594608
 
 3s之后，test方法结束，打印信息。
 
-### 取消注册钩子线程
+##### 取消注册钩子线程
 
 ```java
     @Test
@@ -113,7 +113,7 @@ gc之后, 剩余内存: 252594608
     }
 ```
 
-### 终止！
+##### 终止！
 
 ```java
     @Test
@@ -124,7 +124,7 @@ gc之后, 剩余内存: 252594608
     }
 ```
 
-# Process类详解
+## Process类详解
 
 > 原文地址：https://zhuanlan.zhihu.com/p/44957705
 
