@@ -265,7 +265,9 @@ docker 命令 --help
 
 ## 镜像命令
 
-**docker images** 查看所有本地主机上的镜像
+### 查看所有本地主机上的镜像
+
+`docker images` 
 
 ```bash
 [root@iZ2zeg4ytp0whqtmxbsqiiZ ~]# docker images
@@ -284,7 +286,9 @@ SIZE            # 镜像的大小
 --quiet , -q    # 只显示镜像的id
 ```
 
-**docker search** 查找镜像
+### 查找镜像
+
+`docker search` 
 
 ```bash
 [root@iZ2zeg4ytp0whqtmxbsqiiZ ~]# docker search mysql
@@ -302,7 +306,9 @@ mysql               MySQL is a widely used, open-source relation…   9822      
 mariadb             MariaDB is a community-developed fork of MyS…   3586                [OK]     
 ```
 
-**docker pull** 下载镜像
+### 下载镜像
+
+`docker pull` 
 
 ```bash
 # 下载镜像，docker pull 镜像名[:tag]
@@ -355,7 +361,9 @@ mysql               latest              0d64f46acfd1        6 days ago          
 hello-world         latest              bf756fb1ae65        7 months ago        13.3kB
 ```
 
-docker rmi 删除镜像
+### 删除镜像
+
+`docker rmi` 
 
 ```bash
 [root@iZ2zeg4ytp0whqtmxbsqiiZ ~]# docker rmi -f 镜像ID                        # 删除指定镜像
@@ -371,11 +379,11 @@ docker rmi 删除镜像
 docker pull centos
 ```
 
-**新建容器并启动**
+### 新建容器并启动
+
+`docker run [可选参数] image`
 
 ```bash
-docker run [可选参数] image
-
 # 参数说明
 --name=“Name”   容器名字    tomcat01    tomcat02    用来区分容器
 -d      后台方式运行
@@ -402,14 +410,15 @@ bin   dev  fanfan  lib    lost+found  mnt  proc  run   srv  tmp  var
 boot  etc  home    lib64  media       opt  root  sbin  sys  usr
 ```
 
-**列出所有的运行的容器**
+### 列出所有的运行的容器
+
+`docker ps`
 
 ```bash
-# docker ps 命令
-        # 列出当前正在运行的容器
--a      # 列出正在运行的容器包括历史容器
--n=?    # 显示最近创建的容器
--q      # 只显示当前容器的编号
+docker ps 	# 列出当前正在运行的容器
+-a      	# 列出正在运行的容器包括历史容器
+-n=?    	# 显示最近创建的容器
+-q      	# 只显示当前容器的编号
 
 [root@iZ2zeg4ytp0whqtmxbsqiiZ /]# docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
@@ -429,14 +438,14 @@ a57250395804
 571d1bc0e8e8
 ```
 
-**退出容器**
+### 退出容器
 
 ```bash
 exit            # 直接退出容器并关闭
 Ctrl + P + Q    # 容器不关闭退出
 ```
 
-**删除容器**
+### 删除容器
 
 ```bash
 docker rm 容器id                     # 删除指定容器,不能删除正在运行的容器，如果要强制删除，使用docker rm -f
@@ -444,7 +453,7 @@ docker rm -f $(docker ps -aq)       # 删除所有容器
 docker ps -a -q|xargs docker rm -f  # 删除所有的容器(管道方式)
 ```
 
-**启动和停止容器的操作**
+### 启动和停止容器的操作
 
 ```bash
 docker start 容器id           # 启动容器
