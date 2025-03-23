@@ -21,7 +21,7 @@ Docker 技术可以实现程序和宿主机的隔离。
 
 可以把一个容器理解为一个新的电脑（定制化的操作系统）。
 
-![img](./assets/第6期-代码沙箱 Docker 实现/e7f42db4-10f0-4a1c-b358-75c1265fe286.png)
+![img](./assets/第6期-代码沙箱Docker实现/e7f42db4-10f0-4a1c-b358-75c1265fe286.png)
 
 ### Docker 基本概念
 
@@ -31,7 +31,7 @@ Docker 技术可以实现程序和宿主机的隔离。
 
 Dockerfile：制作镜像的文件，可以理解为制作镜像的一个清单
 
-![img](./assets/第6期-代码沙箱 Docker 实现/35b2ec93-be24-48e8-b255-17f46fb11cf7.png)
+![img](./assets/第6期-代码沙箱Docker实现/35b2ec93-be24-48e8-b255-17f46fb11cf7.png)
 
 镜像仓库：存放镜像的仓库，用户可以从仓库下载现成的镜像，也可以把做好的镜像放到仓库里
 
@@ -53,7 +53,7 @@ Dockerfile：制作镜像的文件，可以理解为制作镜像的一个清单
 
 5）Storage 存储空间：容器内的文件是相互隔离的，也可以去使用宿主机的文件
 
-![img](./assets/第6期-代码沙箱 Docker 实现/9b791361-9aa9-4a2c-9794-2beb8146d059.png)
+![img](./assets/第6期-代码沙箱Docker实现/9b791361-9aa9-4a2c-9794-2beb8146d059.png)
 
 docker compose：是一种同时启动多个容器的集群操作工具（容器管理工具），一般情况下，开发者仅做了解即可，实际使用 docker compose 时去百度配置文件
 
@@ -200,7 +200,7 @@ DockerClient（推荐）：才是真正和 Docker 守护进程交互的、最方
 
 如果无法启动程序，修改 settings 的compiler 配置：`-Djdk.lang.Process.launchMechanism=vfork`
 
-![image.png](./assets/第6期-代码沙箱 Docker 实现/0e52cf68-4707-4b24-984c-00c2fb4fdccc.png)
+![image.png](./assets/第6期-代码沙箱Docker实现/0e52cf68-4707-4b24-984c-00c2fb4fdccc.png)
 
 如果启动失败：
 
