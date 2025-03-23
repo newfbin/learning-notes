@@ -1,3 +1,13 @@
+# Runtime类和Process类
+
+## Runtime类和Process类的关系
+
+Runtime的`exec()`方法会返回一个Process对象
+
+```java
+public Process exec(String command)throws IOException  // 执行command指令，启动一个新的进程
+```
+
 ## Runtime类详细总结 	
 
 > 原文地址：https://www.cnblogs.com/summerday152/p/14146809.html##runtime%E7%B1%BB%E7%AE%80%E4%BB%8B
@@ -137,7 +147,7 @@ gc之后, 剩余内存: 252594608
 >
 > **java.lang.Process**
 >
-> public abstract class **Process**extends Object
+> public abstract class **Process** extends Object
 >
 > `ProcessBuilder.start()` 和 `Runtime.exec` 方法创建一个本机进程，并返回 `Process` 子类的一个实例，该实例可用来控制进程并获得相关信息。`Process` 类提供了执行从进程输入、执行输出到进程、等待进程完成、检查进程的退出状态以及销毁（杀掉）进程的方法。
 > 创建进程的方法可能无法针对某些本机平台上的特定进程很好地工作，比如，本机窗口进程，守护进程，Microsoft Windows 上的 Win16/DOS 进程，或者 shell 脚本。创建的子进程没有自己的终端或控制台。它的所有标准 io（即 stdin、stdout 和 stderr）操作都将通过三个流 (`getOutputStream()`、`getInputStream()` 和 `getErrorStream()`) 重定向到父进程。父进程使用这些流来提供到子进程的输入和获得从子进程的输出。因为有些本机平台仅针对标准输入和输出流提供有限的缓冲区大小，如果读写子进程的输出流或输入流迅速出现失败，则可能导致子进程阻塞，甚至产生死锁。
@@ -168,21 +178,19 @@ gc之后, 剩余内存: 252594608
 
 ![img](./assets/Java-基础-其他类总结/v2-705aeec6a7523b721a1629f1f4dc8342_1440w.jpg)
 
-换成咱们人说的话，站在我们自己写的程序角度来想，如果我们的程序想要往别的程序输入数据，那么就是我们程序要输出对吧，所以我们需要获取输出流也就是调用getOutputStream方法，那么反过来，如果我们要获取别的程序的输出的数据，对于我们程序来说也就是输入的数据，所以我们要获取输入流，调用getInputStream方法。
-
 这是Process设计者的锅，不怪我们，但是我们也只有这样使用了。
 
 另外的几个方法也简单介绍一下吧：
 
-destroy：杀掉该Process对象代表的进程。
+`destroy`：杀掉该Process对象代表的进程。
 
-exitValue：返回该Process对象代表的进程的退出值，值0表示正常退出，非0非正常。关于该方法，应该是返回System.exit(int)方法中的参数。
+`exitValue`：返回该Process对象代表的进程的退出值，值0表示正常退出，非0非正常。关于该方法，应该是返回System.exit(int)方法中的参数。
 
-waitFor：返回该Process对象代表的进程的出口值，值0表示正常退出，非0非正常。
+`waitFor`：返回该Process对象代表的进程的出口值，值0表示正常退出，非0非正常。
 
 该方法很类似exitValue方法，但是他们有个区别很大的地方，那就是exitValue方法会直接返回一个值，但是当前程序有可能还在运行中，所以该值不一定是正确的，而本方法会一直等待Process对象代表的进程退出后才返回值，而且调用本方法的进程将会一直堵塞等待返回值。建议使用本方法！
 
-getErrorStream：与getInputStream的作用差不多，但略有些区别，在程序正常运行后输出的值是在getInputStream流中，但是如果程序出现错误后，输出的错误信息在getInputStream中是看不到的，因为错误信息在getErrorStream中！
+`getErrorStream`：与getInputStream的作用差不多，但略有些区别，在程序正常运行后输出的值是在getInputStream流中，但是如果程序出现错误后，输出的错误信息在getInputStream中是看不到的，因为错误信息在getErrorStream中！
 
 我认为本方法和getInputStream的不同与System.out.println()和System.err.println()是对应的。所以我们在获取Process对象代表的进程的输出时不能只调用getInputStream方法，也应该调用getErrorStream方法，把两个流结合在一起进行查看。这样得到的信息才是完整的。
 
