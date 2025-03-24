@@ -173,7 +173,7 @@ Properties properties PropertiesLoaderutils.loadProperties(resource);
 6. 容器中也会存在非常多的`xxxAutoConfiguration`的文件(`@Bean`),就是这些类给容器中导入了这个场景需要的所有组件；并自动配置，`@Configuration`，`JavaConfig`!
 7. 有了自动配置类，免去了我们手动编写配置文件的工作！
 
-<img src="./assets/SpringBoot-狂神/a1e94810565ee0b70f668629f6215814.png" alt=" " style="zoom: 150%;" />
+<img src="./assets/SpringBoot-狂神/a1e94810565ee0b70f668629f6215814.png"/>
 
 关于SpringBoot，谈谈你的理解：
 

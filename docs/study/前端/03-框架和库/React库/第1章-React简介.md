@@ -90,9 +90,9 @@ const VDOM=(
 1. 本质是Object，即一般对象（不是数组对象和函数对象）
 
 2. 虚拟DOM比较“轻”，真实DOM比较“重”，因为虚拟DOM是react内部在用，无需真实DOM中那么多属性
-   <img src="./assets/第1章-React简介/image-20241230014241702.png" alt="image-20241230014241702" style="zoom: 67%;" />
+   <img src="./assets/第1章-React简介/image-20241230014241702.png"/>
 
-   <img src="./assets/第1章-React简介/image-20241230014334465.png" alt="image-20241230014334465" style="zoom:67%;" />
+   <img src="./assets/第1章-React简介/image-20241230014334465.png"/>
 
 3. 虚拟DOM最终会被react转换为真实DOM呈现在页面上
 

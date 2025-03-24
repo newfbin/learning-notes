@@ -2868,7 +2868,7 @@ curl http://localhost:2375/version
 >
 > ![image-20241229092435022](./assets/Java类库插件/image-20241229092435022.png)
 >
-> <img src="./assets/Java类库插件/image-20241229092403354.png" alt="image-20241229092403354" style="zoom:150%;" />
+> <img src="./assets/Java类库插件/image-20241229092403354.png"/>
 
 - 编写生成证书的脚本，这是在网上找的，可以自动生成脚本并且完成拷贝
 

@@ -191,7 +191,7 @@
 >
 >* 栈: 全局变量/局部变量
 >* 堆: 对象
->* <img src="./assets/JavaScript高级-尚硅谷/image-20210630192130518.png" alt="image-20210630192130518" style="zoom:50%;" />  
+>* <img src="./assets/JavaScript高级-尚硅谷/image-20210630192130518.png"/>  
 
 ### Ⅲ-什么是变量?
 
@@ -858,7 +858,7 @@ this 总结：
 >
 > 此图出于CSDN的[Free Joe](https://blog.csdn.net/wangfeijiu)
 >
-> <img src="./assets/JavaScript高级-尚硅谷/image-20210723181727823.png" alt="image-20210723181727823" style="zoom:80%;" /> 
+> <img src="./assets/JavaScript高级-尚硅谷/image-20210723181727823.png"/> 
 
 ### Ⅰ-变量提升与函数提升
 
@@ -2337,7 +2337,7 @@ this 总结：
 >2. 可以通过windows任务管理器查看进程
 >
 > - 可以看出每个程序的内存空间是相互独立的
-> - <img src="./assets/JavaScript高级-尚硅谷/image-20210728115541255.png" alt="image-20210728115541255" style="zoom:80%;" /> 
+> - <img src="./assets/JavaScript高级-尚硅谷/image-20210728115541255.png"/> 
 
 ### Ⅱ-线程
 
@@ -2620,7 +2620,7 @@ setTimeout(function () { //4. 在将[timeout 1111]弹窗关闭后,再等一秒 �
 >
 >> 被放入事件队列不会立刻执行其回调，而是`等待当前执行栈中的所有任务都执行完毕， 主线程处于闲置状态时，主线程会去查找事件队列是否有任务`。如果有，那么主线程会从中取出排在第一位的事件，并把这个事件对应的回调放入执行栈中，然后执行其中的同步代码...，如此反复，`这样就形成了一个无限的循环。这就是这个过程被称为“事件循环（Event Loop）”的原因。`
 >
->这里还有一张图来展示这个过程:<img src="./assets/JavaScript高级-尚硅谷/image-20210729163242840.png" alt="image-20210729163242840" style="zoom:67%;" />
+>这里还有一张图来展示这个过程:<img src="./assets/JavaScript高级-尚硅谷/image-20210729163242840.png"/>
 >
 >图中的stack表示我们所说的执行栈，web apis则是代表一些异步事件，而callback queue即事件队列。
 >
