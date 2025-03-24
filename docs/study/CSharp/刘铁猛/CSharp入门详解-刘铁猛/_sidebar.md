@@ -1,6 +1,6 @@
 * **目录**
   * [🏠（起点）](/study/README)
-  * [⬆️（返回）](/study/CSharp\刘铁猛/README)
+  * [⬆️（返回）](/study/CSharp/刘铁猛/README)
   * [**001课程简介，CSharp语言简介，开发环境准备**](/study/CSharp/刘铁猛/CSharp入门详解-刘铁猛/001课程简介，CSharp语言简介，开发环境准备)
   * [**002.001CSharp也能开发Android应用**](/study/CSharp/刘铁猛/CSharp入门详解-刘铁猛/002.001CSharp也能开发Android应用)
   * [**002初识各类应用程序**](/study/CSharp/刘铁猛/CSharp入门详解-刘铁猛/002初识各类应用程序)
