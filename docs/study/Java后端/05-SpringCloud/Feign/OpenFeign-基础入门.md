@@ -1,3 +1,5 @@
+> 原文地址：https://blog.csdn.net/qq_43783527/article/details/124640975
+
 ## Spring Cloud OpenFeign 介绍
 
 ### Feign 概述
