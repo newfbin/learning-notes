@@ -2646,7 +2646,7 @@ public String json2() throws JsonProcessingException {
 
 运行结果 : 十分完美，没有任何问题！
 
-<img src="./assets/SpringMVC-狂神/640-1723725748166-9.webp"/>
+![](./assets/SpringMVC-狂神/640-1723725748166-9.webp)
 
 ### 输出时间对象
 

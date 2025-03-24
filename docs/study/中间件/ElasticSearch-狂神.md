@@ -814,13 +814,13 @@ class EsApiApplicationTests {
 在图片尚未加载完的时候，会在图片的位置展示一张简单的图片。等图片完全加载之后，再将简单的图片更换为原本的图片。这种加载方式就是懒加载。而在控制台看到代码时，图片早就加载完了，无法看到图片懒加载完成之前被存放在哪个属性里边。
 只能通过在Java中打印懒加载完成之前的代码。
 
-<img src="./assets/ElasticSearch-狂神/image-20241105002101092.png"/>
+![](./assets/ElasticSearch-狂神/image-20241105002101092.png)
 
 通过打印，可以看到图片在加载完成之前被存放在“data-lazy-img”属性中。
 
 ![image-20241105002924883](./assets/ElasticSearch-狂神/image-20241105002924883.png)
 
-<img src="./assets/ElasticSearch-狂神/image-20241105002543997.png"/>
+![](./assets/ElasticSearch-狂神/image-20241105002543997.png)
 
 通过访问接口测试效果：可以看到数据被存入到ElasticSearch中
 

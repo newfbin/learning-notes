@@ -29,31 +29,31 @@
 
 > - 必须用var声明变量
 >
-> <img src="./assets/ECMAScript/image-20241205162741318.png"/>
+> ![](./assets/ECMAScript/image-20241205162741318.png)
 >
-> <img src="./assets/ECMAScript/image-20241205162847137.png"/>
+> ![](./assets/ECMAScript/image-20241205162847137.png)
 >
 > ![image-20241205162912434](./assets/ECMAScript/image-20241205162912434.png)
 >
 > - 禁止自定义的函数中的this指向window 
 >
-> <img src="./assets/ECMAScript/image-20241205163414481.png"/>
+> ![](./assets/ECMAScript/image-20241205163414481.png)
 >
-> <img src="./assets/ECMAScript/image-20241205163535108.png"/>
+> ![](./assets/ECMAScript/image-20241205163535108.png)
 >
-> <img src="./assets/ECMAScript/image-20241205163623869.png"/>
+> ![](./assets/ECMAScript/image-20241205163623869.png)
 >
 > - 创建eval作用域
 >
 > 在不使用严格模式时：
-> <img src="./assets/ECMAScript/image-20241205164023955.png"/>
+> ![](./assets/ECMAScript/image-20241205164023955.png)
 >
 > 使用严格模式后：
-> <img src="./assets/ECMAScript/image-20241205164153736.png"/>
+> ![](./assets/ECMAScript/image-20241205164153736.png)
 >
 > - 对象不能有重名的属性
 >
-> <img src="./assets/ECMAScript/image-20241205164524202.png"/>
+> ![](./assets/ECMAScript/image-20241205164524202.png)
 
 ## JSON对象扩展
 
