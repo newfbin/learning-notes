@@ -59,7 +59,7 @@ Spring Boot 整合 Redisson 有两种方案：
 
 在 passjava-question 微服务的 pom.xml 引入 redisson的 maven 依赖。
 
-```java
+```xml
 <!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
 <dependency>
     <groupId>org.redisson</groupId>
@@ -109,7 +109,7 @@ public void TestRedisson() {
 
 我们运行这个测试方法，打印出 redissonClient
 
-```java
+```
 org.redisson.Redisson@77f66138
 ```
 
@@ -225,7 +225,7 @@ WuKong-lock 有值，而且大家可以看到 TTL 在不断变小，说明 WuKon
 
 如下所示，设置锁 8 秒后自动过期。
 
-```
+```java
 lock.lock(8, TimeUnit.SECONDS);
 ```
 
