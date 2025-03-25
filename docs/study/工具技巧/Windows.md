@@ -189,6 +189,43 @@ win+R键输入**regedit**
 计算机\HKEY_CLASSES_ROOT\Directory\Background\shell\
 ```
 
+
+
+### 删除文件出现”该项目不在请确认该项目的位置“
+
+删除文件出现”找不到该项目，该项目不在请确认该项目的位置“，如下图：
+
+![img](./assets/Windows/c8502f65dd85853a27211347dfdec918.png)
+
+ 解决办法：
+
+1、首先新建一个txt文件，把下面的代码复制到里面然后保存
+
+```bash
+DEL /F /A /Q \\?\%1 
+RD /S /Q \\?\%1
+```
+
+如下图所示：
+
+![img](./assets/Windows/a091a9b490f128d07bcf53cedaf582df.png)
+
+2、接下来把文件扩展名改成： aa .bat（注意：这个文件名要和你想要删除的那个文件或文件夹的名字一样）。比如我的那个删除不掉的文件夹叫“神经网络和深度学习 ”，我就把txt文档改成“神经网络和深度学习 .bat”
+
+![img](./assets/Windows/1c6cd725e78cfb8d1ffe3b9d9a570b54.png)
+
+3、接下来把想要删除的那个文件拖动到刚才的bat文件上
+
+![img](./assets/Windows/82ab38e4be373c6dee90018833c0c58a.png)
+
+4、顽固文件夹就被删除了
+
+**Reference：**
+
+[由于找不到该项目桌面文件无法删除怎么办](https://jingyan.baidu.com/article/a681b0de72fe343b19434644.html)
+
+
+
 ### 解决bat文件运行结束后自动关闭窗口问题
 
 #### 方法一：在cmd窗口运行脚本
