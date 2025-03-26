@@ -18,7 +18,7 @@
 
 5、聚合函数（用来进行数据聚合的函数）
 
-### （1）COALESC —— 将 NULL 转换为其他值
+### （1）COALESCE —— 将 NULL 转换为其他值
 
 ```sql
 SELECT 
