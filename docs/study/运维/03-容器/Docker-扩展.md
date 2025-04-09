@@ -375,3 +375,17 @@ Restart Count: 1
 - **如果退出代码是** `exit(-1)`或 0-255 范围之外的另一个值，`kubectl`将其转换为 0-255 范围内的值。
 
 请参阅上面的相关部分，了解如何对每个退出代码的容器进行故障排除。
+
+## Windows 下 Docker镜像文件夹无法删除
+
+Docker镜像位置默认在C盘，先更新到`D:\DockerImages\DockerDesktopWSL` ，再更新到 `D:\Docker\DockerDesktopWSL` 后
+
+`D:\DockerImages\DockerDesktopWSL` 这个文件夹已经没用了，但是文件夹和其中的文件删除不掉
+
+如下图所示：
+
+![image-20250410003951064](./assets/Docker-扩展/image-20250410003951064.png)
+
+下面这篇文章提到了这个问题，
+
+https://blog.yowko.com/remove-windowsfilter/

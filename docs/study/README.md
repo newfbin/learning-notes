@@ -8,6 +8,7 @@
 
 ## 目录
 
+*  [AI](/study/AI/README)
 *  [CSharp](/study/CSharp/README)
 *  [Java后端](/study/Java后端/README)
 *  [中间件](/study/中间件/README)

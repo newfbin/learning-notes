@@ -103,3 +103,9 @@ Redis持久化机制主要有两种：RDB和AOF
 - 自动触发：设置配置文件的参数
   - auto-aof-rewrite-min-size: AOF文件达到该大小后触发重写
   - auto-aof-rewrite-percentage:  AOF文件较上次增长该值后触发重写
+
+## Redis事务
+
+Redis事务中的命令会按照顺序执行，并且执行期间不会执行其他命令
+
+Redis事务中的命令执行失败后，不会发生回滚，因为回滚会产生很多开销，这样设计能够减少开销，加快操作
