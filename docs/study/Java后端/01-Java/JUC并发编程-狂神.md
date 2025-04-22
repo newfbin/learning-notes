@@ -1585,7 +1585,7 @@ Process finished with exit code 0
 
 ![image-20200812093115670](./assets/JUC并发编程-狂神/c8320f088a84611df736f8d9731b3a0c-1737121963738-76.png)
 
-#### 1）BlockQueue
+#### 1）BlockingQueue
 
 是Collection的一个子类
 
