@@ -324,6 +324,32 @@ java -Dfile.encoding=UTF-8 -cp . Main
 >
 > 但是 **不建议** 大家改变终端编码来解决编译乱码，因为其他运行你代码的人也要改变环境，兼容性很差。
 
+### 在文本编辑器中快速打出特殊符号
+
+在Word中，可以在`插入->符号->其它符号->普通文本`中找到任何符号的Unicode字符和快捷键，通过快捷键可以快速输入特殊字符
+
+![image-20250515102618224](./assets/Windows/image-20250515102618224.png)
+
+![image-20250515104009609](./assets/Windows/image-20250515104009609.png)
+
+Word中的快捷键分为`Unicode字符，Alt+X`和`Alt+Unicode字符`两种，`Alt+Unicode字符`这种方式可以在任何文本输入框中输入特殊字符，而`Unicode字符，Alt+X`这种方式是Word独有的，只能在Word中使用。
+
+常用的，但是键盘上没有的数学符号有 `×、÷、≈`等。
+
+`×`对应的Unicode编码是：
+
+![image-20250515102054326](./assets/Windows/image-20250515102054326.png)
+
+`÷`对应的unicode编码和快捷键是：
+
+![image-20250515102130314](./assets/Windows/image-20250515102130314.png)
+
+`≈`对应的Unicode编码和快捷键是：
+
+![image-20250515102258577](./assets/Windows/image-20250515102258577.png)
+
+
+
 ## 软件问题
 
 ### Typora 无法打印中文字符
