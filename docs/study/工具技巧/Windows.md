@@ -334,6 +334,8 @@ java -Dfile.encoding=UTF-8 -cp . Main
 
 Word中的快捷键分为`Unicode字符，Alt+X`和`Alt+Unicode字符`两种，`Alt+Unicode字符`这种方式可以在任何文本输入框中输入特殊字符，而`Unicode字符，Alt+X`这种方式是Word独有的，只能在Word中使用。
 
+对于`Unicode字符，Alt+X`这种快捷键，可以将Unicode字符换算为10进制，按住Alt键输入换算后的字符，就可以在任意的文本编辑器中输入该字符。
+
 常用的，但是键盘上没有的数学符号有 `×、÷、≈`等。
 
 `×`对应的Unicode编码是：
