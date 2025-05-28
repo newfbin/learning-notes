@@ -531,6 +531,8 @@ Word中的快捷键分为`Unicode字符，Alt+X`和`Alt+Alt码`两种，`Alt+Alt
 
 `F2` 快捷进入单元格内编辑
 
+`Alt + Enter`单元格内换行
+
 ## 调整表格行高
 
 首先选中要调整的表格
