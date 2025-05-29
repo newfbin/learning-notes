@@ -651,7 +651,13 @@ goto关键字在很早的程序设计语言中就出现了，尽管goto关键字
 
 ### 初始化数组
 
-![img](./assets/Java-基础-狂神/ed53d00dc0cd8b37b2d1a04a29661b58.png)![img](./assets/Java-基础-狂神/929796f9da1d0914e5013b4dffec29aa.png)
+![img](./assets/Java-基础-狂神/ed53d00dc0cd8b37b2d1a04a29661b58.png)
+
+- 数组动态初始化并赋值
+
+  `int[] a = new int[]{1,2}`
+
+![img](./assets/Java-基础-狂神/929796f9da1d0914e5013b4dffec29aa.png)
 
 ### 数组的四个基本特点
 
