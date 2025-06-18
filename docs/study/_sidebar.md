@@ -4,7 +4,6 @@
   * [**Java后端**](/study/Java后端/README)
   * [**中间件**](/study/中间件/README)
   * [**前端**](/study/前端/README)
-  * [**工作**](/study/工作/README)
   * [**工具技巧**](/study/工具技巧/README)
   * [**数据库**](/study/数据库/README)
   * [**计算机基础**](/study/计算机基础/README)
