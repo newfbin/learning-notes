@@ -1019,7 +1019,7 @@ echo "使用 (( )) 自减后: $num"
 | `let`       | shell 内置命令 | 状态码（0 / 非 0） | `let val=a+b` 或直接修改变量 | 无需 `$`，支持 `+=` 等   | ❌        | 适合简单计算         |
 | `((...))`   | shell 命令     | 状态码（0 / 非 0） | `((val=a+b))` 或直接修改     | 无需 `$`，用于条件判断   | ❌        | 常用于 `if`、`while` |
 
-## 7、条件测试
+## 8、条件测试
 
 test命令：用于测试字符串、文件状态和数字
 
@@ -1029,13 +1029,13 @@ test condition 或[ condition ]
 
 使用方括号时，要注意在条件两边加上空格。
 
-### 7.1、文件测试
+### 8.1、文件测试
 
 ![在这里插入图片描述](./assets/Shell脚本/159376900403ea9a873c71841021a74e.png)
 
 ![在这里插入图片描述](./assets/Shell脚本/13570893aa480148c097c9a199ca02bd.png)
 
-### 7.2、字符串测试
+### 8.2、字符串测试
 
 ![在这里插入图片描述](./assets/Shell脚本/560f8917302b2d1aa78a2d6e01a64d4c.png)
 
@@ -1043,7 +1043,7 @@ test condition 或[ condition ]
 
 ![在这里插入图片描述](./assets/Shell脚本/28086c8b322757d2aaab56388f6933c5.png)
 
-### 7.3、数值测试
+### 8.3、数值测试
 
 ![在这里插入图片描述](./assets/Shell脚本/06b8af34c9f0ab30e29406a21efbe5e4.png)
 
@@ -1051,17 +1051,17 @@ test condition 或[ condition ]
 
 ![在这里插入图片描述](./assets/Shell脚本/75aafea52d7b0aef3b4e4b2c90bede22.png)
 
-### 7.4、符合语句测试
+### 8.4、符合语句测试
 
 ![在这里插入图片描述](./assets/Shell脚本/0f1c32d616632add5614d6c169cc10a2.png)
 
 ![在这里插入图片描述](./assets/Shell脚本/04a4459a7b091f49a272d8170c4f14cb.png)
 
-## 8、控制语句
+## 9、控制语句
 
 ![在这里插入图片描述](./assets/Shell脚本/e8046e3877db84d8b1fdb1b8b8c86842.png)
 
-### 8.1、if控制语句
+### 9.1、if控制语句
 
 ```cpp
 
@@ -1095,11 +1095,11 @@ fi
 
 ```
 
-#### 案例：
+案例：
 
 ![在这里插入图片描述](./assets/Shell脚本/67684dc92b3df1bbe03269b379f1543f.png)
 
-#### 案例：判断当前路径下有没有文件夹 有就进入创建文件 没有 就创建文件夹 再进入创建文件
+案例：判断当前路径下有没有文件夹 有就进入创建文件 没有 就创建文件夹 再进入创建文件
 
 ![在这里插入图片描述](./assets/Shell脚本/caffead1d01abc8fa1e20c5944174b8c.png)
 
@@ -1107,7 +1107,7 @@ fi
 
 ![在这里插入图片描述](./assets/Shell脚本/58eb9e92cab26f67e20fa45d15648198.png)
 
-#### 案例：
+案例：
 
 ![在这里插入图片描述](./assets/Shell脚本/2bff88621b8e7132ffdb5b4781a0b767.png)
 
@@ -1115,13 +1115,13 @@ fi
 
 ![在这里插入图片描述](./assets/Shell脚本/205b1f453ae19978810b00afcfa9f710.png)
 
-### 8.2、case
+### 9.2、case
 
 ![在这里插入图片描述](./assets/Shell脚本/741995107703bf03c3aab67e240de67b.png)
 
 ![在这里插入图片描述](./assets/Shell脚本/3543f032c9e715e2d36b437fc6583067.png)
 
-### 8.3、for循环语句
+### 9.3、for循环语句
 
 ![在这里插入图片描述](./assets/Shell脚本/1785c580ca4591c103b1ae6d4a8532b2.png)
 
@@ -1129,31 +1129,31 @@ fi
 
 ![在这里插入图片描述](./assets/Shell脚本/58a3873f47beecdfd3f77759345085db.png)
 
-#### 案例：
+案例：
 
 ![在这里插入图片描述](./assets/Shell脚本/89bcc09a4ab57393763bf74e46b55d03.png)
 
-#### 案例：扫描当前文件
+案例：扫描当前文件
 
 ![在这里插入图片描述](./assets/Shell脚本/0addfd80f503214d08348e3489604422.png)
 
-### 8.4、while
+### 9.4、while
 
 ![在这里插入图片描述](./assets/Shell脚本/50b732429b8206167c2006a2f25d1071.png)
 
 ![在这里插入图片描述](./assets/Shell脚本/784a2cba01b267d09037fd45ec13ca4b.png)
 
-### 8.5、until
+### 9.5、until
 
 ![在这里插入图片描述](./assets/Shell脚本/7c992ce671c02b4be01249d9305ce884.png)
 
 ![在这里插入图片描述](./assets/Shell脚本/e214573663522a553a5c4cccba7e2136.png)
 
-### 8.6、break continue
+### 9.6、break continue
 
 ![在这里插入图片描述](./assets/Shell脚本/c5fc270903c416849134f569adca64eb.png)
 
-## 9、函数
+## 10、函数
 
 ![在这里插入图片描述](./assets/Shell脚本/bdfe7f34eb6ecfdcfa36885485a4e29c.png)
 
