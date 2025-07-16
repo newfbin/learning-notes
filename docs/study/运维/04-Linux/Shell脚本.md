@@ -1063,7 +1063,7 @@ test condition 或[ condition ]
 
 ### 9.1、if控制语句
 
-```cpp
+```bash
 
 格式一：
 
