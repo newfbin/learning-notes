@@ -284,3 +284,122 @@ Ctrl + Shift + R 全局替换
 
 运行后将有30天免费试用，每次到期后运行依次即可。
 
+## Eclipse
+
+### 设置 sql 颜色
+
+1.点击window,选择Preferences
+
+![点击window,选择Preferences](./assets/IDE配置/4557276525094d3d4c7631e1da26306e.png)
+
+2.搜索syn,查找 Sql Editor 下的 [Syntax](https://so.csdn.net/so/search?q=Syntax&spm=1001.2101.3001.7020) Coloring,选择它
+
+![在这里插入图片描述](./assets/IDE配置/3fd9aca1f20f3360592740c6cb31c492.png)
+
+3.有时候点了apply,不会马上起作用，要先关闭打开的sql文件，再重新打开才会看到效果
+
+### 切换Jdk版本和SpringBoot
+
+> 原文地址：https://juejin.cn/post/7175531370242900028
+
+在创建SpringBoot项目时，没有提供Jdk1.8的选项，只能先选择高版本Jdk，再降级Jdk版本
+
+#### 一、SpringBoot版本
+
+SpringBoot版本只需要更改此处即可
+
+![a1f7c030ffdd6695fe5fd3eb380c908](./assets/IDE配置/a1f7c030ffdd6695fe5fd3eb380c908.png)
+
+#### 二、JDK版本
+
+此处以我把jdk版本从1.8切换到1.7为例：
+
+其实方法很简单，所有需要在eclipse中设置，分两块：
+
+##### 第一块
+
+设置eclipse工作空间的JDK版本，即eclipse中所有项目的编译运行的环境（全局配置）
+
+###### 步骤1
+
+Window —> Preferences —> Java —> Compiler —> 右侧面板设置为1.7
+
+如图所示：
+
+![1.png](./assets/IDE配置/527f530a91dc4d208765d0f8131741edtplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+
+###### 步骤2
+
+Window —> Preferences —> Java —> Installed JREs —> 右侧面板“Add”本地的1.7版本JDK路径，并勾上
+
+![2.png](./assets/IDE配置/ea8c84fc77cb440e88bbb07d9abd6db0tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+
+如果没有上面5的话，就点击5右边的Add…如下图：
+
+![3.PNG](./assets/IDE配置/cf62dcfb2cfd46e7990529fc40c93f8atplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+
+点击Next会出现下图所示：按指示往下进行
+
+![4.PNG](./assets/IDE配置/4e6b4960a3074d268c0b01652f40b184tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+
+##### 第二块
+
+配置你要改变JDK的项目的JDK版本：
+
+###### 步骤3
+
+点击项目右键 —> Properties —> Java Build Path —> Libraries —> 然后确保Libraries右侧的标签页“Order And Export”也出现JRE System Library [JavaSE-1.7]
+
+点击项目右键（一般是cms-core分项目，而不是cms-cms项目）—> Properties（或项目右键 —> Build Path —> Configure Build Path）—> Java Build Path（右侧面板）—> Libraries —>（如果有JRE System Library [JavaSE-1.8]就点右侧的“Edit…”改为本地jdk1.7，如果是其他的jdk点“Remove” —> Add Library… —> 选“JRE System Library ” —> Next —> 再改为本地的jdk1.7）—> 然后确保Libraries右侧的标签页“Order And Export”也出现JRE System Library [JavaSE-1.7]
+
+###### 步骤4
+
+与Java Build Path同页面的Java Compiler—右侧面板设置为1.7
+
+###### 步骤5
+
+与Java Compiler同页面的Project Facets—右侧面板勾上Java，Version设为1.7
+
+![5.png](./assets/IDE配置/5620a82786204d14aef8665500380145tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+
+**重要提示**：有些人本来项目是好的或者新导下来没问题的项目，在设置完JDK后项目就出错了，项目包名上有小红叉，但是就是没找到报错的文件，此时你就要看看是不是你的项目右键 —> build path设置页面有没有报错的，也要看看你的JDK版本这几步都设置到了吗，少其中一步你的项目可能会报错出现小红叉而不会在具体的文件上出现小红叉，即使你的项目能跑，好像运行没什么问题，等项目部署到服务器上，真正的版本问题出现，很有可能就找不到方向了。在此重要提醒！！！
+
+### 插件商店修改镜像
+
+> 原文地址：https://blog.csdn.net/weixin_43954092/article/details/105114635
+
+在使用eclipse进行开发的时候，经常会用到一些插件来提高开发效率。
+
+但因为eclipse默认从官网下载的。因此，经常会出现下载时间很长，或者下载失败的情况。
+
+那么如何优化eclipse插件下载速度呢，我们可以选择使用国内镜像站。
+
+那么，本文就谈谈要如何将eclipse的默认网站修改为国内镜像站。
+
+**第一步**：点击Window–>Preferences，进入Preferences界面
+
+![Preferences页面](./assets/IDE配置/73e77eebff9a99b9416458049b131f38.png)
+
+**第二步**：输入"Available"进行搜索，进入Available Software Sites界面
+
+![在这里插入图片描述](./assets/IDE配置/d3117e64dc99698eb2dea88796e0aad8.png)
+
+**第四步**：在这个界面，将默认网站修改为国内镜像站：即把所有的http://download.eclipse.org/改为**http://mirrors.ustc.edu.cn/eclipse/**
+
+![在这里插入图片描述](./assets/IDE配置/28458677ea2517f368cc67e136320868.png)
+
+修改完成后，点击Apply and Close。
+
+完成这些操作，重新开始下载插件，会发现下载速度快了很多
+
+> 更改结果如下图：
+>
+> ![f80e5e407b7d22e149ca83b7f287e42](./assets/IDE配置/f80e5e407b7d22e149ca83b7f287e42.png)
+
+### yml文件中将回车从Tab变为Space
+
+1. **打开Eclipse的偏好设置:**点击`Window` -> `Preferences`。
+2. **找到文本编辑器设置:**依次选择`General` -> `Editors` -> `Text Editors`。
+3. **设置Tab键行为:**勾选`Insert spaces for tabs`选项。这会使Eclipse在按下Tab键时插入空格而不是Tab字符。
+
+配置之后，在所有文件中按回车键，都会在新一行开头填充开头。
