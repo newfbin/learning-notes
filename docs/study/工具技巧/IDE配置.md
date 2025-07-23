@@ -403,3 +403,107 @@ Window —> Preferences —> Java —> Installed JREs —> 右侧面板“Add”
 3. **设置Tab键行为:**勾选`Insert spaces for tabs`选项。这会使Eclipse在按下Tab键时插入空格而不是Tab字符。
 
 配置之后，在所有文件中按回车键，都会在新一行开头填充开头。
+
+
+
+### 代码花括号自动新起一行(设置代码格式标准)
+
+preferences -> Java -> Code Style -> Formatter -> Edit / New
+
+![00b2c5b1d357fdca2c30b1fb8f86b86e](./assets/IDE配置/00b2c5b1d357fdca2c30b1fb8f86b86e.png)
+
+![3c9a1063e7c5d4fc10c32b8f2b02f34d](./assets/IDE配置/3c9a1063e7c5d4fc10c32b8f2b02f34d.png)
+
+![11693f8767fbe4d836b5558ce0f9e227](./assets/IDE配置/11693f8767fbe4d836b5558ce0f9e227.png)
+
+![701fd61b5a510ba4af91c66be162e600](./assets/IDE配置/701fd61b5a510ba4af91c66be162e600.png)
+
+经过上面的设置，代码的花括号就会自动另起一行了。
+
+也可以设置在此页面设置其它内容
+
+### 自动生成Getter/Setter
+
+右键，点击Source，或者直接按**Alt + Shift +S**
+再点击Generate Geeters and Setters，就会自动在鼠标位置生成Get Set方
+
+![a6f358eb60161627d30d56e2fa1ee457](./assets/IDE配置/a6f358eb60161627d30d56e2fa1ee457.png)
+
+![10e26f03e79f3b8a2fa3e3f72ce2892e](./assets/IDE配置/10e26f03e79f3b8a2fa3e3f72ce2892e.png)
+
+### 快速导入包
+
+Ctrl + Shift + O
+
+### Eclipse开启与关闭代码提示
+
+> 原文地址：https://blog.csdn.net/weixin_48419914/article/details/121551738
+
+#### 关闭
+
+**Eclipse 取消自动代码提示**
+
+1. 去到菜单window->Preferences->Java->Editor->ContentAssist
+2. **看看Enable auto activation之前有没有打上勾 ,有勾去掉即可**
+
+去掉自动提示后也可以在输入代码的字母后按**alt+/**进行提示
+
+#### 开启 
+
+**一、Eclipse代码里面的代码提示功能默认是关闭的，只有输入“.”的时候才会提示功能**
+
+如何修改eclipse配置，开启代码自动提示功能 
+
+1. 打开 **Eclipse -> Window -> Perferences -> Java -> Editor -> Content Assist**
+2. 在右边最下面一栏找到**auto-Activation** 
+3. 下面有三个选项，找到第二个“**Auto activation triggers for Java**：”选项 在其后的文本框中会看到一个“**.**”存在。这表示：只有输入“**.**”之后才会有代码提示和自动补全。
+4. 把该文本框中的“**.**”换掉，换成“**abcdefghijklmnopqrstuvwxyz.**”，这样，你在Eclipse里面写Java代码就可以做到按“**abcdefghijklmnopqrstuvwxyz.**”中的任意一个字符都会有代码提示。 
+
+> 小白笔者建议：不要所有字母全部开启，否则会有特别麻烦的提示效果，笔者只开启了s和o两个字母，方便syso能提示出System.out.println()
+
+**二、可是eclipse不允许输入这么的字符，文本框中最多允许输入4个字符**
+
+通过修改配置文件的方法实现，具体操作步骤如下: 
+
+1. 打开Eclipse，然后**“window”→“Preferences**”
+2. 选择“java”，展开，“Editor”，选择“Content Assist”。
+
+3.选择“Content Assist”，然后看到右边，右边的“**AutoActivation**”下面的“**Auto Activation triggers for java**”这个选项。其实就是指触发代码提示的就是“**.**”这个符号。 
+
+4.“**AutoActivation triggers for java**”这个选项，在“**.**”后加**abc**字母，方便后面的查找 修改。然后“apply”，点击“OK”。
+
+5. 然后**，“File”→“Export”**，在弹出的窗口中选择**“General”→“Perferences”**，点击“下一步”。
+6. 选择导出文件路径，本人导出到桌面，输入“abc”作为文件名，点击“保存”。
+7. 在桌面找到刚在保存的文件“abc.epf”,右键选择“用记事本打开”。 
+8. 按“ctrl + F”快捷键，输入“.abc”，点击“查找下一个”。
+9. 查找到“.abc”的配置信息如下：如下：
+10. 把**“.abc”改成“.abcdefghijklmnopqrstuvwxyz**(,”，保存，关闭“test.epf”。
+11. 回到MyEclipse界面，**“File”→“Import”**，在弹出的窗口中选择“Perferences”，点击“下一步”，选择刚在已经修改的“**abc.epf**”文件，点击“打开”，点击“Finish”。该步骤和上面 的导出步骤类似。
+
+12.修改完毕，测试一下就行了
+
+### 快速生成serialVersionUID
+
+先实现Serializable接口
+
+再把鼠标放到按Ctrl + 1。
+
+再按Quick Fix
+
+### 更新Maven依赖
+
+右键 -> Maven -> Update Project
+
+![3accc4cc957a98e17240348b8f142c0d](./assets/IDE配置/3accc4cc957a98e17240348b8f142c0d.png)
+
+### xml文件 提示Element type “xxx“ must be declared
+
+Preference -> XML（Wild Web Developer）
+
+勾选Download external resources like referenced DTO，XSD
+
+![ff9bb756291b16a8332583f615327b49](./assets/IDE配置/ff9bb756291b16a8332583f615327b49.png)
+
+### 选择一整列（块选择模式）
+
+Alt+Shift+A  开启块选择模式，开启后可以选中一列
