@@ -507,3 +507,17 @@ Preference -> XML（Wild Web Developer）
 ### 选择一整列（块选择模式）
 
 Alt+Shift+A  开启块选择模式，开启后可以选中一列
+
+### Eclipse字符串类型变量自动追加String后缀
+
+> 原文地址：https://blog.csdn.net/future_yzx/article/details/137298335
+
+先打开eclipse，顶部找到window，点击preference 弹出一个设置窗口；
+
+![img](./assets/IDE配置/43116b63fe6349bb5bbf81711cb8c29d.png)
+
+在窗口左侧选择Java>Editor>Content Assist；然后再右侧找到Disable insertion triggers except Enter 的选项（禁用除Enter以外的插入触发器）把它打上对钩就OK了。
+
+![img](./assets/IDE配置/d520912eebaac56f9994447739141375.png)
+
+如此操作完成后，在定义String类型的变量时，只有按下回车才会自动追加‘String’；按空格或分号时，都是正常输入
