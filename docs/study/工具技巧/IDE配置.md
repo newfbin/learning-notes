@@ -242,6 +242,72 @@ Ctrl + Shift + R 全局替换
 
 ![image-20250102170959084](./assets/IDE配置/image-20250102170959084.png)
 
+### 更改代码格式化规则
+
+#### 使用Vetur插件格式化代码
+
+vscode中如何对vue文件代码进行格式化
+
+1.通过vscode的Extensions插件市场，搜索Vetur插件。Vetur是一个专门为Vue开发提供支持的插件，它提供了代码高亮、智能提示、语法检查等功能
+
+![img](./assets/IDE配置/1042681-20240306103130640-339256093.png)
+
+2.找到vscode的设置Settings，然后在搜索栏中输入：“Editor:Default Formatter”，选择"Vetur"作为默认的代码格式化工具
+
+![img](./assets/IDE配置/1042681-20240306103449177-1986339531.png)
+
+![img](./assets/IDE配置/1042681-20240306103547086-2018370608.png)
+
+
+
+3.使用快捷键格式化代码：在编辑Vue文件时，可以使用快捷键Ctrl + Shift + F来格式化选中的代码块或整个文件。也可以通过右键菜单选择"Format Document"来进行格式化
+
+![img](./assets/IDE配置/1042681-20240306103809786-636972473.png)
+
+#### 自定义代码格式化规则
+
+如果对默认的代码格式化规则不满意，你可以在VSCode的设置中找到"Vetur"插件的配置，根据自己的需求进行修改。例如，你可以设置缩进大小、换行规则、空格等
+
+自定义的步骤如下：
+
+- 按`Ctrl + ,`
+- 搜索settings
+- 可以看到Edit in settings.json选项
+
+![5dbca4ed43368d6261c1565c1acefa13](./assets/IDE配置/5dbca4ed43368d6261c1565c1acefa13.png)
+
+在文件中新增以下内容：
+
+```json
+{
+    "workbench.startupEditor": "none",
+    "explorer.compactFolders": false,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "editor.defaultFormatter": "octref.vetur",
+    "editor.formatOnSave": true,
+    "vetur.format.defaultFormatterOptions": {
+        "js-beautify-html": {
+            "wrap_line_length": 170,
+            "end_with_newline": false,
+            "wrap_attributes": "auto"
+        }
+    }
+}
+```
+
+> 新增后效果如下：
+>
+> ![image-20250731135109953](./assets/IDE配置/image-20250731135109953.png)
+
+上面配置可以解决常用的格式化操作
+
+- 'editor.formatOnSave'：保存代码，自动格式化代码
+- 'editor.defaultFormatter'：设置默认的格式化方式，当前采用vetur
+- 'wrap_line_length'：当前代码行字符的个数，如果字符个数大于170，则执行自动换行（wrap_attributes）
+- 'wrap_attributes'：设置换行自动对齐方式，建议使用'auto'
+
 ## VisualStudio
 
 ### VisualStudio2022设置快捷键
