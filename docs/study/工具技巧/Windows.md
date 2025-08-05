@@ -499,6 +499,26 @@ Word中的快捷键分为`Unicode字符，Alt+X`和`Alt+Alt码`两种，`Alt+Alt
 
 ![image-20250515131236890](./assets/Windows/image-20250515131236890.png)![image-20250515131245258](./assets/Windows/image-20250515131245258.png)
 
+
+
+### 文件夹和文件上不显示SVN状态图标
+
+win+r呼出运行窗口，在 运行里 输入 regedit 进打开注册表
+
+`HKEY_LOCAL_MACHINE->SOFTWARE->Microsoft->Windows->CurrentVersion->Explorer->ShellIconOverlayIdentifiers` 
+
+打开后发现Tortoise 系列（1TortoiseNormal，2TortoiseAdded等）前面有好多项，Tortoise 系列排到了10名之后，难怪不显示。现在的任务就是把它们提到前面了，修改一下它们的名字就好（在名字前加几个空格，就可以使该项排在前面）
+
+![image-20250805131658157](./assets/Windows/image-20250805131658157.png)
+
+然后关闭再打开注册表，发现Tortoise 系列系列图标已经排到前面了，，接着重启Explorer（在任务管理器中结束explorer.exe），这样就ok了，可爱的SVN图标又出现了。
+
+**原理**：Windows Explorer Shell 支持 Overlay Icon 最多15个，Windows 自身已经使用了4个，所以就只剩下了11个 供我们使用。
+
+系统会按照图标名称的字母顺序依次查询注册表 “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers” 下的项目，当检测到 11 个有效的接口后，就会自动停止继续向下检测，后面注册的图标将不会显示。
+
+如果你之前安装了例如Groove这样的软件，那么可能我们可利用的就更少了，轮不到Tortoise了。像这样的情况，我们可以调整 Tortoise图标名称的字母顺序，来提高Tortoise的优先位置，因为Windows 内部就是安装名称的字母顺序来优先显示的。
+
 ## 软件问题
 
 ### Typora 无法打印中文字符
