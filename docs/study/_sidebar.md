@@ -2,6 +2,7 @@
   * [**AI**](/study/AI/README)
   * [**CSharp**](/study/CSharp/README)
   * [**Java**](/study/Java/README)
+  * [**Test**](/study/Test/README)
   * [**中间件**](/study/中间件/README)
   * [**前端**](/study/前端/README)
   * [**工作**](/study/工作/README)
