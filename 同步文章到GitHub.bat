@@ -10,3 +10,4 @@ echo 4. 提交
 git commit -m "sync"
 echo 5. 推送
 git push
+pause
