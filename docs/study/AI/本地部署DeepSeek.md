@@ -6,7 +6,7 @@
 
 #### 下载 Ollama 平台
 
-进入[ollama.com](ollama.com)，点击下载
+进入[ollama.com](https://ollama.com/)，点击下载
 
 ![image-20250410014618994](./assets/本地部署DeepSeek/image-20250410014618994.png)
 

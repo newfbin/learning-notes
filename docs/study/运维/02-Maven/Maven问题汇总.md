@@ -360,3 +360,73 @@ implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransfor
 </build>
 ```
 
+## 把jar包安装到本地maven仓库
+
+### （不推荐：麻烦）方法一：执行mvn install命令行安装
+
+```shell
+mvn install:install-file -Dfile=jar包所在位置 -DgroupId=在pom中的groupId -DartifactId=在pom中的artifactId -Dversion=在pom中的version -Dpackaging=jar 
+```
+
+示例：
+
+```shell
+mvn install:install-file -Dfile=d:\demo.jar -DgroupId=com.zhengqing -DartifactId=maven-demo -Dversion=0.0.1.release -Dpackaging=jar 
+```
+
+### ( 推荐：安装 jar 包到maven本地仓库 )  方法二：复制到maven本地仓库
+
+#### 原理
+
+拿下面的依赖举例：
+
+![image-20250806231604529](./assets/Maven问题汇总/image-20250806231604529.png)
+
+groupId是`io.springfox`，artifactId是`springfox-boot-starter`
+
+那么想要找到该jar包，只需要进入到本地maven仓库
+
+![image-20250806231824596](./assets/Maven问题汇总/image-20250806231824596.png)
+
+依次进入`io/springfox/springfox-boot-starter/版本号`，就可以看到该依赖对应的jar包。
+
+![image-20250806232105655](./assets/Maven问题汇总/image-20250806232105655.png)
+
+同理，可以直接在本地maven仓库创建对应的目录，再将jar包复制进去
+
+#### 举例
+
+根据GAV依次创建对应的文件夹，再将jar包复制进去就可以了。其余的文件maven会自动生成。
+
+![image-20250806232510788](./assets/Maven问题汇总/image-20250806232510788.png)
+
+### ( 推荐：安装项目到maven本地仓库 )  方法三：右键项目直接执行mvn install
+
+如果要把下面的项目打包为jar包引入到maven仓库中：
+
+![image-20250806233104063](./assets/Maven问题汇总/image-20250806233104063.png)
+
+（以Eclipse举例，Idea应该也有类似的功能）首先右键根目录，接着点击Run as
+
+![image-20250806233237792](./assets/Maven问题汇总/image-20250806233237792.png)
+
+点击maven install
+
+![image-20250806233311317](./assets/Maven问题汇总/image-20250806233311317.png)
+
+接着Elipse会自动执行 build 和 insall命令，并将执行结果输出到控制台
+
+![image-20250806233335660](./assets/Maven问题汇总/image-20250806233335660.png)
+
+项目在本地maven仓库的安装位置就是项目pom文件中的 GAV信息：
+
+![image-20250806233516568](./assets/Maven问题汇总/image-20250806233516568.png)
+
+![image-20250806234027041](./assets/Maven问题汇总/image-20250806234027041.png)
+
+![image-20250806234125098](./assets/Maven问题汇总/image-20250806234125098.png)
+
+每个子项目都会存放一个jar包：
+
+![image-20250806234145702](./assets/Maven问题汇总/image-20250806234145702.png)
+
