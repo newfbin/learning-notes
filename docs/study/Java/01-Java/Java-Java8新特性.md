@@ -1,5 +1,3 @@
-#  
-
 # Lambda表达式
 
 > 原文地址 ： https://objcoding.com/2019/03/04/lambda/
@@ -303,7 +301,7 @@ HashMap::new
 
 > ![image-20200812144653640](./assets/Java-Java8新特性/c663f32a07a8f0dde688adb3f8850abc-1730034567857-9.png)
 
-# 默认方法
+
 
 
 
@@ -1974,17 +1972,2012 @@ public class CollectorDemo {
 
 另外在这里，个人有一点小的建议。**以前一些可能会在数据库层面用到的聚合操作，如果数据量较大时，需要优化sql的执行效率，可以考虑将此类的操作，通过JAVA8的这些新特性和功能区完成，减少数据库层面的压力！！！**
 
-# DateTime API
+
+
+# Java时间类
+
+> 原文地址：https://moonce.blog.csdn.net/article/details/111146637
+
+## DayOfWeek
+
+> `DayOfWeek` 表示一周的日期名称。
+
+`java.time.DayOfWeek`是`java 8`中一个不可变的、线程安全的枚举。
+
+`DayOfWeek`表示一周中的一天，如`MONDAY`, `TUESDAY`等。
+
+`DayOfWeek`除了日期名称也有一个数字值。
+
+我们可以通过数字值获得日期名称，也可以通过日期名称获得数字值。
+
+**DayOfWeekDemo.java**
+
+```java
+import java.time.DayOfWeek;
+public class DayOfWeekDemo {
+	public static void main(String[] args) {
+		System.out.print(DayOfWeek.MONDAY.getValue());
+		System.out.println(DayOfWeek.of(1));
+		System.out.print(DayOfWeek.THURSDAY.getValue());
+		System.out.println(DayOfWeek.of(2));
+		System.out.print(DayOfWeek.SUNDAY.getValue());
+		System.out.println(DayOfWeek.of(7));
+	}
+} 
+```
+
+输出
+
+```bash
+1MONDAY
+4TUESDAY
+7SUNDAY 
+```
+
+## Duration
+
+> `Duration`是将表示为一个类的时间量。
+
+`java.time.Duration`是一个时间量。
+
+例如，`20`分钟是一个时间量，可以用`Duration`类来表示。
+
+**DurationDemo.java**
+
+```java
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+public class DurationDemo {
+	public static void main(String[] args) {
+		Duration duration = Duration.of(2, ChronoUnit.DAYS);
+		System.out.println(duration.getSeconds());
+		System.out.println(Duration.ofHours(1).getSeconds());
+		System.out.println(Duration.ofDays(1).getSeconds());
+	}
+} 
+```
+
+输出
+
+```bash
+172800
+3600
+86400 
+```
+
+## Instant
+
+> `Instant` 是时间刻度上的一个瞬间的时间点。
+
+`java.time.Instant`与它的名字相同。
+
+`Instant`可以用来记录任何应用程序中的事件时间戳。
+
+`Instant`对象表示时间尺度上的瞬时点。
+
+**InstantDemo.java**
+
+```java
+import java.time.Clock;
+import java.time.Instant;
+public class InstantDemo {
+	public static void main(String[] args) {
+		Instant inst1 = Instant.now();
+		System.out.println(inst1.getEpochSecond());
+		Instant inst2 = Instant.EPOCH;
+		System.out.println(inst1.isAfter(inst2));
+		Instant inst3 = Instant.now(Clock.systemUTC());
+		System.out.println(inst3.isAfter(inst1));
+		System.out.println(Instant.MAX.getNano());
+		System.out.println(Instant.MIN.getNano());
+	}
+} 
+```
+
+输出
+
+```bash
+1409913547
+true
+false
+999999999
+0 
+```
+
+## LocalTime
+
+`java.time.LocalTime`是一个不含时区的时间，可以用`小时-分钟-秒`来表示。
+
+`LocalTime`是不可改变的，只代表时间。
+
+它不存储日期或时区。
+
+**LocalTimeDemo.java**
+
+```java
+import java.time.Clock;
+import java.time.LocalTime;
+import java.time.ZoneId;
+public class LocalTimeDemo {
+	public static void main(String[] args) {
+		LocalTime localt1 = LocalTime.now();
+		System.out.println(localt1);
+		LocalTime localt2 = LocalTime.now(Clock.systemDefaultZone());
+		System.out.println(localt2);
+		System.out.println(LocalTime.now(ZoneId.of("Indian/Cocos")));
+		System.out.println(LocalTime.now(ZoneId.of("America/Caracas")));
+		System.out.println(LocalTime.now(ZoneId.of("Pacific/Norfolk")));
+	}
+} 
+```
+
+输出
+
+```bash
+18:30:59.474
+18:30:59.474
+19:30:59.475
+08:30:59.475
+00:30:59.475 
+```
+
+## LocalDate
+
+`java.time.LocalDate`是一个不可变的类，它代表了像`YYYY-MM-dd`这样的本地日期。
+
+这个类并不存储时间和时区。
+
+**LocalDateDemo.java**
+
+```java
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.ZoneId;
+public class LocalDateDemo {
+	public static void main(String[] args) {
+		LocalDate localDate1 = LocalDate.now();
+		System.out.println(localDate1);
+		LocalDate localDate2 = LocalDate.now(Clock.systemDefaultZone());
+		System.out.println(localDate2);
+		System.out.println(LocalDate.now(ZoneId.of("Indian/Cocos")));
+		System.out.println(LocalDate.now(ZoneId.of("America/Caracas")));
+		System.out.println(LocalDate.now(ZoneId.of("Pacific/Norfolk")));
+	}
+} 
+```
+
+输出
+
+```bash
+2021-06-05
+2021-06-05
+2021-06-05
+2021-06-05
+2021-06-06 
+```
+
+## LocalDateTime
+
+`java.time.LocalDateTime`是一个不可变的类，它表示本地日期和本地时间的组合，如`2021-06-06T10:18:30`。
+
+`LocalDateTime`并不存储时区。
+
+**LocalDateTimeDemo.java**
+
+```java
+import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+public class LocalDateTimeDemo {
+	public static void main(String[] args) {
+		LocalDateTime localdt1 = LocalDateTime.now();
+		System.out.println(localdt1);
+		LocalDateTime localdt2 = LocalDateTime.now(Clock.systemDefaultZone());
+		System.out.println(localdt2);
+		System.out.println(LocalDateTime.now(ZoneId.of("Indian/Cocos")));
+		System.out.println(LocalDateTime.now(ZoneId.of("America/Caracas")));
+		System.out.println(LocalDateTime.now(ZoneId.of("Pacific/Norfolk")));
+	}
+} 
+```
+
+输出
+
+```bash
+2021-06-05T18:31:09.128
+2021-06-05T18:31:09.128
+2021-06-05T19:31:09.128
+2021-06-05T08:31:09.128
+2021-06-06T00:31:09.128 
+```
 
 
 
-# Optional类
+## MonthDay
 
-##  什么是Optional类？
+`MonthDay`表示月份和日期的组合。这个类不提供年份。
+
+在这个例子中，我展示了`MonthDay`的一些用途和工作。
+
+**MonthDayDemo.java**
+
+```java
+package com.cp.time;
+import java.time.MonthDay;
+public class MonthDayDemo {
+	public static void main(String[] args) {
+		MonthDay mday = MonthDay.now();
+		System.out.println(mday.getDayOfMonth());
+		System.out.println(mday.getMonth());
+		System.out.println(mday.atYear(2021));
+	}
+} 
+```
+
+输出
+
+```bash
+8
+JUNE
+2021-06-08 
+```
+
+## Month
+
+`Month`是一个枚举，代表一年中完整的月份。
+
+**MonthDemo.java**
+
+```java
+import java.time.Month;
+public class MonthDemo {
+	public static void main(String[] args) {
+		System.out.println(Month.MARCH);
+		System.out.println(Month.MARCH.getValue());
+		System.out.println(Month.of(3));
+		System.out.println(Month.valueOf("MARCH"));
+	}
+} 
+```
+
+输出
+
+```bash
+MARCH
+3
+MARCH
+MARCH 
+```
+
+## OffsetDateTime
+
+`OffsetDateTime`表示所有的日期和时间字段。
+
+该类表示具有偏移量的日期和时间。
+
+比方说现在我们在`GMT+8:00` 的位置，所以当地时间是 `2021-06-09 15:00:00` ,如果用`OffsetDateTime`来表示就是 `2021-06-09 07:00:00 -8:00`
+
+**OffsetDateTimeDemo.java**
+
+```java
+import java.time.OffsetDateTime;
+public class OffsetDateTimeDemo {
+	public static void main(String[] args) {
+		OffsetDateTime offsetDT = OffsetDateTime.now();
+		System.out.println(offsetDT.getDayOfMonth());
+		System.out.println(offsetDT.getDayOfYear());
+		System.out.println(offsetDT.getDayOfWeek());
+		System.out.println(offsetDT.toLocalDate());
+	}
+} 
+```
+
+输出
+
+```bash
+8
+159
+TUESDAY
+2021-06-08
+```
+
+## OffsetTime
+
+`OffsetTime` 表示具有偏移量的时间，该偏移量可以被视为时-分-秒-偏移量(`hour-minute-second-offset`)。
+
+**OffsetTimeDemo.java**
+
+```java
+import java.time.OffsetTime;
+public class OffsetTimeDemo {
+	public static void main(String[] args) {
+	  OffsetTime offTime = OffsetTime.now();
+	  System.out.println(offTime.getHour() +" hour");
+	  System.out.println(offTime.getMinute() +" minute");
+	  System.out.println(offTime.getSecond() +" second");
+	}
+} 
+```
+
+输出
+
+```bash
+15 hour
+41 minute
+48 second
+```
+
+## Period
+
+`Period`是指不同单位的时间量，如年、月或日。
+
+例如：1年5个月10天。
+
+**PeriodDemo.java**
+
+```java
+import java.time.LocalDate;
+import java.time.Period;
+public class PeriodDemo {
+	public static void main(String[] args) {
+		LocalDate start = LocalDate.now();
+		System.out.println("Period.between:"+Period.between(start, LocalDate.MAX).getDays());
+		System.out.println("Period.ofDays:"+Period.ofDays(5).getDays());
+	}
+} 
+```
+
+输出
+
+```bash
+Period.between:19
+Period.ofDays:5 
+```
+
+## Year
+
+`Year`类代表年份，如`2014`。
+
+这个类只与年份有关。
+
+我们可以用它来判断闰年(`leap year`)或获取当前年份。
+
+**YearDemo.java**
+
+```java
+import java.time.Year;
+public class YearDemo {
+	public static void main(String[] args) {
+		System.out.println("Year.now():"+Year.now());		
+		System.out.println("Year.MAX_VALUE:"+Year.MAX_VALUE);
+		System.out.println("Year.isLeap(2014):"+Year.isLeap(2014));
+		System.out.println("Year.isLeap(2016):"+Year.isLeap(2016));
+	}
+} 
+```
+
+输出
+
+```bash
+Year.now():2014
+Year.MAX_VALUE:999999999
+Year.isLeap(2014):false
+Year.isLeap(2016):true 
+```
+
+## YearMonth
+
+`YearMonth` 是代表年份和月份组合的类，如 `2014-09`。
+
+此类提供了获取给定日期字符串的年和月的方法。
+
+**YearMonthDemo.java**
+
+```java
+import java.time.YearMonth;
+public class YearMonthDemo {
+	public static void main(String[] args) {
+		System.out.println("YearMonth.now():"+YearMonth.now());
+		System.out.println("getMonthValue():"+YearMonth.parse("2014-09").getMonthValue());		
+		System.out.println("getYear():"+YearMonth.parse("2014-09").getYear());
+		System.out.println("isLeapYear():"+YearMonth.parse("2014-09").isLeapYear());		
+	}
+} 
+```
+
+输出
+
+```bash
+YearMonth.now():2014-09
+getMonthValue():9
+getYear():2014
+isLeapYear():false 
+```
+
+## ZonedDateTime
+
+`ZonedDateTime` 类表示带区域的日期和时间。；例如：`2014-09-12T18:32:29.636+05:30[Asia/Calcutta]`。
+
+该类提供了获取年、月、日、时、分、秒和区域偏移量的方法。
+
+**ZonedDateTimeDemo.java**
+
+```java
+import java.time.ZonedDateTime;
+public class ZonedDateTimeDemo {
+	public static void main(String[] args) {
+		System.out.println(ZonedDateTime.now());
+		ZonedDateTime zdt = ZonedDateTime.parse("2014-09-12T10:15:30+01:00[Europe/Paris]");
+		System.out.println("getDayOfYear:"+zdt.getDayOfYear());
+		System.out.println("zdt.getYear():"+zdt.getYear());
+	}
+} 
+```
+
+输出
+
+```bash
+2014-09-12T18:32:29.636+05:30[Asia/Calcutta]
+getDayOfYear:255
+zdt.getYear():2014 
+```
+
+## LocalDate 详解
+
+### LocalDate - 初始化
+
+`LocalDate`以年月日的格式输出，即`yyyy-MM-dd`。
+
+我们可以使用`LocalDate`的下列静态方法来初始化`LocalDate`。
+
+**1. now():** 给出LocalDate实例，该实例包含默认时区的系统时钟的当前日期。
+
+```java
+LocalDate localDate = LocalDate.now();
+System.out.println(localDate); 
+```
+
+输出
+
+```bash
+2021-06-13
+```
+
+**2. now(Clock clock):** 提供LocalDate实例，该实例具有从指定时钟获得的当前日期。
+
+```java
+LocalDate localDate = LocalDate.now(Clock.systemUTC()); 
+```
+
+`Clock.systemUTC()`将返回`Clock`实例。
+
+**3. now(ZoneId zone):** 给出当前日期的`LocalDate`实例，该日期来自指定时区的系统时钟。
+
+```java
+LocalDate localDate = LocalDate.now(ZoneId.systemDefault()); 
+```
+
+**4. of(int year, int month, int dayOfMonth:** 从给定的年、月、日中获得`LocalDate`实例，输入数据类型为`int`。
+
+```java
+LocalDate localDate = LocalDate.of(2018, 11, 30); 
+```
+
+输出为`2018-11-30`。
+
+**5. of(int year, Month month, int dayOfMonth):** 从给定的年（`int`）、月（`Month`）和日（`int`）给出`LocalDate`实例。
+
+```java
+LocalDate localDate = LocalDate.of(2018, Month.NOVEMBER, 30); 
+```
+
+输出为`2018-11-30`。
+
+**6. ofEpochDay(long epochDay):** 从给定的纪元日数中给出`LocalDate`实例。
+
+```java
+LocalDate localDate = LocalDate.ofEpochDay(500); 
+```
+
+输出为`1971-05-16`。
+
+**7. ofInstant(Instant instant, ZoneId zone):** 从给定的`Instant`和`ZoneId`给出`LocalDate`实例。
+
+```java
+LocalDate localDate = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault()); 
+```
+
+`注`：`ofInstant`在`Java 9`中被引入。
+
+**8. ofYearDay(int year, int dayOfYear):** 从给定的年份和年份中的天数给出`LocalDate`实例，输入数据类型为`int`。
+
+```java
+LocalDate localDate = LocalDate.ofYearDay(2018, 02); 
+```
+
+输出为`2018-01-02`，即`2018`年第二天的日期。
+
+**9. parse(CharSequence text):** 从给定的文本字符串，如 `"2018-10-01"`，给出`LocalDate`实例。
+
+```java
+LocalDate localDate = LocalDate.parse("2018-10-01"); 
+```
+
+输出为`2018-10-01`。
+
+**10. parse(CharSequence text, DateTimeFormatter formatter):** 从给定格式的文本字符串中获得`LocalDate`实例。输出的`LocalDate`将是`yyyy-MM-dd`格式。
+
+```java
+LocalDate localDate = LocalDate.parse("15-03-2018", DateTimeFormatter.ofPattern("dd-MM-yyyy")); 
+```
+
+输出为`2018-03-15`。
+
+**11. from(TemporalAccessor temporal):** 从给定的时间对象中获得`LocalDate`实例。
+
+```java
+LocalDate localDate = LocalDate.from(LocalDate.now()); 
+```
+
+### plus - 按给定数量增加日期值
+
+**1. plus(long amountToAdd, TemporalUnit unit):** 通过增加给定的数量返回`LocalDate`实例。
+
+```java
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate1 = LocalDate.now();
+	System.out.println(localDate1);
+	
+	LocalDate localDate2 = localDate1.plus(15, ChronoUnit.DAYS);
+	System.out.println(localDate2);
+  }
+} 
+```
+
+输出
+
+```bash
+2021-06-13
+2021-06-28
+```
+
+在上面的例子中，我们在当前日期中增加了`15`天。
+
+**2. plus(TemporalAmount amountToAdd):** 通过添加指定的`TemporalAmount`返回`LocalDate`实例。
+
+```java
+LocalDate localDate1 = LocalDate.now();
+System.out.println(localDate1);
+	
+LocalDate localDate2 = localDate1.plus(Period.ofDays(15));
+System.out.println(localDate2); 
+```
+
+输出
+
+```bash
+2021-06-13
+2021-06-28
+```
+
+在上面的代码中，我们给`localDate1`增加了`15`天，得到`localDate2`作为`LocalDate`的实例。
+
+**3. plusDays(long daysToAdd):** 通过添加指定的天数返回`LocalDate`实例。
+
+```java
+LocalDate localDate1 = LocalDate.parse("2018-11-05");
+LocalDate localDate2 = localDate1.plusDays(15);
+System.out.println(localDate2); 
+```
+
+输出为`2018-11-20`。
+
+**4. plusWeeks(long weeksToAdd):** 通过添加指定的周数返回 `LocalDate` 实例，用法与`plusDays`类似。
+
+**5. plusMonths(long monthsToAdd):** 通过添加指定的月数返回 `LocalDate` 实例，用法与`plusDays`类似。
+
+**6. plusYears(long yearsToAdd):** ，通过添加指定的年数返回 `LocalDate` 实例，用法与`plusDays`类似。
+
+### minus - 按给定数量减去日期值
+
+**1. minus(long amountToSubtract, TemporalUnit unit):** 通过减去给定的数量返回`LocalDate`实例。
+
+```java
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate1 = LocalDate.now();
+	System.out.println(localDate1);
+
+	LocalDate localDate2 = localDate1.minus(15, ChronoUnit.DAYS);
+	System.out.println(localDate2);
+  }
+} 
+```
+
+输出
+
+```bash
+2018-12-02
+2018-11-17 
+```
+
+在上面的例子中，我们在当前日期中减少了`15`天。
+
+**2. minus(TemporalAmount amountToSubtract):** 通过减去指定的`TemporalAmount`返回`LocalDate`实例。
+
+```java
+LocalDate localDate1 = LocalDate.now();
+System.out.println(localDate1);
+
+LocalDate localDate2 = localDate1.minus(Period.ofDays(15));
+System.out.println(localDate2); 
+```
+
+输出
+
+```bash
+2018-12-02
+2018-11-17 
+```
+
+在上面的代码中，我们给`localDate1`减少了`15`天，得到`localDate2`作为`LocalDate`的实例。
+
+**3. minusDays(long daysToSubtract):** 通过减少指定的天数返回`LocalDate`实例。
+
+```java
+LocalDate localDate1 = LocalDate.parse("2018-11-05");
+LocalDate localDate2 = localDate1.minusDays(15);
+System.out.println(localDate2); 
+```
+
+输出为`2018-10-21`。
+
+**4. minusWeeks(long weeksToSubtract):** 通过减少指定的周数返回 `LocalDate` 实例，用法与`minusDays`相似。
+
+**5. minusMonths(long monthsToSubtract):** 通过减少指定的月数返回 `LocalDate` 实例，用法与`minusDays`相似。
+
+**6. minusYears(long yearsToSubtract):** ，通过减少指定的年数返回 `LocalDate` 实例，用法与`minusDays`相似。
+
+### with - 调整日期
+
+查看`LocalDate`方法，这些方法将返回具有指定值的`LocalDate`调整，或为给定的日期字段设置一个新值。
+
+**1. with(TemporalAdjuster adjuster):** 返回用给定的`TemporalAdjuster`调整的`LocalDate`实例。
+
+```java
+LocalDate localDate1 = LocalDate.now();
+System.out.println(localDate1);
+	
+LocalDate localDate2 = localDate1.with(DayOfWeek.SUNDAY);
+System.out.println(localDate2); 
+```
+
+输出
+
+```bash
+2018-12-03
+2018-12-09 
+```
+
+在上面的代码中，我们使用`with`方法改变了当前日期的日期。在当前日期的输出中，它是星期一。
+
+通过调整星期日，我们得到一个新的日期。
+
+**2. with(TemporalField field, long newValue):** 将指定字段的`LocalDate`实例返回到一个新值。
+
+```java
+LocalDate localDate1 = LocalDate.now();
+System.out.println(localDate1);
+	
+LocalDate localDate2 = localDate1.with(ChronoField.YEAR, 2017);
+System.out.println(localDate2); 
+```
+
+输出
+
+```bash
+2018-12-03
+2017-12-03 
+```
+
+在上面的代码中，我们为年份设置了新的值。
+
+**3. withDayOfMonth(int dayOfMonth):** 通过用给定的值改变月份中的号数来返回`LocalDate`实例。
+
+```java
+LocalDate localDate1 = LocalDate.now();
+System.out.println(localDate1);
+	
+LocalDate localDate2 = localDate1.withDayOfMonth(10);
+System.out.println(localDate2); 
+```
+
+输出
+
+```bash
+2018-12-03
+2018-12-10 
+```
+
+**4. withDayOfYear(int dayOfYear):** 通过使用给定值更改一年中的某一天来返回 `LocalDate` 实例。一年中的第几天的有效值为 `1` 到 `365`，闰年的有效值为 `1` 到 `366`。
+
+```java
+LocalDate localDate1 = LocalDate.now();
+System.out.println(localDate1);
+	
+LocalDate localDate2 = localDate1.withDayOfYear(110);
+System.out.println(localDate2); 
+```
+
+输出
+
+```bash
+2018-12-03
+2018-04-20 
+```
+
+在上面的例子中，我们想在当前日期中设置`110`。输出的方式是，年不会改变，月和日将从`1`月开始的第`110`天中获得。
+
+**5. withMonth(int month):** 通过用给定的值改变年的月份来返回`LocalDate`实例。有效值是`1`到`12`。
+
+```java
+LocalDate localDate1 = LocalDate.now();
+System.out.println(localDate1);
+	
+LocalDate localDate2 = localDate1.withMonth(6);
+System.out.println(localDate2); 
+```
+
+输出
+
+```bash
+2018-12-03
+2018-06-03 
+```
+
+**6. withYear(int year):** 通过用给定值改变年份来返回LocalDate实例。
+
+```java
+LocalDate localDate1 = LocalDate.now();
+System.out.println(localDate1);
+	
+LocalDate localDate2 = localDate1.withYear(2017);
+System.out.println(localDate2); 
+```
+
+输出
+
+```bash
+2018-12-03
+2017-12-03 
+```
+
+### get - 获取日期信息
+
+创建一个`LocalDate`实例，如下所示。
+
+```java
+LocalDate localDate = LocalDate.now();
+System.out.println(localDate);
+```
+
+假设它给出了以下数值。
+
+```bash
+2018-12-03 
+```
+
+**1. get(TemporalField field):** 获取指定字段的`int`值。
+
+```java
+int val = localDate.get(ChronoField.YEAR);
+System.out.println(val); 
+```
+
+输出为`2018`。
+
+**2. getChronology():** 获取该日期格式，例如：`ISO`。
+
+**3. getDayOfMonth():** 获取一个月中的第几号，为`int`类型。
+
+```java
+int val = localDate.getDayOfMonth();
+System.out.println(val); 
+```
+
+输出为`3`。
+
+**4. getDayOfWeek():** 获取星期字段，返回`DayOfWeek`。
+
+```java
+DayOfWeek val = localDate.getDayOfWeek();
+System.out.println(val.name()); 
+```
+
+输出为`MONDAY`。
+
+**5. getDayOfYear():** 以 `int` 格式获取一年中的第几天。它可以返回从 `1` 到 `365` 或 `366` (`闰年`)。
+
+```java
+int val = localDate.getDayOfYear();
+System.out.println(val); 
+```
+
+输出为`337`。
+
+**6. getEra():** 获取在此日期适用的时代。例如：`"CE "`从第一年开始，`"BCE "`从零年开始。
+
+```java
+IsoEra val = localDate.getEra(); 
+```
+
+**7. getLong(TemporalField field):** 获取指定字段的值，返回`long`类型。
+
+```java
+long val = localDate.getLong(ChronoField.YEAR);
+System.out.println(val); 
+```
+
+输出为`2018`。
+
+**8. getMonth():** 从这个日期获取一年中的月份，返回值为`Month`类型。
+
+```java
+Month val = localDate.getMonth();
+System.out.println(val.name());
+```
+
+输出为`DECEMBER`。
+
+**9. getMonthValue():** 获取月份，取值范围为`1-12`的`int`类型。
+
+```java
+int val = localDate.getMonthValue();
+System.out.println(val); 
+```
+
+输出为`12`。
+
+**10. getYear():** 获取年份，返回`int`类型。
+
+```java
+int val = localDate.getYear();
+System.out.println(val);
+```
+
+输出为`2018`。
+
+### LocalDate format() 转换格式
+
+`LocalDate` 的默认日期格式为 `yyyy-MM-dd`。
+
+`format` 方法使用指定的格式化程序格式化日期。
+
+找到它的声明。
+
+```java
+String format(DateTimeFormatter formatter) 
+```
+
+示例
+
+```java
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate = LocalDate.parse("2018-02-18");
+	String formattedDate = localDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+	System.out.println(formattedDate);
+  }
+} 
+```
+
+输出
+
+```bash
+二月 18, 2018
+```
+
+### atTime() - 将 LocalDate 与时间结合转化为 LocalDateTime
+
+`atTime` 方法将 `LocalDate` 与给定时间结合起来，并返回 `LocalDateTime` 实例。
+
+我们可以将以下参数传递给 `atTime` 方法。
+
+```java
+atTime(int hour, int minute)
+atTime(int hour, int minute, int second)
+atTime(int hour, int minute, int second, int nanoOfSecond)
+atTime(LocalTime time) 
+```
+
+示例
+
+```java
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate = LocalDate.parse("2018-05-02");
+	System.out.println(localDate);
+	
+	//hour and minute
+	LocalDateTime localDateTime = localDate.atTime(16, 50);
+	System.out.println(localDateTime);
+	
+	//hour, minute and second
+	localDateTime = localDate.atTime(16, 50, 20);
+	System.out.println(localDateTime);	
+
+	//hour, minute, second and nanoOfSecond	
+	localDateTime = localDate.atTime(16, 50, 20, 300);
+	System.out.println(localDateTime);	
+	
+	//Using LocalTime
+	localDateTime = localDate.atTime(LocalTime.now());
+	System.out.println(localDateTime);		
+  }
+} 
+```
+
+输出
+
+```bash
+2018-05-02
+2018-05-02T16:50
+2018-05-02T16:50:20
+2018-05-02T16:50:20.000000300
+2018-05-02T17:53:24.952
+```
+
+我们还可以将 `OffsetTime` 传递给将返回 `OffsetDateTime` 实例的 `atTime`。
+
+```java
+OffsetDateTime  offsetDateTime  = localDate.atTime(OffsetTime.now());
+System.out.println(offsetDateTime)
+```
+
+输出为`2018-05-02T17:54:37.104+08:00`。
+
+### atStartOfDay() 将 LocalDate 转化为 LocalDateTime
+
+`atStartOfDay`方法将`LocalDate`与`00:00`的时间结合起来，在这个日期的开始创建`LocalDateTime`实例。
+
+为了得到`ZonedDateTime`实例，我们需要将`ZoneId`实例传递给`atStartOfDay`方法。
+
+找到`atStartOfDay`方法的声明。
+
+```java
+LocalDateTime atStartOfDay()
+ZonedDateTime atStartOfDay(ZoneId zone) 
+```
+
+示例
+
+```java
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate = LocalDate.now();
+        LocalDateTime localDateTime = localDate.atStartOfDay();
+	System.out.println(localDateTime);
+	
+	ZonedDateTime zonedDateTime = localDate.atStartOfDay(ZoneId.systemDefault());
+	System.out.println(zonedDateTime);	
+  }
+} 
+```
+
+输出
+
+```bash
+2021-06-13T00:00
+2021-06-13T00:00+08:00[Asia/Shanghai]
+```
+
+我们可以看到，时间值是一天的开始。
+
+### LocalDate isAfter(), isBefore() and isEqual() 比较日期
+
+**isAfter(ChronoLocalDate other):** 检查此日期是否在给定日期之后。
+
+**isBefore(ChronoLocalDate other):** 检查此日期是否在给定日期之前。
+
+**isEqual(ChronoLocalDate other):** 检查此日期是否等于给定日期。
+
+示例
+
+```java
+import java.time.LocalDate;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate1 = LocalDate.parse("2018-03-18");
+	LocalDate localDate2 = LocalDate.parse("2018-05-12");
+
+	System.out.println(localDate1.isAfter(localDate2));
+	System.out.println(localDate1.isBefore(localDate2));
+	System.out.println(localDate1.isEqual(localDate2));
+  }
+} 
+```
+
+输出
+
+```bash
+false
+true
+false
+```
+
+### LocalDate isLeapYear(), isSupported() 检查闰年和输入域
+
+**isLeapYear():** 检查年份是否为闰年。
+
+**isSupported(TemporalField field):** 检查是否支持给定字段。在从日期获取任何字段之前，我们可以检查该字段是否受支持，否则我们可能会出错。
+
+**isSupported(TemporalUnit unit):** 检查是否支持给定的单位。在使用加减之前，我们可以检查是否支持给定的单位，否则我们可能会出错。
+
+示例
+
+```java
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate = LocalDate.parse("2016-03-18");
+	System.out.println(localDate.isLeapYear());
+	System.out.println(localDate.isSupported(ChronoField.DAY_OF_MONTH));
+	System.out.println(localDate.isSupported(ChronoUnit.HOURS));	
+  }
+} 
+```
+
+输出
+
+```bash
+true
+true
+false 
+```
+
+### LocalDate lengthOfMonth(), lengthOfYear() 检查月份和年份天数最大值
+
+**lengthOfMonth():** 给出月份的最大天数，例如 28、29、30、31。
+
+**lengthOfYear():** 给出年份的最大天数 365 或 366（闰年）。
+
+示例
+
+```java
+import java.time.LocalDate;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate = LocalDate.parse("2018-02-18");
+	System.out.println(localDate.lengthOfMonth());
+	System.out.println(localDate.lengthOfYear());
+  }
+} 
+```
+
+输出
+
+```bash
+28
+365
+```
+
+### LocalDate datesUntil() 返回指定时间段
+
+`Java 9` 中引入了`LocalDate` 中的`datesUntil` 方法。
+
+`datesUntil` 方法返回不包括给定日期的有序的日期流。
+
+我们也可以通过 `period` 来设置增量步长。
+
+我们获取从该日期开始到指定日期的日期流。
+
+指定的日期将被排除在结果中。
+
+`dateUntil` 声明如下。
+
+```java
+Stream<LocalDate> datesUntil(LocalDate endExclusive)
+Stream<LocalDate> datesUntil(LocalDate endExclusive, Period step) 
+```
+
+示例
+
+```java
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.stream.Stream;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate = LocalDate.parse("2018-02-18");
+	
+    System.out.println("--- With LocalDate ---");
+	Stream<LocalDate> localDateStream = localDate.datesUntil(LocalDate.parse("2018-02-22"));
+	localDateStream.forEach(date -> System.out.println(date));
+	
+    System.out.println("--- With LocalDate and Period ---");
+	localDateStream = localDate.datesUntil(LocalDate.parse("2018-02-22"), Period.ofDays(2));
+	localDateStream.forEach(date -> System.out.println(date));    
+  }
+} 
+```
+
+输出
+
+```bash
+--- With LocalDate ---
+2018-02-18
+2018-02-19
+2018-02-20
+2018-02-21
+--- With LocalDate and Period ---
+2018-02-18
+2018-02-20 
+```
+
+### LocalDate until() 计算两个日期之间的时间量
+
+1.计算此日期和指定日期之间的时期为`Period`
+
+```java
+Period until(ChronoLocalDate endDateExclusive) 
+```
+
+2.计算距指定日期（不包括）的时间量。
+
+```java
+long until(Temporal endExclusive, TemporalUnit unit) 
+```
+
+示例
+
+```java
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+    LocalDate localDate = LocalDate.parse("2018-02-18");
+	
+    Period period = localDate.until(LocalDate.parse("2018-03-28"));
+    System.out.println(period.getDays());
+    
+    long val = localDate.until(LocalDate.parse("2018-03-28"), ChronoUnit.DAYS);
+    System.out.println(val);
+  }
+} 
+```
+
+输出
+
+```bash
+10
+38 
+```
+
+### LocalDate compareTo() and equals() 比较日期
+
+**compareTo(ChronoLocalDate other):** 将此日期与指定日期进行比较。
+
+**equals(Object obj):** 检查此日期是否等于指定日期。
+
+示例
+
+```java
+LocalDate localDate = LocalDate.parse("2018-02-18");
+System.out.println(localDate.equals(LocalDate.parse("2018-02-18")));
+System.out.println(localDate.compareTo(LocalDate.parse("2018-02-25"))); 
+```
+
+输出
+
+```bash
+true
+-7 
+```
+
+### LocalDate adjustInto() 复制日期
+
+`adjustInto`方法将指定的时间对象调整为与此对象具有相同的日期。
+
+找到这个例子。
+
+```java
+import java.time.LocalDate;
+import java.time.temporal.Temporal;
+
+public class LocalDateDemo {
+  public static void main(String[] args) {
+	LocalDate localDate = LocalDate.parse("2018-02-18");
+	Temporal temporalObj = LocalDate.parse("2017-03-20");
+	
+	temporalObj = localDate.adjustInto(temporalObj);
+	System.out.println(temporalObj);
+  }
+} 
+```
+
+输出
+
+```bash
+2018-02-18 
+```
+
+我们可以看到`temporalObj`的日期值与`localDate`不同。
+
+但在用`localDate`调整`temporalObj`后，两者是一样的。
+
+### LocalDate query() 查询日期
+
+query方法使用指定的查询方式查询这个日期。
+
+```java
+TemporalUnit unit = localDate.query(TemporalQueries.precision()); 
+```
+
+输出为`Days`。
+
+`TemporalQueries.precision()`查询最小的支持单位。
+
+它返回`TemporalQuery`的实例。
+
+### LocalDate range() 字段有效值范围。
+
+range给出指定字段的有效值范围。
+
+```java
+LocalDate localDate = LocalDate.parse("2018-02-18");
+	
+ValueRange vrange = localDate.range(ChronoField.DAY_OF_MONTH);
+System.out.println(vrange);
+    
+vrange = localDate.range(ChronoField.DAY_OF_WEEK);
+System.out.println(vrange);
+```
+
+输出
+
+```bash
+1 - 28
+1 – 7 
+```
+
+在上面的代码中，日期是`“2018-02-18”`。
+
+我们可以看到这个日期年二月的日期范围可以是 `1 – 28`，星期几是 `1 – 7`。
+
+### LocalDate toEpochDay() and toEpochSecond()
+
+**toEpochDay():** 将此日期转换为历法日，并返回`long`值。
+**toEpochSecond(LocalTime time, ZoneOffset offset):** 此日期转换为自`1970-01-01T00:00:00Z`纪元以来的秒数，并返回`long`值。在`Java 9`中引入。
+
+示例
+
+```java
+LocalDate localDate = LocalDate.parse("2018-02-18");
+System.out.println(localDate.toEpochDay());
+System.out.println(localDate.toEpochSecond(LocalTime.now(), ZoneOffset.MAX)); 
+```
+
+输出
+
+```bash
+17580
+1518921065 
+```
+
+## DateTimeFormatter 日期时间格式化器
+
+### 实例化 DateTimeFormatter
+
+`DateTimeFormatter`有以下静态方法来实例化`DateTimeFormatter`。
+
+1. **ofPattern(String pattern)**: 使用给定的模式创建格式化器。
+2. **ofPattern(String pattern, Locale locale)**: 使用给定的模式和区域设置创建格式化器。
+3. **ofLocalizedDate(FormatStyle dateStyle)**: 创建具有当地特定日期格式的格式化器。`FormatStyle`是一个枚举，其值可以是`FULL`, `LONG`, `MEDIUM`, `SHORT`。
+4. **ofLocalizedDateTime(FormatStyle dateTimeStyle)**: 创建具有特定地区日期时间(`date-time`)格式的格式化器。
+5. **ofLocalizedDateTime(FormatStyle dateStyle, FormatStyle timeStyle)**: 创建具有特定地区日期时间(`date-time`)格式的格式化器。我们需要为日期和时间分别传递`FormatStyle`。例如，日期可以是`LONG`，时间可以是`SHORT`。
+6. **ofLocalizedTime(FormatStyle timeStyle)**: 创建具有当地特定时间格式的格式化器。
+
+#### 示例
+
+```java
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
+
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {
+    LocalDate localDate = LocalDate.now();
+    
+    DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+    String formattedDate1 = formatter1.format(localDate);
+    System.out.println(formattedDate1); //Dec 17, 2018
+    
+    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.CANADA);
+    String formattedDate2 = formatter2.format(localDate);
+    System.out.println(formattedDate2); //Dec. 17, 2018 
+    
+    DateTimeFormatter formatter3 = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+    String formattedDate3 = formatter3.format(localDate);
+    System.out.println(formattedDate3); //Monday, December 17, 2018
+    
+    LocalDateTime localDateTime = LocalDateTime.now();
+    
+    DateTimeFormatter formatter4 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+    String formattedDate4 = formatter4.format(localDateTime);
+    System.out.println(formattedDate4); //Dec 17, 2018, 9:14:39 PM  
+
+    DateTimeFormatter formatter5 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT);
+    String formattedDate5 = formatter5.format(localDateTime);
+    System.out.println(formattedDate5); //December 17, 2018, 9:14 PM
+    
+    LocalTime localTime = LocalTime.now();
+    
+    DateTimeFormatter formatter6 = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM);
+    String formattedDate6 = formatter6.format(localTime);
+    System.out.println(formattedDate6); //9:14:39 PM        
+  }
+} 
+```
+
+输出
+
+```bash
+Dec 17, 2018
+Dec. 17, 2018
+Monday, December 17, 2018
+Dec 17, 2018, 9:14:39 PM
+December 17, 2018, 9:14 PM
+9:14:39 PM 
+```
+
+#### FormatStyle:
+
+它是一个关于本地化日期、时间或日期时间(`date-time`)格式化风格的枚举。
+
+它有以下常数。 1.**FULL**：例如 `'Tuesday, April 11, 2015 AD' or '5:30:45pm PST'`.
+
+1. **LONG**：例如 `'January 10, 2018'`.
+2. **MEDIUM**：例如 `'Jan 10, 2018'`
+3. **SHORT**：例如 `'11.15.50' or '6:30pm'`.
+
+### DateTimeFormatter format() 和 formatTo()。
+
+为了格式化一个日期、时间或日期时间(`date-time`)，`DateTimeFormatter`提供了以下方法。
+
+1. **format(TemporalAccessor temporal)**: 使用该格式化器对给定的日期时间(`date-time`)对象进行格式化，并以字符串形式返回。
+2. **formatTo(TemporalAccessor temporal, Appendable appendable)**: 使用该格式化器对给定的日期时间(`date-time`)对象进行格式化，并将结果附加到给定的`Appendable`对象中。`Appendable`对象可以是`StringBuffer`、`StringBuilder`等的实例。
+
+#### 示例
+
+```java
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {  
+     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd hh:mm:ss");
+     LocalDateTime ldt = LocalDateTime.now();
+     System.out.println(dtf.format(ldt)); //2018-Dec-20 03:50:45
+     
+     StringBuffer sb = new StringBuffer("Date ");
+     dtf.formatTo(ldt, sb);
+     System.out.println(sb); //Date 2018-Dec-20 03:50:45
+  }
+} 
+```
+
+输出
+
+```bash
+2018-Dec-20 03:50:45
+Date 2018-Dec-20 03:50:45 
+```
+
+### 格式化 LocalDate
+
+`LocalDate`是一个在`ISO-8601`日历系统中没有时区的日期。
+
+找到使用`DateTimeFormatter`格式化`LocalDate`的例子。
+
+```java
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+    LocalDate ld = LocalDate.now();
+    System.out.println(dtf.format(ld)); //2018-Dec-20
+
+    dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd(E)");
+    ld = LocalDate.now();
+    System.out.println(dtf.format(ld)); //2018-Dec-20(Thu)
+
+    dtf = DateTimeFormatter.ofPattern("MMM dd, YYYY");
+    ld = LocalDate.now();
+    System.out.println(dtf.format(ld)); //Dec 20, 2018
+  }
+} 
+```
+
+输出
+
+```bash
+2018-Dec-20
+2018-Dec-20(Thu)
+Dec 20, 2018 
+```
+
+`DateTimeFormatter`也被用来解析一个本地日期。
+
+查找示例代码。
+
+```java
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+LocalDate ld = LocalDate.parse("Dec 20, 2018", dtf);
+System.out.println(ld); 
+```
+
+输出
+
+```bash
+2018-12-20 
+```
+
+### 格式化 LocalDateTime
+
+`LocalDateTime`是`ISO-8601`日历系统中没有时区的日期时间。
+
+查找使用`DateTimeFormatter`格式化`LocalDateTime`的示例。
+
+```java
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd hh:mm:ss");
+    LocalDateTime ldt = LocalDateTime.now();
+    System.out.println(dtf.format(ldt)); //2018-Dec-20 07:40:03 
+
+    dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd(E) hh:mm:ss a");
+    ldt = LocalDateTime.now();
+    System.out.println(dtf.format(ldt)); //2018-Dec-20(Thu) 07:40:03 PM
+
+    dtf = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss");
+    ldt = LocalDateTime.now();
+    System.out.println(dtf.format(ldt)); //18-12-20 19:40:03
+  }
+} 
+```
+
+输出
+
+```
+2018-Dec-20 07:40:03 
+2018-Dec-20(Thu) 07:40:03 PM
+18-12-20 19:40:03 
+```
+
+`DateTimeFormatter`也被用来解析本地日期时间。
+
+查找示例代码。
+
+```java
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm:ss");
+LocalDateTime ldt = LocalDateTime.parse("2018-Dec-20 08:25:30", dtf);
+System.out.println(ldt); 
+```
+
+输出
+
+```
+2018-12-20T08:25:30 
+```
+
+### 格式化 LocalTime
+
+`LocalTime`是`ISO-8601`日历系统中没有时区的时间。
+
+查找使用`DateTimeFormatter`格式化`LocalTime`的例子。
+
+```java
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm:ss");
+    LocalTime lt = LocalTime.now();
+    System.out.println(dtf.format(lt)); //08:03:32
+
+    dtf = DateTimeFormatter.ofPattern("hh:mm:ss a");
+    lt = LocalTime.now();
+    System.out.println(dtf.format(lt)); //08:03:32 PM
+
+    dtf = DateTimeFormatter.ofPattern("HH:mm");
+    lt = LocalTime.now();
+    System.out.println(dtf.format(lt)); //20:03
+  }
+} 
+```
+
+输出
+
+```
+08:03:32
+08:03:32 PM
+20:03 
+```
+
+`DateTimeFormatter`也被用来解析本地时间。
+
+查找示例代码。
+
+```java
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+LocalTime lt = LocalTime.parse("08:25:30", dtf);
+System.out.println(lt); 
+```
+
+输出
+
+```
+08:25:30 
+```
+
+### DateTimeFormatter “parse” 方法
+
+`DateTimeFormatter`提供以下方法来解析文本。
+
+**1.**
+
+```java
+TemporalAccessor parse(CharSequence text) 
+```
+
+解析一个日期、时间或日期时间(`date-time`)的文本，并返回时间性(`temporal`)对象。
+
+```java
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm:ss");
+TemporalAccessor ta = formatter.parse("18-Dec-2017 02:46:41");
+System.out.println(ta.get(ChronoField.YEAR));
+System.out.println(ta.get(ChronoField.HOUR_OF_AMPM)); 
+```
+
+输出
+
+```bash
+2017
+2 
+```
+
+**2.**
+
+```java
+TemporalAccessor parse(CharSequence text, ParsePosition position) 
+```
+
+我们可以通过`ParsePosition`来转义给定文本中的一些字符。
+
+我们用给定的初始索引启动一个`ParsePosition`，`parse`方法将从那里开始解析给定的文本。
+
+```java
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm:ss");
+TemporalAccessor ta = formatter.parse("Date 18-Dec-2017 02:46:41", new ParsePosition(5));
+System.out.println(ta.get(ChronoField.YEAR));
+System.out.println(ta.get(ChronoField.HOUR_OF_AMPM)); 
+```
+
+输出
+
+```bash
+2017
+2 
+```
+
+**3.**
+
+```java
+<T> T parse(CharSequence text, TemporalQuery<T> query) 
+```
+
+解析给定的文本并返回`TemporalQuery`指定的对象。
+
+```java
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm:ss");
+LocalDate localDate = formatter.parse("18-Dec-2017 02:46:41", TemporalQueries.localDate());
+System.out.println(localDate); 
+```
+
+输出
+
+```bash
+2017-12-18 
+```
+
+**4.**
+
+```java
+TemporalAccessor parseBest(CharSequence text, TemporalQuery<?>... queries) 
+```
+
+解析给定文本并返回其中一个指定类型。
+
+```java
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm:ss");
+TemporalAccessor ta = formatter.parseBest("18-Dec-2017 02:46:41", 
+     TemporalQueries.localDate(), TemporalQueries.localTime());
+System.out.println(ta); 
+```
+
+输出
+
+```bash
+2017-12-18 
+```
+
+**5.**
+
+```java
+TemporalAccessor parseUnresolved(CharSequence text, ParsePosition position) 
+```
+
+用给定的`ParsePosition`解析给定的文本，但不解决它。
+
+这意味着即使月日是`38`，它也不会产生错误。
+
+```java
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm:ss");
+TemporalAccessor ta = formatter.parseUnresolved("Date 38-Dec-2017 02:46:41", new ParsePosition(5));
+System.out.println(ta); 
+```
+
+输出
+
+```bash
+{DayOfMonth=38, ClockHourOfAmPm=2, MinuteOfHour=46, YearOfEra=2017, SecondOfMinute=41, MonthOfYear=12},null 
+```
+
+**6.**
+
+```java
+static TemporalQuery<Period> parsedExcessDays() 
+```
+
+提供一个查询，以访问作为已解析的`Period`的多余天数。
+
+```java
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {  
+    DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("HH:mm");
+    TemporalAccessor parsed1 = formatter1.parse("24:00");
+    LocalTime lt1 = parsed1.query(LocalTime::from);
+    Period excessDays1 = parsed1.query(DateTimeFormatter.parsedExcessDays());
+    System.out.println(lt1 + " , " + excessDays1);  //00:00 , P1D
+    
+    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    TemporalAccessor parsed2 = formatter2.parse("2018-12-03 24:00");
+    LocalDateTime lt2 = parsed2.query(LocalDateTime::from);
+    Period excessDays2 = parsed2.query(DateTimeFormatter.parsedExcessDays());
+    System.out.println(lt2 + " , " + excessDays2); //2018-12-04T00:00 , P0D     
+  }
+} 
+```
+
+输出
+
+```
+00:00 , P1D
+2018-12-04T00:00 , P0D 
+```
+
+我们可以看到，当我们只有时间时，`24:00`（一天的结束），我们得到的时间是`00`和超过`1`天（`P1D`意味着有`1`天的时间）。
+
+但是当我们同时提供日期和时间时，在这种情况下，多余的天数就会加到日期部分。在我们的例子中，我们可以看到第`3`天已经变成了第`4`天，多余的天数为`0`。
+
+**7.**
+
+```java
+static TemporalQuery<Boolean> parsedLeapSecond() 
+```
+
+提供一个查询，用于访问是否解析了闰秒。
+
+如果解析到闰秒，该查询返回真，否则返回假。
+
+在`UTC`时区，闰秒发生在`'23:59:60'`。
+
+在其他时区，时间可能不同。
+
+查找示例。
+
+```java
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {  
+    DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT;
+    TemporalAccessor parsed = formatter.parse("2017-12-31T23:59:60Z");
+    Instant instant = parsed.query(Instant::from);
+    System.out.println(instant);
+        System.out.println("leap second parsed=" 
+       + parsed.query(DateTimeFormatter.parsedLeapSecond()));   
+  }
+} 
+```
+
+输出
+
+```bash
+2017-12-31T23:59:59Z
+leap second parsed=true 
+```
+
+`DateTimeFormatter.ISO_INSTANT`用`UTC`格式化一个瞬间(`instant`)。
+
+### DateTimeFormatter “with” 方法
+
+下列方法返回`DateTimeFormatter`实例。
+
+1. **withChronology(Chronology chrono)**: 返回具有给定时间顺序的格式化器副本。
+2. **withDecimalStyle(DecimalStyle decimalStyle)**: 返回具有给定十进制样式的格式化器副本。
+3. **withLocale(Locale locale)**: 返回具有给定区域设置的格式化器副本。
+4. **withResolverFields(TemporalField… resolverFields)**: 返回具有给定时间字段的格式化器副本。
+5. **withResolverFields(Set resolverFields)**: 返回这个格式化器的副本，并将给定的时间字段作为Set。
+6. **withResolverStyle(ResolverStyle resolverStyle)**: 返回具有给定解析器样式的格式化器副本。
+7. **withZone(ZoneId zone)**: 返回这个格式化器的副本，并给定区域ID。
+
+我们可以在使用`DateTimeFormatterBuilder`实例化`DateTimeFormatter`时使用上述方法。
+
+查找示例代码。
+
+```java
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.chrono.IsoChronology;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DecimalStyle;
+import java.time.format.ResolverStyle;
+import java.time.format.TextStyle;
+import java.time.temporal.ChronoField;
+import java.util.Locale;
+
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {  
+    DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
+    DateTimeFormatter formatter = builder.appendLiteral("Day is:")
+        .appendValue(ChronoField.DAY_OF_MONTH)
+        .appendLiteral(", month is:")
+        .appendValue(ChronoField.MONTH_OF_YEAR)
+        .appendLiteral(", and year:")
+        .appendPattern("u")
+        .appendLiteral(" with the time:")
+        .appendValue(ChronoField.HOUR_OF_DAY)
+        .appendLiteral(":")
+        .appendText(ChronoField.MINUTE_OF_HOUR, TextStyle.NARROW_STANDALONE)
+        .toFormatter()
+        .withDecimalStyle(DecimalStyle.STANDARD)
+        .withChronology(IsoChronology.INSTANCE)
+        .withLocale(Locale.CANADA)
+        .withResolverStyle(ResolverStyle.LENIENT)
+        .withZone(ZoneId.systemDefault());
+    
+    LocalDateTime dateTime  = LocalDateTime.now(); 
+    String str =  dateTime.format(formatter); 
+    System.out.println(str);    
+  }
+} 
+```
+
+输出
+
+```bash
+Day is:20, month is:12, and year:2018 with the time:11:36 
+```
+
+### DateTimeFormatter “get” 方法
+
+我们可以使用以下方法获取`DateTimeFormatter`对象信息。 **getChronology()**：获取年表。 **getDecimalStyle()**：获取十进制风格。 **getLocale()**：获取区域设置。 **getResolverFields()**：获取解析器字段。 **getResolverStyle()**：获取解析器样式。 **getZone()**：获取区域。
+
+**示例**
+
+```java
+import java.time.format.DateTimeFormatter;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {  
+     DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+     System.out.println("Chronology: " + dtf.getChronology());
+     System.out.println("DecimalStyle: " + dtf.getDecimalStyle());
+     System.out.println("Locale: "+ dtf.getLocale());
+     System.out.println("ResolverFields: "+ dtf.getResolverFields());
+     System.out.println("ResolverStyle: "+ dtf.getResolverStyle());
+     System.out.println("Zone: "+ dtf.getZone());
+  }
+} 
+```
+
+输出
+
+```bash
+Chronology: ISO
+DecimalStyle: DecimalStyle[0+-.]
+Locale: en_US
+ResolverFields: null
+ResolverStyle: STRICT
+Zone: null 
+```
+
+### 将DateTimeFormatter转换为Format
+
+`DateTimeFormatter`提供以下方法将`DateTimeFormatter`转换为`java.text.Format`。
+
+1. **toFormat()**: 返回java.text.Format实例。
+2. **toFormat(TemporalQuery<?> parseQuery)**: 返回java.text.Format实例，它将使用给定的查询进行解析。
+
+**示例**
+
+```java
+import java.text.Format;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {  
+     DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+     Format format1 = dtf1.toFormat();
+     String ld = format1.format(LocalDate.parse("2017-12-20"));
+     System.out.println(ld); //Dec 20, 2017
+     
+     DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss");
+     Format format2 = dtf2.toFormat();
+     String time = format2.format(LocalDateTime.now());
+     System.out.println(time); //12:34:23    
+  }
+} 
+```
+
+输出
+
+```bash
+Dec 20, 2017
+12:34:23 
+```
+
+### 预定义格式
+
+`DateTimeFormatter`有以下预定义的格式。
+
+| Formatter            | Example                                   |
+| -------------------- | ----------------------------------------- |
+| BASIC_ISO_DATE       | ‘20181203’                                |
+| ISO_LOCAL_DATE       | ‘2018-12-03’                              |
+| ISO_OFFSET_DATE      | ‘2018-12-03+01:00’                        |
+| ISO_DATE             | ‘2018-12-03+01:00’; ‘2018-12-03’          |
+| ISO_LOCAL_TIME       | ‘11:15:30’                                |
+| ISO_OFFSET_TIME      | ‘11:15:30+01:00’                          |
+| ISO_TIME             | ‘11:15:30+01:00’; ‘11:15:30’              |
+| ISO_LOCAL_DATE_TIME  | ‘2018-12-03T11:15:30’                     |
+| ISO_OFFSET_DATE_TIME | ‘2018-12-03T11:15:30+01:00’               |
+| ISO_ZONED_DATE_TIME  | ‘2018-12-03T11:15:30+01:00[Europe/Paris]’ |
+| ISO_DATE_TIME        | ‘2018-12-03T11:15:30+01:00[Europe/Paris]’ |
+| ISO_ORDINAL_DATE     | ‘2018-337’                                |
+| ISO_WEEK_DATE        | ‘2018-W48-6’                              |
+| ISO_INSTANT          | ‘2018-12-03T11:15:30Z’                    |
+| RFC_1123_DATE_TIME   | ‘Tue, 3 Jun 2018 11:05:30 GMT’            |
+
+例如，我们正在提供一个示例，以便使用预定义格式化器`ISO_WEEK_DATE`来打印和解析本地日期。
+
+找到代码。
+
+```java
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+public class DateTimeFormatterDemo {
+  public static void main(String[] args) {
+    DateTimeFormatter formatter = DateTimeFormatter.ISO_WEEK_DATE;
+    String dateTime = formatter.format(LocalDate.now());
+    System.out.println(dateTime); //2018-W51-5
+    
+    LocalDate ld = LocalDate.parse("2018-W40-4", formatter);
+    System.out.println(ld); //2018-10-04
+  }
+} 
+```
+
+输出
+
+```bash
+2018-W51-5
+2018-10-04 
+```
+
+### Pattern Letters 和 Symbols
+
+找到格式化日期时间的模式字母(`letters`)和符号(`symbols`)。
+
+| Symbol | Description                | Example                                       |
+| ------ | -------------------------- | --------------------------------------------- |
+| G      | era                        | AD; Anno Domini; A                            |
+| u      | year                       | 2018; 18                                      |
+| y      | year-of-era                | 2018; 18                                      |
+| D      | day-of-year                | 180                                           |
+| M/L    | month-of-year              | 7; 07; Jul; July; J                           |
+| d      | day-of-month               | 11                                            |
+| g      | modified-julian-day        | 2451334                                       |
+| Q/q    | quarter-of-year            | 3; 03; Q3; 3rd quarter                        |
+| Y      | week-based-year            | 1999; 99                                      |
+| w      | week-of-week-based-year    | 25                                            |
+| W      | week-of-month              | 3                                             |
+| E      | day-of-week                | Tue; Tuesday; T                               |
+| e/c    | localized day-of-week      | 2; 02; Tue; Tuesday; T                        |
+| F      | day-of-week-in-month       | 2                                             |
+| a      | am-pm-of-day               | AM                                            |
+| h      | clock-hour-of-am-pm (1-12) | 12                                            |
+| K      | hour-of-am-pm (0-11)       | 0                                             |
+| k      | clock-hour-of-day (1-24)   | 24                                            |
+| H      | hour-of-day (0-23)         | 0                                             |
+| m      | minute-of-hour             | 35                                            |
+| s      | second-of-minute           | 50                                            |
+| S      | fraction-of-second         | 970                                           |
+| A      | milli-of-day               | 1234                                          |
+| n      | nano-of-second             | 987654321                                     |
+| N      | nano-of-day                | 1234000000                                    |
+| V      | time-zone ID               | America/Los_Angeles; Z; -08:30                |
+| v      | generic time-zone name     | Pacific Time; PT                              |
+| z      | time-zone name             | Pacific Standard Time; PST                    |
+| O      | localized zone-offset      | GMT+8; GMT+08:00; UTC-08:00                   |
+| X      | zone-offset ‘Z’ for zero   | Z; -08; -0830; -08:30; -083015; -08:30:15     |
+| x      | zone-offset                | +0000; -08; -0830; -08:30; -083015; -08:30:15 |
+| Z      | zone-offset                | +0000; -0800; -08:00                          |
+| p      | pad next                   | 1                                             |
+| `'`    | escape for text            |                                               |
+| `''`   | single quote               | `'`                                           |
+| [      | optional section start     |                                               |
+| ]      | optional section end       |                                               |
+
+# Java工具类
+
+## Optional类
+
+###  什么是Optional类？
 
 Optional 类(java.util.Optional) 是一个容器类，代表一个值存在或不存在，原来用 null 表示一个值不存在，现在 Optional 可以更好的表达这个概念。并且可以避免空指针异常。
 
-### 不使用Optional类判断空值
+#### 不使用Optional类判断空值
 
 ```java
  private void getIsoCode( User user){
@@ -2003,7 +3996,7 @@ Optional 类(java.util.Optional) 是一个容器类，代表一个值存在或�
     }
 ```
 
-### Optional类常用方法：
+#### Optional类常用方法：
 
 - Optional.of(T t) : 创建一个 Optional 实例。
 - Optional.empty() : 创建一个空的 Optional 实例。
@@ -2014,9 +4007,9 @@ Optional 类(java.util.Optional) 是一个容器类，代表一个值存在或�
 - map(Function f): 如果有值对其处理，并返回处理后的Optional，否则返回 Optional.empty()。
 - flatMap(Function mapper):与 map 类似，要求返回值必须是Optional。
 
-## Optional类示例
+### Optional类示例
 
-### 1.创建Optional类
+#### 1.创建Optional类
 
 （1）使用empty()方法创建一个空的Optional对象：
 
@@ -2048,7 +4041,7 @@ Optional<String> opt = Optional.ofNullable(name);
 
 使用ofNullable()方法，则当传递进去一个空值时，不会抛出异常，而只是返回一个空的Optional对象，如同我们用Optional.empty()方法一样。
 
-### 2.isPresent
+#### 2.isPresent
 
 我们可以使用这个isPresent()方法检查一个Optional对象中是否有值，只有值非空才返回true。
 
@@ -2075,7 +4068,7 @@ Optional<String> opt = Optional.of("binghe");
 opt.ifPresent(name -> System.out.println(name.length()));
 ```
 
-### 3.orElse和orElseGet
+#### 3.orElse和orElseGet
 
 （1）orElse
 
@@ -2156,7 +4149,7 @@ Getting default name...
 
 可以看到，当使用orElseGet()方法时，getDefaultName()方法并不执行，因为Optional中含有值，而使用orElse时则照常执行。所以可以看到，当值存在时，orElse相比于orElseGet，多创建了一个对象。如果创建对象时，存在网络交互，那系统资源的开销就比较大了，这是需要我们注意的一个地方。
 
-### 4.orElseThrow
+#### 4.orElseThrow
 
 orElseThrow()方法当遇到一个不存在的值的时候，并不返回一个默认值，而是抛出异常。
 
@@ -2165,7 +4158,7 @@ String nullName = null;
 String name = Optional.ofNullable(nullName).orElseThrow( IllegalArgumentException::new);
 ```
 
-### 5.get
+#### 5.get
 
 get()方法表示是Optional对象中获取值。
 
@@ -2182,7 +4175,7 @@ Optional<String> opt = Optional.ofNullable(null);
 String name = opt.get();
 ```
 
-### 6.filter
+#### 6.filter
 
 接收一个函数式接口，当符合接口时，则返回一个Optional对象，否则返回一个空的Optional对象。
 
@@ -2245,7 +4238,7 @@ public boolean filterPersonByOptional(Peron person){
 
 使用Optional看上去就清爽多了，这里，map()仅仅是将一个值转换为另一个值，并且这个操作并不会改变原来的值。
 
-### 7.map
+#### 7.map
 
 如果有值对其处理，并返回处理后的Optional，否则返回 Optional.empty()。
 
@@ -2289,7 +4282,7 @@ assertTrue(correctPassword);
 
 上述代码的含义就是对密码进行验证，查看密码是否为指定的值。
 
-### 8.flatMap
+#### 8.flatMap
 
 与 map 类似，要求返回值必须是Optional。
 
@@ -2335,9 +4328,5 @@ assertEquals("binghe", name);
 
 注意：方法getName返回的是一个Optional对象，如果使用map，我们还需要再调用一次get()方法，而使用flatMap()就不需要了。
 
-# 新工具
 
-
-
-# Nashorn, JavaScript 引擎
 

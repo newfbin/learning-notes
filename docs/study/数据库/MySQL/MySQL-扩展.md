@@ -495,3 +495,31 @@ select * from t_user where id = 1 or age = 18;        -- id有索引，name没�
 
 将有区分度的字段作为索引
 经常用哪个字段来查询，就用哪个字段作为索引
+
+## 启动MySQL的几种方式
+
+#### 方法一：
+
+打开一个cmd窗口（用管理员身份运行 Ctrl + Shift + Enter），执行**net start mysql**即可启动
+
+![在这里插入图片描述](./assets/MySQL-扩展/7bec3e0c520d37a1acb6efb550462a36.png)
+
+停止服务的命令是**net stop mysql**
+
+#### 方法二：
+
+找到mysql服务端的安装目录，进入bin文件夹：
+
+![在这里插入图片描述](./assets/MySQL-扩展/061d51c315d350438f4b5d07f9295e8f.png)
+
+先双击mysqld.exe，可以见到一个黑窗口嗖地闪过；
+
+然后双击mysql.exe，会提示服务开启成功。
+
+#### 方法三：
+
+打开电脑的“服务”，不知道位置的直接在左下角搜索即可，找到MYSQL，点击左侧“启动”按钮或者右键点击“启动”按钮即可打开mysql服务：
+
+![在这里插入图片描述](./assets/MySQL-扩展/fb60814926df4907aa24415e85352e4b.png)
+
+当然，停止mysql服务的方式也类似这三种方法，把start换成stop，把启动按钮换成“停止”按钮即可。

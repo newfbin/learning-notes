@@ -430,3 +430,38 @@ groupId是`io.springfox`，artifactId是`springfox-boot-starter`
 
 ![image-20250806234145702](./assets/Maven问题汇总/image-20250806234145702.png)
 
+
+
+## 【Maven】解决 Since Maven 3.8.1 http repositories are blocked. 问题
+
+> 原文地址：https://www.cnblogs.com/sxdcgaq8080/p/18155761
+
+找到maven的settings.xml文件
+
+在文件中找到 `maven-default-http-blocker`
+
+将原本的 `maven-default-http-blocker`注释掉，并添加如下配置
+
+```xml
+    <mirrors>
+        <mirror>
+            <id>maven-default-http-blocker</id>
+            <mirrorOf>dummy</mirrorOf>
+            <name>Dummy mirror to override default blockingmirror that blocks http</name>
+            <url>http://0.0.0.0/</url>
+            <blocked>false</blocked>
+        </mirror>
+    </mirrors>
+```
+
+修改后的效果如下：
+
+![image-20250910221501067](./assets/Maven问题汇总/image-20250910221501067.png)
+
+修改完成后，重启idea，接着重新导入一下jar包就好了
+
+![image-20250910222021262](./assets/Maven问题汇总/image-20250910222021262.png)
+
+> （如果不行的话，还需要执行 mvn clean），接着再重启，再重新导入jar包
+>
+> ![image-20250910222158558](./assets/Maven问题汇总/image-20250910222158558.png)
