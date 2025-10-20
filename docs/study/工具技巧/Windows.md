@@ -511,8 +511,8 @@ Word中的快捷键分为`Unicode字符，Alt+X`和`Alt+Alt码`两种，`Alt+Alt
 > 打开任务管理器，详细信息，找到dllhost.exe，并结束掉该进程即可。
 
 ![这里写图片描述](./assets/Windows/20160827204022332.png)
+
 ![这里写图片描述](./assets/Windows/20160827204031520.png)
-=======
 
 
 ### 文件夹和文件上不显示SVN状态图标
@@ -532,7 +532,18 @@ win+r呼出运行窗口，在 运行里 输入 regedit 进打开注册表
 系统会按照图标名称的字母顺序依次查询注册表 “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers” 下的项目，当检测到 11 个有效的接口后，就会自动停止继续向下检测，后面注册的图标将不会显示。
 
 如果你之前安装了例如Groove这样的软件，那么可能我们可利用的就更少了，轮不到Tortoise了。像这样的情况，我们可以调整 Tortoise图标名称的字母顺序，来提高Tortoise的优先位置，因为Windows 内部就是安装名称的字母顺序来优先显示的。
->>>>>>> 639ec98fc72f94383f31500576d6c911dfe8def0
+
+### 运行jar包时将日志写入到文件中
+
+```bash
+java -Dfile.encoding=utf-8 -jar your.jar > your.txt
+```
+
+> -Dfile.encoding=utf-8 参数确保写入到文件的内容为utf-8格式，避免文件中出现乱码
+>
+> \> your.txt  是将日志内容写入到txt文件中
+
+
 
 ## 软件问题
 
