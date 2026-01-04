@@ -12,7 +12,6 @@
 *  [CSharp](/study/CSharp/README)
 *  [Java](/study/Java/README)
 *  [中间件](/study/中间件/README)
-*  [人工智能工作汇报](/study/人工智能工作汇报)
 *  [前端](/study/前端/README)
 *  [工作](/study/工作/README)
 *  [工具技巧](/study/工具技巧/README)
