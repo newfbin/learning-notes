@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Link博客</title>
@@ -51,7 +52,6 @@
     table td:nth-of-type(2n) {
       color: rgb(34, 151, 214);
     }
-
   </style>
 </head>
 
@@ -77,7 +77,13 @@
       mergeNavbar: true,/* 小屏设备下合并导航栏到侧边栏 */
       onlyCover: true,/* 首页只显示封面 */
       //全文搜索
-      search: 'auto',
+      // search: 'auto',
+      search: {
+        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+        paths: [], // or 'auto'
+        depth: 6,  // 搜索标题的最大层级, 1 - 6
+        hideOtherSidebarContent: false, // 是否隐藏其他侧边栏内容
+      },
       // 复制代码到剪贴板
       copyCode: {
         buttonText: '复制代码',
