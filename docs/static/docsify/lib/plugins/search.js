@@ -381,15 +381,15 @@
 
     if (isExpired) {
       INDEXS = {};
-      // ✅ 修复：删除IndexedDB中的过期脏数据
+      // 删除IndexedDB中的过期脏数据
       await setDBItem(expireKey, null);
       await setDBItem(indexKey, null);
     } else if (!isAuto) {
       return;
     }
 
-    // ✅ 修复1：用 for of 替代 forEach + async，支持异步顺序执行
-    // ✅ 修复2：所有Docsify.get增加异常捕获，单个文件失败不影响整体
+    // 用 for of 替代 forEach + async，支持异步顺序执行
+    // 所有Docsify.get增加异常捕获，单个文件失败不影响整体
     for (const path of paths) {
       if (INDEXS[path]) continue;
       try {
@@ -401,7 +401,7 @@
       }
     }
 
-    // ✅ 修复3：所有文档爬取完成后，统一写入IndexedDB，百分百执行
+    // 所有文档爬取完成后，统一写入IndexedDB，百分百执行
     await saveData(config.maxAge, expireKey, indexKey);
   }
 
@@ -537,7 +537,7 @@
   }
 
   /* eslint-disable no-unused-vars */
-  var isAuto = false; // 新增：全局isAuto变量
+  var isAuto = false; // 全局isAuto变量
   var CONFIG = {
     placeholder: 'Type to search',
     noData: 'No Results!',
@@ -567,15 +567,15 @@
       CONFIG.pathNamespaces = opts.pathNamespaces || CONFIG.pathNamespaces;
     }
 
-    isAuto = CONFIG.paths === 'auto'; // ✅ 赋值给全局变量
+    isAuto = CONFIG.paths === 'auto'; // 赋值给全局变量
 
-    // ✅ 修复1：mounted改为异步函数，init增加await
+    // mounted改为异步函数，init增加await
     hook.mounted(async function (_) {
       init$1(CONFIG, vm);
       if (!isAuto) await init(CONFIG, vm);
     });
 
-    // ✅ 修复2：doneEach改为异步函数，update增加await
+    // doneEach改为异步函数，update增加await
     hook.doneEach(async function (_) {
       await update(CONFIG, vm);
     });
