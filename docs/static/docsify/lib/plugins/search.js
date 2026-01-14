@@ -167,45 +167,60 @@
   }
 
   function search(query) {
-    var matchingResults = []; var data = [];
-    Object.keys(INDEXS).forEach(function (key) {
-      data = data.concat(Object.keys(INDEXS[key]).map(function (page) { return INDEXS[key][page]; }));
-    });
-    query = query.trim();
-    var keywords = query.split(/[\s\-，\\/]+/);
-    if (keywords.length !== 1) keywords = [].concat(query, keywords);
-    var loop = function (i) {
-      var post = data[i]; var matchesScore = 0; var resultStr = '';
-      var postTitle = post.title && post.title.trim();
-      var postContent = post.body && post.body.trim();
-      var postUrl = post.slug || '';
-      // ✅ 修复1：提前声明处理后的变量，提升到最顶部，保证作用域覆盖整个loop函数
-      var handlePostTitle = postTitle ? escapeHtml(ignoreDiacriticalMarks(postTitle)) : postTitle;
-      var handlePostContent = postContent ? escapeHtml(ignoreDiacriticalMarks(postContent)) : postContent;
+  var matchingResults = []; var data = [];
+  Object.keys(INDEXS).forEach(function (key) {
+    data = data.concat(Object.keys(INDEXS[key]).map(function (page) { return INDEXS[key][page]; }));
+  });
+  query = query.trim();
+  var keywords = query.split(/[\s\-，\\/]+/);
+  if (keywords.length !== 1) keywords = [].concat(query, keywords);
 
-      if (postTitle) {
-        keywords.forEach(function (keyword) {
-          var regEx = new RegExp(escapeHtml(ignoreDiacriticalMarks(keyword)).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'), 'gi');
-          var indexTitle = postTitle ? handlePostTitle.search(regEx) : -1;
-          var indexContent = postContent ? handlePostContent.search(regEx) : -1;
-          if (indexTitle >= 0 || indexContent >= 0) {
-            matchesScore += indexTitle >= 0 ? 3 : indexContent >= 0 ? 2 : 0;
-            var start = indexContent < 11 ? 0 : indexContent - 10;
-            var end = start === 0 ? 70 : indexContent + keyword.length + 60;
-            if (postContent && end > postContent.length) end = postContent.length;
-            var matchContent = handlePostContent && '...' + handlePostContent.substring(start, end).replace(regEx, function (word) { return ("<em class=\"search-keyword\">" + word + "</em>"); }) + '...';
-            resultStr += matchContent;
-          }
-        });
-        if (matchesScore > 0) {
-          // ✅ 此时handlePostTitle已提前声明，完美获取，不会报错
-          matchingResults.push({ title: handlePostTitle, content: postContent ? resultStr : '', url: postUrl, score: matchesScore });
+  // ===================== 新增核心：过滤Markdown链接的正则 =====================
+  // 正则作用：全局匹配并移除 所有 [xxx](xxx) 和 ![xxx](xxx) 格式的内容
+  const markdownLinkReg = /!\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\([^)]*\)/g;
+  // ==========================================================================
+
+  var loop = function (i) {
+    var post = data[i]; var matchesScore = 0; var resultStr = '';
+    var postTitle = post.title && post.title.trim();
+    var postContent = post.body && post.body.trim();
+    var postUrl = post.slug || '';
+    // ✅ 修复1：提前声明处理后的变量，提升到最顶部，保证作用域覆盖整个loop函数
+    var handlePostTitle = postTitle ? escapeHtml(ignoreDiacriticalMarks(postTitle)) : postTitle;
+    var handlePostContent = postContent ? escapeHtml(ignoreDiacriticalMarks(postContent)) : postContent;
+
+    // ===================== 关键修改：过滤链接文本 =====================
+    // 1. 标题过滤：移除标题中的所有markdown链接语法
+    const filterTitle = handlePostTitle ? handlePostTitle.replace(markdownLinkReg, '') : '';
+    // 2. 正文过滤：移除正文中的所有markdown链接语法，仅用于匹配和计分
+    const filterContent = handlePostContent ? handlePostContent.replace(markdownLinkReg, '') : '';
+    // =================================================================
+
+    if (postTitle) {
+      keywords.forEach(function (keyword) {
+        var regEx = new RegExp(escapeHtml(ignoreDiacriticalMarks(keyword)).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'), 'gi');
+        // ✅ 关键替换：用【过滤后的文本】做匹配，原文本不变
+        var indexTitle = filterTitle ? filterTitle.search(regEx) : -1;
+        var indexContent = filterContent ? filterContent.search(regEx) : -1;
+
+        if (indexTitle >= 0 || indexContent >= 0) {
+          matchesScore += indexTitle >= 0 ? 3 : indexContent >= 0 ? 2 : 0;
+          var start = indexContent < 11 ? 0 : indexContent - 10;
+          var end = start === 0 ? 70 : indexContent + keyword.length + 60;
+          if (postContent && end > postContent.length) end = postContent.length;
+          // ✅ 预览内容用【原文本】，保证链接正常展示，只是不高亮链接内的关键词
+          var matchContent = handlePostContent && '...' + handlePostContent.substring(start, end).replace(regEx, function (word) { return ("<em class=\"search-keyword\">" + word + "</em>"); }) + '...';
+          resultStr += matchContent;
         }
+      });
+      if (matchesScore > 0) {
+        matchingResults.push({ title: handlePostTitle, content: postContent ? resultStr : '', url: postUrl, score: matchesScore });
       }
-    };
-    for (var i = 0; i < data.length; i++) loop(i);
-    return matchingResults.sort(function (r1, r2) { return r2.score - r1.score; });
-  }
+    }
+  };
+  for (var i = 0; i < data.length; i++) loop(i);
+  return matchingResults.sort(function (r1, r2) { return r2.score - r1.score; });
+}
 
   // ======================== batchCrawl 并发爬取 (无改动) ========================
   async function batchCrawl(paths, vm, depth, limit = 5) {
