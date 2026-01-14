@@ -72,7 +72,7 @@
     return token.text;
   }
 
-  // ======================== IndexedDB 工具方法 (无修改) ========================
+  // ======================== IndexedDB 工具方法 (修复删除逻辑) ========================
   const DB_CONFIG = { name: 'DocsifySearchDB', version: 1, storeName: 'searchStore' };
   function openDB() {
     return new Promise((resolve, reject) => {
@@ -107,19 +107,26 @@
       request.onerror = (e) => { db.close(); reject(e.target.error); };
     });
   }
+  // ✅ 新增：正确删除IndexedDB数据的方法，替代存null
+  function delDBItem(key) {
+    return new Promise(async (resolve, reject) => {
+      const db = await openDB();
+      const tx = db.transaction(DB_CONFIG.storeName, 'readwrite');
+      const store = tx.objectStore(DB_CONFIG.storeName);
+      store.delete(key);
+      tx.oncomplete = () => { db.close(); resolve(true); };
+      tx.onerror = (e) => { db.close(); reject(e.target.error); };
+    });
+  }
 
-  // ======================== 【修复核心1：重写saveData，关键：同步赋值全局INDEXS】 ========================
+  // ======================== saveData 方法 (无改动，保留全局赋值核心逻辑) ========================
   async function saveData(maxAge, expireKey, indexKey, currentIndex = {}) {
-    // 1. 读取已有的索引数据
     const oldIndex = await getDBItem(indexKey) || {};
-    // 2. 修复：新数据在前，覆盖旧数据，顺序正确
     const newIndex = { ...currentIndex, ...oldIndex };
-    // 3. 写入过期时间 + 全量索引到DB
     await setDBItem(expireKey, Date.now() + maxAge);
     await setDBItem(indexKey, newIndex);
-    // ✅【重中之重】把最新的索引赋值给全局变量INDEXS，搜索方法依赖这个全局变量
     INDEXS = newIndex;
-    console.log(`[Docsify搜索] 索引写入成功，全局INDEXS同步完成，共${Object.keys(INDEXS).length}个文档`);
+    console.log(`✅ [Docsify搜索] 索引写入IndexedDB成功，全局INDEXS同步完成，共${Object.keys(INDEXS).length}个文档`);
     return newIndex;
   }
 
@@ -195,7 +202,7 @@
     return matchingResults.sort(function (r1, r2) { return r2.score - r1.score; });
   }
 
-  // ======================== 【修复核心2：可控并发爬取 核心方法，修复传参错误】 ========================
+  // ======================== batchCrawl 并发爬取 (无改动) ========================
   async function batchCrawl(paths, vm, depth, limit = 5) {
     let resultIndex = {};
     for (let i = 0; i < paths.length; i += limit) {
@@ -203,14 +210,13 @@
       const promises = slicePaths.map(async (path) => {
         try {
           if (resultIndex[path]) return {};
-          // ✅ 修复：Docsify.get 传参正确，三个参数完整，适配所有环境
           const content = await Docsify.get(vm.router.getFile(path), false, vm.config.requestHeaders || {});
           const pathIndex = genIndex(path, content, vm.router, depth);
           resultIndex[path] = pathIndex;
-          console.log(`[Docsify搜索] 成功爬取: ${path}`);
+          console.log(`📥 [Docsify搜索] 成功爬取文档: ${path}`);
           return { [path]: pathIndex };
         } catch (err) {
-          console.warn(`[Docsify搜索] 爬取失败(跳过): ${path}`, err);
+          console.warn(`⚠️ [Docsify搜索] 爬取文档失败(跳过): ${path}`, err);
           return {};
         }
       });
@@ -219,7 +225,7 @@
     return resultIndex;
   }
 
-  // ======================== 【修复核心3：重写init方法，修复过期判断+所有逻辑】 ========================
+  // ======================== ✅✅✅ 重写 init 方法 (核心修复，删除致命return+新增强制爬取逻辑) ========================
   async function init(config, vm) {
     var paths = isAuto ? getAllPaths(vm.router) : config.paths;
     var namespaceSuffix = '';
@@ -242,30 +248,26 @@
     var expireKey = resolveExpireKey(config.namespace) + namespaceSuffix;
     var indexKey = resolveIndexKey(config.namespace) + namespaceSuffix;
 
-    // ✅ 修复：过期判断逻辑修正，解决首次访问索引被清空的问题
-    // 只有 expireTime 存在 且 小于当前时间，才判定为过期；null/undefined 代表首次访问，不过期
+    // 读取过期时间和缓存索引
     const expireTime = await getDBItem(expireKey);
+    INDEXS = await getDBItem(indexKey) || {};
+    const hasCache = Object.keys(INDEXS).length > 0;
     var isExpired = expireTime !== null && expireTime < Date.now();
 
-    // 读取已有索引并赋值给全局INDEXS
-    INDEXS = await getDBItem(indexKey) || {};
-
+    // ✅ 逻辑梳理：只保留2个分支，删除所有多余return，绝对不短路
     if (isExpired) {
       INDEXS = {};
-      await setDBItem(expireKey, null);
-      await setDBItem(indexKey, null);
-      console.log(`[Docsify搜索] 索引已过期，开始全量重建(${paths.length}个文件)`);
-    } else if (!isAuto) {
-      console.log(`[Docsify搜索] 使用缓存索引，共${Object.keys(INDEXS).length}个文件`);
-      return;
-    } else if(Object.keys(INDEXS).length > 0) {
-      console.log(`[Docsify搜索] 使用缓存索引，无需重新爬取，共${Object.keys(INDEXS).length}个文件`);
-      return;
+      await delDBItem(expireKey);
+      await delDBItem(indexKey);
+      console.log(`🔄 [Docsify搜索] 索引已过期，清空旧缓存，准备全量重建(${paths.length}个文件)`);
+    } else if (hasCache) {
+      console.log(`✅ [Docsify搜索] 使用IndexedDB缓存索引，共${Object.keys(INDEXS).length}个文档，无需爬取`);
+      return; // 只有缓存有效且有数据时，才提前return
     }
 
-    // 可控并发爬取
+    // ✅ ✅ ✅ 兜底核心逻辑：无缓存 / 过期 → 强制执行爬取 + 入库，必执行！！！
+    console.log(`🚀 [Docsify搜索] 无有效缓存，开始并发爬取(${paths.length}个文件)`);
     const newIndex = await batchCrawl(paths, vm, config.depth, 5);
-    // 分批写入并同步全局INDEXS
     await saveData(config.maxAge, expireKey, indexKey, newIndex);
   }
 
@@ -364,7 +366,6 @@
     updateOptions(opts);
     updatePlaceholder(opts.placeholder, vm.route.path);
     updateNoData(opts.noData, vm.route.path);
-    isAuto && await init(CONFIG, vm);
   }
 
   /* eslint-disable no-unused-vars */
@@ -380,6 +381,7 @@
     pathNamespaces: undefined,
   };
 
+  // ======================== ✅✅✅ 修复 install 方法 (核心：mounted 必执行init，删除条件判断) ========================
   var install = function (hook, vm) {
     var util = Docsify.util;
     var opts = vm.config.search || CONFIG;
@@ -396,11 +398,13 @@
     }
     isAuto = CONFIG.paths === 'auto';
 
+    // ✅ 关键修复1：无论是否auto，mounted都执行init，自动模式必须执行！！！
     hook.mounted(async function (_) {
       init$1(CONFIG, vm);
-      if (!isAuto) await init(CONFIG, vm);
+      await init(CONFIG, vm); // 删掉if判断，必执行爬取初始化
     });
 
+    // ✅ 关键修复2：doneEach只更新配置，不执行init，避免重复爬取
     hook.doneEach(async function (_) {
       await update(CONFIG, vm);
     });
