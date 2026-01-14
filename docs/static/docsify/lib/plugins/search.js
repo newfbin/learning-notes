@@ -176,12 +176,16 @@
     if (keywords.length !== 1) keywords = [].concat(query, keywords);
     var loop = function (i) {
       var post = data[i]; var matchesScore = 0; var resultStr = '';
-      var postTitle = post.title && post.title.trim(); var postContent = post.body && post.body.trim(); var postUrl = post.slug || '';
+      var postTitle = post.title && post.title.trim();
+      var postContent = post.body && post.body.trim();
+      var postUrl = post.slug || '';
+      // ✅ 修复1：提前声明处理后的变量，提升到最顶部，保证作用域覆盖整个loop函数
+      var handlePostTitle = postTitle ? escapeHtml(ignoreDiacriticalMarks(postTitle)) : postTitle;
+      var handlePostContent = postContent ? escapeHtml(ignoreDiacriticalMarks(postContent)) : postContent;
+
       if (postTitle) {
         keywords.forEach(function (keyword) {
           var regEx = new RegExp(escapeHtml(ignoreDiacriticalMarks(keyword)).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'), 'gi');
-          var handlePostTitle = postTitle ? escapeHtml(ignoreDiacriticalMarks(postTitle)) : postTitle;
-          var handlePostContent = postContent ? escapeHtml(ignoreDiacriticalMarks(postContent)) : postContent;
           var indexTitle = postTitle ? handlePostTitle.search(regEx) : -1;
           var indexContent = postContent ? handlePostContent.search(regEx) : -1;
           if (indexTitle >= 0 || indexContent >= 0) {
@@ -194,6 +198,7 @@
           }
         });
         if (matchesScore > 0) {
+          // ✅ 此时handlePostTitle已提前声明，完美获取，不会报错
           matchingResults.push({ title: handlePostTitle, content: postContent ? resultStr : '', url: postUrl, score: matchesScore });
         }
       }
