@@ -1,7 +1,4 @@
 (function () {
-  /**
-   * Converts a colon formatted string to a object with properties.
-   */
   function getAndRemoveConfig(str) {
     if (str === void 0) str = '';
     var config = {};
@@ -75,7 +72,7 @@
     return token.text;
   }
 
-  // ======================== IndexedDB 工具方法 (你的原有代码，无修改) ========================
+  // ======================== IndexedDB 工具方法 (无修改) ========================
   const DB_CONFIG = { name: 'DocsifySearchDB', version: 1, storeName: 'searchStore' };
   function openDB() {
     return new Promise((resolve, reject) => {
@@ -111,15 +108,18 @@
     });
   }
 
-  // ======================== 【修复核心1：重写saveData，支持分批写入】 ========================
+  // ======================== 【修复核心1：重写saveData，关键：同步赋值全局INDEXS】 ========================
   async function saveData(maxAge, expireKey, indexKey, currentIndex = {}) {
-    // 先读取已有的索引数据
+    // 1. 读取已有的索引数据
     const oldIndex = await getDBItem(indexKey) || {};
-    // 合并新爬取的索引 + 原有索引
-    const newIndex = { ...oldIndex, ...currentIndex };
-    // 写入过期时间 + 全量索引
+    // 2. 修复：新数据在前，覆盖旧数据，顺序正确
+    const newIndex = { ...currentIndex, ...oldIndex };
+    // 3. 写入过期时间 + 全量索引到DB
     await setDBItem(expireKey, Date.now() + maxAge);
     await setDBItem(indexKey, newIndex);
+    // ✅【重中之重】把最新的索引赋值给全局变量INDEXS，搜索方法依赖这个全局变量
+    INDEXS = newIndex;
+    console.log(`[Docsify搜索] 索引写入成功，全局INDEXS同步完成，共${Object.keys(INDEXS).length}个文档`);
     return newIndex;
   }
 
@@ -195,42 +195,31 @@
     return matchingResults.sort(function (r1, r2) { return r2.score - r1.score; });
   }
 
-  // ======================== 【修复核心2：新增 可控并发爬取 核心方法】 ========================
-  /**
-   * 可控并发爬取文件
-   * @param {Array} paths 待爬取路径数组
-   * @param {Object} vm Docsify实例
-   * @param {Number} depth 索引深度
-   * @param {Number} limit 并发数，建议5，太大容易被浏览器限制
-   * @returns {Object} 全量索引对象
-   */
+  // ======================== 【修复核心2：可控并发爬取 核心方法，修复传参错误】 ========================
   async function batchCrawl(paths, vm, depth, limit = 5) {
     let resultIndex = {};
-    // 按limit分片，并发执行，不阻塞主线程
     for (let i = 0; i < paths.length; i += limit) {
       const slicePaths = paths.slice(i, i + limit);
-      // 并发请求当前分片的所有文件
       const promises = slicePaths.map(async (path) => {
         try {
           if (resultIndex[path]) return {};
-          // ✅ 修复：传参错误，去掉undefined的requestHeaders，第三个参数传false即可
-          const content = await Docsify.get(vm.router.getFile(path), false);
+          // ✅ 修复：Docsify.get 传参正确，三个参数完整，适配所有环境
+          const content = await Docsify.get(vm.router.getFile(path), false, vm.config.requestHeaders || {});
           const pathIndex = genIndex(path, content, vm.router, depth);
           resultIndex[path] = pathIndex;
           console.log(`[Docsify搜索] 成功爬取: ${path}`);
           return { [path]: pathIndex };
         } catch (err) {
-          console.warn(`[Docsify搜索] 爬取失败(跳过): ${path}`, err.message);
+          console.warn(`[Docsify搜索] 爬取失败(跳过): ${path}`, err);
           return {};
         }
       });
-      // 等待当前分片全部完成，再执行下一分片，避免并发过高
       await Promise.all(promises);
     }
     return resultIndex;
   }
 
-  // ======================== 【修复核心3：重写init方法，解决所有问题】 ========================
+  // ======================== 【修复核心3：重写init方法，修复过期判断+所有逻辑】 ========================
   async function init(config, vm) {
     var paths = isAuto ? getAllPaths(vm.router) : config.paths;
     var namespaceSuffix = '';
@@ -253,10 +242,12 @@
     var expireKey = resolveExpireKey(config.namespace) + namespaceSuffix;
     var indexKey = resolveIndexKey(config.namespace) + namespaceSuffix;
 
-    // 读取过期时间和已有索引
+    // ✅ 修复：过期判断逻辑修正，解决首次访问索引被清空的问题
+    // 只有 expireTime 存在 且 小于当前时间，才判定为过期；null/undefined 代表首次访问，不过期
     const expireTime = await getDBItem(expireKey);
-    var isExpired = expireTime < Date.now() || !expireTime;
+    var isExpired = expireTime !== null && expireTime < Date.now();
 
+    // 读取已有索引并赋值给全局INDEXS
     INDEXS = await getDBItem(indexKey) || {};
 
     if (isExpired) {
@@ -267,13 +258,15 @@
     } else if (!isAuto) {
       console.log(`[Docsify搜索] 使用缓存索引，共${Object.keys(INDEXS).length}个文件`);
       return;
+    } else if(Object.keys(INDEXS).length > 0) {
+      console.log(`[Docsify搜索] 使用缓存索引，无需重新爬取，共${Object.keys(INDEXS).length}个文件`);
+      return;
     }
 
-    // ✅ 核心修复：使用【可控并发爬取】替代顺序爬取，彻底解决超时+中断
+    // 可控并发爬取
     const newIndex = await batchCrawl(paths, vm, config.depth, 5);
-    // ✅ 核心修复：分批写入IndexedDB，合并新旧索引，解决内存溢出
-    INDEXS = await saveData(config.maxAge, expireKey, indexKey, newIndex);
-    console.log(`[Docsify搜索] 索引构建完成，共索引${Object.keys(INDEXS).length}个文件`);
+    // 分批写入并同步全局INDEXS
+    await saveData(config.maxAge, expireKey, indexKey, newIndex);
   }
 
   /* eslint-disable no-unused-vars */
