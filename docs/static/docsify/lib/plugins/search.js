@@ -72,7 +72,6 @@
     return token.text;
   }
 
-  // ======================== IndexedDB 工具方法 (修复删除逻辑) ========================
   const DB_CONFIG = { name: 'DocsifySearchDB', version: 1, storeName: 'searchStore' };
   function openDB() {
     return new Promise((resolve, reject) => {
@@ -107,7 +106,6 @@
       request.onerror = (e) => { db.close(); reject(e.target.error); };
     });
   }
-  // ✅ 新增：正确删除IndexedDB数据的方法，替代存null
   function delDBItem(key) {
     return new Promise(async (resolve, reject) => {
       const db = await openDB();
@@ -119,7 +117,6 @@
     });
   }
 
-  // ======================== saveData 方法 (无改动，保留全局赋值核心逻辑) ========================
   async function saveData(maxAge, expireKey, indexKey, currentIndex = {}) {
     const oldIndex = await getDBItem(indexKey) || {};
     const newIndex = { ...currentIndex, ...oldIndex };
@@ -130,7 +127,6 @@
     return newIndex;
   }
 
-  // ======================== genIndex/ignoreDiacriticalMarks/search 无修改 ========================
   function genIndex(path, content, router, depth) {
     if (content === void 0) content = '';
     var tokens = window.marked.lexer(content);
@@ -167,62 +163,51 @@
   }
 
   function search(query) {
-  var matchingResults = []; var data = [];
-  Object.keys(INDEXS).forEach(function (key) {
-    data = data.concat(Object.keys(INDEXS[key]).map(function (page) { return INDEXS[key][page]; }));
-  });
-  query = query.trim();
-  var keywords = query.split(/[\s\-，\\/]+/);
-  if (keywords.length !== 1) keywords = [].concat(query, keywords);
+    var matchingResults = []; var data = [];
+    Object.keys(INDEXS).forEach(function (key) {
+      data = data.concat(Object.keys(INDEXS[key]).map(function (page) { return INDEXS[key][page]; }));
+    });
+    query = query.trim();
+    var keywords = query.split(/[\s\-，\\/]+/);
+    if (keywords.length !== 1) keywords = [].concat(query, keywords);
 
-  // ===================== 新增核心：过滤Markdown链接的正则 =====================
-  // 正则作用：全局匹配并移除 所有 [xxx](xxx) 和 ![xxx](xxx) 格式的内容
-  const markdownLinkReg = /!\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\([^)]*\)/g;
-  // ==========================================================================
+    const markdownLinkReg = /!\[[^\]]*\]\([^)]*\)|\[[^\]]*\]\([^)]*\)/g;
 
-  var loop = function (i) {
-    var post = data[i]; var matchesScore = 0; var resultStr = '';
-    var postTitle = post.title && post.title.trim();
-    var postContent = post.body && post.body.trim();
-    var postUrl = post.slug || '';
-    // ✅ 修复1：提前声明处理后的变量，提升到最顶部，保证作用域覆盖整个loop函数
-    var handlePostTitle = postTitle ? escapeHtml(ignoreDiacriticalMarks(postTitle)) : postTitle;
-    var handlePostContent = postContent ? escapeHtml(ignoreDiacriticalMarks(postContent)) : postContent;
+    var loop = function (i) {
+      var post = data[i]; var matchesScore = 0; var resultStr = '';
+      var postTitle = post.title && post.title.trim();
+      var postContent = post.body && post.body.trim();
+      var postUrl = post.slug || '';
+      var handlePostTitle = postTitle ? escapeHtml(ignoreDiacriticalMarks(postTitle)) : postTitle;
+      var handlePostContent = postContent ? escapeHtml(ignoreDiacriticalMarks(postContent)) : postContent;
 
-    // ===================== 关键修改：过滤链接文本 =====================
-    // 1. 标题过滤：移除标题中的所有markdown链接语法
-    const filterTitle = handlePostTitle ? handlePostTitle.replace(markdownLinkReg, '') : '';
-    // 2. 正文过滤：移除正文中的所有markdown链接语法，仅用于匹配和计分
-    const filterContent = handlePostContent ? handlePostContent.replace(markdownLinkReg, '') : '';
-    // =================================================================
+      const filterTitle = handlePostTitle ? handlePostTitle.replace(markdownLinkReg, '') : '';
+      const filterContent = handlePostContent ? handlePostContent.replace(markdownLinkReg, '') : '';
 
-    if (postTitle) {
-      keywords.forEach(function (keyword) {
-        var regEx = new RegExp(escapeHtml(ignoreDiacriticalMarks(keyword)).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'), 'gi');
-        // ✅ 关键替换：用【过滤后的文本】做匹配，原文本不变
-        var indexTitle = filterTitle ? filterTitle.search(regEx) : -1;
-        var indexContent = filterContent ? filterContent.search(regEx) : -1;
+      if (postTitle) {
+        keywords.forEach(function (keyword) {
+          var regEx = new RegExp(escapeHtml(ignoreDiacriticalMarks(keyword)).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'), 'gi');
+          var indexTitle = filterTitle ? filterTitle.search(regEx) : -1;
+          var indexContent = filterContent ? filterContent.search(regEx) : -1;
 
-        if (indexTitle >= 0 || indexContent >= 0) {
-          matchesScore += indexTitle >= 0 ? 3 : indexContent >= 0 ? 2 : 0;
-          var start = indexContent < 11 ? 0 : indexContent - 10;
-          var end = start === 0 ? 70 : indexContent + keyword.length + 60;
-          if (postContent && end > postContent.length) end = postContent.length;
-          // ✅ 预览内容用【原文本】，保证链接正常展示，只是不高亮链接内的关键词
-          var matchContent = handlePostContent && '...' + handlePostContent.substring(start, end).replace(regEx, function (word) { return ("<em class=\"search-keyword\">" + word + "</em>"); }) + '...';
-          resultStr += matchContent;
+          if (indexTitle >= 0 || indexContent >= 0) {
+            matchesScore += indexTitle >= 0 ? 3 : indexContent >= 0 ? 2 : 0;
+            var start = indexContent < 11 ? 0 : indexContent - 10;
+            var end = start === 0 ? 70 : indexContent + keyword.length + 60;
+            if (postContent && end > postContent.length) end = postContent.length;
+            var matchContent = handlePostContent && '...' + handlePostContent.substring(start, end).replace(regEx, function (word) { return ("<em class=\"search-keyword\">" + word + "</em>"); }) + '...';
+            resultStr += matchContent;
+          }
+        });
+        if (matchesScore > 0) {
+          matchingResults.push({ title: handlePostTitle, content: postContent ? resultStr : '', url: postUrl, score: matchesScore });
         }
-      });
-      if (matchesScore > 0) {
-        matchingResults.push({ title: handlePostTitle, content: postContent ? resultStr : '', url: postUrl, score: matchesScore });
       }
-    }
-  };
-  for (var i = 0; i < data.length; i++) loop(i);
-  return matchingResults.sort(function (r1, r2) { return r2.score - r1.score; });
-}
+    };
+    for (var i = 0; i < data.length; i++) loop(i);
+    return matchingResults.sort(function (r1, r2) { return r2.score - r1.score; });
+  }
 
-  // ======================== batchCrawl 并发爬取 (无改动) ========================
   async function batchCrawl(paths, vm, depth, limit = 5) {
     let resultIndex = {};
     for (let i = 0; i < paths.length; i += limit) {
@@ -245,7 +230,6 @@
     return resultIndex;
   }
 
-  // ======================== ✅✅✅ 重写 init 方法 (核心修复，删除致命return+新增强制爬取逻辑) ========================
   async function init(config, vm) {
     var paths = isAuto ? getAllPaths(vm.router) : config.paths;
     var namespaceSuffix = '';
@@ -268,13 +252,11 @@
     var expireKey = resolveExpireKey(config.namespace) + namespaceSuffix;
     var indexKey = resolveIndexKey(config.namespace) + namespaceSuffix;
 
-    // 读取过期时间和缓存索引
     const expireTime = await getDBItem(expireKey);
     INDEXS = await getDBItem(indexKey) || {};
     const hasCache = Object.keys(INDEXS).length > 0;
     var isExpired = expireTime !== null && expireTime < Date.now();
 
-    // ✅ 逻辑梳理：只保留2个分支，删除所有多余return，绝对不短路
     if (isExpired) {
       INDEXS = {};
       await delDBItem(expireKey);
@@ -282,10 +264,9 @@
       console.log(`🔄 [Docsify搜索] 索引已过期，清空旧缓存，准备全量重建(${paths.length}个文件)`);
     } else if (hasCache) {
       console.log(`✅ [Docsify搜索] 使用IndexedDB缓存索引，共${Object.keys(INDEXS).length}个文档，无需爬取`);
-      return; // 只有缓存有效且有数据时，才提前return
+      return;
     }
 
-    // ✅ ✅ ✅ 兜底核心逻辑：无缓存 / 过期 → 强制执行爬取 + 入库，必执行！！！
     console.log(`🚀 [Docsify搜索] 无有效缓存，开始并发爬取(${paths.length}个文件)`);
     const newIndex = await batchCrawl(paths, vm, config.depth, 5);
     await saveData(config.maxAge, expireKey, indexKey, newIndex);
@@ -401,7 +382,6 @@
     pathNamespaces: undefined,
   };
 
-  // ======================== ✅✅✅ 修复 install 方法 (核心：mounted 必执行init，删除条件判断) ========================
   var install = function (hook, vm) {
     var util = Docsify.util;
     var opts = vm.config.search || CONFIG;
@@ -418,13 +398,11 @@
     }
     isAuto = CONFIG.paths === 'auto';
 
-    // ✅ 关键修复1：无论是否auto，mounted都执行init，自动模式必须执行！！！
     hook.mounted(async function (_) {
       init$1(CONFIG, vm);
-      await init(CONFIG, vm); // 删掉if判断，必执行爬取初始化
+      await init(CONFIG, vm);
     });
 
-    // ✅ 关键修复2：doneEach只更新配置，不执行init，避免重复爬取
     hook.doneEach(async function (_) {
       await update(CONFIG, vm);
     });
