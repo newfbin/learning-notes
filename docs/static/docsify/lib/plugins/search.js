@@ -330,10 +330,20 @@
     });
     Docsify.dom.on($input, 'input', function (e) {
       clearTimeout(timeId);
-      timeId = setTimeout(function (_) { return doSearch(e.target.value.trim()); }, 100);
+      timeId = setTimeout(function (_) { return doSearch(e.target.value.trim()); }, 500);
     });
     Docsify.dom.on($inputWrap, 'click', function (e) {
       if (e.target.tagName !== 'INPUT') { $input.value = ''; doSearch(); }
+    });
+
+    Docsify.dom.on(document, 'keydown', function (e) {
+      if (e.key === 'Escape' || e.key === 'Esc') { // 兼容各浏览器的Esc键值
+        const $input = Docsify.dom.find('div.search input');
+        if ($input) {
+          $input.value = '';
+          doSearch(''); // 清空内容并执行搜索方法，同步隐藏结果面板
+        }
+      }
     });
   }
 
