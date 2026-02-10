@@ -492,6 +492,56 @@ $ git fetch [remote-name]
 
 由于fetch命令后还要再做一步merge命令的操作，所以使用 `git pull` 命令来自动的抓取然后合并远程分支到当前分支。 （相当于一次执行fetch加merge命令）这可能会是一个更简单或更舒服的工作流程。
 
+## 解决error: RPC failed......fatal: early EOF.....
+
+ git clone代码时，如果项目总大小比较小时克隆代码没问题，占用内存比较大时就会如下报错
+
+```bash
+TAndroid-03deMac-mini:mytest xwx$ git clone http://git.mygit.com/myproject.git
+Cloning into 'git.mygit.com'...
+remote: Enumerating objects: 81184, done.
+remote: Counting objects: 100% (81184/81184), done.
+remote: Compressing objects: 100% (34062/34062), done.
+error: RPC failed; curl 56 Recv failure: Connection reset by peer  
+fatal: The remote end hung up unexpectedly
+fatal: early EOF
+fatal: index-pack failed
+```
+
+解决方案：
+
+1.查看git全局配置：`git config --global --list`
+
+```bash
+TAndroid-03deMac-mini:htdocs xwx$ git config --global --list
+user.name=gongzhu
+user.email=122227556@163.com
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+core.excludesfile=/Users/android_03/.gitignore_global
+difftool.sourcetree.cmd=opendiff "$LOCAL" "$REMOTE"
+difftool.sourcetree.path=
+mergetool.sourcetree.cmd=/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
+mergetool.sourcetree.trustexitcode=true
+commit.template=/Users/android_03/.stCommitMsg
+http.postbuffer=524288000
+TAndroid-03deMac-mini:htdocs xuwenxiong$ 
+```
+
+2.找到http.postbuffer,比较这个大小是否远比你项目的占用内存大,我项目497MB,这里只有500MB克隆不了代码，虽然500>497,但还是clone不了，设置成1GB后clone成功。
+
+3.设置传送的缓存大小(即http.postBuffer的值，单位为B，1GB = 1024 x 1024 x 1000 B = 1048576000 B)：
+
+```bash
+git config --global http.postBuffer 1048576000
+```
+
+4.497MB的项目是clone成功啦，但809MB的项目克隆失败，设置成2GB后克隆成功。
+
+
+
 ## git创建新分支，并将本地代码提交到新分支上
 
 ###  一、clone Repository
@@ -706,5 +756,4 @@ git config --global core.longpaths true
 
 这个解决方法也许并不是万能的。有个网站说得比较详细，需要的同学可以看下。
 [修复 Windows 中 Git Clone “文件名太长” 错误的 3 种方法-已修复](https://www.javaprogramto.com/2020/04/git-filename-too-long.html)
-
 
