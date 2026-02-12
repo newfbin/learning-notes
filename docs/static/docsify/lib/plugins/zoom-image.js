@@ -178,15 +178,19 @@
       // 限制缩放范围（0.5 到 5 倍）
       newScale = Math.max(0.5, Math.min(5, newScale));
       
-      // 计算鼠标位置相对于图片中心的偏移
+      // ========== 核心修改1：基于图片中心缩放 ==========
+      // 获取图片当前的边界矩形
       var rect = active.zoomed.getBoundingClientRect();
-      var mouseX = event.clientX - rect.left - rect.width / 2;
-      var mouseY = event.clientY - rect.top - rect.height / 2;
+      // 计算图片中心坐标
+      var imgCenterX = rect.left + rect.width / 2;
+      var imgCenterY = rect.top + rect.height / 2;
       
-      // 计算新的偏移量（保持鼠标位置在缩放后的相同位置）
-      var scaleDiff = newScale / drag.scale;
-      drag.translateX = mouseX * (1 - scaleDiff) + drag.translateX * scaleDiff;
-      drag.translateY = mouseY * (1 - scaleDiff) + drag.translateY * scaleDiff;
+      // 计算缩放比例变化
+      var scaleRatio = newScale / drag.scale;
+      
+      // 调整偏移量，保证缩放后图片中心位置不变
+      drag.translateX = (drag.translateX - (imgCenterX - window.innerWidth / 2)) * scaleRatio + (imgCenterX - window.innerWidth / 2);
+      drag.translateY = (drag.translateY - (imgCenterY - window.innerHeight / 2)) * scaleRatio + (imgCenterY - window.innerHeight / 2);
       
       drag.scale = newScale;
       
@@ -201,12 +205,15 @@
       event.preventDefault();
       drag.isDragging = true;
       
-      // 记录初始位置（修改：直接记录鼠标位置，不减去当前偏移，保证1:1拖动）
+      // ========== 核心修改2：记录鼠标初始位置 ==========
       drag.startX = event.clientX;
       drag.startY = event.clientY;
       
       // 添加临时样式，提升拖动体验
       active.zoomed.style.cursor = 'grabbing';
+      if (active.zoomedHd) {
+        active.zoomedHd.style.cursor = 'grabbing';
+      }
       
       // 绑定移动和松开事件
       document.addEventListener('mousemove', _handleMouseMove);
@@ -220,15 +227,16 @@
       
       event.preventDefault();
       
-      // 计算偏移量（修改：直接计算鼠标移动的差值，保证1:1速度）
+      // ========== 核心修改3：1:1跟随鼠标拖动 ==========
+      // 计算鼠标移动的差值
       var deltaX = event.clientX - drag.startX;
       var deltaY = event.clientY - drag.startY;
       
-      // 更新拖动位置
+      // 直接更新偏移量，实现1:1跟随
       drag.translateX += deltaX;
       drag.translateY += deltaY;
       
-      // 重置起始位置，用于下一次计算
+      // 更新起始位置，用于下一次计算
       drag.startX = event.clientX;
       drag.startY = event.clientY;
       
@@ -244,20 +252,22 @@
       if (active.zoomed) {
         active.zoomed.style.cursor = 'zoom-out';
       }
+      if (active.zoomedHd) {
+        active.zoomedHd.style.cursor = 'zoom-out';
+      }
       
       // 解绑事件
       document.removeEventListener('mousemove', _handleMouseMove);
       document.removeEventListener('mouseup', _handleMouseUp);
       document.removeEventListener('mouseleave', _handleMouseUp);
-      
-      // 移除：删除关闭图片的逻辑，保证松开鼠标不关闭
     };
 
     // 新增：应用变换到图片
     var _applyTransform = function _applyTransform() {
       if (!active.zoomed) return;
       
-      var transform = 'translate3d(' + drag.translateX + 'px, ' + drag.translateY + 'px, 0) scale(' + drag.scale + ')';
+      // 应用变换：先缩放后平移（保持正确的变换顺序）
+      var transform = 'scale(' + drag.scale + ') translate3d(' + drag.translateX + 'px, ' + drag.translateY + 'px, 0)';
       
       active.zoomed.style.transform = transform;
       if (active.zoomedHd) {
@@ -465,6 +475,7 @@
         drag.translateX = translateX;
         drag.translateY = translateY;
 
+        // ========== 修正变换顺序：先缩放后平移 ==========
         var transform = 'scale(' + scale + ') translate3d(' + translateX + 'px, ' + translateY + 'px, 0)';
 
         active.zoomed.style.transform = transform;

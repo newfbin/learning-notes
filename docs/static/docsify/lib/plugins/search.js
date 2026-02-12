@@ -208,7 +208,7 @@
     return matchingResults.sort(function (r1, r2) { return r2.score - r1.score; });
   }
 
-  async function batchCrawl(paths, vm, depth, limit = 5) {
+  async function batchCrawl(paths, vm, depth, limit = 10) {
     let resultIndex = {};
     for (let i = 0; i < paths.length; i += limit) {
       const slicePaths = paths.slice(i, i + limit);
