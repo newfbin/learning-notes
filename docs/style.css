@@ -16,3 +16,7 @@ section.cover .cover-main>p:last-child a:first-child {
     background-color: var(--theme-color,#42b983);
     color: #fff;
 }
+
+.medium-zoom-image--opened {
+  transform-origin: center center;
+}

@@ -70,10 +70,10 @@
 
   var cloneTarget = function cloneTarget(template) {
     var _template$getBounding = template.getBoundingClientRect(),
-        top = _template$getBounding.top,
-        left = _template$getBounding.left,
-        width = _template$getBounding.width,
-        height = _template$getBounding.height;
+      top = _template$getBounding.top,
+      left = _template$getBounding.left,
+      width = _template$getBounding.width,
+      height = _template$getBounding.height;
 
     var clone = template.cloneNode();
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -115,7 +115,7 @@
      * Ensure the compatibility with IE11 if no Promise polyfill are used.
      */
     var Promise = window.Promise || function Promise(fn) {
-      function noop() {}
+      function noop() { }
       fn(noop, noop);
     };
 
@@ -168,32 +168,32 @@
     // 新增：处理鼠标滚轮缩放（修改为全局监听）
     var _handleWheel = function _handleWheel(event) {
       if (!active.zoomed || isAnimating) return;
-      
+
       event.preventDefault();
-      
+
       // 计算缩放增量（向上滚动放大，向下滚动缩小）
       var delta = event.deltaY > 0 ? -0.1 : 0.1;
       var newScale = drag.scale + delta;
-      
+
       // 限制缩放范围（0.5 到 5 倍）
       newScale = Math.max(0.5, Math.min(5, newScale));
-      
+
       // ========== 核心修改1：基于图片中心缩放 ==========
       // 获取图片当前的边界矩形
       var rect = active.zoomed.getBoundingClientRect();
       // 计算图片中心坐标
       var imgCenterX = rect.left + rect.width / 2;
       var imgCenterY = rect.top + rect.height / 2;
-      
+
       // 计算缩放比例变化
       var scaleRatio = newScale / drag.scale;
-      
+
       // 调整偏移量，保证缩放后图片中心位置不变
       drag.translateX = (drag.translateX - (imgCenterX - window.innerWidth / 2)) * scaleRatio + (imgCenterX - window.innerWidth / 2);
       drag.translateY = (drag.translateY - (imgCenterY - window.innerHeight / 2)) * scaleRatio + (imgCenterY - window.innerHeight / 2);
-      
+
       drag.scale = newScale;
-      
+
       // 应用变换
       _applyTransform();
     };
@@ -201,20 +201,20 @@
     // 新增：处理鼠标按下（开始拖动）
     var _handleMouseDown = function _handleMouseDown(event) {
       if (!active.zoomed || isAnimating) return;
-      
+
       event.preventDefault();
       drag.isDragging = true;
-      
+
       // ========== 核心修改2：记录鼠标初始位置 ==========
       drag.startX = event.clientX;
       drag.startY = event.clientY;
-      
+
       // 添加临时样式，提升拖动体验
       active.zoomed.style.cursor = 'grabbing';
       if (active.zoomedHd) {
         active.zoomedHd.style.cursor = 'grabbing';
       }
-      
+
       // 绑定移动和松开事件
       document.addEventListener('mousemove', _handleMouseMove);
       document.addEventListener('mouseup', _handleMouseUp);
@@ -224,22 +224,22 @@
     // 新增：处理鼠标移动（拖动中）
     var _handleMouseMove = function _handleMouseMove(event) {
       if (!drag.isDragging || !active.zoomed) return;
-      
+
       event.preventDefault();
-      
+
       // ========== 核心修改3：1:1跟随鼠标拖动 ==========
       // 计算鼠标移动的差值
       var deltaX = event.clientX - drag.startX;
       var deltaY = event.clientY - drag.startY;
-      
+
       // 直接更新偏移量，实现1:1跟随
       drag.translateX += deltaX;
       drag.translateY += deltaY;
-      
+
       // 更新起始位置，用于下一次计算
       drag.startX = event.clientX;
       drag.startY = event.clientY;
-      
+
       // 应用变换
       _applyTransform();
     };
@@ -247,7 +247,7 @@
     // 新增：处理鼠标松开（结束拖动）
     var _handleMouseUp = function _handleMouseUp() {
       drag.isDragging = false;
-      
+
       // 恢复光标样式
       if (active.zoomed) {
         active.zoomed.style.cursor = 'zoom-out';
@@ -255,7 +255,7 @@
       if (active.zoomedHd) {
         active.zoomedHd.style.cursor = 'zoom-out';
       }
-      
+
       // 解绑事件
       document.removeEventListener('mousemove', _handleMouseMove);
       document.removeEventListener('mouseup', _handleMouseUp);
@@ -263,17 +263,24 @@
     };
 
     // 新增：应用变换到图片
+    // 应用变换到图片（修正版）
     var _applyTransform = function _applyTransform() {
       if (!active.zoomed) return;
-      
-      // 应用变换：先缩放后平移（保持正确的变换顺序）
-      var transform = 'scale(' + drag.scale + ') translate3d(' + drag.translateX + 'px, ' + drag.translateY + 'px, 0)';
-      
+
+      // ✅ 先写 translate 再写 scale
+      var transform =
+        'translate3d(' +
+        drag.translateX + 'px, ' +
+        drag.translateY + 'px, 0) ' +
+        'scale(' + drag.scale + ')';
+
       active.zoomed.style.transform = transform;
+
       if (active.zoomedHd) {
         active.zoomedHd.style.transform = transform;
       }
     };
+
 
     // 新增：重置拖动和缩放状态
     var _resetDragState = function _resetDragState() {
@@ -342,8 +349,8 @@
 
       eventListeners.forEach(function (_ref) {
         var type = _ref.type,
-            listener = _ref.listener,
-            options = _ref.options;
+          listener = _ref.listener,
+          options = _ref.options;
 
         newImages.forEach(function (image) {
           image.addEventListener(type, listener, options);
@@ -410,7 +417,7 @@
 
     var open = function open() {
       var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-          target = _ref2.target;
+        target = _ref2.target;
 
       var _animate = function _animate() {
         var container = {
@@ -437,10 +444,10 @@
             var zoomContainer = isNode(zoomOptions.container) ? zoomOptions.container : document.querySelector(zoomOptions.container);
 
             var _zoomContainer$getBou = zoomContainer.getBoundingClientRect(),
-                _width = _zoomContainer$getBou.width,
-                _height = _zoomContainer$getBou.height,
-                _left = _zoomContainer$getBou.left,
-                _top = _zoomContainer$getBou.top;
+              _width = _zoomContainer$getBou.width,
+              _height = _zoomContainer$getBou.height,
+              _left = _zoomContainer$getBou.left,
+              _top = _zoomContainer$getBou.top;
 
             container = _extends({}, container, {
               width: _width,
@@ -459,31 +466,36 @@
         var naturalHeight = isSvg(zoomTarget) ? viewportHeight : zoomTarget.naturalHeight || viewportHeight;
 
         var _zoomTarget$getBoundi = zoomTarget.getBoundingClientRect(),
-            top = _zoomTarget$getBoundi.top,
-            left = _zoomTarget$getBoundi.left,
-            width = _zoomTarget$getBoundi.width,
-            height = _zoomTarget$getBoundi.height;
+          top = _zoomTarget$getBoundi.top,
+          left = _zoomTarget$getBoundi.left,
+          width = _zoomTarget$getBoundi.width,
+          height = _zoomTarget$getBoundi.height;
 
         var scaleX = Math.min(Math.max(width, naturalWidth), viewportWidth) / width;
         var scaleY = Math.min(Math.max(height, naturalHeight), viewportHeight) / height;
         var scale = Math.min(scaleX, scaleY);
         var translateX = (-left + (viewportWidth - width) / 2 + zoomOptions.margin + container.left) / scale;
         var translateY = (-top + (viewportHeight - height) / 2 + zoomOptions.margin + container.top) / scale;
-        
+
         // 初始化拖动和缩放状态
         drag.scale = scale;
         drag.translateX = translateX;
         drag.translateY = translateY;
 
         // ========== 修正变换顺序：先缩放后平移 ==========
-        var transform = 'scale(' + scale + ') translate3d(' + translateX + 'px, ' + translateY + 'px, 0)';
+        // ✅ 修正顺序：translate 在前
+        var transform =
+          'translate3d(' +
+          translateX + 'px, ' +
+          translateY + 'px, 0) ' +
+          'scale(' + scale + ')';
 
         active.zoomed.style.transform = transform;
 
         if (active.zoomedHd) {
           active.zoomedHd.style.transform = transform;
         }
-        
+
         // 修改：将滚轮事件绑定到document，实现全局滚轮缩放
         document.addEventListener('wheel', _handleWheel, { passive: false });
         // 保留图片的拖动事件绑定
@@ -584,7 +596,7 @@
           // We need to access the natural size of the full HD
           // target as fast as possible to compute the animation.
           var getZoomTargetSize = setInterval(function () {
-            if ( active.zoomedHd.complete) {
+            if (active.zoomedHd.complete) {
               clearInterval(getZoomTargetSize);
               active.zoomedHd.classList.add('medium-zoom-image--opened');
               // 修改：移除HD图片的点击关闭事件
@@ -659,7 +671,7 @@
 
           // 重置拖动状态
           _resetDragState();
-          
+
           active.original = null;
           active.zoomed = null;
           active.zoomedHd = null;
@@ -692,7 +704,7 @@
 
     var toggle = function toggle() {
       var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-          target = _ref3.target;
+        target = _ref3.target;
 
       if (active.original) {
         return close();
@@ -725,12 +737,12 @@
       template: null
 
       // If the selector is omitted, it's replaced by the options
-    };if (Object.prototype.toString.call(selector) === '[object Object]') {
+    }; if (Object.prototype.toString.call(selector) === '[object Object]') {
       zoomOptions = selector;
     } else if (selector || typeof selector === 'string' // to process empty string as a selector
     ) {
-        attach(selector);
-      }
+      attach(selector);
+    }
 
     // Apply the default option values
     zoomOptions = _extends({
@@ -767,7 +779,7 @@
   };
 
   function styleInject(css, ref) {
-    if ( ref === void 0 ) { ref = {}; }
+    if (ref === void 0) { ref = {}; }
     var insertAt = ref.insertAt;
 
     if (!css || typeof document === 'undefined') { return; }
