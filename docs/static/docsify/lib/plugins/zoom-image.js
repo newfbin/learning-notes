@@ -165,7 +165,7 @@
       }
     };
 
-    // 新增：处理鼠标滚轮缩放
+    // 新增：处理鼠标滚轮缩放（修改为全局监听）
     var _handleWheel = function _handleWheel(event) {
       if (!active.zoomed || isAnimating) return;
       
@@ -201,9 +201,9 @@
       event.preventDefault();
       drag.isDragging = true;
       
-      // 记录初始位置
-      drag.startX = event.clientX - drag.translateX;
-      drag.startY = event.clientY - drag.translateY;
+      // 记录初始位置（修改：直接记录鼠标位置，不减去当前偏移，保证1:1拖动）
+      drag.startX = event.clientX;
+      drag.startY = event.clientY;
       
       // 添加临时样式，提升拖动体验
       active.zoomed.style.cursor = 'grabbing';
@@ -220,9 +220,17 @@
       
       event.preventDefault();
       
-      // 计算偏移量
-      drag.translateX = event.clientX - drag.startX;
-      drag.translateY = event.clientY - drag.startY;
+      // 计算偏移量（修改：直接计算鼠标移动的差值，保证1:1速度）
+      var deltaX = event.clientX - drag.startX;
+      var deltaY = event.clientY - drag.startY;
+      
+      // 更新拖动位置
+      drag.translateX += deltaX;
+      drag.translateY += deltaY;
+      
+      // 重置起始位置，用于下一次计算
+      drag.startX = event.clientX;
+      drag.startY = event.clientY;
       
       // 应用变换
       _applyTransform();
@@ -241,6 +249,8 @@
       document.removeEventListener('mousemove', _handleMouseMove);
       document.removeEventListener('mouseup', _handleMouseUp);
       document.removeEventListener('mouseleave', _handleMouseUp);
+      
+      // 移除：删除关闭图片的逻辑，保证松开鼠标不关闭
     };
 
     // 新增：应用变换到图片
@@ -463,11 +473,11 @@
           active.zoomedHd.style.transform = transform;
         }
         
-        // 绑定滚轮和拖动事件
-        active.zoomed.addEventListener('wheel', _handleWheel, { passive: false });
+        // 修改：将滚轮事件绑定到document，实现全局滚轮缩放
+        document.addEventListener('wheel', _handleWheel, { passive: false });
+        // 保留图片的拖动事件绑定
         active.zoomed.addEventListener('mousedown', _handleMouseDown);
         if (active.zoomedHd) {
-          active.zoomedHd.addEventListener('wheel', _handleWheel, { passive: false });
           active.zoomedHd.addEventListener('mousedown', _handleMouseDown);
         }
       };
@@ -538,7 +548,8 @@
         active.original.classList.add('medium-zoom-image--hidden');
         active.zoomed.classList.add('medium-zoom-image--opened');
 
-        active.zoomed.addEventListener('click', close);
+        // 修改：移除图片的点击关闭事件，只保留遮罩层关闭
+        // active.zoomed.addEventListener('click', close);
         active.zoomed.addEventListener('transitionend', _handleOpenEnd);
 
         if (active.original.getAttribute('data-zoom-src')) {
@@ -565,7 +576,8 @@
             if ( active.zoomedHd.complete) {
               clearInterval(getZoomTargetSize);
               active.zoomedHd.classList.add('medium-zoom-image--opened');
-              active.zoomedHd.addEventListener('click', close);
+              // 修改：移除HD图片的点击关闭事件
+              // active.zoomedHd.addEventListener('click', close);
               document.body.appendChild(active.zoomedHd);
               _animate();
             }
@@ -589,7 +601,8 @@
           var loadEventListener = active.zoomedHd.addEventListener('load', function () {
             active.zoomedHd.removeEventListener('load', loadEventListener);
             active.zoomedHd.classList.add('medium-zoom-image--opened');
-            active.zoomedHd.addEventListener('click', close);
+            // 修改：移除HD图片的点击关闭事件
+            // active.zoomedHd.addEventListener('click', close);
             document.body.appendChild(active.zoomedHd);
             _animate();
           });
@@ -618,11 +631,11 @@
             document.body.removeChild(active.template);
           }
 
-          // 解绑滚轮和拖动事件
-          active.zoomed.removeEventListener('wheel', _handleWheel);
+          // 修改：解绑全局滚轮事件
+          document.removeEventListener('wheel', _handleWheel);
+          // 解绑拖动事件
           active.zoomed.removeEventListener('mousedown', _handleMouseDown);
           if (active.zoomedHd) {
-            active.zoomedHd.removeEventListener('wheel', _handleWheel);
             active.zoomedHd.removeEventListener('mousedown', _handleMouseDown);
           }
 
