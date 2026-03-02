@@ -11,7 +11,6 @@
 *  [AI](/study/AI/README)
 *  [CSharp](/study/CSharp/README)
 *  [Java](/study/Java/README)
-*  [Java后端](/study/Java后端/README)
 *  [中间件](/study/中间件/README)
 *  [前端](/study/前端/README)
 *  [工作](/study/工作/README)
