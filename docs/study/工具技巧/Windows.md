@@ -65,6 +65,23 @@ ctrl+f，搜索，把包含qtcreator的项和文件夹全部删掉
 
 ![image-20241104212259022](./assets/Windows/image-20241104212259022.png)
 
+### WSL命令汇总
+
+- **查看帮助信息**：`wsl --help` 或 `wsl -h`
+- **更新WSL**：`wsl --update`
+- **查看可用的Linux发行版**：`wsl --list --online` 或 `wsl -l -o`
+- **安装Linux发行版**：`wsl --install -d <Distro> --web-download `，例如安装Debian：`wsl --install -d Debian`
+- **设置默认Linux发行版**：`wsl --set-default <Distro>` 或 `wsl -s <Distro>`
+- **将WSL2设置为默认版本**：`wsl --set-default-version 2`
+- **设置特定发行版为WSL2**：`wsl --set-version <Distro> 2`，例如将Ubuntu设置为WSL2：`wsl --set-version ubuntu 2`
+- **查看当前状态**：`wsl --status`
+- **检查 WSL 版本**：`wsl --version`
+- **查看详细信息**：`wsl --list --verbose` 或 `wsl -l -v`
+- **直接运行子系统命令**：`wsl -d <Distro> <command>`，例如在默认子系统中运行`ls`：`wsl ls`
+- **关闭特定子系统**：`wsl --terminate <Distro>` 或 `wsl -t <Distro>`
+- **关闭所有子系统**：`wsl --shutdown`
+- **卸载特定子系统**：`wsl --unregister <Distro>`
+
 ### win更改磁盘大小，重新分配磁盘空间
 
 #### 系统自带磁盘管理
@@ -590,10 +607,6 @@ typora --> 文件 --> 偏好设置 --> 通用 --> 打开高级设置
 
 当typora字数达到上万的时候，使用输入法打字和点击切换时就会异常的卡顿，因为typora会实时渲染页面，将拼音输入到页面上再渲染，所以就会异常卡顿，以上三种方法可以帮忙解决。
 
-### 使用正则表达式查找替换Markdown文档的内容
-
-使用IDEA或者VSCode打开Markdown文档，再在IDEA或VSCode中使用正则表达式进行查找替换
-
 
 
 ### npm换源
@@ -983,18 +996,6 @@ $ yarn cache dir
 **解决方式**：
 
 先点击右键，再按 T 键，就触发翻译功能了。（目前找到的最快捷的翻译方式）
-
-### 快捷键打开QQ和微信
-
-#### 为QQ设置快捷键
-
-![image-20250302111455383](./assets/Windows/image-20250302111455383.png)
-
-![image-20250302111551535](./assets/Windows/image-20250302111551535.png)
-
-### 为微信设置快捷键
-
-![image-20250302110833349](./assets/Windows/image-20250302110833349.png)
 
 ### Windows系统下应用多开
 
