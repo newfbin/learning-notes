@@ -1,5 +1,5 @@
 * **目录**
   * [🏠（起点）](/study/README)
   * [⬆️（返回）](/study/积累/README)
-  * [**Ext**](/study/积累/英文积累/Ext)
-  * [**Spring**](/study/积累/英文积累/Spring)
+  * [Ext](/study/积累/英文积累/Ext)
+  * [Spring](/study/积累/英文积累/Spring)

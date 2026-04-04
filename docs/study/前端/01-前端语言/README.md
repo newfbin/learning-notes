@@ -2,7 +2,14 @@
 
 ## 目录
 
-  * [CSS](/study/前端/01-前端语言/CSS/README)
-  * [HTML](/study/前端/01-前端语言/HTML/README)
-  * [JavaScript](/study/前端/01-前端语言/JavaScript/README)
-  * [TypeScript](/study/前端/01-前端语言/TypeScript/README)
+* [CSS](/study/前端/01-前端语言/CSS/README)
+  * [CSS-狂神](/study/前端/01-前端语言/CSS/CSS-狂神)
+* [HTML](/study/前端/01-前端语言/HTML/README)
+  * [HTML-狂神](/study/前端/01-前端语言/HTML/HTML-狂神)
+* [JavaScript](/study/前端/01-前端语言/JavaScript/README)
+  * [ECMAScript](/study/前端/01-前端语言/JavaScript/ECMAScript)
+  * [JavaScript-狂神](/study/前端/01-前端语言/JavaScript/JavaScript-狂神)
+  * [JavaScript高级-尚硅谷](/study/前端/01-前端语言/JavaScript/JavaScript高级-尚硅谷)
+* [TypeScript](/study/前端/01-前端语言/TypeScript/README)
+  * [TypeScript-吴悠](/study/前端/01-前端语言/TypeScript/TypeScript-吴悠)
+  * [TypeScript-尚硅谷](/study/前端/01-前端语言/TypeScript/TypeScript-尚硅谷)
