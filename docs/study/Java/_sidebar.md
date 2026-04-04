@@ -1,6 +1,6 @@
 * **目录**
   * [🏠（起点）](/study/README)
-  * [⬆️（返回）](/study//README)
+  * [⬆️（返回）](/study/README)
   * [00-MarkDown](/study/Java/00-MarkDown/README)
   * [01-Java](/study/Java/01-Java/README)
   * [02-JavaWeb](/study/Java/02-JavaWeb/README)
