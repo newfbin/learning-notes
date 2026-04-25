@@ -181,6 +181,8 @@
       * [07-流量安全优化](/study/Java/项目笔记/09-智能面试刷题平台/07-流量安全优化)
       * [08-内容安全优化](/study/Java/项目笔记/09-智能面试刷题平台/08-内容安全优化)
       * [09-部署上线](/study/Java/项目笔记/09-智能面试刷题平台/09-部署上线)
+* [Python](/study/Python/README)
+  * [Conda常用命令](/study/Python/Conda常用命令)
 * [中间件](/study/中间件/README)
   * [ElasticSearch](/study/中间件/ElasticSearch/README)
     * [ElasticSearch-拓展](/study/中间件/ElasticSearch/ElasticSearch-拓展)
