@@ -24,3 +24,26 @@
 
 - 搜索包：`conda search numpy`
 - 查看配置信息：`conda info`
+
+## 更换镜像源
+
+```bash
+# 清空原有默认源
+conda config --remove-key channels
+
+# 添加清华镜像源（国内最快）
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2/
+
+# 设置搜索时显示通道地址
+conda config --set show_channel_urls yes
+```
+
+验证是否生效
+
+```bash
+#  显示清华源地址就说明成功了
+conda config --show channels
+```
+
