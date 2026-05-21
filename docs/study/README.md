@@ -243,6 +243,8 @@
     * [RabbitMQ-扩展](/study/中间件/RabbitMQ/RabbitMQ-扩展)
   * [其它中间件](/study/中间件/其它中间件/README)
     * [hotkey-鱼皮](/study/中间件/其它中间件/hotkey-鱼皮)
+* [修改测试](/study/修改测试/README)
+
 * [前端](/study/前端/README)
   * [01-前端语言](/study/前端/01-前端语言/README)
     * [CSS](/study/前端/01-前端语言/CSS/README)

@@ -4,6 +4,7 @@
   * [**Java**](/study/Java/README)
   * [**Python**](/study/Python/README)
   * [**中间件**](/study/中间件/README)
+  * [**修改测试**](/study/修改测试/README)
   * [**前端**](/study/前端/README)
   * [**工作**](/study/工作/README)
   * [**工具技巧**](/study/工具技巧/README)
