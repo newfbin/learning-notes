@@ -2,7 +2,7 @@
 
 ## 环境管理：
 
-- 创建环境：`conda create --name myenv`
+- 创建环境：`conda create -n deep_learning python=3.10`
 - 激活环境：`conda activate myenv`
 - 查看环境：`conda env list`
 - 删除环境：`conda remove --name myenv --all`
