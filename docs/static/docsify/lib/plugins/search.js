@@ -268,7 +268,7 @@
     }
 
     console.log(`🚀 [Docsify搜索] 无有效缓存，开始并发爬取(${paths.length}个文件)`);
-    const newIndex = await batchCrawl(paths, vm, config.depth, 5);
+    const newIndex = await batchCrawl(paths, vm, config.depth, 20);
     await saveData(config.maxAge, expireKey, indexKey, newIndex);
   }
 
