@@ -361,6 +361,7 @@
     * [Eclipse下运行E8800](/study/工作/常见问题/Eclipse下运行E8800)
     * [IDEA下运行E8800](/study/工作/常见问题/IDEA下运行E8800)
 * [工具技巧](/study/工具技巧/README)
+  * [AI编程工具](/study/工具技巧/AI编程工具)
   * [Java类库插件](/study/工具技巧/Java类库插件)
   * [Office](/study/工具技巧/Office)
   * [Windows](/study/工具技巧/Windows)

@@ -2,6 +2,7 @@
 
 ## 目录
 
+* [AI编程工具](/study/工具技巧/AI编程工具)
 * [Java类库插件](/study/工具技巧/Java类库插件)
 * [Office](/study/工具技巧/Office)
 * [Windows](/study/工具技巧/Windows)
