@@ -649,10 +649,9 @@
   </script>
 
   <!-- 显示mermaid图像 -->
-  <script type="module">
-    import mermaid from "static/docsify/lib/plugins/mermaid/mermaid.esm.min.mjs";
-    mermaid.initialize({ startOnLoad: true });
-    window.mermaid = mermaid;
+  <script src="static/docsify/lib/plugins/mermaid/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: false });
   </script>
   <script src="static/docsify/lib/plugins/mermaid/docsify-mermaid.js"></script>
 
