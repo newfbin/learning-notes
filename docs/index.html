@@ -648,6 +648,14 @@
     };
   </script>
 
+  <!-- 显示mermaid图像 -->
+  <script type="module">
+    import mermaid from "static/docsify/lib/plugins/mermaid/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+    window.mermaid = mermaid;
+  </script>
+  <script src="static/docsify/lib/plugins/mermaid/docsify-mermaid.js"></script>
+
 
   <!-- 添加常用代码高亮语法文件(按照语言首字母排序,如bash csharp docker) -->
   <script src="static/prismjs/js/prism-bash.min.js"></script>
