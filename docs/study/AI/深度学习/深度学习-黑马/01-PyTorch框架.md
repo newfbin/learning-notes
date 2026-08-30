@@ -111,7 +111,7 @@
   data = torch.tensor(10)
   print(data)
   # 2. numpy 数组, 由于data为float64, 张量元素类型也是float64
-  data = np.random.randn(2, 3)
+  data = np.random.randint(2, 3)
   data = torch.tensor(data)
   print(data)
   # 3. 列表, 浮点类型默认float32
