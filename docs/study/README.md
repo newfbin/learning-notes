@@ -332,14 +332,6 @@
         * [05.新的组件](/study/前端/03-框架/Vue/Vue3-尚硅谷/05.新的组件)
         * [06.其它](/study/前端/03-框架/Vue/Vue3-尚硅谷/06.其它)
       * [Vue问题总结](/study/前端/03-框架/Vue/Vue问题总结)
-  * [03-框架和库](/study/前端/03-框架和库/README)
-    * [React库](/study/前端/03-框架和库/React库/README)
-
-    * [Vue框架](/study/前端/03-框架和库/Vue框架/README)
-      * [Vue2-尚硅谷](/study/前端/03-框架和库/Vue框架/Vue2-尚硅谷/README)
-
-      * [Vue3-尚硅谷](/study/前端/03-框架和库/Vue框架/Vue3-尚硅谷/README)
-
   * [04-网络请求库](/study/前端/04-网络请求库/README)
     * [Axios](/study/前端/04-网络请求库/Axios/README)
       * [Axios-W3Cschool](/study/前端/04-网络请求库/Axios/Axios-W3Cschool)
